@@ -8,7 +8,7 @@ evidence. Thresholds are explicit and logged — no blurred categories.
 """
 
 from . import tracing
-from .evidence import fixture_adapter, crustdata_adapter, firecrawl_adapter, gptzero_adapter
+from .evidence import fixture_adapter, crustdata_adapter, firecrawl_adapter, gptzero_adapter, alexandria_adapter
 
 SUPPORT_THRESHOLD = 0.60
 CONTRADICT_THRESHOLD = 0.60
@@ -112,6 +112,10 @@ class EvidenceAgent:
                 print("  [evidence] Crustdata adapter available — SIMULATED in demo, skipped for benchmark purity")
             if firecrawl_adapter.available():
                 print("  [evidence] Firecrawl adapter available — SIMULATED in demo, skipped for benchmark purity")
+            if alexandria_adapter.available():
+                print("  [evidence] Alexandria (27 categories) available — SIMULATED in demo, skipped for benchmark purity")
+                print("    Categories: company, finance, news, jobs, knowledge, digital-intelligence, ...")
+                print("    Use alexandria_adapter.discover(need) + .execute(ref, options) for live investigations")
             self.state.save()
             return records
 
