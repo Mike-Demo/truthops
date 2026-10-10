@@ -7,7 +7,7 @@ adapters enrich via their own call paths:
 - GPTZero: AI-text screening on secondary sources (evidence_agent calls
   gptzero_adapter.screen_text directly; auth via the stored custom.gptzero
   connector through the gptzero-scan CLI — no env var needed).
-- TruthScan: Phase-2 photo AI detection (TRUTHSCAN_API_KEY env var).
+- Sightengine: Phase-2 photo AI detection (SIGHTENGINE_API_USER/_SECRET env vars).
 - C2PA: Phase-1 photo provenance, local via c2pa-python (no key).
 - Alexandria: evidence enrichment via Firecrawl CLI auth (27 categories).
 
@@ -25,7 +25,7 @@ from __future__ import annotations
 import os
 
 from .fixture_adapter import FixtureAdapter
-from . import gptzero_adapter, truthscan_adapter, c2pa_adapter, alexandria_adapter
+from . import gptzero_adapter, sightengine_adapter, c2pa_adapter, alexandria_adapter
 
 
 class LiveAdapter:
@@ -60,16 +60,16 @@ class LiveAdapter:
                 "detail": "gptzero-scan CLI missing — AI screening skipped",
             }
 
-        # TruthScan: needs TRUTHSCAN_API_KEY env var.
-        if os.environ.get("TRUTHSCAN_API_KEY"):
-            status["truthscan"] = {
+        # Sightengine: needs SIGHTENGINE_API_USER + SIGHTENGINE_API_SECRET env vars.
+        if os.environ.get("SIGHTENGINE_API_USER") and os.environ.get("SIGHTENGINE_API_SECRET"):
+            status["sightengine"] = {
                 "mode": "live",
-                "detail": "TRUTHSCAN_API_KEY set — photo AI detection available",
+                "detail": "Sightengine credentials set — photo AI detection available",
             }
         else:
-            status["truthscan"] = {
+            status["sightengine"] = {
                 "mode": "fixture",
-                "detail": "TRUTHSCAN_API_KEY not set — photo scans skipped",
+                "detail": "Sightengine credentials not set — photo scans skipped",
             }
 
         # C2PA: local library, no key.
@@ -139,14 +139,14 @@ class LiveAdapter:
                 agg["operations"].append(entry["operation"])
         return summary
 
-    # -- photo verification chain (C2PA -> TruthScan) ---------------------
+    # -- photo verification chain (C2PA -> Sightengine) -------------------
     def verify_photo(self, image_bytes: bytes, image_url: str = "") -> dict:
         """Two-phase photo verification. Returns evidence-ready dicts.
 
         Phase 1 (free, local): C2PA provenance.
-        Phase 2 (paid): TruthScan AI detection — only when Phase 1 is
-        inconclusive AND a TruthScan key is configured. Never spends
-        without the key.
+        Phase 2 (free tier): Sightengine AI detection — only when Phase 1 is
+        inconclusive AND Sightengine credentials are configured. Never spends
+        without the credentials.
         """
         out: dict = {"phase1": None, "phase2": None, "spend_usd": 0.0}
 
@@ -155,15 +155,14 @@ class LiveAdapter:
         out["phase1"] = c2pa_adapter.provenance_to_evidence(p1, image_url)
         self.log_spend("c2pa", "check_provenance", note=p1.get("signal", ""))
 
-        # Phase 2: TruthScan — only if Phase 1 didn't verify AND key exists.
-        if p1.get("signal") != "provenance_verified" and self.is_live("truthscan"):
-            scan = truthscan_adapter.scan_image(image_bytes)
-            out["phase2"] = truthscan_adapter.scan_to_evidence(scan, image_url)
-            # TruthScan free tier: 25 scans/mo, then $0.03/scan overage.
-            # Cost attribution happens at billing time; record the call.
-            self.log_spend("truthscan", "scan_image",
+        # Phase 2: Sightengine — only if Phase 1 didn't verify AND creds exist.
+        if p1.get("signal") != "provenance_verified" and self.is_live("sightengine"):
+            scan = sightengine_adapter.scan_image(image_bytes)
+            out["phase2"] = sightengine_adapter.scan_to_evidence(scan, image_url)
+            # Sightengine free tier: 2,000 ops/month, no time limit.
+            self.log_spend("sightengine", "scan_image",
                            note=f"verdict={scan.get('verdict')}")
         elif p1.get("signal") != "provenance_verified":
             out["phase2"] = {"skipped": True,
-                             "reason": "TRUTHSCAN_API_KEY not set"}
+                             "reason": "Sightengine credentials not set"}
         return out

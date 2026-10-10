@@ -215,12 +215,12 @@ class EvidenceAgent:
                 self.state.log_event("live_enrichment_failed",
                                      f"Alexandria: {e}", claim_id=claim_id)
 
-        # Photo verification: if claim mentions photos/images, attempt C2PA->TruthScan
+        # Photo verification: if claim mentions photos/images, attempt C2PA->Sightengine
         # Note: requires image bytes — currently only runs if image_url in fixture
         # provides a fetchable URL. Full image acquisition is a separate step.
         if la.is_live("c2pa") and any(w in claim_text.lower()
                                         for w in ["photo", "image", "picture", "photograph"]):
-            print(f"  [live] Photo claim detected — image acquisition required for C2PA/TruthScan chain")
+            print(f"  [live] Photo claim detected — image acquisition required for C2PA/Sightengine chain")
             print(f"         Use LiveAdapter.verify_photo(image_bytes) with actual image bytes")
             self.state.log_event("photo_verification_pending",
                                  "Claim mentions photos but no image bytes provided",

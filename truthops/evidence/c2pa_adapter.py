@@ -6,7 +6,7 @@ Phase 1 of photo verification: check C2PA Content Credentials.
 - If an image has NO C2PA data: not proof of fake, but absence of provenance (most AI generators strip or never embed it).
 - If C2PA data is present but INVALID: strong signal of tampering.
 
-Phase 2 (planned): TruthScan API for AI-generation detection on images without C2PA data.
+Phase 2: Sightengine API for AI-generation detection on images without C2PA data.
 """
 
 from __future__ import annotations
@@ -153,5 +153,5 @@ def provenance_to_evidence(result: dict, image_url: str = "") -> dict:
             "url": image_url or "c2pa://none",
             "summary": result["detail"],
             "provenance": result,
-            "note": "Absence of C2PA data is weak evidence — route to Phase 2 (TruthScan) for AI detection.",
+            "note": "Absence of C2PA data is weak evidence — route to Phase 2 (Sightengine) for AI detection.",
         }

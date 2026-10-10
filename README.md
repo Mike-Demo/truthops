@@ -25,6 +25,8 @@ Allegation → [Sniff Test] → (proceed?) → Evidence Pipeline → Claims → 
 
 **GPTZero validation** (`truthops/evidence/gptzero_adapter.py`): Four annotation-only signals — AI detection, AI paraphrased subclass, sentence-level flags, plagiarism (null in v2 API). Never changes verdicts; informs source reliability.
 
+**Photo verification** (`truthops/evidence/live_adapter.py::verify_photo`): Two-phase chain for image claims. Phase 1 (free, local): C2PA provenance check via `c2pa_adapter.py` — valid provenance is strong authenticity signal; absence is inconclusive. Phase 2 (free tier): Sightengine `genai` AI-generation detection via `sightengine_adapter.py` — runs only when Phase 1 is inconclusive and `SIGHTENGINE_API_USER`/`SIGHTENGINE_API_SECRET` are set. Free tier: 2,000 ops/month, no time limit.
+
 ## Sponsor evidence
 
 - **neatlogs traces**: instrumented via `truthops/tracing.py` — keyed runs complete, SDK shutdown clean

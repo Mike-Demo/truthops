@@ -118,7 +118,7 @@ def main(argv=None):
     run.add_argument("--approve", default="",
                      help="human-initiated: comma-separated external actions to approve")
     run.add_argument("--live", action="store_true",
-                     help="wire live evidence adapters (GPTZero, TruthScan, C2PA, "
+                     help="wire live evidence adapters (GPTZero, Sightengine, C2PA, "
                           "Alexandria); each degrades gracefully to fixture mode "
                           "when its key/dependency is missing")
     args = parser.parse_args(argv)
