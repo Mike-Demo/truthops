@@ -4,5 +4,6 @@
     "primary": {
       "type": "git-refs"
     }
-  }
+  },
+  "external_agents": true
 }

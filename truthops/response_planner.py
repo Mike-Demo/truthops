@@ -56,25 +56,44 @@ def build_plan(state):
         claims = state.data["claims"]
         verdicts = {cid: c["verdict"] for cid, c in claims.items()}
 
-        if verdicts.get("decline_was_40pct") in FALSE_LIKE:
-            characterization = "MISLEADING"
-            posture = "Correct the record with primary-source evidence"
-        elif verdicts.get("incident_occurred") in FALSE_LIKE:
+        # Case-agnostic characterization: derive from actual verdicts,
+        # not hardcoded claim IDs.
+        false_like_count = sum(1 for v in verdicts.values() if v in FALSE_LIKE)
+        true_like_count = sum(1 for v in verdicts.values() if v in TRUE_LIKE)
+        total = len(verdicts)
+
+        if total > 0 and false_like_count == total:
             characterization = "FALSE"
             posture = "Deny with evidence"
+        elif false_like_count > 0 and true_like_count > 0:
+            characterization = "MISLEADING"
+            posture = "Correct the record with primary-source evidence"
+        elif false_like_count > 0:
+            characterization = "MOSTLY_FALSE"
+            posture = "Correct the record with primary-source evidence"
+        elif true_like_count == total and total > 0:
+            characterization = "TRUE"
+            posture = "Affirm with evidence"
         else:
             characterization = "UNRESOLVED"
             posture = "Acknowledge investigation is ongoing"
 
+        # Case-agnostic key messages: built from actual claims and evidence.
+        key_messages = []
+        for cid, c in claims.items():
+            stmt = c.get("statement", cid)
+            verdict = c.get("verdict", "unresolved").upper().replace("_", " ")
+            score = c.get("score_0_100")
+            score_txt = f" ({score}/100)" if score is not None else ""
+            key_messages.append(f"Claim '{stmt[:80]}{'...' if len(stmt) > 80 else ''}': {verdict}{score_txt}.")
+            notes = c.get("notes")
+            if notes:
+                key_messages.append(f"  Notes: {notes}")
+
         plan = {
             "characterization": characterization,
             "recommended_posture": posture,
-            "key_messages": [
-                "A security incident did occur on 2026-07-14 and was disclosed on 2026-07-16 (incident report).",
-                "Enterprise customer decline was 4.2% (2,380 -> 2,280), per the Q3 2026 filing — not 40%.",
-                "The 40% figure circulating online is contradicted by the primary filing.",
-                "No direct evidence of deliberate concealment was found; intent is not asserted.",
-            ],
+            "key_messages": key_messages,
             "cited_evidence": [
                 {"evidence_id": eid, "url": r["url"], "label": r["label"]}
                 for eid, r in state.data["evidence"].items()

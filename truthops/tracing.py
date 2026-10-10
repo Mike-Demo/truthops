@@ -10,6 +10,7 @@ import os
 
 _enabled = False
 _nl = None
+_trace_id = None
 
 try:
     import neatlogs as _nl  # noqa: F401  (imported for feature detection)
@@ -24,6 +25,11 @@ except Exception:
 
 def is_enabled():
     return _enabled
+
+
+def get_trace_id():
+    """Return the captured trace ID, or None if tracing is disabled/no span entered."""
+    return _trace_id
 
 
 def init(workflow_name="truthops"):
@@ -59,11 +65,18 @@ class span:
         self._cm = None
 
     def __enter__(self):
+        global _trace_id
         if _enabled and _nl is not None and hasattr(_nl, "trace"):
             try:
                 # neatlogs.trace(name, **attrs) is a context manager; span() is a decorator.
                 self._cm = _nl.trace(self.name, **self.attrs)
-                return self._cm.__enter__()
+                entered = self._cm.__enter__()
+                # Capture trace_id from the root span (first span entered).
+                if _trace_id is None and entered is not None:
+                    tid = getattr(entered, "trace_id", None)
+                    if tid:
+                        _trace_id = str(tid)
+                return entered
             except Exception:
                 self._cm = None
         return self

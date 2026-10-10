@@ -26,14 +26,28 @@ def load_allegation(case_id):
         return json.load(f)["allegation"]
 
 
-def write_reports(state, plan, case_id):
+def write_reports(state, plan, case_id, live_adapter=None):
     os.makedirs(os.path.join(BASE, "artifacts"), exist_ok=True)
     data = state.data
+    live = live_adapter is not None
+    # Capture neatlogs trace ID (None when tracing disabled — graceful degradation)
+    try:
+        from .tracing import get_trace_id
+        trace_id = get_trace_id()
+    except Exception:
+        trace_id = None
     report = {
-        "label": "SYNTHETIC demo run — neatHack 2026",
+        "label": ("LIVE run — neatHack 2026" if live
+                  else "SYNTHETIC demo run — neatHack 2026"),
         "run_id": data["run_id"],
         "case_id": case_id,
         "generated_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
+        "live_mode": live,
+        "neatlogs_trace_id": trace_id,
+        "adapter_status": live_adapter.status() if live else {"fixture": {
+            "mode": "fixture",
+            "detail": "FixtureAdapter only — no live adapters probed"}},
+        "api_spend": live_adapter.spend_summary() if live else {},
         "claims": data["claims"],
         "evidence": data["evidence"],
         "contrarian_reviews": data["contrarian_reviews"],
@@ -47,11 +61,18 @@ def write_reports(state, plan, case_id):
     with open(jpath, "w") as f:
         json.dump(report, f, indent=2)
 
+    disclaimer = (
+        "> LIVE run — neatHack 2026. Evidence is fixture-backed for benchmark "
+        "comparability; live adapters enriched where available (see JSON report "
+        "for per-adapter status and spend)."
+        if live else
+        "> SYNTHETIC demo run — neatHack 2026. All fixture data is synthetic; "
+        "live integrations (Crustdata, Firecrawl) were SIMULATED in this run."
+    )
     lines = [
         f"# TruthOps report — case `{case_id}`",
         "",
-        "> SYNTHETIC demo run — neatHack 2026. All fixture data is synthetic; "
-        "live integrations (Crustdata, Firecrawl) were SIMULATED in this run.",
+        disclaimer,
         "",
         f"**Overall characterization: {plan['characterization']}**",
         f"**Recommended posture:** {plan['recommended_posture']}",
@@ -96,6 +117,10 @@ def main(argv=None):
     run.add_argument("--case", required=True)
     run.add_argument("--approve", default="",
                      help="human-initiated: comma-separated external actions to approve")
+    run.add_argument("--live", action="store_true",
+                     help="wire live evidence adapters (GPTZero, TruthScan, C2PA, "
+                          "Alexandria); each degrades gracefully to fixture mode "
+                          "when its key/dependency is missing")
     args = parser.parse_args(argv)
 
     tracing.init(workflow_name="truthops")
@@ -124,11 +149,19 @@ def main(argv=None):
                 approver="human-cli-flag")
 
         allegation = load_allegation(args.case)
-        http = HttpClient(state, FixtureAdapter())
+        if args.live:
+            from .evidence.live_adapter import LiveAdapter
+            adapter = LiveAdapter()
+            print("[truthops] LIVE mode — probing adapters...")
+            adapter.print_status()
+        else:
+            adapter = FixtureAdapter()
+        http = HttpClient(state, adapter)
         director = Director(state, http)
         plan = director.run_case(allegation, args.case)
 
-        jpath, mpath = write_reports(state, plan, args.case)
+        jpath, mpath = write_reports(state, plan, args.case,
+                                     live_adapter=adapter if args.live else None)
         print(f"\n[truthops] reports written:\n  {jpath}\n  {mpath}")
         tracing.flush()
 
