@@ -12,6 +12,28 @@ from .evidence import fixture_adapter, crustdata_adapter, firecrawl_adapter, gpt
 
 SUPPORT_THRESHOLD = 0.60
 CONTRADICT_THRESHOLD = 0.60
+MIXED_THRESHOLD = 0.40  # both sides significant -> middle Truth-O-Meter bands
+
+# PolitiFact Truth-O-Meter mapped to 0-100.
+# TRUE: settled, multiply-attested fact.
+# MOSTLY TRUE: accurate but needs clarification / minor imprecision.
+# HALF TRUE: partially accurate; significant truth + significant falsehood.
+# MOSTLY FALSE: kernel of truth, but the main claim is false/misleading.
+# FALSE: demonstrably false, no significant truth.
+# PANTS ON FIRE: forensically disproven fabrication.
+# (60-75 is a deliberate gap — no rating sits there.)
+TRUTH_O_METER = {
+    "pants_on_fire": (0, 5),
+    "false":         (5, 15),
+    "mostly_false":  (15, 40),
+    "half_true":     (40, 60),
+    "mostly_true":   (75, 90),
+    "true":          (90, 100),
+}
+# Verdicts that count as "the claim is wrong" for characterization logic.
+FALSE_LIKE = {"false", "pants_on_fire", "mostly_false", "contradicted"}
+# Verdicts that count as "the claim is right" for characterization logic.
+TRUE_LIKE = {"true", "mostly_true", "supported"}
 
 # Which fixture documents speak to which claim, and how.
 EVIDENCE_PLAN = {
@@ -33,6 +55,23 @@ EVIDENCE_PLAN = {
     "deliberate_concealment": [
         # No fixture establishes intent. Deliberately empty.
     ],
+    # Smoke-test calibration cases (all primary sources -> no GPTZero live calls)
+    "claim": [
+        # Populated per-case below; the claim_id "claim" is shared but each
+        # smoke case has its own fixture dir, so URLs are case-scoped.
+    ],
+}
+
+# Smoke case evidence plans (claim_id "claim", URLs scoped per case)
+SMOKE_EVIDENCE_PLAN = {
+    "smoke1": [("fixture://smoke1/ap-factcheck", "contradicts", 1.0)],
+    "smoke2": [("fixture://smoke2/ap-notrealnews", "contradicts", 1.0)],
+    "smoke3": [
+        ("fixture://smoke3/ap-diplomacy", "supports", 0.8),
+        ("fixture://smoke3/ap-factcheck", "contradicts", 1.0),
+    ],
+    "smoke4": [("fixture://smoke4/factcheck-org", "supports", 1.0)],
+    "smoke5": [("fixture://smoke5/ap-reporting", "supports", 1.0)],
 }
 
 
@@ -46,7 +85,11 @@ class EvidenceAgent:
         """Retrieve evidence for one claim. Returns list of evidence records."""
         with tracing.span("evidence.gather", claim_id=claim_id):
             records = []
-            for url, stance, relevance in EVIDENCE_PLAN.get(claim_id, []):
+            case_id = self.state.data.get("case_id", "")
+            plan = EVIDENCE_PLAN.get(claim_id, [])
+            if not plan and case_id in SMOKE_EVIDENCE_PLAN:
+                plan = SMOKE_EVIDENCE_PLAN[case_id]
+            for url, stance, relevance in plan:
                 try:
                     doc = self.http.get(url)  # 503-on-first-attempt applies to the filing
                 except Exception as e:
@@ -71,6 +114,8 @@ class EvidenceAgent:
                     "relevance": relevance,
                     "score": score,
                     "is_primary_source": bool(doc.get("is_primary_source")),
+                    "fabrication_proof": bool(doc.get("fabrication_proof", False)),
+                    "numerical_discrepancy": doc.get("numerical_discrepancy"),
                     "summary": self._summarize(doc),
                 }
                 # GPTZero validation layer: screen secondary-source texts for
@@ -120,41 +165,110 @@ class EvidenceAgent:
             return records
 
     def evaluate(self, claim_id):
-        """Score-based verdict. Exactly one of: supported / contradicted / unresolved."""
+        """Score-based verdict on the PolitiFact Truth-O-Meter scale.
+
+        Verdicts: pants_on_fire | false | mostly_false | half_true |
+                  mostly_true | true | unresolved.
+        The 0-100 score always falls within the verdict's band. Confidence
+        keeps the existing mechanic (0.5 + dominant_weight / 2): how sure
+        we are of the assessment, distinct from how true the claim is.
+        """
         with tracing.span("evidence.evaluate", claim_id=claim_id):
             recs = [r for r in self.state.data["evidence"].values()
                     if r["claim_id"] == claim_id]
             support = round(sum(r["score"] for r in recs if r["stance"] == "supports"), 3)
             contra = round(sum(r["score"] for r in recs if r["stance"] == "contradicts"), 3)
-            if contra >= CONTRADICT_THRESHOLD and contra >= support:
-                verdict, confidence = "contradicted", min(0.99, 0.5 + contra / 2)
-            elif support >= SUPPORT_THRESHOLD and support > contra:
-                verdict, confidence = "supported", min(0.99, 0.5 + support / 2)
-            else:
-                verdict, confidence = "unresolved", 0.0
-            confidence = round(confidence, 2)
+            fab_proof = any(r.get("fabrication_proof") and r["stance"] == "contradicts"
+                            for r in recs)
+            num_disc = next((r.get("numerical_discrepancy") for r in recs
+                             if r.get("numerical_discrepancy")), None)
+
+            verdict, confidence, score = self._rate(support, contra, fab_proof, num_disc)
+
             claim = self.state.data["claims"][claim_id]
             claim["verdict"] = verdict
             claim["confidence_initial"] = confidence
+            claim["score_0_100"] = score
             claim["status"] = "reviewed"
             claim["scoring"] = {
                 "support_weight": support, "contradict_weight": contra,
                 "support_threshold": SUPPORT_THRESHOLD,
                 "contradict_threshold": CONTRADICT_THRESHOLD,
+                "mixed_threshold": MIXED_THRESHOLD,
+                "fabrication_proof": fab_proof,
+                "numerical_discrepancy": num_disc,
+                "truth_o_meter_band": list(TRUTH_O_METER.get(verdict, (None, None))),
                 "factors": ["source reliability x relevance per item",
                             "primary sources weighted via reliability score",
+                            "PolitiFact Truth-O-Meter verdict scale (0-100 bands)",
+                            "fabrication proof -> PANTS ON FIRE floor",
+                            "numerical discrepancy -> precision penalty",
                             "no evidence -> unresolved (never assumed)"],
             }
             self.state.log_event(
                 "claim_evaluated",
-                f"{claim_id}: {verdict} (confidence {confidence}) "
+                f"{claim_id}: {verdict} (confidence {confidence}, score {score}) "
                 f"[support={support} vs contradict={contra}]",
                 claim_id=claim_id, verdict=verdict, confidence=confidence,
             )
             self.state.save()
             print(f"  [evaluate] {claim_id} -> {verdict.upper()} "
-                  f"(initial confidence {confidence}) [support={support} | contradict={contra}]")
+                  f"(confidence {confidence}, score {score}/100) "
+                  f"[support={support} | contradict={contra}]")
             return verdict, confidence
+
+    @staticmethod
+    def _rate(support, contra, fab_proof, num_disc):
+        """Map evidence weights + signals to (verdict, confidence, score_0_100)."""
+        def clamp_band(verdict, score):
+            lo, hi = TRUTH_O_METER[verdict]
+            return max(lo, min(hi, round(score)))
+
+        # No evidence -> unresolved (never assumed).
+        if support < SUPPORT_THRESHOLD and contra < CONTRADICT_THRESHOLD:
+            return "unresolved", 0.0, 50
+
+        # Significant evidence on BOTH sides -> middle bands.
+        if support >= MIXED_THRESHOLD and contra >= MIXED_THRESHOLD:
+            ratio = support / (support + contra)
+            verdict = "half_true" if ratio >= 0.5 else "mostly_false"
+            # Ratio 0..1 maps to 15..60 so the 0.5 boundary lands ~37
+            # (inside mostly_false, near the half_true edge).
+            score = clamp_band(verdict, 15 + ratio * 45)
+            confidence = round(min(0.99, 0.5 + max(support, contra) / 2), 2)
+            return verdict, confidence, score
+
+        # Contradiction dominates.
+        if contra >= CONTRADICT_THRESHOLD and contra >= support:
+            confidence = round(min(0.99, 0.5 + contra / 2), 2)
+            if fab_proof:
+                # Forensically disproven fabrication -> PANTS ON FIRE.
+                score = clamp_band("pants_on_fire", (1 - confidence) * 100)
+                return "pants_on_fire", confidence, score
+            # Debunked but not forensically proven -> FALSE. Without
+            # fabrication proof we hold a floor: strong contradiction
+            # scores toward the bottom of the band, never below 10.
+            score = clamp_band("false", max(10, 15 - min(contra, 1.0) * 5))
+            return "false", confidence, score
+
+        # Support dominates.
+        if support >= SUPPORT_THRESHOLD and support > contra:
+            confidence = round(min(0.99, 0.5 + support / 2), 2)
+            if num_disc:
+                # Specific number is off -> MOSTLY TRUE with precision penalty
+                # proportional to relative error.
+                claimed = num_disc.get("claimed")
+                actual = num_disc.get("actual")
+                rel_err = (abs(claimed - actual) / abs(actual)
+                           if claimed is not None and actual else 0)
+                penalty = min(15, rel_err * 300)
+                score = clamp_band("mostly_true", confidence * 100 - penalty)
+                return "mostly_true", confidence, score
+            # Clean support -> TRUE. Map confidence (~0.8-0.99) into 90-100.
+            score = clamp_band("true", 90 + max(0, min(1, (confidence - 0.8) / 0.19)) * 10)
+            return "true", confidence, score
+
+        return "unresolved", 0.0, 50
 
     @staticmethod
     def _summarize(doc):

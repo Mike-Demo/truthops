@@ -1,0 +1,235 @@
+{
+  "label": "SYNTHETIC demo run \u2014 neatHack 2026",
+  "run_id": "run-20261010-200140",
+  "case_id": "smoke4",
+  "generated_at": "2026-10-10T20:01:42",
+  "claims": {
+    "claim": {
+      "claim_id": "claim",
+      "statement": "Gasoline is now below $2.30 a gallon in most states.",
+      "status": "concluded",
+      "verdict": "mostly_true",
+      "confidence_initial": 0.93,
+      "confidence_revised": 0.93,
+      "notes": "Smoke test 4: mostly true, minor imprecision.",
+      "gather_attempts": 1,
+      "score_0_100": 85,
+      "scoring": {
+        "support_weight": 0.85,
+        "contradict_weight": 0,
+        "support_threshold": 0.6,
+        "contradict_threshold": 0.6,
+        "mixed_threshold": 0.4,
+        "fabrication_proof": false,
+        "numerical_discrepancy": {
+          "claimed": 2.3,
+          "actual": 2.36,
+          "unit": "USD/gallon",
+          "note": "Claim says below $2.30; actual national average ~$2.36. Small imprecision, direction correct."
+        },
+        "truth_o_meter_band": [
+          75,
+          90
+        ],
+        "factors": [
+          "source reliability x relevance per item",
+          "primary sources weighted via reliability score",
+          "PolitiFact Truth-O-Meter verdict scale (0-100 bands)",
+          "fabrication proof -> PANTS ON FIRE floor",
+          "numerical discrepancy -> precision penalty",
+          "no evidence -> unresolved (never assumed)"
+        ]
+      }
+    }
+  },
+  "evidence": {
+    "ev-claim-1": {
+      "evidence_id": "ev-claim-1",
+      "claim_id": "claim",
+      "source": "fixture",
+      "label": "SYNTHETIC fixture",
+      "url": "fixture://smoke4/factcheck-org",
+      "stance": "supports",
+      "reliability": 0.85,
+      "relevance": 1.0,
+      "score": 0.85,
+      "is_primary_source": true,
+      "fabrication_proof": false,
+      "numerical_discrepancy": {
+        "claimed": 2.3,
+        "actual": 2.36,
+        "unit": "USD/gallon",
+        "note": "Claim says below $2.30; actual national average ~$2.36. Small imprecision, direction correct."
+      },
+      "summary": "FactCheck.org found the claim substantially accurate directionally. The contemporaneous national average was approximately $2.36 per gallon \u2014 a small numerical imprecision, not a fabrication. Direction correct, specific "
+    }
+  },
+  "contrarian_reviews": [
+    {
+      "claim_id": "claim",
+      "initial_verdict": "mostly_true",
+      "initial_confidence": 0.93,
+      "disagreement": null,
+      "agreed": true,
+      "revised_confidence": 0.93,
+      "revised_verdict": "mostly_true"
+    }
+  ],
+  "director_decisions": [
+    {
+      "claim_id": "claim",
+      "action": "gather",
+      "rationale": "no evidence yet \u2014 gather before any judgment"
+    },
+    {
+      "claim_id": "claim",
+      "action": "evaluate",
+      "rationale": "evidence phase complete \u2014 evaluate the claim"
+    },
+    {
+      "claim_id": "claim",
+      "action": "escalate",
+      "rationale": "initial verdict reached \u2014 escalate to contrarian for adversarial review"
+    }
+  ],
+  "http_attempts": {
+    "fixture://smoke4/factcheck-org": 1
+  },
+  "response_plan": {
+    "characterization": "UNRESOLVED",
+    "recommended_posture": "Acknowledge investigation is ongoing",
+    "key_messages": [
+      "A security incident did occur on 2026-07-14 and was disclosed on 2026-07-16 (incident report).",
+      "Enterprise customer decline was 4.2% (2,380 -> 2,280), per the Q3 2026 filing \u2014 not 40%.",
+      "The 40% figure circulating online is contradicted by the primary filing.",
+      "No direct evidence of deliberate concealment was found; intent is not asserted."
+    ],
+    "cited_evidence": [
+      {
+        "evidence_id": "ev-claim-1",
+        "url": "fixture://smoke4/factcheck-org",
+        "label": "SYNTHETIC fixture"
+      }
+    ],
+    "external_actions": [
+      {
+        "action": "publish",
+        "target": "company blog / press statement",
+        "status": "BLOCKED"
+      },
+      {
+        "action": "post",
+        "target": "official social channels",
+        "status": "BLOCKED"
+      },
+      {
+        "action": "notify",
+        "target": "enterprise customers",
+        "status": "BLOCKED"
+      }
+    ],
+    "approval_required": true
+  },
+  "approval_gate": {
+    "status": "BLOCKED",
+    "approved_by": null,
+    "approved_at": null
+  },
+  "events": [
+    {
+      "t": "2026-10-10T20:01:40",
+      "kind": "run_started",
+      "message": "TruthOps run run-20261010-200140 started for case 'smoke4'"
+    },
+    {
+      "t": "2026-10-10T20:01:40",
+      "kind": "sniff_test",
+      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted"
+    },
+    {
+      "t": "2026-10-10T20:01:40",
+      "kind": "claims_decomposed",
+      "message": "Decomposed into 1 atomic claims: ['claim']"
+    },
+    {
+      "t": "2026-10-10T20:01:40",
+      "kind": "director_decision",
+      "message": "[director] claim: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
+      "claim_id": "claim",
+      "action": "gather"
+    },
+    {
+      "t": "2026-10-10T20:01:40",
+      "kind": "http_attempt",
+      "message": "GET fixture://smoke4/factcheck-org (attempt 1)",
+      "url": "fixture://smoke4/factcheck-org",
+      "attempt": 1
+    },
+    {
+      "t": "2026-10-10T20:01:40",
+      "kind": "http_success",
+      "message": "GET fixture://smoke4/factcheck-org -> 200 OK (attempt 1)",
+      "url": "fixture://smoke4/factcheck-org",
+      "attempt": 1,
+      "status": 200
+    },
+    {
+      "t": "2026-10-10T20:01:40",
+      "kind": "evidence_scored",
+      "message": "ev-claim-1: supports (reliability=0.85, relevance=1.0, score=0.85)",
+      "claim_id": "claim",
+      "evidence_id": "ev-claim-1"
+    },
+    {
+      "t": "2026-10-10T20:01:42",
+      "kind": "director_decision",
+      "message": "[director] claim: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
+      "claim_id": "claim",
+      "action": "evaluate"
+    },
+    {
+      "t": "2026-10-10T20:01:42",
+      "kind": "claim_evaluated",
+      "message": "claim: mostly_true (confidence 0.93, score 85) [support=0.85 vs contradict=0]",
+      "claim_id": "claim",
+      "verdict": "mostly_true",
+      "confidence": 0.93
+    },
+    {
+      "t": "2026-10-10T20:01:42",
+      "kind": "director_decision",
+      "message": "[director] claim: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
+      "claim_id": "claim",
+      "action": "escalate"
+    },
+    {
+      "t": "2026-10-10T20:01:42",
+      "kind": "contrarian_review",
+      "message": "claim: agreed=True conf 0.93 -> 0.93",
+      "claim_id": "claim"
+    },
+    {
+      "t": "2026-10-10T20:01:42",
+      "kind": "response_planned",
+      "message": "Response plan built: UNRESOLVED. All external actions BLOCKED pending approval."
+    },
+    {
+      "t": "2026-10-10T20:01:42",
+      "kind": "approval_blocked",
+      "message": "External action 'publish' BLOCKED \u2014 awaiting human approval.",
+      "action": "publish"
+    },
+    {
+      "t": "2026-10-10T20:01:42",
+      "kind": "approval_blocked",
+      "message": "External action 'post' BLOCKED \u2014 awaiting human approval.",
+      "action": "post"
+    },
+    {
+      "t": "2026-10-10T20:01:42",
+      "kind": "approval_blocked",
+      "message": "External action 'notify' BLOCKED \u2014 awaiting human approval.",
+      "action": "notify"
+    }
+  ]
+}

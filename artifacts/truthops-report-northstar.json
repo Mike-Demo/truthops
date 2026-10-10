@@ -1,26 +1,37 @@
 {
   "label": "SYNTHETIC demo run \u2014 neatHack 2026",
-  "run_id": "run-20261010-131302",
+  "run_id": "run-20261010-200210",
   "case_id": "northstar",
-  "generated_at": "2026-10-10T13:13:05",
+  "generated_at": "2026-10-10T20:02:28",
   "claims": {
     "incident_occurred": {
       "claim_id": "incident_occurred",
       "statement": "A security incident occurred at Northstar Cloud.",
       "status": "concluded",
-      "verdict": "supported",
+      "verdict": "true",
       "confidence_initial": 0.99,
       "confidence_revised": 0.99,
       "notes": "Atomic fact: did the incident happen at all?",
       "gather_attempts": 1,
+      "score_0_100": 100,
       "scoring": {
         "support_weight": 1.1,
         "contradict_weight": 0,
         "support_threshold": 0.6,
         "contradict_threshold": 0.6,
+        "mixed_threshold": 0.4,
+        "fabrication_proof": false,
+        "numerical_discrepancy": null,
+        "truth_o_meter_band": [
+          90,
+          100
+        ],
         "factors": [
           "source reliability x relevance per item",
           "primary sources weighted via reliability score",
+          "PolitiFact Truth-O-Meter verdict scale (0-100 bands)",
+          "fabrication proof -> PANTS ON FIRE floor",
+          "numerical discrepancy -> precision penalty",
           "no evidence -> unresolved (never assumed)"
         ]
       }
@@ -29,19 +40,30 @@
       "claim_id": "some_customer_decline",
       "statement": "Northstar Cloud lost enterprise customers after the incident.",
       "status": "concluded",
-      "verdict": "supported",
+      "verdict": "true",
       "confidence_initial": 0.99,
       "confidence_revised": 0.65,
       "notes": "Atomic fact: was there any post-incident decline?",
       "gather_attempts": 1,
+      "score_0_100": 100,
       "scoring": {
         "support_weight": 1.51,
         "contradict_weight": 0,
         "support_threshold": 0.6,
         "contradict_threshold": 0.6,
+        "mixed_threshold": 0.4,
+        "fabrication_proof": false,
+        "numerical_discrepancy": null,
+        "truth_o_meter_band": [
+          90,
+          100
+        ],
         "factors": [
           "source reliability x relevance per item",
           "primary sources weighted via reliability score",
+          "PolitiFact Truth-O-Meter verdict scale (0-100 bands)",
+          "fabrication proof -> PANTS ON FIRE floor",
+          "numerical discrepancy -> precision penalty",
           "no evidence -> unresolved (never assumed)"
         ]
       }
@@ -50,19 +72,30 @@
       "claim_id": "decline_was_40pct",
       "statement": "The enterprise customer decline was 40%.",
       "status": "concluded",
-      "verdict": "contradicted",
+      "verdict": "false",
       "confidence_initial": 0.97,
       "confidence_revised": 0.97,
       "notes": "Atomic fact: is the specific magnitude correct?",
       "gather_attempts": 1,
+      "score_0_100": 10,
       "scoring": {
         "support_weight": 0.2,
         "contradict_weight": 0.95,
         "support_threshold": 0.6,
         "contradict_threshold": 0.6,
+        "mixed_threshold": 0.4,
+        "fabrication_proof": false,
+        "numerical_discrepancy": null,
+        "truth_o_meter_band": [
+          5,
+          15
+        ],
         "factors": [
           "source reliability x relevance per item",
           "primary sources weighted via reliability score",
+          "PolitiFact Truth-O-Meter verdict scale (0-100 bands)",
+          "fabrication proof -> PANTS ON FIRE floor",
+          "numerical discrepancy -> precision penalty",
           "no evidence -> unresolved (never assumed)"
         ]
       }
@@ -71,19 +104,30 @@
       "claim_id": "executives_knew",
       "statement": "Northstar Cloud executives knew about the customer decline.",
       "status": "concluded",
-      "verdict": "supported",
+      "verdict": "true",
       "confidence_initial": 0.85,
       "confidence_revised": 0.75,
       "notes": "Implied by the concealment allegation; checked separately.",
       "gather_attempts": 1,
+      "score_0_100": 93,
       "scoring": {
         "support_weight": 0.7,
         "contradict_weight": 0,
         "support_threshold": 0.6,
         "contradict_threshold": 0.6,
+        "mixed_threshold": 0.4,
+        "fabrication_proof": false,
+        "numerical_discrepancy": null,
+        "truth_o_meter_band": [
+          90,
+          100
+        ],
         "factors": [
           "source reliability x relevance per item",
           "primary sources weighted via reliability score",
+          "PolitiFact Truth-O-Meter verdict scale (0-100 bands)",
+          "fabrication proof -> PANTS ON FIRE floor",
+          "numerical discrepancy -> precision penalty",
           "no evidence -> unresolved (never assumed)"
         ]
       }
@@ -97,14 +141,25 @@
       "confidence_revised": 0.0,
       "notes": "Atomic fact: is there direct evidence of intent to deceive?",
       "gather_attempts": 1,
+      "score_0_100": 50,
       "scoring": {
         "support_weight": 0,
         "contradict_weight": 0,
         "support_threshold": 0.6,
         "contradict_threshold": 0.6,
+        "mixed_threshold": 0.4,
+        "fabrication_proof": false,
+        "numerical_discrepancy": null,
+        "truth_o_meter_band": [
+          null,
+          null
+        ],
         "factors": [
           "source reliability x relevance per item",
           "primary sources weighted via reliability score",
+          "PolitiFact Truth-O-Meter verdict scale (0-100 bands)",
+          "fabrication proof -> PANTS ON FIRE floor",
+          "numerical discrepancy -> precision penalty",
           "no evidence -> unresolved (never assumed)"
         ]
       }
@@ -122,6 +177,8 @@
       "relevance": 1.0,
       "score": 0.9,
       "is_primary_source": true,
+      "fabrication_proof": false,
+      "numerical_discrepancy": null,
       "summary": "Unauthorized access to a customer analytics database was detected and contained within 36 hours. No payment data was accessed. The company disclosed the incident publicly on 2026-07-16."
     },
     "ev-incident_occurred-2": {
@@ -135,6 +192,8 @@
       "relevance": 0.5,
       "score": 0.2,
       "is_primary_source": false,
+      "fabrication_proof": false,
+      "numerical_discrepancy": null,
       "summary": "Two secondary snippets repeat the 40% figure without a primary source.",
       "ai_screening": {
         "p_ai": 1.0,
@@ -172,6 +231,8 @@
       "relevance": 1.0,
       "score": 0.95,
       "is_primary_source": true,
+      "fabrication_proof": false,
+      "numerical_discrepancy": null,
       "summary": "Enterprise customer count declined 4.2% quarter over quarter, which management attributes in part to elevated churn following the July security incident."
     },
     "ev-some_customer_decline-2": {
@@ -185,6 +246,8 @@
       "relevance": 0.8,
       "score": 0.56,
       "is_primary_source": false,
+      "fabrication_proof": false,
+      "numerical_discrepancy": null,
       "summary": "We are seeing elevated enterprise churn in the two weeks since the July incident. Roughly 60 accounts have cited security concerns in exit interviews. Leadership has been briefed.",
       "ai_screening": null
     },
@@ -199,6 +262,8 @@
       "relevance": 1.0,
       "score": 0.95,
       "is_primary_source": true,
+      "fabrication_proof": false,
+      "numerical_discrepancy": null,
       "summary": "Enterprise customer count declined 4.2% quarter over quarter, which management attributes in part to elevated churn following the July security incident."
     },
     "ev-decline_was_40pct-2": {
@@ -212,6 +277,8 @@
       "relevance": 0.5,
       "score": 0.2,
       "is_primary_source": false,
+      "fabrication_proof": false,
+      "numerical_discrepancy": null,
       "summary": "Two secondary snippets repeat the 40% figure without a primary source.",
       "ai_screening": {
         "p_ai": 1.0,
@@ -249,6 +316,8 @@
       "relevance": 1.0,
       "score": 0.7,
       "is_primary_source": false,
+      "fabrication_proof": false,
+      "numerical_discrepancy": null,
       "summary": "We are seeing elevated enterprise churn in the two weeks since the July incident. Roughly 60 accounts have cited security concerns in exit interviews. Leadership has been briefed.",
       "ai_screening": null
     }
@@ -256,41 +325,41 @@
   "contrarian_reviews": [
     {
       "claim_id": "incident_occurred",
-      "initial_verdict": "supported",
+      "initial_verdict": "true",
       "initial_confidence": 0.99,
       "disagreement": null,
       "agreed": true,
       "revised_confidence": 0.99,
-      "revised_verdict": "supported"
+      "revised_verdict": "true"
     },
     {
       "claim_id": "some_customer_decline",
-      "initial_verdict": "supported",
+      "initial_verdict": "true",
       "initial_confidence": 0.99,
       "disagreement": "The sole primary source (Q3 filing) shows only a 4.2% decline \u2014 within normal enterprise churn. The 'supported' verdict leans on an internal memo of simulated provenance plus a small absolute move. Force re-verification: confirm the absolute customer loss and downgrade confidence to reflect the thin margin.",
       "agreed": false,
       "reverification": "Re-verified primary filing (Q3 2026): 2,380 -> 2,280 enterprise customers = 100 accounts lost (4.2%). A real decline, but small; the internal memo's provenance is simulated. Verdict stays SUPPORTED; confidence revised down to reflect the thin margin.",
       "revised_confidence": 0.65,
-      "revised_verdict": "supported"
+      "revised_verdict": "true"
     },
     {
       "claim_id": "decline_was_40pct",
-      "initial_verdict": "contradicted",
+      "initial_verdict": "false",
       "initial_confidence": 0.97,
       "disagreement": null,
       "agreed": true,
       "revised_confidence": 0.97,
-      "revised_verdict": "contradicted"
+      "revised_verdict": "false"
     },
     {
       "claim_id": "executives_knew",
-      "initial_verdict": "supported",
+      "initial_verdict": "true",
       "initial_confidence": 0.85,
       "disagreement": "No primary source behind this verdict \u2014 only secondary evidence. Confidence is overstated; re-verify against a primary source or downgrade.",
       "agreed": false,
       "reverification": "Re-verification confirmed the initial scoring; confidence trimmed for caution.",
       "revised_confidence": 0.75,
-      "revised_verdict": "supported"
+      "revised_verdict": "true"
     },
     {
       "claim_id": "deliberate_concealment",
@@ -438,36 +507,36 @@
   },
   "events": [
     {
-      "t": "2026-10-10T13:13:02",
+      "t": "2026-10-10T20:02:10",
       "kind": "run_started",
-      "message": "TruthOps run run-20261010-131302 started for case 'northstar'"
+      "message": "TruthOps run run-20261010-200210 started for case 'northstar'"
     },
     {
-      "t": "2026-10-10T13:13:02",
+      "t": "2026-10-10T20:02:10",
       "kind": "sniff_test",
       "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted"
     },
     {
-      "t": "2026-10-10T13:13:02",
+      "t": "2026-10-10T20:02:10",
       "kind": "claims_decomposed",
       "message": "Decomposed into 5 atomic claims: ['incident_occurred', 'some_customer_decline', 'decline_was_40pct', 'executives_knew', 'deliberate_concealment']"
     },
     {
-      "t": "2026-10-10T13:13:02",
+      "t": "2026-10-10T20:02:10",
       "kind": "director_decision",
       "message": "[director] incident_occurred: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
       "claim_id": "incident_occurred",
       "action": "gather"
     },
     {
-      "t": "2026-10-10T13:13:02",
+      "t": "2026-10-10T20:02:10",
       "kind": "http_attempt",
       "message": "GET fixture://northstar/incident-report (attempt 1)",
       "url": "fixture://northstar/incident-report",
       "attempt": 1
     },
     {
-      "t": "2026-10-10T13:13:02",
+      "t": "2026-10-10T20:02:10",
       "kind": "http_success",
       "message": "GET fixture://northstar/incident-report -> 200 OK (attempt 1)",
       "url": "fixture://northstar/incident-report",
@@ -475,21 +544,21 @@
       "status": 200
     },
     {
-      "t": "2026-10-10T13:13:02",
+      "t": "2026-10-10T20:02:10",
       "kind": "evidence_scored",
       "message": "ev-incident_occurred-1: supports (reliability=0.9, relevance=1.0, score=0.9)",
       "claim_id": "incident_occurred",
       "evidence_id": "ev-incident_occurred-1"
     },
     {
-      "t": "2026-10-10T13:13:02",
+      "t": "2026-10-10T20:02:10",
       "kind": "http_attempt",
       "message": "GET fixture://northstar/news-snippets (attempt 1)",
       "url": "fixture://northstar/news-snippets",
       "attempt": 1
     },
     {
-      "t": "2026-10-10T13:13:02",
+      "t": "2026-10-10T20:02:10",
       "kind": "http_success",
       "message": "GET fixture://northstar/news-snippets -> 200 OK (attempt 1)",
       "url": "fixture://northstar/news-snippets",
@@ -497,63 +566,63 @@
       "status": 200
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:12",
       "kind": "evidence_validated",
       "message": "ev-incident_occurred-2: GPTZero screen -> ai (P(ai)=1.0, confidence=high)",
       "claim_id": "incident_occurred",
       "evidence_id": "ev-incident_occurred-2"
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:12",
       "kind": "evidence_scored",
       "message": "ev-incident_occurred-2: supports (reliability=0.4, relevance=0.5, score=0.2)",
       "claim_id": "incident_occurred",
       "evidence_id": "ev-incident_occurred-2"
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:15",
       "kind": "director_decision",
       "message": "[director] incident_occurred: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
       "claim_id": "incident_occurred",
       "action": "evaluate"
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:15",
       "kind": "claim_evaluated",
-      "message": "incident_occurred: supported (confidence 0.99) [support=1.1 vs contradict=0]",
+      "message": "incident_occurred: true (confidence 0.99, score 100) [support=1.1 vs contradict=0]",
       "claim_id": "incident_occurred",
-      "verdict": "supported",
+      "verdict": "true",
       "confidence": 0.99
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:15",
       "kind": "director_decision",
       "message": "[director] incident_occurred: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
       "claim_id": "incident_occurred",
       "action": "escalate"
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:15",
       "kind": "contrarian_review",
       "message": "incident_occurred: agreed=True conf 0.99 -> 0.99",
       "claim_id": "incident_occurred"
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:15",
       "kind": "director_decision",
       "message": "[director] some_customer_decline: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
       "claim_id": "some_customer_decline",
       "action": "gather"
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:15",
       "kind": "http_attempt",
       "message": "GET fixture://northstar/filing-q3-2026 (attempt 1)",
       "url": "fixture://northstar/filing-q3-2026",
       "attempt": 1
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:15",
       "kind": "http_failure",
       "message": "GET fixture://northstar/filing-q3-2026 -> 503 Service Unavailable (SIMULATED). State preserved; will retry.",
       "url": "fixture://northstar/filing-q3-2026",
@@ -561,21 +630,21 @@
       "status": 503
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:15",
       "kind": "evidence_retry",
       "message": "Retrying fixture://northstar/filing-q3-2026 after failure: HTTP 503 for fixture://northstar/filing-q3-2026: Service Unavailable (SIMULATED deterministic failure)",
       "claim_id": "some_customer_decline",
       "url": "fixture://northstar/filing-q3-2026"
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:15",
       "kind": "http_attempt",
       "message": "GET fixture://northstar/filing-q3-2026 (attempt 2)",
       "url": "fixture://northstar/filing-q3-2026",
       "attempt": 2
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:15",
       "kind": "http_success",
       "message": "GET fixture://northstar/filing-q3-2026 -> 200 OK (attempt 2)",
       "url": "fixture://northstar/filing-q3-2026",
@@ -583,21 +652,21 @@
       "status": 200
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:15",
       "kind": "evidence_scored",
       "message": "ev-some_customer_decline-1: supports (reliability=0.95, relevance=1.0, score=0.95)",
       "claim_id": "some_customer_decline",
       "evidence_id": "ev-some_customer_decline-1"
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:15",
       "kind": "http_attempt",
       "message": "GET fixture://northstar/internal-memo (attempt 1)",
       "url": "fixture://northstar/internal-memo",
       "attempt": 1
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:15",
       "kind": "http_success",
       "message": "GET fixture://northstar/internal-memo -> 200 OK (attempt 1)",
       "url": "fixture://northstar/internal-memo",
@@ -605,56 +674,56 @@
       "status": 200
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:15",
       "kind": "evidence_scored",
       "message": "ev-some_customer_decline-2: supports (reliability=0.7, relevance=0.8, score=0.56)",
       "claim_id": "some_customer_decline",
       "evidence_id": "ev-some_customer_decline-2"
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:20",
       "kind": "director_decision",
       "message": "[director] some_customer_decline: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
       "claim_id": "some_customer_decline",
       "action": "evaluate"
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:20",
       "kind": "claim_evaluated",
-      "message": "some_customer_decline: supported (confidence 0.99) [support=1.51 vs contradict=0]",
+      "message": "some_customer_decline: true (confidence 0.99, score 100) [support=1.51 vs contradict=0]",
       "claim_id": "some_customer_decline",
-      "verdict": "supported",
+      "verdict": "true",
       "confidence": 0.99
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:20",
       "kind": "director_decision",
       "message": "[director] some_customer_decline: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
       "claim_id": "some_customer_decline",
       "action": "escalate"
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:20",
       "kind": "contrarian_review",
       "message": "some_customer_decline: agreed=False conf 0.99 -> 0.65",
       "claim_id": "some_customer_decline"
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:20",
       "kind": "director_decision",
       "message": "[director] decline_was_40pct: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
       "claim_id": "decline_was_40pct",
       "action": "gather"
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:20",
       "kind": "http_attempt",
       "message": "GET fixture://northstar/filing-q3-2026 (attempt 3)",
       "url": "fixture://northstar/filing-q3-2026",
       "attempt": 3
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:20",
       "kind": "http_success",
       "message": "GET fixture://northstar/filing-q3-2026 -> 200 OK (attempt 3)",
       "url": "fixture://northstar/filing-q3-2026",
@@ -662,21 +731,21 @@
       "status": 200
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:20",
       "kind": "evidence_scored",
       "message": "ev-decline_was_40pct-1: contradicts (reliability=0.95, relevance=1.0, score=0.95)",
       "claim_id": "decline_was_40pct",
       "evidence_id": "ev-decline_was_40pct-1"
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:20",
       "kind": "http_attempt",
       "message": "GET fixture://northstar/news-snippets (attempt 2)",
       "url": "fixture://northstar/news-snippets",
       "attempt": 2
     },
     {
-      "t": "2026-10-10T13:13:03",
+      "t": "2026-10-10T20:02:20",
       "kind": "http_success",
       "message": "GET fixture://northstar/news-snippets -> 200 OK (attempt 2)",
       "url": "fixture://northstar/news-snippets",
@@ -684,63 +753,63 @@
       "status": 200
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:22",
       "kind": "evidence_validated",
       "message": "ev-decline_was_40pct-2: GPTZero screen -> ai (P(ai)=1.0, confidence=high)",
       "claim_id": "decline_was_40pct",
       "evidence_id": "ev-decline_was_40pct-2"
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:22",
       "kind": "evidence_scored",
       "message": "ev-decline_was_40pct-2: supports (reliability=0.4, relevance=0.5, score=0.2)",
       "claim_id": "decline_was_40pct",
       "evidence_id": "ev-decline_was_40pct-2"
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:24",
       "kind": "director_decision",
       "message": "[director] decline_was_40pct: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
       "claim_id": "decline_was_40pct",
       "action": "evaluate"
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:24",
       "kind": "claim_evaluated",
-      "message": "decline_was_40pct: contradicted (confidence 0.97) [support=0.2 vs contradict=0.95]",
+      "message": "decline_was_40pct: false (confidence 0.97, score 10) [support=0.2 vs contradict=0.95]",
       "claim_id": "decline_was_40pct",
-      "verdict": "contradicted",
+      "verdict": "false",
       "confidence": 0.97
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:24",
       "kind": "director_decision",
       "message": "[director] decline_was_40pct: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
       "claim_id": "decline_was_40pct",
       "action": "escalate"
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:24",
       "kind": "contrarian_review",
       "message": "decline_was_40pct: agreed=True conf 0.97 -> 0.97",
       "claim_id": "decline_was_40pct"
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:24",
       "kind": "director_decision",
       "message": "[director] executives_knew: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
       "claim_id": "executives_knew",
       "action": "gather"
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:24",
       "kind": "http_attempt",
       "message": "GET fixture://northstar/internal-memo (attempt 2)",
       "url": "fixture://northstar/internal-memo",
       "attempt": 2
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:24",
       "kind": "http_success",
       "message": "GET fixture://northstar/internal-memo -> 200 OK (attempt 2)",
       "url": "fixture://northstar/internal-memo",
@@ -748,94 +817,94 @@
       "status": 200
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:24",
       "kind": "evidence_scored",
       "message": "ev-executives_knew-1: supports (reliability=0.7, relevance=1.0, score=0.7)",
       "claim_id": "executives_knew",
       "evidence_id": "ev-executives_knew-1"
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:26",
       "kind": "director_decision",
       "message": "[director] executives_knew: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
       "claim_id": "executives_knew",
       "action": "evaluate"
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:26",
       "kind": "claim_evaluated",
-      "message": "executives_knew: supported (confidence 0.85) [support=0.7 vs contradict=0]",
+      "message": "executives_knew: true (confidence 0.85, score 93) [support=0.7 vs contradict=0]",
       "claim_id": "executives_knew",
-      "verdict": "supported",
+      "verdict": "true",
       "confidence": 0.85
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:26",
       "kind": "director_decision",
       "message": "[director] executives_knew: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
       "claim_id": "executives_knew",
       "action": "escalate"
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:26",
       "kind": "contrarian_review",
       "message": "executives_knew: agreed=False conf 0.85 -> 0.75",
       "claim_id": "executives_knew"
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:26",
       "kind": "director_decision",
       "message": "[director] deliberate_concealment: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
       "claim_id": "deliberate_concealment",
       "action": "gather"
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:28",
       "kind": "director_decision",
       "message": "[director] deliberate_concealment: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
       "claim_id": "deliberate_concealment",
       "action": "evaluate"
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:28",
       "kind": "claim_evaluated",
-      "message": "deliberate_concealment: unresolved (confidence 0.0) [support=0 vs contradict=0]",
+      "message": "deliberate_concealment: unresolved (confidence 0.0, score 50) [support=0 vs contradict=0]",
       "claim_id": "deliberate_concealment",
       "verdict": "unresolved",
       "confidence": 0.0
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:28",
       "kind": "director_decision",
       "message": "[director] deliberate_concealment: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
       "claim_id": "deliberate_concealment",
       "action": "escalate"
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:28",
       "kind": "contrarian_review",
       "message": "deliberate_concealment: agreed=False conf 0.0 -> 0.0",
       "claim_id": "deliberate_concealment"
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:28",
       "kind": "response_planned",
       "message": "Response plan built: MISLEADING. All external actions BLOCKED pending approval."
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:28",
       "kind": "approval_blocked",
       "message": "External action 'publish' BLOCKED \u2014 awaiting human approval.",
       "action": "publish"
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:28",
       "kind": "approval_blocked",
       "message": "External action 'post' BLOCKED \u2014 awaiting human approval.",
       "action": "post"
     },
     {
-      "t": "2026-10-10T13:13:05",
+      "t": "2026-10-10T20:02:28",
       "kind": "approval_blocked",
       "message": "External action 'notify' BLOCKED \u2014 awaiting human approval.",
       "action": "notify"

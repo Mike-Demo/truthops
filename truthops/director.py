@@ -57,6 +57,7 @@ class Director:
     # -- run --------------------------------------------------------------
     def run_case(self, allegation, case_id, traction_signals=None):
         with tracing.span("director.run_case", case_id=case_id):
+            self.state.data["case_id"] = case_id
             print(f"\n[director] investigating allegation: {allegation}\n")
             # Sniff test FIRST — cheap gate before the $1.08 pipeline.
             decision = sniff(allegation, traction_signals)

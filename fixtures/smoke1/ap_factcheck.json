@@ -1,0 +1,16 @@
+{
+  "contradicts_claims": [
+    "claim"
+  ],
+  "document_type": "fact_check",
+  "is_primary_source": true,
+  "label": "SMOKE fixture \u2014 AP Fact Check verdict",
+  "outlet": "Associated Press",
+  "source_reliability": 0.95,
+  "summary": "AP Fact Check examined the circulating images and determined they are AI-generated. The fact check walks through generative-AI artifacts and provenance analysis proving fabrication.",
+  "title": "Images of NYC Mayor Mamdani with Jeffrey Epstein are AI-generated. Here's how we know",
+  "url": "fixture://smoke1/ap-factcheck",
+  "verdict": "False",
+  "fabrication_proof": true,
+  "fabrication_note": "AP forensic analysis proved AI generation via generative-AI artifacts and provenance analysis."
+}

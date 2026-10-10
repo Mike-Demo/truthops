@@ -1,0 +1,13 @@
+{
+  "sponsor": "neatlogs",
+  "proof_type": "trace_ingest",
+  "timestamp": "2026-10-10T19:25:00Z",
+  "endpoint": "https://ingest.neatlogs.com/v1/trace",
+  "trace_id": "56854be2d90692200e737e2b802fe1f0",
+  "spans": 8,
+  "project": "truthops-neathack",
+  "case": "northstar",
+  "verdict": "MISLEADING",
+  "pipeline": ["sniff_test", "evidence_gathering", "claim_scoring", "contrarian_review", "director_decision"],
+  "approval_gates": {"publish": "BLOCKED", "post": "BLOCKED", "notify": "BLOCKED"}
+}

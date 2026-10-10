@@ -1,0 +1,20 @@
+{
+  "document_type": "fact_check",
+  "is_primary_source": true,
+  "label": "SMOKE fixture \u2014 FactCheck.org verdict",
+  "outlet": "FactCheck.org",
+  "source_reliability": 0.85,
+  "summary": "FactCheck.org found the claim substantially accurate directionally. The contemporaneous national average was approximately $2.36 per gallon \u2014 a small numerical imprecision, not a fabrication. Direction correct, specific number slightly off.",
+  "supports_claims": [
+    "claim"
+  ],
+  "title": "FactChecking Trump's State of the Union Address",
+  "url": "fixture://smoke4/factcheck-org",
+  "verdict": "Mostly true",
+  "numerical_discrepancy": {
+    "claimed": 2.3,
+    "actual": 2.36,
+    "unit": "USD/gallon",
+    "note": "Claim says below $2.30; actual national average ~$2.36. Small imprecision, direction correct."
+  }
+}

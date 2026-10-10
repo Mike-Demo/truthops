@@ -8,16 +8,26 @@ the hackathon demo benchmark.
 import json
 import os
 
-FIXTURE_DIR = os.path.join(os.path.dirname(__file__), "..", "..", "fixtures", "northstar")
+FIXTURES_BASE = os.path.join(os.path.dirname(__file__), "..", "..", "fixtures")
 
-# fixture:// URL -> fixture file
-URL_MAP = {
-    "fixture://northstar/case": "case.json",
-    "fixture://northstar/incident-report": "incident_report.json",
-    "fixture://northstar/filing-q3-2026": "filing_q3_2026.json",
-    "fixture://northstar/internal-memo": "internal_memo.json",
-    "fixture://northstar/news-snippets": "news_snippets.json",
-}
+# fixture:// URL -> fixture file (built dynamically from all fixture dirs)
+def _build_url_map():
+    url_map = {}
+    if not os.path.isdir(FIXTURES_BASE):
+        return url_map
+    for case_id in sorted(os.listdir(FIXTURES_BASE)):
+        case_dir = os.path.join(FIXTURES_BASE, case_id)
+        if not os.path.isdir(case_dir):
+            continue
+        for fname in sorted(os.listdir(case_dir)):
+            if not fname.endswith(".json"):
+                continue
+            # fixture://<case>/<doc-name> where doc-name strips .json and _ -> -
+            doc = fname[:-5].replace("_", "-")
+            url_map[f"fixture://{case_id}/{doc}"] = os.path.join(case_dir, fname)
+    return url_map
+
+URL_MAP = _build_url_map()
 
 
 class FixtureAdapter:
@@ -25,20 +35,18 @@ class FixtureAdapter:
     label = "SYNTHETIC fixtures (deterministic)"
 
     def fetch(self, url):
-        filename = URL_MAP.get(url)
-        if not filename:
+        path = URL_MAP.get(url)
+        if not path:
             raise KeyError(f"fixture adapter: unknown URL {url}")
-        path = os.path.join(FIXTURE_DIR, filename)
         with open(path) as f:
             return json.load(f)
 
     def search(self, query):
         """Return fixture documents relevant to a query (simple keyword match)."""
         results = []
-        for url, filename in URL_MAP.items():
-            if url == "fixture://northstar/case":
+        for url, path in URL_MAP.items():
+            if url.endswith("/case"):
                 continue
-            path = os.path.join(FIXTURE_DIR, filename)
             with open(path) as f:
                 doc = json.load(f)
             blob = json.dumps(doc).lower()

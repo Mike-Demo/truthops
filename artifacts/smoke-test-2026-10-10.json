@@ -1,0 +1,80 @@
+{
+  "test": "TruthOps 5-claim smoke test calibration",
+  "date": "2026-10-10",
+  "method": "Fixture-only evidence, no live API calls",
+  "mapping": "supported -> confidence*100, contradicted -> (1-confidence)*100, unresolved -> 50",
+  "results": [
+    {
+      "case_id": "smoke1",
+      "claim": "Photographs circulating online show New York City Mayor Zohran Mamdani posing alongside Jeffrey Epstein.",
+      "verdict": "contradicted",
+      "confidence_initial": 0.97,
+      "confidence_revised": 0.97,
+      "score_0_100": 3.0,
+      "expected_band": [
+        0,
+        5
+      ],
+      "expected_label": "False (AI-generated photos)",
+      "in_band": true
+    },
+    {
+      "case_id": "smoke2",
+      "claim": "President Trump initiated an internal audit of the Social Security Administration.",
+      "verdict": "contradicted",
+      "confidence_initial": 0.95,
+      "confidence_revised": 0.95,
+      "score_0_100": 5.0,
+      "expected_band": [
+        10,
+        20
+      ],
+      "expected_label": "False (single-source fabrication)",
+      "in_band": false
+    },
+    {
+      "case_id": "smoke3",
+      "claim": "President Trump ended eight wars.",
+      "verdict": "contradicted",
+      "confidence_initial": 0.95,
+      "confidence_revised": 0.95,
+      "score_0_100": 5.0,
+      "expected_band": [
+        30,
+        45
+      ],
+      "expected_label": "Misleading (kernel of truth)",
+      "in_band": false
+    },
+    {
+      "case_id": "smoke4",
+      "claim": "Gasoline is now below $2.30 a gallon in most states.",
+      "verdict": "supported",
+      "confidence_initial": 0.93,
+      "confidence_revised": 0.93,
+      "score_0_100": 93.0,
+      "expected_band": [
+        80,
+        90
+      ],
+      "expected_label": "Mostly true (minor imprecision)",
+      "in_band": false
+    },
+    {
+      "case_id": "smoke5",
+      "claim": "Zohran Mamdani is the mayor of New York City.",
+      "verdict": "supported",
+      "confidence_initial": 0.97,
+      "confidence_revised": 0.97,
+      "score_0_100": 97.0,
+      "expected_band": [
+        90,
+        100
+      ],
+      "expected_label": "True (settled fact)",
+      "in_band": true
+    }
+  ],
+  "ordering_correct": false,
+  "in_band_count": 2
+}

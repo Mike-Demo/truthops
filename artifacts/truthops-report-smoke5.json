@@ -1,0 +1,225 @@
+{
+  "label": "SYNTHETIC demo run \u2014 neatHack 2026",
+  "run_id": "run-20261010-200143",
+  "case_id": "smoke5",
+  "generated_at": "2026-10-10T20:01:44",
+  "claims": {
+    "claim": {
+      "claim_id": "claim",
+      "statement": "Zohran Mamdani is the mayor of New York City.",
+      "status": "concluded",
+      "verdict": "true",
+      "confidence_initial": 0.97,
+      "confidence_revised": 0.97,
+      "notes": "Smoke test 5: settled institutional fact.",
+      "gather_attempts": 1,
+      "score_0_100": 99,
+      "scoring": {
+        "support_weight": 0.95,
+        "contradict_weight": 0,
+        "support_threshold": 0.6,
+        "contradict_threshold": 0.6,
+        "mixed_threshold": 0.4,
+        "fabrication_proof": false,
+        "numerical_discrepancy": null,
+        "truth_o_meter_band": [
+          90,
+          100
+        ],
+        "factors": [
+          "source reliability x relevance per item",
+          "primary sources weighted via reliability score",
+          "PolitiFact Truth-O-Meter verdict scale (0-100 bands)",
+          "fabrication proof -> PANTS ON FIRE floor",
+          "numerical discrepancy -> precision penalty",
+          "no evidence -> unresolved (never assumed)"
+        ]
+      }
+    }
+  },
+  "evidence": {
+    "ev-claim-1": {
+      "evidence_id": "ev-claim-1",
+      "claim_id": "claim",
+      "source": "fixture",
+      "label": "SYNTHETIC fixture",
+      "url": "fixture://smoke5/ap-reporting",
+      "stance": "supports",
+      "reliability": 0.95,
+      "relevance": 1.0,
+      "score": 0.95,
+      "is_primary_source": true,
+      "fabrication_proof": false,
+      "numerical_discrepancy": null,
+      "summary": "AP's own reporting consistently refers to Zohran Mamdani as NYC Mayor, including in the same AP Fact Check desk that debunked the AI-generated photos. Multiply-attested institutional fact across AP election coverage."
+    }
+  },
+  "contrarian_reviews": [
+    {
+      "claim_id": "claim",
+      "initial_verdict": "true",
+      "initial_confidence": 0.97,
+      "disagreement": null,
+      "agreed": true,
+      "revised_confidence": 0.97,
+      "revised_verdict": "true"
+    }
+  ],
+  "director_decisions": [
+    {
+      "claim_id": "claim",
+      "action": "gather",
+      "rationale": "no evidence yet \u2014 gather before any judgment"
+    },
+    {
+      "claim_id": "claim",
+      "action": "evaluate",
+      "rationale": "evidence phase complete \u2014 evaluate the claim"
+    },
+    {
+      "claim_id": "claim",
+      "action": "escalate",
+      "rationale": "initial verdict reached \u2014 escalate to contrarian for adversarial review"
+    }
+  ],
+  "http_attempts": {
+    "fixture://smoke5/ap-reporting": 1
+  },
+  "response_plan": {
+    "characterization": "UNRESOLVED",
+    "recommended_posture": "Acknowledge investigation is ongoing",
+    "key_messages": [
+      "A security incident did occur on 2026-07-14 and was disclosed on 2026-07-16 (incident report).",
+      "Enterprise customer decline was 4.2% (2,380 -> 2,280), per the Q3 2026 filing \u2014 not 40%.",
+      "The 40% figure circulating online is contradicted by the primary filing.",
+      "No direct evidence of deliberate concealment was found; intent is not asserted."
+    ],
+    "cited_evidence": [
+      {
+        "evidence_id": "ev-claim-1",
+        "url": "fixture://smoke5/ap-reporting",
+        "label": "SYNTHETIC fixture"
+      }
+    ],
+    "external_actions": [
+      {
+        "action": "publish",
+        "target": "company blog / press statement",
+        "status": "BLOCKED"
+      },
+      {
+        "action": "post",
+        "target": "official social channels",
+        "status": "BLOCKED"
+      },
+      {
+        "action": "notify",
+        "target": "enterprise customers",
+        "status": "BLOCKED"
+      }
+    ],
+    "approval_required": true
+  },
+  "approval_gate": {
+    "status": "BLOCKED",
+    "approved_by": null,
+    "approved_at": null
+  },
+  "events": [
+    {
+      "t": "2026-10-10T20:01:43",
+      "kind": "run_started",
+      "message": "TruthOps run run-20261010-200143 started for case 'smoke5'"
+    },
+    {
+      "t": "2026-10-10T20:01:43",
+      "kind": "sniff_test",
+      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted"
+    },
+    {
+      "t": "2026-10-10T20:01:43",
+      "kind": "claims_decomposed",
+      "message": "Decomposed into 1 atomic claims: ['claim']"
+    },
+    {
+      "t": "2026-10-10T20:01:43",
+      "kind": "director_decision",
+      "message": "[director] claim: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
+      "claim_id": "claim",
+      "action": "gather"
+    },
+    {
+      "t": "2026-10-10T20:01:43",
+      "kind": "http_attempt",
+      "message": "GET fixture://smoke5/ap-reporting (attempt 1)",
+      "url": "fixture://smoke5/ap-reporting",
+      "attempt": 1
+    },
+    {
+      "t": "2026-10-10T20:01:43",
+      "kind": "http_success",
+      "message": "GET fixture://smoke5/ap-reporting -> 200 OK (attempt 1)",
+      "url": "fixture://smoke5/ap-reporting",
+      "attempt": 1,
+      "status": 200
+    },
+    {
+      "t": "2026-10-10T20:01:43",
+      "kind": "evidence_scored",
+      "message": "ev-claim-1: supports (reliability=0.95, relevance=1.0, score=0.95)",
+      "claim_id": "claim",
+      "evidence_id": "ev-claim-1"
+    },
+    {
+      "t": "2026-10-10T20:01:44",
+      "kind": "director_decision",
+      "message": "[director] claim: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
+      "claim_id": "claim",
+      "action": "evaluate"
+    },
+    {
+      "t": "2026-10-10T20:01:44",
+      "kind": "claim_evaluated",
+      "message": "claim: true (confidence 0.97, score 99) [support=0.95 vs contradict=0]",
+      "claim_id": "claim",
+      "verdict": "true",
+      "confidence": 0.97
+    },
+    {
+      "t": "2026-10-10T20:01:44",
+      "kind": "director_decision",
+      "message": "[director] claim: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
+      "claim_id": "claim",
+      "action": "escalate"
+    },
+    {
+      "t": "2026-10-10T20:01:44",
+      "kind": "contrarian_review",
+      "message": "claim: agreed=True conf 0.97 -> 0.97",
+      "claim_id": "claim"
+    },
+    {
+      "t": "2026-10-10T20:01:44",
+      "kind": "response_planned",
+      "message": "Response plan built: UNRESOLVED. All external actions BLOCKED pending approval."
+    },
+    {
+      "t": "2026-10-10T20:01:44",
+      "kind": "approval_blocked",
+      "message": "External action 'publish' BLOCKED \u2014 awaiting human approval.",
+      "action": "publish"
+    },
+    {
+      "t": "2026-10-10T20:01:44",
+      "kind": "approval_blocked",
+      "message": "External action 'post' BLOCKED \u2014 awaiting human approval.",
+      "action": "post"
+    },
+    {
+      "t": "2026-10-10T20:01:44",
+      "kind": "approval_blocked",
+      "message": "External action 'notify' BLOCKED \u2014 awaiting human approval.",
+      "action": "notify"
+    }
+  ]
+}

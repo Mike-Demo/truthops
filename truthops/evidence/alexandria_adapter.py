@@ -73,9 +73,9 @@ def discover(need: str, max_results: int = 5) -> list[dict]:
                     if j < len(lines):
                         desc = lines[j].strip()[:200]
                     tools.append({
-                        "ref": "/".join(segs[:2]),
+                        "ref": "/".join(segs),
                         "provider": segs[0],
-                        "capability": segs[1],
+                        "capability": "/".join(segs[1:]),
                         "description": desc,
                     })
         i += 1

@@ -1,0 +1,106 @@
+{
+  "test": "TruthOps 5-claim smoke test calibration (v2: PolitiFact Truth-O-Meter)",
+  "date": "2026-10-10",
+  "method": "Fixture-only evidence, no live API calls",
+  "verdict_scale": {
+    "pants_on_fire": [
+      0,
+      5
+    ],
+    "false": [
+      5,
+      15
+    ],
+    "mostly_false": [
+      15,
+      40
+    ],
+    "half_true": [
+      40,
+      60
+    ],
+    "mostly_true": [
+      75,
+      90
+    ],
+    "true": [
+      90,
+      100
+    ]
+  },
+  "mapping": "score_0_100 computed in evidence_agent._rate(), always within verdict band",
+  "results": [
+    {
+      "case_id": "smoke1",
+      "claim": "Photographs circulating online show New York City Mayor Zohran Mamdani posing alongside Jeffrey Epstein.",
+      "verdict": "pants_on_fire",
+      "confidence_initial": 0.97,
+      "confidence_revised": 0.97,
+      "score_0_100": 3,
+      "expected_band": [
+        0,
+        5
+      ],
+      "expected_label": "PANTS ON FIRE (forensic proof of AI fabrication)",
+      "in_band": true
+    },
+    {
+      "case_id": "smoke2",
+      "claim": "President Trump initiated an internal audit of the Social Security Administration.",
+      "verdict": "false",
+      "confidence_initial": 0.95,
+      "confidence_revised": 0.95,
+      "score_0_100": 10,
+      "expected_band": [
+        10,
+        20
+      ],
+      "expected_label": "FALSE (single-source fabrication, debunked)",
+      "in_band": true
+    },
+    {
+      "case_id": "smoke3",
+      "claim": "President Trump ended eight wars.",
+      "verdict": "mostly_false",
+      "confidence_initial": 0.95,
+      "confidence_revised": 0.95,
+      "score_0_100": 34,
+      "expected_band": [
+        30,
+        45
+      ],
+      "expected_label": "MOSTLY FALSE (kernel of truth + false quantification)",
+      "in_band": true
+    },
+    {
+      "case_id": "smoke4",
+      "claim": "Gasoline is now below $2.30 a gallon in most states.",
+      "verdict": "mostly_true",
+      "confidence_initial": 0.93,
+      "confidence_revised": 0.93,
+      "score_0_100": 85,
+      "expected_band": [
+        80,
+        90
+      ],
+      "expected_label": "MOSTLY TRUE (directionally right, $2.30 vs $2.36)",
+      "in_band": true
+    },
+    {
+      "case_id": "smoke5",
+      "claim": "Zohran Mamdani is the mayor of New York City.",
+      "verdict": "true",
+      "confidence_initial": 0.97,
+      "confidence_revised": 0.97,
+      "score_0_100": 99,
+      "expected_band": [
+        90,
+        100
+      ],
+      "expected_label": "TRUE (settled institutional fact)",
+      "in_band": true
+    }
+  ],
+  "ordering_correct": true,
+  "in_band_count": 5
+}

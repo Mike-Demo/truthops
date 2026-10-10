@@ -7,6 +7,7 @@ approves. The gate is loud by design.
 """
 
 from . import tracing
+from .evidence_agent import FALSE_LIKE, TRUE_LIKE
 
 EXTERNAL_ACTIONS = ("publish", "post", "notify")
 
@@ -55,10 +56,10 @@ def build_plan(state):
         claims = state.data["claims"]
         verdicts = {cid: c["verdict"] for cid, c in claims.items()}
 
-        if verdicts.get("decline_was_40pct") == "contradicted":
+        if verdicts.get("decline_was_40pct") in FALSE_LIKE:
             characterization = "MISLEADING"
             posture = "Correct the record with primary-source evidence"
-        elif verdicts.get("incident_occurred") == "contradicted":
+        elif verdicts.get("incident_occurred") in FALSE_LIKE:
             characterization = "FALSE"
             posture = "Deny with evidence"
         else:

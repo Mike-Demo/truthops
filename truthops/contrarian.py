@@ -8,6 +8,7 @@ report. Disagreement is the point — a contrarian that always agrees is a bug.
 """
 
 from . import tracing
+from .evidence_agent import TRUE_LIKE
 
 
 class Contrarian:
@@ -27,14 +28,14 @@ class Contrarian:
 
             disagreement = None
             # Challenge 1: verdict rests only on secondary sources.
-            if verdict == "supported" and not primary and recs:
+            if verdict in TRUE_LIKE and not primary and recs:
                 disagreement = (
                     "No primary source behind this verdict — only secondary evidence. "
                     "Confidence is overstated; re-verify against a primary source or downgrade."
                 )
             # Challenge 2: 'some decline' supported while the only primary source
             # shows a small 4.2% move — is the decline even meaningful?
-            if (claim_id == "some_customer_decline" and verdict == "supported"):
+            if (claim_id == "some_customer_decline" and verdict in TRUE_LIKE):
                 primary_contra = [r for r in primary if r["stance"] == "contradicts"]
                 if not primary_contra:
                     # The filing supports "some" decline (100 customers) but its

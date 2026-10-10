@@ -9,10 +9,10 @@
 
 | Claim | Verdict | Confidence (initial → revised) |
 |---|---|---|
-| incident_occurred | **supported** | 0.99 → 0.99 |
-| some_customer_decline | **supported** | 0.99 → 0.65 |
-| decline_was_40pct | **contradicted** | 0.97 → 0.97 |
-| executives_knew | **supported** | 0.85 → 0.75 |
+| incident_occurred | **true** | 0.99 → 0.99 |
+| some_customer_decline | **true** | 0.99 → 0.65 |
+| decline_was_40pct | **false** | 0.97 → 0.97 |
+| executives_knew | **true** | 0.85 → 0.75 |
 | deliberate_concealment | **unresolved** | 0.0 → 0.0 |
 
 ## Key messages
