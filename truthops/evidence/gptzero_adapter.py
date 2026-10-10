@@ -5,6 +5,12 @@ custom.gptzero connector; no raw key is ever handled here). Used to screen
 secondary-source texts (news snippets, social posts) for AI-generation
 signals, which inform source reliability assessment.
 
+Four signal families (all annotation-only):
+1. ai_detection — is this text AI-generated? (p_ai, predicted_class)
+2. ai_paraphrased — was AI text rewritten to evade detection? (subclass)
+3. sentence_level — which specific sentences are AI-flagged?
+4. plagiarism — not in the v2 predict API; null (manual dashboard review)
+
 This is a VALIDATION signal, not a verdict input: it annotates evidence
 records but never changes scoring thresholds. Graceful no-op when the CLI
 is missing, text is too short (<250 chars per GPTZero's own guidance), or
@@ -30,8 +36,13 @@ def available() -> bool:
 def screen_text(text: str) -> dict | None:
     """Screen one text for AI-generation signals.
 
-    Returns {"p_ai": float, "predicted_class": str, "confidence": str,
-    "scanned_chars": int} or None when skipped/failed. Never raises.
+    Returns a dict with four signal families:
+    - ai_detection: p_ai, predicted_class, confidence
+    - ai_paraphrased: subclass detection (was AI text rewritten to hide it?)
+    - sentence_level: count of AI-flagged sentences + highest-risk sentence
+    - plagiarism: null (not in v2 predict API; use dashboard for manual review)
+
+    Returns None when skipped/failed. Never raises.
     """
     if not text or len(text.strip()) < MIN_CHARS:
         return None
@@ -52,10 +63,46 @@ def screen_text(text: str) -> dict | None:
         return None
     try:
         doc = payload["documents"][0]
+
+        # 1. AI detection (base signal)
+        p_ai = round(float(doc.get("completely_generated_prob", 0.0)), 3)
+
+        # 2. AI paraphrased (subclass — was it rewritten to evade detection?)
+        subclass = doc.get("subclass", {}) or {}
+        ai_sub = (subclass.get("ai") or {})
+        paraphrased_prob = None
+        paraphrased_class = None
+        try:
+            probs = ai_sub.get("class_probabilities", {}) or {}
+            paraphrased_prob = round(float(probs.get("ai_paraphrased", 0.0)), 3)
+            paraphrased_class = str(ai_sub.get("predicted_class", ""))
+        except (TypeError, ValueError):
+            pass
+
+        # 3. Sentence-level: flag the riskiest sentences
+        sentences = doc.get("sentences", []) or []
+        flagged = []
+        for s in sentences:
+            try:
+                gp = float(s.get("generated_prob", 0.0))
+                if gp >= 0.7:
+                    flagged.append({
+                        "sentence": str(s.get("sentence", ""))[:120],
+                        "p_ai": round(gp, 3),
+                    })
+            except (TypeError, ValueError):
+                continue
+        flagged.sort(key=lambda x: x["p_ai"], reverse=True)
+
         return {
-            "p_ai": round(float(doc.get("completely_generated_prob", 0.0)), 3),
+            "p_ai": p_ai,
             "predicted_class": str(doc.get("predicted_class", "unknown")),
             "confidence": str(doc.get("confidence_category", "unknown")),
+            "ai_paraphrased_prob": paraphrased_prob,
+            "ai_paraphrased_class": paraphrased_class,
+            "flagged_sentences": flagged[:3],
+            "flagged_count": len(flagged),
+            "plagiarism": None,  # not in v2 predict API
             "scanned_chars": len(text.strip()),
         }
     except Exception:

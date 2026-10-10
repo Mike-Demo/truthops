@@ -12,6 +12,7 @@ from .claim_analyst import decompose
 from .evidence_agent import EvidenceAgent
 from .contrarian import Contrarian
 from .response_planner import build_plan, ApprovalGate
+from .sniff_test import sniff
 
 
 class Director:
@@ -54,9 +55,20 @@ class Director:
         print(f"           rationale: {rationale}")
 
     # -- run --------------------------------------------------------------
-    def run_case(self, allegation, case_id):
+    def run_case(self, allegation, case_id, traction_signals=None):
         with tracing.span("director.run_case", case_id=case_id):
             print(f"\n[director] investigating allegation: {allegation}\n")
+            # Sniff test FIRST — cheap gate before the $1.08 pipeline.
+            decision = sniff(allegation, traction_signals)
+            self.state.log_event("sniff_test",
+                                 f"[sniff] proceed={decision['proceed']} — {decision['reason']}")
+            self.state.save()
+            if not decision["proceed"]:
+                print(f"[director] sniff test rejected — skipping full pipeline "
+                      f"(est. cost ${decision['estimated_cost']:.2f})")
+                return {"characterization": "SNIFF_REJECTED",
+                        "sniff_decision": decision,
+                        "sniff_rejected": True}
             claims = decompose(allegation, case_id)
             for c in claims:
                 self.state.data["claims"][c["claim_id"]] = c

@@ -35,6 +35,11 @@ pipeline."
 - "One more validation layer: the evidence agent screens secondary sources
   with GPTZero. The outlets spreading the 40% figure get flagged as likely
   AI-generated — a reliability note on the source, not a verdict input."
+- "And before any of that runs, a sniff test gates the pipeline: a cheap
+  decision-model check that stops obvious fakes before we spend a dollar on
+  Firecrawl and GPTZero. The heuristic runs today; Cloudflare's open-source
+  Clef decision model plugs in as the backend when we want typed
+  probabilities instead of regex."
 
 **[1:30–2:00] THE GATE**
 "The response plan is drafted — but publish, post, and notify are all

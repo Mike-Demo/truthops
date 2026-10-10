@@ -1,8 +1,8 @@
 {
   "label": "SYNTHETIC demo run \u2014 neatHack 2026",
-  "run_id": "run-20261010-113748",
+  "run_id": "run-20261010-131302",
   "case_id": "northstar",
-  "generated_at": "2026-10-10T11:37:50",
+  "generated_at": "2026-10-10T13:13:05",
   "claims": {
     "incident_occurred": {
       "claim_id": "incident_occurred",
@@ -140,6 +140,24 @@
         "p_ai": 1.0,
         "predicted_class": "ai",
         "confidence": "high",
+        "ai_paraphrased_prob": 0.0,
+        "ai_paraphrased_class": "pure_ai",
+        "flagged_sentences": [
+          {
+            "sentence": "Sources claim Northstar Cloud has lost as much as 40% of its enterprise customers since last month's breach, though the ",
+            "p_ai": 1.0
+          },
+          {
+            "sentence": "Unverified reports put Northstar Cloud's enterprise customer losses near 40% following the July security incident.",
+            "p_ai": 1.0
+          },
+          {
+            "sentence": "Analysts urge caution: no filing supports this number.",
+            "p_ai": 1.0
+          }
+        ],
+        "flagged_count": 3,
+        "plagiarism": null,
         "scanned_chars": 327
       }
     },
@@ -199,6 +217,24 @@
         "p_ai": 1.0,
         "predicted_class": "ai",
         "confidence": "high",
+        "ai_paraphrased_prob": 0.0,
+        "ai_paraphrased_class": "pure_ai",
+        "flagged_sentences": [
+          {
+            "sentence": "Sources claim Northstar Cloud has lost as much as 40% of its enterprise customers since last month's breach, though the ",
+            "p_ai": 1.0
+          },
+          {
+            "sentence": "Unverified reports put Northstar Cloud's enterprise customer losses near 40% following the July security incident.",
+            "p_ai": 1.0
+          },
+          {
+            "sentence": "Analysts urge caution: no filing supports this number.",
+            "p_ai": 1.0
+          }
+        ],
+        "flagged_count": 3,
+        "plagiarism": null,
         "scanned_chars": 327
       }
     },
@@ -402,31 +438,36 @@
   },
   "events": [
     {
-      "t": "2026-10-10T11:37:48",
+      "t": "2026-10-10T13:13:02",
       "kind": "run_started",
-      "message": "TruthOps run run-20261010-113748 started for case 'northstar'"
+      "message": "TruthOps run run-20261010-131302 started for case 'northstar'"
     },
     {
-      "t": "2026-10-10T11:37:48",
+      "t": "2026-10-10T13:13:02",
+      "kind": "sniff_test",
+      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted"
+    },
+    {
+      "t": "2026-10-10T13:13:02",
       "kind": "claims_decomposed",
       "message": "Decomposed into 5 atomic claims: ['incident_occurred', 'some_customer_decline', 'decline_was_40pct', 'executives_knew', 'deliberate_concealment']"
     },
     {
-      "t": "2026-10-10T11:37:48",
+      "t": "2026-10-10T13:13:02",
       "kind": "director_decision",
       "message": "[director] incident_occurred: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
       "claim_id": "incident_occurred",
       "action": "gather"
     },
     {
-      "t": "2026-10-10T11:37:48",
+      "t": "2026-10-10T13:13:02",
       "kind": "http_attempt",
       "message": "GET fixture://northstar/incident-report (attempt 1)",
       "url": "fixture://northstar/incident-report",
       "attempt": 1
     },
     {
-      "t": "2026-10-10T11:37:48",
+      "t": "2026-10-10T13:13:02",
       "kind": "http_success",
       "message": "GET fixture://northstar/incident-report -> 200 OK (attempt 1)",
       "url": "fixture://northstar/incident-report",
@@ -434,21 +475,21 @@
       "status": 200
     },
     {
-      "t": "2026-10-10T11:37:48",
+      "t": "2026-10-10T13:13:02",
       "kind": "evidence_scored",
       "message": "ev-incident_occurred-1: supports (reliability=0.9, relevance=1.0, score=0.9)",
       "claim_id": "incident_occurred",
       "evidence_id": "ev-incident_occurred-1"
     },
     {
-      "t": "2026-10-10T11:37:48",
+      "t": "2026-10-10T13:13:02",
       "kind": "http_attempt",
       "message": "GET fixture://northstar/news-snippets (attempt 1)",
       "url": "fixture://northstar/news-snippets",
       "attempt": 1
     },
     {
-      "t": "2026-10-10T11:37:48",
+      "t": "2026-10-10T13:13:02",
       "kind": "http_success",
       "message": "GET fixture://northstar/news-snippets -> 200 OK (attempt 1)",
       "url": "fixture://northstar/news-snippets",
@@ -456,28 +497,28 @@
       "status": 200
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "evidence_validated",
       "message": "ev-incident_occurred-2: GPTZero screen -> ai (P(ai)=1.0, confidence=high)",
       "claim_id": "incident_occurred",
       "evidence_id": "ev-incident_occurred-2"
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "evidence_scored",
       "message": "ev-incident_occurred-2: supports (reliability=0.4, relevance=0.5, score=0.2)",
       "claim_id": "incident_occurred",
       "evidence_id": "ev-incident_occurred-2"
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "director_decision",
       "message": "[director] incident_occurred: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
       "claim_id": "incident_occurred",
       "action": "evaluate"
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "claim_evaluated",
       "message": "incident_occurred: supported (confidence 0.99) [support=1.1 vs contradict=0]",
       "claim_id": "incident_occurred",
@@ -485,34 +526,34 @@
       "confidence": 0.99
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "director_decision",
       "message": "[director] incident_occurred: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
       "claim_id": "incident_occurred",
       "action": "escalate"
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "contrarian_review",
       "message": "incident_occurred: agreed=True conf 0.99 -> 0.99",
       "claim_id": "incident_occurred"
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "director_decision",
       "message": "[director] some_customer_decline: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
       "claim_id": "some_customer_decline",
       "action": "gather"
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "http_attempt",
       "message": "GET fixture://northstar/filing-q3-2026 (attempt 1)",
       "url": "fixture://northstar/filing-q3-2026",
       "attempt": 1
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "http_failure",
       "message": "GET fixture://northstar/filing-q3-2026 -> 503 Service Unavailable (SIMULATED). State preserved; will retry.",
       "url": "fixture://northstar/filing-q3-2026",
@@ -520,21 +561,21 @@
       "status": 503
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "evidence_retry",
       "message": "Retrying fixture://northstar/filing-q3-2026 after failure: HTTP 503 for fixture://northstar/filing-q3-2026: Service Unavailable (SIMULATED deterministic failure)",
       "claim_id": "some_customer_decline",
       "url": "fixture://northstar/filing-q3-2026"
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "http_attempt",
       "message": "GET fixture://northstar/filing-q3-2026 (attempt 2)",
       "url": "fixture://northstar/filing-q3-2026",
       "attempt": 2
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "http_success",
       "message": "GET fixture://northstar/filing-q3-2026 -> 200 OK (attempt 2)",
       "url": "fixture://northstar/filing-q3-2026",
@@ -542,21 +583,21 @@
       "status": 200
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "evidence_scored",
       "message": "ev-some_customer_decline-1: supports (reliability=0.95, relevance=1.0, score=0.95)",
       "claim_id": "some_customer_decline",
       "evidence_id": "ev-some_customer_decline-1"
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "http_attempt",
       "message": "GET fixture://northstar/internal-memo (attempt 1)",
       "url": "fixture://northstar/internal-memo",
       "attempt": 1
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "http_success",
       "message": "GET fixture://northstar/internal-memo -> 200 OK (attempt 1)",
       "url": "fixture://northstar/internal-memo",
@@ -564,21 +605,21 @@
       "status": 200
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "evidence_scored",
       "message": "ev-some_customer_decline-2: supports (reliability=0.7, relevance=0.8, score=0.56)",
       "claim_id": "some_customer_decline",
       "evidence_id": "ev-some_customer_decline-2"
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "director_decision",
       "message": "[director] some_customer_decline: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
       "claim_id": "some_customer_decline",
       "action": "evaluate"
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "claim_evaluated",
       "message": "some_customer_decline: supported (confidence 0.99) [support=1.51 vs contradict=0]",
       "claim_id": "some_customer_decline",
@@ -586,34 +627,34 @@
       "confidence": 0.99
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "director_decision",
       "message": "[director] some_customer_decline: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
       "claim_id": "some_customer_decline",
       "action": "escalate"
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "contrarian_review",
       "message": "some_customer_decline: agreed=False conf 0.99 -> 0.65",
       "claim_id": "some_customer_decline"
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "director_decision",
       "message": "[director] decline_was_40pct: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
       "claim_id": "decline_was_40pct",
       "action": "gather"
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "http_attempt",
       "message": "GET fixture://northstar/filing-q3-2026 (attempt 3)",
       "url": "fixture://northstar/filing-q3-2026",
       "attempt": 3
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "http_success",
       "message": "GET fixture://northstar/filing-q3-2026 -> 200 OK (attempt 3)",
       "url": "fixture://northstar/filing-q3-2026",
@@ -621,21 +662,21 @@
       "status": 200
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "evidence_scored",
       "message": "ev-decline_was_40pct-1: contradicts (reliability=0.95, relevance=1.0, score=0.95)",
       "claim_id": "decline_was_40pct",
       "evidence_id": "ev-decline_was_40pct-1"
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "http_attempt",
       "message": "GET fixture://northstar/news-snippets (attempt 2)",
       "url": "fixture://northstar/news-snippets",
       "attempt": 2
     },
     {
-      "t": "2026-10-10T11:37:49",
+      "t": "2026-10-10T13:13:03",
       "kind": "http_success",
       "message": "GET fixture://northstar/news-snippets -> 200 OK (attempt 2)",
       "url": "fixture://northstar/news-snippets",
@@ -643,28 +684,28 @@
       "status": 200
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "evidence_validated",
       "message": "ev-decline_was_40pct-2: GPTZero screen -> ai (P(ai)=1.0, confidence=high)",
       "claim_id": "decline_was_40pct",
       "evidence_id": "ev-decline_was_40pct-2"
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "evidence_scored",
       "message": "ev-decline_was_40pct-2: supports (reliability=0.4, relevance=0.5, score=0.2)",
       "claim_id": "decline_was_40pct",
       "evidence_id": "ev-decline_was_40pct-2"
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "director_decision",
       "message": "[director] decline_was_40pct: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
       "claim_id": "decline_was_40pct",
       "action": "evaluate"
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "claim_evaluated",
       "message": "decline_was_40pct: contradicted (confidence 0.97) [support=0.2 vs contradict=0.95]",
       "claim_id": "decline_was_40pct",
@@ -672,34 +713,34 @@
       "confidence": 0.97
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "director_decision",
       "message": "[director] decline_was_40pct: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
       "claim_id": "decline_was_40pct",
       "action": "escalate"
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "contrarian_review",
       "message": "decline_was_40pct: agreed=True conf 0.97 -> 0.97",
       "claim_id": "decline_was_40pct"
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "director_decision",
       "message": "[director] executives_knew: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
       "claim_id": "executives_knew",
       "action": "gather"
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "http_attempt",
       "message": "GET fixture://northstar/internal-memo (attempt 2)",
       "url": "fixture://northstar/internal-memo",
       "attempt": 2
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "http_success",
       "message": "GET fixture://northstar/internal-memo -> 200 OK (attempt 2)",
       "url": "fixture://northstar/internal-memo",
@@ -707,21 +748,21 @@
       "status": 200
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "evidence_scored",
       "message": "ev-executives_knew-1: supports (reliability=0.7, relevance=1.0, score=0.7)",
       "claim_id": "executives_knew",
       "evidence_id": "ev-executives_knew-1"
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "director_decision",
       "message": "[director] executives_knew: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
       "claim_id": "executives_knew",
       "action": "evaluate"
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "claim_evaluated",
       "message": "executives_knew: supported (confidence 0.85) [support=0.7 vs contradict=0]",
       "claim_id": "executives_knew",
@@ -729,34 +770,34 @@
       "confidence": 0.85
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "director_decision",
       "message": "[director] executives_knew: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
       "claim_id": "executives_knew",
       "action": "escalate"
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "contrarian_review",
       "message": "executives_knew: agreed=False conf 0.85 -> 0.75",
       "claim_id": "executives_knew"
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "director_decision",
       "message": "[director] deliberate_concealment: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
       "claim_id": "deliberate_concealment",
       "action": "gather"
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "director_decision",
       "message": "[director] deliberate_concealment: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
       "claim_id": "deliberate_concealment",
       "action": "evaluate"
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "claim_evaluated",
       "message": "deliberate_concealment: unresolved (confidence 0.0) [support=0 vs contradict=0]",
       "claim_id": "deliberate_concealment",
@@ -764,37 +805,37 @@
       "confidence": 0.0
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "director_decision",
       "message": "[director] deliberate_concealment: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
       "claim_id": "deliberate_concealment",
       "action": "escalate"
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "contrarian_review",
       "message": "deliberate_concealment: agreed=False conf 0.0 -> 0.0",
       "claim_id": "deliberate_concealment"
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "response_planned",
       "message": "Response plan built: MISLEADING. All external actions BLOCKED pending approval."
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "approval_blocked",
       "message": "External action 'publish' BLOCKED \u2014 awaiting human approval.",
       "action": "publish"
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "approval_blocked",
       "message": "External action 'post' BLOCKED \u2014 awaiting human approval.",
       "action": "post"
     },
     {
-      "t": "2026-10-10T11:37:50",
+      "t": "2026-10-10T13:13:05",
       "kind": "approval_blocked",
       "message": "External action 'notify' BLOCKED \u2014 awaiting human approval.",
       "action": "notify"
