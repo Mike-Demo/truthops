@@ -1,0 +1,1 @@
+Build TruthOps: autonomous trust operations agent for neatHack 2026. Investigates high-risk corporate claims against primary sources, challenges findings via contrarian review, produces evidence-backed response plans with human approval gates.

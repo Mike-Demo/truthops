@@ -1,0 +1,12 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M4KHFZSP4K7Z61RJTTK1SFQS",
+  "session_id": "truthops-neathack-2026-10-10",
+  "strategy": "manual-commit",
+  "created_at": "2026-10-10T18:34:06.588286303Z",
+  "checkpoints_count": 6,
+  "files_touched": null,
+  "agent": "Cane Agent",
+  "model": "",
+  "compact_transcript_start": 0
+}
