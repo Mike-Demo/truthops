@@ -1,0 +1,122 @@
+{
+  "img1": {
+    "provenance": {
+      "has_c2pa": false,
+      "valid": null,
+      "issuer": null,
+      "created": null,
+      "tool": null,
+      "signal": "no_provenance",
+      "detail": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but most AI generators do not embed C2PA data."
+    },
+    "evidence": {
+      "document_type": "c2pa_provenance",
+      "is_primary_source": false,
+      "source_reliability": 0.5,
+      "supports_claims": [],
+      "contradicts_claims": [],
+      "url": "claim1-img1.jpg",
+      "summary": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but most AI generators do not embed C2PA data.",
+      "provenance": {
+        "has_c2pa": false,
+        "valid": null,
+        "issuer": null,
+        "created": null,
+        "tool": null,
+        "signal": "no_provenance",
+        "detail": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but most AI generators do not embed C2PA data."
+      },
+      "note": "Absence of C2PA data is weak evidence \u2014 route to Phase 2 (TruthScan) for AI detection."
+    }
+  },
+  "img2": {
+    "provenance": {
+      "has_c2pa": false,
+      "valid": null,
+      "issuer": null,
+      "created": null,
+      "tool": null,
+      "signal": "no_provenance",
+      "detail": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but most AI generators do not embed C2PA data."
+    },
+    "evidence": {
+      "document_type": "c2pa_provenance",
+      "is_primary_source": false,
+      "source_reliability": 0.5,
+      "supports_claims": [],
+      "contradicts_claims": [],
+      "url": "claim1-img2.jpg",
+      "summary": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but most AI generators do not embed C2PA data.",
+      "provenance": {
+        "has_c2pa": false,
+        "valid": null,
+        "issuer": null,
+        "created": null,
+        "tool": null,
+        "signal": "no_provenance",
+        "detail": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but most AI generators do not embed C2PA data."
+      },
+      "note": "Absence of C2PA data is weak evidence \u2014 route to Phase 2 (TruthScan) for AI detection."
+    }
+  },
+  "img3": {
+    "provenance": {
+      "has_c2pa": false,
+      "valid": null,
+      "issuer": null,
+      "created": null,
+      "tool": null,
+      "signal": "no_provenance",
+      "detail": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but most AI generators do not embed C2PA data."
+    },
+    "evidence": {
+      "document_type": "c2pa_provenance",
+      "is_primary_source": false,
+      "source_reliability": 0.5,
+      "supports_claims": [],
+      "contradicts_claims": [],
+      "url": "claim1-img3.jpg",
+      "summary": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but most AI generators do not embed C2PA data.",
+      "provenance": {
+        "has_c2pa": false,
+        "valid": null,
+        "issuer": null,
+        "created": null,
+        "tool": null,
+        "signal": "no_provenance",
+        "detail": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but most AI generators do not embed C2PA data."
+      },
+      "note": "Absence of C2PA data is weak evidence \u2014 route to Phase 2 (TruthScan) for AI detection."
+    }
+  },
+  "img4": {
+    "provenance": {
+      "has_c2pa": false,
+      "valid": null,
+      "issuer": null,
+      "created": null,
+      "tool": null,
+      "signal": "no_provenance",
+      "detail": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but most AI generators do not embed C2PA data."
+    },
+    "evidence": {
+      "document_type": "c2pa_provenance",
+      "is_primary_source": false,
+      "source_reliability": 0.5,
+      "supports_claims": [],
+      "contradicts_claims": [],
+      "url": "claim1-img4.jpg",
+      "summary": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but most AI generators do not embed C2PA data.",
+      "provenance": {
+        "has_c2pa": false,
+        "valid": null,
+        "issuer": null,
+        "created": null,
+        "tool": null,
+        "signal": "no_provenance",
+        "detail": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but most AI generators do not embed C2PA data."
+      },
+      "note": "Absence of C2PA data is weak evidence \u2014 route to Phase 2 (TruthScan) for AI detection."
+    }
+  }
+}

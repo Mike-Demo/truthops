@@ -1,0 +1,30 @@
+{
+  "img1": {
+    "ai_probability": null,
+    "verdict": "error",
+    "detail": "HTTP Error 403: Forbidden",
+    "document_id": null,
+    "raw": {}
+  },
+  "img2": {
+    "ai_probability": null,
+    "verdict": "error",
+    "detail": "HTTP Error 403: Forbidden",
+    "document_id": null,
+    "raw": {}
+  },
+  "img3": {
+    "ai_probability": null,
+    "verdict": "error",
+    "detail": "HTTP Error 403: Forbidden",
+    "document_id": null,
+    "raw": {}
+  },
+  "img4": {
+    "ai_probability": null,
+    "verdict": "error",
+    "detail": "HTTP Error 403: Forbidden",
+    "document_id": null,
+    "raw": {}
+  }
+}

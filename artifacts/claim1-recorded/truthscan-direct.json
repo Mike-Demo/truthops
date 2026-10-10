@@ -1,0 +1,14 @@
+{
+  "img1": {
+    "error": "HTTP Error 400: Bad Request"
+  },
+  "img2": {
+    "error": "HTTP Error 400: Bad Request"
+  },
+  "img3": {
+    "error": "HTTP Error 400: Bad Request"
+  },
+  "img4": {
+    "error": "HTTP Error 400: Bad Request"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "img1": {
+    "scan": {
+      "ai_probability": null,
+      "verdict": "error",
+      "detail": "HTTP Error 403: Forbidden",
+      "document_id": null,
+      "raw": {}
+    },
+    "evidence": {
+      "document_type": "truthscan_ai_detection",
+      "is_primary_source": false,
+      "source_reliability": 0.0,
+      "supports_claims": [],
+      "contradicts_claims": [],
+      "url": "claim1-img1.jpg",
+      "summary": "TruthScan scan unavailable: HTTP Error 403: Forbidden"
+    }
+  },
+  "img2": {
+    "scan": {
+      "ai_probability": null,
+      "verdict": "error",
+      "detail": "HTTP Error 403: Forbidden",
+      "document_id": null,
+      "raw": {}
+    },
+    "evidence": {
+      "document_type": "truthscan_ai_detection",
+      "is_primary_source": false,
+      "source_reliability": 0.0,
+      "supports_claims": [],
+      "contradicts_claims": [],
+      "url": "claim1-img2.jpg",
+      "summary": "TruthScan scan unavailable: HTTP Error 403: Forbidden"
+    }
+  },
+  "img3": {
+    "scan": {
+      "ai_probability": null,
+      "verdict": "error",
+      "detail": "HTTP Error 403: Forbidden",
+      "document_id": null,
+      "raw": {}
+    },
+    "evidence": {
+      "document_type": "truthscan_ai_detection",
+      "is_primary_source": false,
+      "source_reliability": 0.0,
+      "supports_claims": [],
+      "contradicts_claims": [],
+      "url": "claim1-img3.jpg",
+      "summary": "TruthScan scan unavailable: HTTP Error 403: Forbidden"
+    }
+  },
+  "img4": {
+    "scan": {
+      "ai_probability": null,
+      "verdict": "error",
+      "detail": "HTTP Error 403: Forbidden",
+      "document_id": null,
+      "raw": {}
+    },
+    "evidence": {
+      "document_type": "truthscan_ai_detection",
+      "is_primary_source": false,
+      "source_reliability": 0.0,
+      "supports_claims": [],
+      "contradicts_claims": [],
+      "url": "claim1-img4.jpg",
+      "summary": "TruthScan scan unavailable: HTTP Error 403: Forbidden"
+    }
+  }
+}

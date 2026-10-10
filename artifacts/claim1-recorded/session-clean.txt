@@ -1,0 +1,61 @@
+=== TruthOps Claim 1 — Recorded Run ===
+Claim: Photographs circulating online show New York City Mayor Zohran Mamdani posing alongside Jeffrey Epstein.
+Expected: 0-5, pants_on_fire
+
+[tracing] NEATLOGS_API_KEY not set — traces disabled (graceful degradation)
+[truthops] LIVE mode — probing adapters...
+  [live] adapter status:
+    gptzero      LIVE     — gptzero-scan CLI present; auth via stored connector
+    truthscan    fixture  — TRUTHSCAN_API_KEY not set — photo scans skipped
+    c2pa         LIVE     — c2pa-python installed — provenance checks available
+    alexandria   LIVE     — firecrawl-cli available — enrichment callable (paid per use)
+
+[director] investigating allegation: Photographs circulating online show New York City Mayor Zohran Mamdani posing alongside Jeffrey Epstein.
+
+[sniff] proceed=True — passed sniff test — coherent allegation, full pipeline warranted
+[director] claim registered: claim — Photographs circulating online show New York City Mayor Zohran Mamdani posing alongside Jeffrey Epstein.
+
+======================================================================
+[director] working claim: claim
+======================================================================
+[director] claim: next action = gather
+           rationale: no evidence yet — gather before any judgment
+  [evidence] ev-claim-1 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evidence] Alexandria (27 categories) available — SIMULATED in demo, skipped for benchmark purity
+    Categories: company, finance, news, jobs, knowledge, digital-intelligence, ...
+    Use alexandria_adapter.discover(need) + .execute(ref, options) for live investigations
+[director] claim: next action = evaluate
+           rationale: evidence phase complete — evaluate the claim
+  [evaluate] claim -> PANTS_ON_FIRE (confidence 0.97, score 3/100) [support=0 | contradict=0.95]
+[director] claim: next action = escalate
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+  [contrarian] agrees on claim (pants_on_fire, conf 0.97) — no challenge.
+
+======================================================================
+[director] all claims concluded — building response plan
+======================================================================
+[director] overall characterization: FALSE
+[director] recommended posture: Deny with evidence
+  • Claim 'Photographs circulating online show New York City Mayor Zohran Mamdani posing al...': PANTS ON FIRE (3/100).
+  •   Notes: Smoke test 1: AI-generated photo fabrication.
+
+[director] attempting external actions (expect the gate to block):
+⛔ APPROVAL GATE: external action 'publish' is BLOCKED.
+   A human must explicitly approve before TruthOps publishes, posts, or notifies.
+   Run with --approve '<action>' (human-initiated) to release a single action.
+⛔ APPROVAL GATE: external action 'post' is BLOCKED.
+   A human must explicitly approve before TruthOps publishes, posts, or notifies.
+   Run with --approve '<action>' (human-initiated) to release a single action.
+⛔ APPROVAL GATE: external action 'notify' is BLOCKED.
+   A human must explicitly approve before TruthOps publishes, posts, or notifies.
+   Run with --approve '<action>' (human-initiated) to release a single action.
+
+[truthops] reports written:
+  /home/hatch/workspace/truthops/artifacts/truthops-report-smoke1.json
+  /home/hatch/workspace/truthops/artifacts/truthops-report-smoke1.md
+
+--- Generated reports ---
+-rw-rw---- 1 root nogroup 7.3K Oct 10 17:28 artifacts/truthops-report-smoke1.json
+-rw-rw---- 1 root nogroup  977 Oct 10 17:28 artifacts/truthops-report-smoke1.md
+
+Script done on 2026-10-10 17:28:30-05:00 [COMMAND_EXIT_CODE="0"]
