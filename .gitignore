@@ -4,3 +4,4 @@ __pycache__/
 .env
 .entire/*
 !.entire/settings.json
+artifacts/.state-*.json
