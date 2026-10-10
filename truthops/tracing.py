@@ -72,10 +72,17 @@ class span:
                 self._cm = _nl.trace(self.name, **self.attrs)
                 entered = self._cm.__enter__()
                 # Capture trace_id from the root span (first span entered).
+                # neatlogs returns an OpenTelemetry span; the trace ID is in
+                # span.get_span_context().trace_id as an int.
                 if _trace_id is None and entered is not None:
-                    tid = getattr(entered, "trace_id", None)
+                    tid = None
+                    try:
+                        ctx = entered.get_span_context()
+                        tid = ctx.trace_id if ctx is not None else None
+                    except Exception:
+                        tid = getattr(entered, "trace_id", None)
                     if tid:
-                        _trace_id = str(tid)
+                        _trace_id = format(tid, "032x") if isinstance(tid, int) else str(tid)
                 return entered
             except Exception:
                 self._cm = None
