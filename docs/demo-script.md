@@ -32,6 +32,9 @@ pipeline."
   figure — contradicted by the primary filing, which shows 4.2%. Deliberate
   concealment — unresolved; the agent refuses to assert intent without
   evidence. Overall characterization: misleading."
+- "One more validation layer: the evidence agent screens secondary sources
+  with GPTZero. The outlets spreading the 40% figure get flagged as likely
+  AI-generated — a reliability note on the source, not a verdict input."
 
 **[1:30–2:00] THE GATE**
 "The response plan is drafted — but publish, post, and notify are all
