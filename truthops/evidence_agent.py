@@ -8,7 +8,7 @@ evidence. Thresholds are explicit and logged — no blurred categories.
 """
 
 from . import tracing
-from .evidence import fixture_adapter, crustdata_adapter, firecrawl_adapter
+from .evidence import fixture_adapter, crustdata_adapter, firecrawl_adapter, gptzero_adapter
 
 SUPPORT_THRESHOLD = 0.60
 CONTRADICT_THRESHOLD = 0.60
@@ -73,6 +73,29 @@ class EvidenceAgent:
                     "is_primary_source": bool(doc.get("is_primary_source")),
                     "summary": self._summarize(doc),
                 }
+                # GPTZero validation layer: screen secondary-source texts for
+                # AI-generation signals. Annotation only — never changes the
+                # verdict math. Skipped gracefully when unavailable or the
+                # text is too short.
+                if not rec["is_primary_source"]:
+                    with tracing.span("evidence.gptzero_screen", claim_id=claim_id,
+                                      evidence_id=rec["evidence_id"]):
+                        screenable = gptzero_adapter.extract_scannable_text(doc)
+                        screening = gptzero_adapter.screen_text(screenable)
+                    rec["ai_screening"] = screening
+                    if screening:
+                        self.state.log_event(
+                            "evidence_validated",
+                            f"{rec['evidence_id']}: GPTZero screen -> "
+                            f"{screening['predicted_class']} "
+                            f"(P(ai)={screening['p_ai']}, "
+                            f"confidence={screening['confidence']})",
+                            claim_id=claim_id, evidence_id=rec["evidence_id"],
+                        )
+                        print(f"  [validate] {rec['evidence_id']}: GPTZero flags "
+                              f"source as {screening['predicted_class'].upper()} "
+                              f"(P(ai)={screening['p_ai']}) — secondary-source "
+                              f"reliability note, not a verdict input")
                 records.append(rec)
                 self.state.data["evidence"][rec["evidence_id"]] = rec
                 self.state.log_event(
