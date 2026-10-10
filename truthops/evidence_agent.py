@@ -76,10 +76,12 @@ SMOKE_EVIDENCE_PLAN = {
 
 
 class EvidenceAgent:
-    def __init__(self, state, http):
+    def __init__(self, state, http, live_adapter=None):
         self.state = state
         self.http = http
         self.fixtures = fixture_adapter.FixtureAdapter()
+        self.live_adapter = live_adapter
+        self.live_mode = live_adapter is not None
 
     def gather(self, claim_id):
         """Retrieve evidence for one claim. Returns list of evidence records."""
@@ -152,17 +154,77 @@ class EvidenceAgent:
                 print(f"  [evidence] {rec['evidence_id']} {stance} "
                       f"| rel={reliability} x relv={relevance} -> score={score} "
                       f"| primary={rec['is_primary_source']}")
-            # Optional live adapters (graceful no-ops without keys)
-            if crustdata_adapter.available():
-                print("  [evidence] Crustdata adapter available — SIMULATED in demo, skipped for benchmark purity")
-            if firecrawl_adapter.available():
-                print("  [evidence] Firecrawl adapter available — SIMULATED in demo, skipped for benchmark purity")
-            if alexandria_adapter.available():
-                print("  [evidence] Alexandria (27 categories) available — SIMULATED in demo, skipped for benchmark purity")
-                print("    Categories: company, finance, news, jobs, knowledge, digital-intelligence, ...")
-                print("    Use alexandria_adapter.discover(need) + .execute(ref, options) for live investigations")
+            # Live adapters: actually execute when in live mode, not just report status.
+            # Fixture evidence stays as the benchmark baseline; live calls enrich.
+            if self.live_mode:
+                self._gather_live_enrichment(claim_id, records)
+            else:
+                if crustdata_adapter.available():
+                    print("  [evidence] Crustdata adapter available — SIMULATED in demo, skipped for benchmark purity")
+                if firecrawl_adapter.available():
+                    print("  [evidence] Firecrawl adapter available — SIMULATED in demo, skipped for benchmark purity")
+                if alexandria_adapter.available():
+                    print("  [evidence] Alexandria (27 categories) available — SIMULATED in demo, skipped for benchmark purity")
+                    print("    Categories: company, finance, news, jobs, knowledge, digital-intelligence, ...")
+                    print("    Use alexandria_adapter.discover(need) + .execute(ref, options) for live investigations")
             self.state.save()
             return records
+
+    def _gather_live_enrichment(self, claim_id, records):
+        """Execute live adapters for enrichment. Records spend."""
+        la = self.live_adapter
+        claim_text = self.state.data.get("claims", {}).get(claim_id, {}).get("statement", "")
+
+        # Alexandria: discover + execute for real evidence enrichment
+        if la.is_live("alexandria"):
+            try:
+                with tracing.span("evidence.alexandria_discover", claim_id=claim_id):
+                    tools = alexandria_adapter.discover(
+                        f"evidence about: {claim_text[:200]}", max_results=3)
+                print(f"  [live] Alexandria discovered {len(tools)} tools")
+                for tool in tools[:2]:  # limit to 2 executions for cost control
+                    ref = tool.get("ref") or tool.get("id", "")
+                    if not ref:
+                        continue
+                    with tracing.span("evidence.alexandria_execute",
+                                      claim_id=claim_id, ref=ref):
+                        result = alexandria_adapter.execute(ref, {"query": claim_text[:200]})
+                    if result:
+                        cost = result.get("creditsCost", 0) if isinstance(result, dict) else 0
+                        la.log_spend("alexandria", f"execute:{ref}",
+                                     credits=cost, note=f"tool={ref}")
+                        print(f"  [live] Alexandria {ref} -> {cost} credits")
+                        # Convert to evidence record
+                        rec = {
+                            "evidence_id": f"ev-{claim_id}-alex-{len(records)+1}",
+                            "claim_id": claim_id,
+                            "source": "alexandria",
+                            "label": f"Alexandria live: {ref}",
+                            "url": ref,
+                            "stance": "supports",  # enrichment, stance TBD by analyst
+                            "reliability": 0.7,
+                            "relevance": 0.6,
+                            "score": round(0.7 * 0.6, 3),
+                            "is_primary_source": False,
+                            "summary": str(result)[:220] if isinstance(result, dict) else str(result)[:220],
+                        }
+                        records.append(rec)
+                        self.state.data["evidence"][rec["evidence_id"]] = rec
+            except Exception as e:
+                print(f"  [live] Alexandria enrichment failed: {e} — continuing with fixtures")
+                self.state.log_event("live_enrichment_failed",
+                                     f"Alexandria: {e}", claim_id=claim_id)
+
+        # Photo verification: if claim mentions photos/images, attempt C2PA->TruthScan
+        # Note: requires image bytes — currently only runs if image_url in fixture
+        # provides a fetchable URL. Full image acquisition is a separate step.
+        if la.is_live("c2pa") and any(w in claim_text.lower()
+                                        for w in ["photo", "image", "picture", "photograph"]):
+            print(f"  [live] Photo claim detected — image acquisition required for C2PA/TruthScan chain")
+            print(f"         Use LiveAdapter.verify_photo(image_bytes) with actual image bytes")
+            self.state.log_event("photo_verification_pending",
+                                 "Claim mentions photos but no image bytes provided",
+                                 claim_id=claim_id)
 
     def evaluate(self, claim_id):
         """Score-based verdict on the PolitiFact Truth-O-Meter scale.

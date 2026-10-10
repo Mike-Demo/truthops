@@ -16,10 +16,10 @@ from .sniff_test import sniff
 
 
 class Director:
-    def __init__(self, state, http):
+    def __init__(self, state, http, live_adapter=None):
         self.state = state
         self.http = http
-        self.evidence_agent = EvidenceAgent(state, http)
+        self.evidence_agent = EvidenceAgent(state, http, live_adapter)
         self.contrarian = Contrarian(state, self.evidence_agent)
         self.gate = ApprovalGate(state)
 

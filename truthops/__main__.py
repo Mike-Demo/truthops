@@ -157,7 +157,8 @@ def main(argv=None):
         else:
             adapter = FixtureAdapter()
         http = HttpClient(state, adapter)
-        director = Director(state, http)
+        director = Director(state, http,
+                            live_adapter=adapter if args.live else None)
         plan = director.run_case(allegation, args.case)
 
         jpath, mpath = write_reports(state, plan, args.case,
