@@ -1,0 +1,66 @@
+[
+  {
+    "adapter": "c2pa",
+    "operation": "check_provenance",
+    "calls": 1,
+    "credits": 0.0,
+    "usd": 0.0,
+    "note": "no_provenance"
+  },
+  {
+    "adapter": "sightengine",
+    "operation": "scan_image",
+    "calls": 1,
+    "credits": 0.0,
+    "usd": 0.0,
+    "note": "verdict=likely_real"
+  },
+  {
+    "adapter": "c2pa",
+    "operation": "check_provenance",
+    "calls": 1,
+    "credits": 0.0,
+    "usd": 0.0,
+    "note": "no_provenance"
+  },
+  {
+    "adapter": "sightengine",
+    "operation": "scan_image",
+    "calls": 1,
+    "credits": 0.0,
+    "usd": 0.0,
+    "note": "verdict=ai_generated"
+  },
+  {
+    "adapter": "c2pa",
+    "operation": "check_provenance",
+    "calls": 1,
+    "credits": 0.0,
+    "usd": 0.0,
+    "note": "no_provenance"
+  },
+  {
+    "adapter": "sightengine",
+    "operation": "scan_image",
+    "calls": 1,
+    "credits": 0.0,
+    "usd": 0.0,
+    "note": "verdict=ai_generated"
+  },
+  {
+    "adapter": "c2pa",
+    "operation": "check_provenance",
+    "calls": 1,
+    "credits": 0.0,
+    "usd": 0.0,
+    "note": "no_provenance"
+  },
+  {
+    "adapter": "sightengine",
+    "operation": "scan_image",
+    "calls": 1,
+    "credits": 0.0,
+    "usd": 0.0,
+    "note": "verdict=ai_generated"
+  }
+]

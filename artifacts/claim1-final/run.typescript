@@ -1,0 +1,55 @@
+Script started on 2026-10-10 18:53:14-05:00 [COMMAND="NEATLOGS_API_KEY="t_tGcK5ngLAZJPgPu93wf67o1JzX_fiH" SIGHTENGINE_API_USER="1082922249" SIGHTENGINE_API_SECRET="kLZt3Cxs5dVuaNiEmNqmCZ8zZVehYCcS" PYTHONPATH=~/workspace/.pip-packages python3 -m truthops run --case smoke1 --live" <not executed on terminal>]
+[tracing] neatlogs tracing ENABLED
+[truthops] LIVE mode — probing adapters...
+  [live] adapter status:
+    gptzero      LIVE     — gptzero-scan CLI present; auth via stored connector
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+    c2pa         LIVE     — c2pa-python installed — provenance checks available
+    alexandria   LIVE     — firecrawl-cli available — enrichment callable (paid per use)
+
+[director] investigating allegation: Photographs circulating online show New York City Mayor Zohran Mamdani posing alongside Jeffrey Epstein.
+
+[sniff] proceed=True — passed sniff test — coherent allegation, full pipeline warranted
+[director] claim registered: claim — Photographs circulating online show New York City Mayor Zohran Mamdani posing alongside Jeffrey Epstein.
+
+======================================================================
+[director] working claim: claim
+======================================================================
+[director] claim: next action = gather
+           rationale: no evidence yet — gather before any judgment
+  [evidence] ev-claim-1 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [live] Alexandria discovered 0 tools
+  [live] Photo claim detected — image acquisition required for C2PA/Sightengine chain
+         Use LiveAdapter.verify_photo(image_bytes) with actual image bytes
+[director] claim: next action = evaluate
+           rationale: evidence phase complete — evaluate the claim
+  [evaluate] claim -> PANTS_ON_FIRE (confidence 0.97, score 3/100) [support=0 | contradict=0.95]
+[director] claim: next action = escalate
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+  [contrarian] agrees on claim (pants_on_fire, conf 0.97) — no challenge.
+
+======================================================================
+[director] all claims concluded — building response plan
+======================================================================
+[director] overall characterization: FALSE
+[director] recommended posture: Deny with evidence
+  • Claim 'Photographs circulating online show New York City Mayor Zohran Mamdani posing al...': PANTS ON FIRE (3/100).
+  •   Notes: Smoke test 1: AI-generated photo fabrication.
+
+[director] attempting external actions (expect the gate to block):
+⛔ APPROVAL GATE: external action 'publish' is BLOCKED.
+   A human must explicitly approve before TruthOps publishes, posts, or notifies.
+   Run with --approve '<action>' (human-initiated) to release a single action.
+⛔ APPROVAL GATE: external action 'post' is BLOCKED.
+   A human must explicitly approve before TruthOps publishes, posts, or notifies.
+   Run with --approve '<action>' (human-initiated) to release a single action.
+⛔ APPROVAL GATE: external action 'notify' is BLOCKED.
+   A human must explicitly approve before TruthOps publishes, posts, or notifies.
+   Run with --approve '<action>' (human-initiated) to release a single action.
+
+[truthops] reports written:
+  /home/hatch/workspace/truthops/artifacts/truthops-report-smoke1.json
+  /home/hatch/workspace/truthops/artifacts/truthops-report-smoke1.md
+2026-10-10 18:53:22 - neatlogs - INFO - Neatlogs SDK shutdown complete
+
+Script done on 2026-10-10 18:53:22-05:00 [COMMAND_EXIT_CODE="0"]

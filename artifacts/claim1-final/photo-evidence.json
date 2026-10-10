@@ -1,0 +1,18 @@
+{
+  "img1": {
+    "phase1": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but m",
+    "phase2": "Sightengine: likely authentic (AI probability 0.18). Sightengine genai=18.00% (5 ops used)"
+  },
+  "img2": {
+    "phase1": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but m",
+    "phase2": "Sightengine: AI-generated with probability 0.99. Sightengine genai=99.00% (5 ops used)"
+  },
+  "img3": {
+    "phase1": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but m",
+    "phase2": "Sightengine: AI-generated with probability 0.99. Sightengine genai=99.00% (5 ops used)"
+  },
+  "img4": {
+    "phase1": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but m",
+    "phase2": "Sightengine: AI-generated with probability 0.99. Sightengine genai=99.00% (5 ops used)"
+  }
+}

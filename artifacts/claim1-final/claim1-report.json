@@ -1,0 +1,93 @@
+{
+  "claim": "Photographs circulating online show New York City Mayor Zohran Mamdani posing alongside Jeffrey Epstein.",
+  "verdict": "pants_on_fire",
+  "score": 3,
+  "confidence": 0.97,
+  "neatlogs_trace_id": "aa3d1547e87988e35baf6403c534e18f",
+  "pipeline_spend": {},
+  "photo_evidence": {
+    "img1": {
+      "phase1": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but m",
+      "phase2": "Sightengine: likely authentic (AI probability 0.18). Sightengine genai=18.00% (5 ops used)"
+    },
+    "img2": {
+      "phase1": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but m",
+      "phase2": "Sightengine: AI-generated with probability 0.99. Sightengine genai=99.00% (5 ops used)"
+    },
+    "img3": {
+      "phase1": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but m",
+      "phase2": "Sightengine: AI-generated with probability 0.99. Sightengine genai=99.00% (5 ops used)"
+    },
+    "img4": {
+      "phase1": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but m",
+      "phase2": "Sightengine: AI-generated with probability 0.99. Sightengine genai=99.00% (5 ops used)"
+    }
+  },
+  "photo_spend": [
+    {
+      "adapter": "c2pa",
+      "operation": "check_provenance",
+      "calls": 1,
+      "credits": 0.0,
+      "usd": 0.0,
+      "note": "no_provenance"
+    },
+    {
+      "adapter": "sightengine",
+      "operation": "scan_image",
+      "calls": 1,
+      "credits": 0.0,
+      "usd": 0.0,
+      "note": "verdict=likely_real"
+    },
+    {
+      "adapter": "c2pa",
+      "operation": "check_provenance",
+      "calls": 1,
+      "credits": 0.0,
+      "usd": 0.0,
+      "note": "no_provenance"
+    },
+    {
+      "adapter": "sightengine",
+      "operation": "scan_image",
+      "calls": 1,
+      "credits": 0.0,
+      "usd": 0.0,
+      "note": "verdict=ai_generated"
+    },
+    {
+      "adapter": "c2pa",
+      "operation": "check_provenance",
+      "calls": 1,
+      "credits": 0.0,
+      "usd": 0.0,
+      "note": "no_provenance"
+    },
+    {
+      "adapter": "sightengine",
+      "operation": "scan_image",
+      "calls": 1,
+      "credits": 0.0,
+      "usd": 0.0,
+      "note": "verdict=ai_generated"
+    },
+    {
+      "adapter": "c2pa",
+      "operation": "check_provenance",
+      "calls": 1,
+      "credits": 0.0,
+      "usd": 0.0,
+      "note": "no_provenance"
+    },
+    {
+      "adapter": "sightengine",
+      "operation": "scan_image",
+      "calls": 1,
+      "credits": 0.0,
+      "usd": 0.0,
+      "note": "verdict=ai_generated"
+    }
+  ],
+  "run_timestamp": "2026-10-10T18:53:22-05:00"
+}
