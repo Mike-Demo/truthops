@@ -134,6 +134,7 @@ During live demo runs on Oct 10–11, the neatlogs API key and the Sightengine A
 
 - **Live demo**: https://truthops-demo.space.fast/
 - **Repo**: https://github.com/Mike-Demo/truthops
+- **Build log**: https://github.com/Mike-Demo/truthops/blob/main/hackathon.md
 - **Claim Gists** (claims 1–5: live-verified runs; claims 6–8: fixture runs, labeled as such in each Gist):
   - Claim 1: https://gist.github.com/Mike-Demo/035d331c33ac2f0356decac6e99030f4
   - Claim 2: https://gist.github.com/Mike-Demo/f2a488753d6a96650ba5fcc30a04c1bd
