@@ -89,10 +89,30 @@ Three checkpoints, all materialized to GitHub ref namespace `refs/entire/checkpo
 ## Submission
 - Window: Monday Oct 12, 2026, 8:30 AM–1:25 PM CDT.
 - Repo: https://github.com/Mike-Demo/truthops
-- Entire checkpoint: `01M4P6SRGGCG2GSHYEPAZQYR71`
-- 8 public Gists (claim reports): see claims page
-- Social: earlier batch published (X, Threads, LinkedIn, tweet.app, Instagram); Bluesky URL pending
-- Outstanding: 2–3 min narrated demo video (Pexo 60s sizzle exists), final submission writeup, video-scripts 7/8 correction, Bluesky URL
+- Entire checkpoint: `01M4PHSFBERDKGY9W4KWSZQPT5` (latest; 11 checkpoints total)
+- 28 claim reports + PDFs + videos: see claims page
+- Social: building in public — all posts below tagged #neatHack (Bluesky intentionally skipped)
+- Outstanding: 2–3 min narrated demo video (Pexo 60s sizzle exists), final submission writeup, video-scripts 7/8 correction
+
+### Building in public — post links
+| Date (UTC) | Channel | URL |
+|---|---|---|
+| 2026-10-10 22:37 | Threads | https://www.threads.net/t/18114750797024028 |
+| 2026-10-11 00:37 | X (@Mike_demo) | https://x.com/Mike_demo/status/2109080832052768818 |
+| 2026-10-11 00:37 | X (@Mike_demo) | https://x.com/Mike_demo/status/2109080849622704140 |
+| 2026-10-11 00:45 | LinkedIn | https://www.linkedin.com/posts/mikedemopoulos_neathack-neathack-ai-share-7514846562733436929-l1CJ/ |
+| 2026-10-11 01:17–01:22 | Tweet (@demo) | https://app.tweet.app/post/b88da994-65aa-4399-b23b-ad57c6b45f26 (+ 14 more in chain) |
+| 2026-10-11 ~06:45 | Tumblr | https://mike-demo.tumblr.com/post/830156270610825216/built-truthops-during-neathack-2026-this |
+| 2026-10-11 13:36 | Threads | https://www.threads.net/t/18210214120322392 |
+| 2026-10-11 15:33 | X (@Mike_demo) | https://x.com/Mike_demo/status/2109306448278679807 |
+| 2026-10-11 15:45 | LinkedIn | https://www.linkedin.com/posts/mikedemopoulos_neathack-ai-factcheck-ugcPost-7515072095375048704-p3Xe/ |
+| 2026-10-11 16:39 | Threads | https://www.threads.net/t/18124125554475080 |
+| 2026-10-11 17:52 | Tumblr | https://mike-demo.tumblr.com/post/830201336332222464/how-does-an-autonomous-trust-operations-agent |
+| 2026-10-11 18:28 | X (@Mike_demo) | https://x.com/Mike_demo/status/2109350422519447668 |
+| 2026-10-11 18:45 | LinkedIn | https://www.linkedin.com/posts/mikedemopoulos_neathack-ai-factcheck-ugcPost-7515116262344081408-bgYX/ |
+| 2026-10-11 19:56 | Tweet (@demo) | https://app.tweet.app/post/c6e59a5d-9ddc-4dc5-8d8e-337e519d191b |
+| 2026-10-11 21:00 | X (@Mike_demo) | https://x.com/Mike_demo/status/2109388734001021339 |
+| 2026-10-11 21:00 | X (@Mike_demo) | https://x.com/Mike_demo/status/2109388746130936300 |
 
 ## 2026-10-11 afternoon — community claims (smoke9–28)
 - 20 claims from CNN, AP, Reuters fact checks via Discord show-and-tell. Fixtures + pipeline code extended. All 20 ran with live keys: 18/20 in expected bands (13× FALSE 10/100, 5× MOSTLY_FALSE 35/100, 1× TRUE 99/100). smoke22/23 scored 35 vs higher bands — pipeline penalizes "true but misleading." 40 videos (landscape + vertical). Claims page now shows 28 claims.
