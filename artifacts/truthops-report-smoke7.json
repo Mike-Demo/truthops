@@ -1,0 +1,242 @@
+{
+  "label": "SYNTHETIC demo run \u2014 neatHack 2026",
+  "run_id": "run-20261010-204738",
+  "case_id": "smoke7",
+  "generated_at": "2026-10-10T20:47:39",
+  "live_mode": false,
+  "neatlogs_trace_id": null,
+  "adapter_status": {
+    "fixture": {
+      "mode": "fixture",
+      "detail": "FixtureAdapter only \u2014 no live adapters probed"
+    }
+  },
+  "api_spend": {},
+  "claims": {
+    "claim": {
+      "claim_id": "claim",
+      "statement": "Immigration agents 'are not getting the traditional five months training. \u2026 The training for the ICE agents now is 47 days.'",
+      "status": "concluded",
+      "verdict": "mostly_true",
+      "confidence_initial": 0.94,
+      "confidence_revised": 0.94,
+      "notes": "Smoke test 7: mostly true; off-by-one (47 vs 48 days).",
+      "gather_attempts": 1,
+      "score_0_100": 88,
+      "scoring": {
+        "support_weight": 0.88,
+        "contradict_weight": 0,
+        "support_threshold": 0.6,
+        "contradict_threshold": 0.6,
+        "mixed_threshold": 0.4,
+        "fabrication_proof": false,
+        "numerical_discrepancy": {
+          "claimed": 47,
+          "actual": 48,
+          "unit": "days",
+          "note": "Warner said 47 days; ICE acting director confirmed 48 days of training over a 56-day period. Off-by-one on a substantively correct claim."
+        },
+        "truth_o_meter_band": [
+          75,
+          90
+        ],
+        "factors": [
+          "source reliability x relevance per item",
+          "primary sources weighted via reliability score",
+          "PolitiFact Truth-O-Meter verdict scale (0-100 bands)",
+          "fabrication proof -> PANTS ON FIRE floor",
+          "numerical discrepancy -> precision penalty",
+          "no evidence -> unresolved (never assumed)"
+        ]
+      }
+    }
+  },
+  "evidence": {
+    "ev-claim-1": {
+      "evidence_id": "ev-claim-1",
+      "claim_id": "claim",
+      "source": "fixture",
+      "label": "SYNTHETIC fixture",
+      "url": "fixture://smoke7/politifact",
+      "stance": "supports",
+      "reliability": 0.88,
+      "relevance": 1.0,
+      "score": 0.88,
+      "is_primary_source": true,
+      "fabrication_proof": false,
+      "numerical_discrepancy": {
+        "claimed": 47,
+        "actual": 48,
+        "unit": "days",
+        "note": "Warner said 47 days; ICE acting director confirmed 48 days of training over a 56-day period. Off-by-one on a substantively correct claim."
+      },
+      "summary": "PolitiFact rated the claim Mostly True: 'accurate but needs clarification.' ICE acting director Todd Lyons confirmed training was shortened to six days a week for eight weeks = 48 days of training over a 56-day period (v"
+    }
+  },
+  "contrarian_reviews": [
+    {
+      "claim_id": "claim",
+      "initial_verdict": "mostly_true",
+      "initial_confidence": 0.94,
+      "disagreement": null,
+      "agreed": true,
+      "revised_confidence": 0.94,
+      "revised_verdict": "mostly_true"
+    }
+  ],
+  "director_decisions": [
+    {
+      "claim_id": "claim",
+      "action": "gather",
+      "rationale": "no evidence yet \u2014 gather before any judgment"
+    },
+    {
+      "claim_id": "claim",
+      "action": "evaluate",
+      "rationale": "evidence phase complete \u2014 evaluate the claim"
+    },
+    {
+      "claim_id": "claim",
+      "action": "escalate",
+      "rationale": "initial verdict reached \u2014 escalate to contrarian for adversarial review"
+    }
+  ],
+  "http_attempts": {
+    "fixture://smoke7/politifact": 1
+  },
+  "response_plan": {
+    "characterization": "TRUE",
+    "recommended_posture": "Affirm with evidence",
+    "key_messages": [
+      "Claim 'Immigration agents 'are not getting the traditional five months training. \u2026 The ...': MOSTLY TRUE (88/100).",
+      "  Notes: Smoke test 7: mostly true; off-by-one (47 vs 48 days)."
+    ],
+    "cited_evidence": [
+      {
+        "evidence_id": "ev-claim-1",
+        "url": "fixture://smoke7/politifact",
+        "label": "SYNTHETIC fixture"
+      }
+    ],
+    "external_actions": [
+      {
+        "action": "publish",
+        "target": "company blog / press statement",
+        "status": "BLOCKED"
+      },
+      {
+        "action": "post",
+        "target": "official social channels",
+        "status": "BLOCKED"
+      },
+      {
+        "action": "notify",
+        "target": "enterprise customers",
+        "status": "BLOCKED"
+      }
+    ],
+    "approval_required": true
+  },
+  "approval_gate": {
+    "status": "BLOCKED",
+    "approved_by": null,
+    "approved_at": null
+  },
+  "events": [
+    {
+      "t": "2026-10-10T20:47:38",
+      "kind": "run_started",
+      "message": "TruthOps run run-20261010-204738 started for case 'smoke7'"
+    },
+    {
+      "t": "2026-10-10T20:47:38",
+      "kind": "sniff_test",
+      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted"
+    },
+    {
+      "t": "2026-10-10T20:47:38",
+      "kind": "claims_decomposed",
+      "message": "Decomposed into 1 atomic claims: ['claim']"
+    },
+    {
+      "t": "2026-10-10T20:47:38",
+      "kind": "director_decision",
+      "message": "[director] claim: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
+      "claim_id": "claim",
+      "action": "gather"
+    },
+    {
+      "t": "2026-10-10T20:47:38",
+      "kind": "http_attempt",
+      "message": "GET fixture://smoke7/politifact (attempt 1)",
+      "url": "fixture://smoke7/politifact",
+      "attempt": 1
+    },
+    {
+      "t": "2026-10-10T20:47:38",
+      "kind": "http_success",
+      "message": "GET fixture://smoke7/politifact -> 200 OK (attempt 1)",
+      "url": "fixture://smoke7/politifact",
+      "attempt": 1,
+      "status": 200
+    },
+    {
+      "t": "2026-10-10T20:47:38",
+      "kind": "evidence_scored",
+      "message": "ev-claim-1: supports (reliability=0.88, relevance=1.0, score=0.88)",
+      "claim_id": "claim",
+      "evidence_id": "ev-claim-1"
+    },
+    {
+      "t": "2026-10-10T20:47:39",
+      "kind": "director_decision",
+      "message": "[director] claim: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
+      "claim_id": "claim",
+      "action": "evaluate"
+    },
+    {
+      "t": "2026-10-10T20:47:39",
+      "kind": "claim_evaluated",
+      "message": "claim: mostly_true (confidence 0.94, score 88) [support=0.88 vs contradict=0]",
+      "claim_id": "claim",
+      "verdict": "mostly_true",
+      "confidence": 0.94
+    },
+    {
+      "t": "2026-10-10T20:47:39",
+      "kind": "director_decision",
+      "message": "[director] claim: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
+      "claim_id": "claim",
+      "action": "escalate"
+    },
+    {
+      "t": "2026-10-10T20:47:39",
+      "kind": "contrarian_review",
+      "message": "claim: agreed=True conf 0.94 -> 0.94",
+      "claim_id": "claim"
+    },
+    {
+      "t": "2026-10-10T20:47:39",
+      "kind": "response_planned",
+      "message": "Response plan built: TRUE. All external actions BLOCKED pending approval."
+    },
+    {
+      "t": "2026-10-10T20:47:39",
+      "kind": "approval_blocked",
+      "message": "External action 'publish' BLOCKED \u2014 awaiting human approval.",
+      "action": "publish"
+    },
+    {
+      "t": "2026-10-10T20:47:39",
+      "kind": "approval_blocked",
+      "message": "External action 'post' BLOCKED \u2014 awaiting human approval.",
+      "action": "post"
+    },
+    {
+      "t": "2026-10-10T20:47:39",
+      "kind": "approval_blocked",
+      "message": "External action 'notify' BLOCKED \u2014 awaiting human approval.",
+      "action": "notify"
+    }
+  ]
+}

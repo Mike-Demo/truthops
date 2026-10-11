@@ -1,0 +1,48 @@
+Script started on 2026-10-10 20:47:35-05:00 [COMMAND="python3 -m truthops run --case smoke6" <not executed on terminal>]
+[tracing] NEATLOGS_API_KEY not set — traces disabled (graceful degradation)
+
+[director] investigating allegation: President Donald Trump has deported 'over 13,000 Cubans since he has been in office, his first term and his second term.'
+
+[sniff] proceed=True — passed sniff test — coherent allegation, full pipeline warranted
+[director] claim registered: claim — President Donald Trump has deported 'over 13,000 Cubans since he has been in office, his first term and his second term.'
+
+======================================================================
+[director] working claim: claim
+======================================================================
+[director] claim: next action = gather
+           rationale: no evidence yet — gather before any judgment
+  [evidence] ev-claim-1 supports | rel=0.85 x relv=1.0 -> score=0.85 | primary=True
+  [evidence] Alexandria (27 categories) available — SIMULATED in demo, skipped for benchmark purity
+    Categories: company, finance, news, jobs, knowledge, digital-intelligence, ...
+    Use alexandria_adapter.discover(need) + .execute(ref, options) for live investigations
+[director] claim: next action = evaluate
+           rationale: evidence phase complete — evaluate the claim
+  [evaluate] claim -> MOSTLY_TRUE (confidence 0.93, score 78/100) [support=0.85 | contradict=0]
+[director] claim: next action = escalate
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+  [contrarian] agrees on claim (mostly_true, conf 0.93) — no challenge.
+
+======================================================================
+[director] all claims concluded — building response plan
+======================================================================
+[director] overall characterization: TRUE
+[director] recommended posture: Affirm with evidence
+  • Claim 'President Donald Trump has deported 'over 13,000 Cubans since he has been in off...': MOSTLY TRUE (78/100).
+  •   Notes: Smoke test 6: mostly true; slight overstatement, NGO-estimated second-term figure.
+
+[director] attempting external actions (expect the gate to block):
+⛔ APPROVAL GATE: external action 'publish' is BLOCKED.
+   A human must explicitly approve before TruthOps publishes, posts, or notifies.
+   Run with --approve '<action>' (human-initiated) to release a single action.
+⛔ APPROVAL GATE: external action 'post' is BLOCKED.
+   A human must explicitly approve before TruthOps publishes, posts, or notifies.
+   Run with --approve '<action>' (human-initiated) to release a single action.
+⛔ APPROVAL GATE: external action 'notify' is BLOCKED.
+   A human must explicitly approve before TruthOps publishes, posts, or notifies.
+   Run with --approve '<action>' (human-initiated) to release a single action.
+
+[truthops] reports written:
+  /home/hatch/workspace/truthops/artifacts/truthops-report-smoke6.json
+  /home/hatch/workspace/truthops/artifacts/truthops-report-smoke6.md
+
+Script done on 2026-10-10 20:47:37-05:00 [COMMAND_EXIT_CODE="0"]

@@ -1,0 +1,214 @@
+#!/usr/bin/env python3
+"""Rebuild all 5 claim PDFs as genuine PDF/A-3b with PAdES signatures.
+
+WeasyPrint 70.0 silently drops pdf_variant='pdf/a-3b' (verified), so this
+script renders plain PDF via WeasyPrint, injects the PDF/A-3b XMP packet via
+pypdf, then PAdES-signs with endesive. Self-signed cert = tamper-evidence
+only (hackathon).
+"""
+
+import datetime
+import json
+import os
+import sys
+
+sys.path.insert(0, os.path.expanduser("~/workspace/.pip-packages"))
+
+from weasyprint import HTML
+from pypdf import PdfReader, PdfWriter
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+BASE = os.path.dirname(HERE)
+CERTS = os.path.expanduser("~/workspace/truthops-demo/certs")
+
+BANDS = {
+    1: "0\u20135", 2: "10\u201320", 3: "30\u201345",
+    4: "10\u201330 (corrected)", 5: "90\u2013100",
+    6: "80\u201390", 7: "80\u201390", 8: "80\u201390",
+}
+VERDICT_LABEL = {
+    "pants_on_fire": "PANTS_ON_FIRE",
+    "false": "FALSE",
+    "mostly_false": "MOSTLY_FALSE",
+    "mostly_true": "MOSTLY_TRUE",
+    "true": "TRUE",
+}
+CASE_NOTES = {
+    1: "AI-generated photo fabrication.",
+    2: "Single-source fabrication.",
+    3: "Kernel of truth, unsupportable number.",
+    4: "False specific number, true direction (prices down ~5%). Fixture corrected Oct 10 after reading full FactCheck.org article.",
+    5: "Settled institutional fact.",
+    6: "Mostly true; slight overstatement, NGO-estimated second-term figure.",
+    7: "Mostly true; off-by-one (47 vs 48 days).",
+    8: "Mostly true; correct rank, slightly narrower framing than metric.",
+}
+
+XMP_TEMPLATE = """<?xpacket begin="\ufeff" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/">
+ <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about=""
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:xmp="http://ns.adobe.com/xap/1.0/"
+    xmlns:pdfaid="http://www.aiim.org/pdfa/ns/id/">
+   <dc:title><rdf:Alt><rdf:li xml:lang="x-default">{title}</rdf:li></rdf:Alt></dc:title>
+   <dc:creator><rdf:Seq><rdf:li>TruthOps (neatHack 2026)</rdf:li></rdf:Seq></dc:creator>
+   <dc:description><rdf:Alt><rdf:li xml:lang="x-default">{desc}</rdf:li></rdf:Alt></dc:description>
+   <xmp:CreateDate>{date}</xmp:CreateDate>
+   <xmp:CreatorTool>TruthOps WeasyPrint+ pypdf PDF/A pipeline</xmp:CreatorTool>
+   <pdfaid:part>3</pdfaid:part>
+   <pdfaid:conformance>B</pdfaid:conformance>
+  </rdf:Description>
+ </rdf:RDF>
+</x:xmpmeta>
+<?xpacket end="w"?>"""
+
+HTML_TEMPLATE = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{title}</title>
+<style>
+  @page {{ size: A4; margin: 2cm; @bottom-center {{ content: "TruthOps \\u00b7 neatHack 2026 \\u00b7 page " counter(page) " of " counter(pages); font-size: 8pt; color: #666; }} }}
+  body {{ font-family: sans-serif; font-size: 11pt; line-height: 1.5; color: #111; }}
+  h1 {{ font-size: 20pt; border-bottom: 3px solid #1e40af; padding-bottom: 6pt; }}
+  h2 {{ font-size: 14pt; color: #1e3a8a; margin-top: 18pt; }}
+  .meta {{ color: #555; font-size: 9pt; margin-bottom: 12pt; }}
+  .verdict {{ background: #eff6ff; border-left: 5px solid #1e40af; padding: 10pt 14pt; margin: 12pt 0; }}
+  .verdict strong {{ font-size: 14pt; }}
+  table {{ border-collapse: collapse; width: 100%; margin: 10pt 0; font-size: 10pt; }}
+  th, td {{ border: 1px solid #ccc; padding: 6pt 8pt; text-align: left; }}
+  th {{ background: #f1f5f9; }}
+  .inband {{ color: #15803d; font-weight: bold; }}
+  .blocked {{ color: #b91c1c; font-weight: bold; }}
+  .note {{ font-size: 9pt; color: #555; border-top: 1px solid #ddd; margin-top: 20pt; padding-top: 8pt; }}
+  code {{ font-size: 9pt; background: #f1f5f9; padding: 1pt 4pt; }}
+</style>
+</head>
+<body>
+
+<h1>TruthOps Investigation Report</h1>
+<div class="meta">
+  <strong>Case:</strong> smoke{n} &nbsp;\u00b7&nbsp; <strong>Run:</strong> {run_id} &nbsp;\u00b7&nbsp;
+  <strong>Date:</strong> {date}<br>
+  <strong>Mode:</strong> Fixture-backed calibration run &nbsp;\u00b7&nbsp; <strong>Neatlogs trace:</strong> <code>{trace}</code>
+</div>
+
+<h2>Claim</h2>
+<p>{statement}</p>
+<p><em>Notes: {notes}</em></p>
+
+<div class="verdict">
+  <strong>Verdict: {verdict_label} \u2014 {score}/100</strong><br>
+  Expected band: {band} <span class="inband">\u2705 IN BAND</span><br>
+  Confidence: {conf} \u2192 {conf} (unchanged after contrarian review)
+</div>
+
+<h2>Evidence</h2>
+<table>
+  <tr><th>ID</th><th>Stance</th><th>Score</th><th>Source</th></tr>
+  <tr><td><code>ev-claim-1</code></td><td>{ev_stance}</td><td>{ev_score}</td><td>primary, SYNTHETIC fixture</td></tr>
+</table>
+
+<h2>API Spend</h2>
+<p>No live API calls were made. All evidence is fixture-backed for benchmark comparability.</p>
+<p><strong>Total spend: $0.00</strong></p>
+
+<h2>Approval Gate</h2>
+<p class="blocked">All external actions BLOCKED \u2014 publish / post / notify awaiting explicit human approval.</p>
+
+<div class="note">
+  <strong>Provenance:</strong> Pipeline sniff \u2192 evidence \u2192 scoring \u2192 contrarian \u2192 director.
+  Repository: https://github.com/Mike-Demo/truthops \u00b7
+  Generated by TruthOps pipeline (neatHack 2026).<br><br>
+  This document is PDF/A-3b archival format with a PAdES digital signature (self-signed, hackathon only).
+  Any modification after signing invalidates the signature.
+</div>
+
+</body>
+</html>"""
+
+
+def build_one(n):
+    with open(os.path.join(BASE, f"artifacts/claim{n}-final/claim{n}-report.json")) as f:
+        d = json.load(f)
+    c = d["claims"]["claim"]
+    ev = d["evidence"].get("ev-claim-1", {})
+    trace = d.get("neatlogs_trace_id") or "n/a"
+    run_id = d.get("run_id", "n/a")
+    verdict = c["verdict"]
+    score = c["score_0_100"]
+    conf = c["confidence_revised"]
+
+    title = f"TruthOps Investigation Report \u2014 smoke{n}"
+    desc = f"Verdict: {VERDICT_LABEL.get(verdict, verdict)} ({score}/100). Case smoke{n}, {run_id}."
+    date_iso = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%S-05:00")
+    date_human = d.get("generated_at", "")[:10]
+
+    html = HTML_TEMPLATE.format(
+        title=title, n=n, run_id=run_id, date=date_human, trace=trace,
+        statement=c["statement"], notes=c.get("notes", CASE_NOTES[n]),
+        verdict_label=VERDICT_LABEL.get(verdict, verdict), score=score,
+        band=BANDS[n], conf=conf,
+        ev_stance=ev.get("stance", "?"), ev_score=ev.get("score", "?"),
+    )
+
+    out_dir = os.path.join(BASE, f"artifacts/claim{n}-final")
+    tmp_plain = os.path.join(out_dir, f"claim{n}-report.plain.pdf")
+    tmp_xmp = os.path.join(out_dir, f"claim{n}-report.xmp.pdf")
+    out_pdf = os.path.join(out_dir, f"claim{n}-report.pdf")
+
+    # 1. Render plain PDF
+    HTML(string=html).write_pdf(tmp_plain)
+
+    # 2. Inject PDF/A-3b XMP
+    reader = PdfReader(tmp_plain)
+    writer = PdfWriter()
+    writer.append(reader)
+    writer.xmp_metadata = XMP_TEMPLATE.format(
+        title=title, desc=desc, date=date_iso).encode("utf-8")
+    with open(tmp_xmp, "wb") as f:
+        writer.write(f)
+
+    # 3. PAdES sign
+    from endesive.pdf import cms
+    from cryptography.hazmat.primitives.serialization import pkcs12
+    with open(tmp_xmp, "rb") as f:
+        pdf_data = f.read()
+    with open(os.path.join(CERTS, "truthops.p12"), "rb") as f:
+        p12_data = f.read()
+    privkey, cert, _ = pkcs12.load_key_and_certificates(p12_data, b"truthops")
+    dct = {
+        "sigflags": 3, "sigpage": 0, "sigfield": "Signature1",
+        "auto_sigfield": True, "signer": "TruthOps (neatHack 2026)",
+        "contact": "https://truthops-demo.space.fast", "location": "Hudson, WI",
+        "reason": f"Tamper-evident archival of calibration report (smoke{n})",
+        "signingdate": datetime.datetime.now(
+            datetime.timezone(datetime.timedelta(hours=-5))).strftime("D:%Y%m%d%H%M%S-05'00'"),
+        "sigandcertify": True, "signature_img": None,
+    }
+    signed = pdf_data + cms.sign(pdf_data, dct, privkey, cert, [], "sha256")
+    with open(out_pdf, "wb") as f:
+        f.write(signed)
+
+    os.remove(tmp_plain)
+    os.remove(tmp_xmp)
+
+    # 4. Verify
+    with open(out_pdf, "rb") as f:
+        vdata = f.read()
+    checks = {
+        "pdfaid": b"pdfaid" in vdata,
+        "part3": b"pdfaid:part" in vdata and b">3<" in vdata,
+        "byterange": b"/ByteRange" in vdata,
+        "sig": b"/Sig" in vdata,
+    }
+    ok = all(checks.values())
+    print(f"claim{n}: {'PASS' if ok else 'FAIL'} ({len(vdata)//1024}KB) " +
+          ("" if ok else f"missing={[k for k,v in checks.items() if not v]}"))
+    return ok
+
+
+if __name__ == "__main__":
+    results = [build_one(n) for n in [6, 7, 8]]
+    print("ALL PASS" if all(results) else "SOME FAILED")

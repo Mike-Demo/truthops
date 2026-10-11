@@ -65,6 +65,9 @@ def decompose(allegation, case_id="northstar"):
         "smoke3": ("claim", "President Trump ended eight wars.", "Smoke test 3: kernel of truth, unsupportable number."),
         "smoke4": ("claim", "Gasoline is now below $2.30 a gallon in most states.", "Smoke test 4: false specific number, true direction (prices down ~5%)."),
         "smoke5": ("claim", "Zohran Mamdani is the mayor of New York City.", "Smoke test 5: settled institutional fact."),
+        "smoke6": ("claim", "President Donald Trump has deported 'over 13,000 Cubans since he has been in office, his first term and his second term.'", "Smoke test 6: mostly true; slight overstatement, NGO-estimated second-term figure."),
+        "smoke7": ("claim", "Immigration agents 'are not getting the traditional five months training. \u2026 The training for the ICE agents now is 47 days.'", "Smoke test 7: mostly true; off-by-one (47 vs 48 days)."),
+        "smoke8": ("claim", "Florida is '49th in avoidable hospital costs.'", "Smoke test 8: mostly true; correct rank, slightly narrower framing than metric."),
     }
     if case_id in smoke_claims and n == 0:
         cid, statement, notes = smoke_claims[case_id]

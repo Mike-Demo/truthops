@@ -72,6 +72,9 @@ SMOKE_EVIDENCE_PLAN = {
     ],
     "smoke4": [("fixture://smoke4/factcheck-org", "contradicts", 1.0)],
     "smoke5": [("fixture://smoke5/ap-reporting", "supports", 1.0)],
+    "smoke6": [("fixture://smoke6/politifact", "supports", 1.0)],
+    "smoke7": [("fixture://smoke7/politifact", "supports", 1.0)],
+    "smoke8": [("fixture://smoke8/politifact", "supports", 1.0)],
 }
 
 

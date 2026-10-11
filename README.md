@@ -15,6 +15,9 @@ TruthOps is an autonomous trust operations agent for neatHack 2026 (Oct 10–12)
 | Trump ended eight wars | MOSTLY_FALSE | 34/100 | 30–45 | ✅ Hit |
 | Gas below $2.30/gal | FALSE | 10/100 | 10–30 (corrected) | ✅ In band after fixture correction (see below) |
 | Mamdani is NYC mayor | TRUE | 99/100 | 90–100 | ✅ Hit |
+| Cuban deportations | MOSTLY_TRUE | 78/100 | 80–90 | ⚠️ 2pts under; in pipeline mostly_true band (75–90) |
+| ICE training days | MOSTLY_TRUE | 88/100 | 80–90 | ✅ Hit |
+| Florida hospital rank | MOSTLY_TRUE | 90/100 | 80–90 | ✅ Hit (top of band) |
 
 **Total API spend across all 5 runs: $0.00** (all adapters on free tiers).
 
