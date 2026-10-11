@@ -79,7 +79,7 @@ Allegation → [Sniff Test] → (proceed?) → Evidence Pipeline → Claims → 
 
 ## Sponsor evidence
 
-- **neatlogs traces**: instrumented via `truthops/tracing.py` — all 28 claims traced on live runs, trace IDs in report JSON ([neatlogs.com](https://neatlogs.com/))
+- **neatlogs traces**: instrumented via `truthops/tracing.py` — all 28 claims traced on live runs, trace IDs in report JSON ([neatlogs.com](https://neatlogs.com/)). Proof export: [neatlogs-proof.md](docs/neatlogs-proof.md) · [neatlogs-proof.pdf](docs/neatlogs-proof.pdf)
 - **Entire checkpoints**: CLI installed, `~/.local/bin` on PATH, latest checkpoint `01M4PD1Z3D2Q28FHYMFPDARF1J` (Oct 11) with full session provenance, pushed to origin ([entire.io](https://entire.io/))
 - **cfo.ai plan**: [cfo.ai](https://cfo.ai/) — financial model with $1.08/investigation unit economics. Exported copies: [business-plan.md](docs/business-plan.md) · [business-plan.pdf](docs/business-plan.pdf)
 
