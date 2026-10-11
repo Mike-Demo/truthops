@@ -1,0 +1,9 @@
+{
+  "claim": "President Trump ended eight wars.",
+  "verdict": "mostly_false",
+  "score": 34,
+  "confidence": 0.95,
+  "neatlogs_trace_id": "23ae8181a2906f04a206ad1547f8e06e",
+  "pipeline_spend": {},
+  "run_timestamp": "2026-10-10T18:58:12-05:00"
+}
