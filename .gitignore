@@ -9,7 +9,5 @@ artifacts/.state-*.json
 /.spacefast-*
 .spacefast/.spacefast-*
 .spacefast/.space-link-*.tmp
-# Videos: keep the 28 linked claim videos + cfo b-roll in git; exclude variants
+# Videos: all mp4s hosted on SpaceFast, not in git
 *.mp4
-!thread-assets/live-runs/smoke*-live.mp4
-!thread-assets/cfo-broll/cfo-broll-v2.mp4
