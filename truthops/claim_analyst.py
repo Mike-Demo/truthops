@@ -63,7 +63,7 @@ def decompose(allegation, case_id="northstar"):
         "smoke1": ("claim", "Photographs circulating online show New York City Mayor Zohran Mamdani posing alongside Jeffrey Epstein.", "Smoke test 1: AI-generated photo fabrication."),
         "smoke2": ("claim", "President Trump initiated an internal audit of the Social Security Administration.", "Smoke test 2: single-source fabrication."),
         "smoke3": ("claim", "President Trump ended eight wars.", "Smoke test 3: kernel of truth, unsupportable number."),
-        "smoke4": ("claim", "Gasoline is now below $2.30 a gallon in most states.", "Smoke test 4: mostly true, minor imprecision."),
+        "smoke4": ("claim", "Gasoline is now below $2.30 a gallon in most states.", "Smoke test 4: false specific number, true direction (prices down ~5%)."),
         "smoke5": ("claim", "Zohran Mamdani is the mayor of New York City.", "Smoke test 5: settled institutional fact."),
     }
     if case_id in smoke_claims and n == 0:
