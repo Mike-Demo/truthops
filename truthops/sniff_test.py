@@ -88,8 +88,9 @@ def _clef_decide(allegation: str) -> tuple[float, str] | None:
         return None
     try:
         answers = payload["result"]["answers"]
-        p_fake = float(answers["obviously_fake"]["probability"])
-        p_inv = float(answers["investigable"]["probability"])
+        # Clef returns the probability in a field named after the question type ("noul")
+        p_fake = float(answers["obviously_fake"].get("probability", answers["obviously_fake"].get("noul", 0)))
+        p_inv = float(answers["investigable"].get("probability", answers["investigable"].get("noul", 0)))
         # Fake score: high when obviously_fake is likely AND investigable is not.
         score = p_fake * (1.0 - p_inv * 0.5)
         return round(score, 3), f"clef-flash: p(fake)={p_fake:.2f}, p(investigable)={p_inv:.2f}"

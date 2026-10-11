@@ -43,8 +43,10 @@ def discover(need: str, max_results: int = 5) -> list[dict]:
     Never raises; returns [] on failure.
     """
     try:
+        # Note: --sources alexandria returns no results (broken in firecrawl-cli);
+        # use regular search which works
         p = subprocess.run(
-            CLI + ["search", need, "--sources", "alexandria"],
+            CLI + ["search", need],
             capture_output=True, text=True, timeout=TIMEOUT_S,
         )
     except Exception:
