@@ -5,3 +5,7 @@ __pycache__/
 .entire/*
 !.entire/settings.json
 artifacts/.state-*.json
+.spacefast/state.json
+/.spacefast-*
+.spacefast/.spacefast-*
+.spacefast/.space-link-*.tmp
