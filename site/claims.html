@@ -26,6 +26,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sa
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 .card-num { font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
 .card-claim { font-size: 1rem; font-weight: 600; margin-bottom: 1rem; line-height: 1.4; min-height: 2.8em; }
+.claim-gif { width: 100%; border-radius: 12px; margin-bottom: 1rem; display: block; }
 .verdict-badge { display: inline-block; padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.03em; margin-bottom: 1rem; }
 .score-bar { height: 8px; background: #334155; border-radius: 9999px; overflow: hidden; margin-bottom: 0.5rem; }
 .score-fill { height: 100%; border-radius: 9999px; transition: width 1s ease-out; }
@@ -88,6 +89,7 @@ claims.forEach((c, idx) => {
   card.innerHTML =
     '<div class="card-num">Claim ' + c.n + ' of 28</div>' +
     '<div class="card-claim">' + c.statement + '</div>' +
+    '<img src="gifs/claim' + c.n + '.gif" alt="Animated claim ' + c.n + ' pipeline" class="claim-gif" loading="lazy" />' +
     '<div class="verdict-badge" style="background:' + color + '22;color:' + color + ';border:1px solid ' + color + '55">' + label + '</div>' +
     '<div class="score-bar"><div class="score-fill" style="width:0%;background:' + color + '" data-w="' + c.score + '"></div></div>' +
     '<div class="score-row"><span>Score: <strong>' + c.score + '/100</strong></span><span>Confidence: ' + c.confidence + '</span></div>' +
