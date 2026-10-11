@@ -40,7 +40,7 @@ Six-stage pipeline per claim:
 ## Evidence
 
 - 28 claim reports (Markdown + signed PDF/A-3b): https://github.com/Mike-Demo/truthops/tree/main/artifacts
-- 28 terminal recordings: https://truthops-demo.space.fast/videos/
+- 28 terminal recordings: https://github.com/Mike-Demo/truthops/tree/main/artifacts (per-claim terminal logs in report packages)
 - 28 neatlogs trace IDs: embedded in each claim report
 - Entire checkpoints: 10+ refs under refs/entire/checkpoints/ on GitHub
 - cfo.ai business plan: pricing $499/$1,499/$3,999, margins 88–90%, $1.08/investigation

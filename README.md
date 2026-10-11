@@ -4,7 +4,7 @@
 
 TruthOps is a transparent scoring and governance pipeline over curated evidence, built for neatHack 2026 (Oct 10–12). It investigates high-risk claims, runs them through a scripted contrarian review, and produces evidence-backed response plans — with human approval gates at every decisive step.
 
-**What it is, honestly:** a rule-based pipeline — no LLM in the reasoning path. Claim decomposition, orchestration, and contrarian review are deterministic; verdicts follow evidence tables calibrated against known fact-check rulings. The "28/28 in band" result proves the pipeline runs end-to-end — it does not prove the agent independently discovers truth. See [Limitations](#limitations).
+**What it is, honestly:** a rule-based pipeline — no LLM in the reasoning path. Claim decomposition, orchestration, and contrarian review are deterministic; verdicts follow evidence tables calibrated against known fact-check rulings. The "28/28 in pipeline band" result (25/28 in the fact-checkers' expected bands) proves the pipeline runs end-to-end — it does not prove the agent independently discovers truth. See [Limitations](#limitations).
 
 ## Quickstart (judges)
 
@@ -80,13 +80,13 @@ Allegation → [Sniff Test] → (proceed?) → Evidence Pipeline → Claims → 
 ## Sponsor evidence
 
 - **neatlogs traces**: instrumented via `truthops/tracing.py` — all 28 claims traced on live runs, trace IDs in report JSON ([neatlogs.com](https://neatlogs.com/)). Proof export: [neatlogs-proof.md](docs/neatlogs-proof.md) · [neatlogs-proof.pdf](docs/neatlogs-proof.pdf)
-- **Entire checkpoints**: CLI installed, `~/.local/bin` on PATH, latest checkpoint `01M4PD1Z3D2Q28FHYMFPDARF1J` (Oct 11) with full session provenance, pushed to origin ([entire.io](https://entire.io/))
+- **Entire checkpoints**: CLI installed, `~/.local/bin` on PATH, newest ref `01M4PM74JJJSFKM80Y53QP9X0F` (Oct 11; 11 refs on GitHub) with session provenance, pushed to origin ([entire.io](https://entire.io/))
 - **cfo.ai plan**: [cfo.ai](https://cfo.ai/) — financial model with $1.08/investigation unit economics. Exported copies: [business-plan.md](docs/business-plan.md) · [business-plan.pdf](docs/business-plan.pdf)
 
 ## Limitations
 
 - **Rule-based, not LLM-driven.** No generative model calls in the reasoning path. `claim_analyst.py` is deterministic keyword/pattern decomposition; `director.py` picks next actions with if/else rules; `contrarian.py` returns scripted re-verification summaries. The only model call is the optional, env-gated Cloudflare Workers AI `clef-flash` classifier in the sniff-test gate. GPTZero and Sightengine are third-party detectors, not reasoning.
-- **Calibration is table-driven.** `truthops/evidence_agent.py` holds `EVIDENCE_PLAN` / `SMOKE_EVIDENCE_PLAN` tables that fix each source's stance ("supports"/"contradicts") and weight per claim. "28/28 in band" validates that the pipeline executes correctly against known fact-check rulings — it is not evidence the pipeline independently discovers truth on unseen claims.
+- **Calibration is table-driven.** `truthops/evidence_agent.py` holds `EVIDENCE_PLAN` / `SMOKE_EVIDENCE_PLAN` tables that fix each source's stance ("supports"/"contradicts") and weight per claim. "28/28 in pipeline band" (25/28 in expected bands) validates that the pipeline executes correctly against known fact-check rulings — it is not evidence the pipeline independently discovers truth on unseen claims.
 - **Fixture-driven demo.** The dashboard verdicts and scores come from curated fixtures plus live-adapter enrichment. Treat them as a pipeline demonstration, not independent fact-checks.
 - **Cost figures.** cfo.ai models **$1.08/investigation** unit economics (source of truth for the business model). Actual API spend on the demo runs was **$0.00** — no paid detection ops fired (Clef calls via Workers AI don't register in `api_spend`). The two numbers measure different things: modeled cost vs. observed spend.
 - **Truth-O-Meter bands** are TruthOps' own 0–100 mapping (pants_on_fire 0–5, false 5–15, mostly_false 15–40, half_true 40–60, mostly_true 75–90, true 90–100; 60–75 is a deliberate gap). PolitiFact's scale has six ratings and no numeric scores.

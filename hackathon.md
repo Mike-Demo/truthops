@@ -25,7 +25,7 @@ Problem addressed: viral misinformation (especially AI-generated imagery) spread
 - Missing SDK degrades gracefully (warning only, pipeline continues).
 
 ## Entire — checkpoints
-13 checkpoints, all materialized to GitHub ref namespace `refs/entire/checkpoints/QS/`:
+11 checkpoints, materialized to GitHub ref namespace `refs/entire/checkpoints/` (across prefixes QS/, T5/, ZM/, 0F/, 1J/, F3/):
 1. `01M4KHFZSP4K7Z61RJTTK1SFQS` (Oct 10) — initial build session
 2. `01M4MKACK4KDW0HTYAF58ARS9K` → `eeb1591bb397` (Oct 10) — full live suite + README
 3. `01M4P6SRGGCG2GSHYEPAZQYR71` → `439723d` (Oct 11) — live-run recordings, PDF/A regen, README honesty pass
@@ -89,10 +89,10 @@ Problem addressed: viral misinformation (especially AI-generated imagery) spread
 ## Submission
 - Window: Monday Oct 12, 2026, 8:30 AM–1:25 PM CDT.
 - Repo: https://github.com/Mike-Demo/truthops
-- Entire checkpoint: `01M4PMT42B952YZSY57BVG6Z43` (latest; 13 checkpoints total)
+- Entire checkpoint: `01M4PM74JJJSFKM80Y53QP9X0F` (newest of 11 refs on GitHub; one newer checkpoint exists in Entire's system)
 - 28 claim reports + PDFs + videos: see claims page
 - Social: building in public — all posts below tagged #neatHack (Bluesky intentionally skipped)
-- Outstanding: 2–3 min narrated demo video (Pexo 60s sizzle exists), final submission writeup, video-scripts 7/8 correction
+- Outstanding: 2–3 min narrated demo video (recording planned Oct 12 AM; Pexo 90s backup in production), video link for submission writeup, video-scripts 7/8 correction
 
 ### Building in public — post links
 | Date (UTC) | Channel | URL |
