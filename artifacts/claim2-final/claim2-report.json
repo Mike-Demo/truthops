@@ -1,0 +1,9 @@
+{
+  "claim": "President Trump initiated an internal audit of the Social Security Administration.",
+  "verdict": "false",
+  "score": 10,
+  "confidence": 0.95,
+  "neatlogs_trace_id": "4909980b00edb09d4f599e0b8e75fa8d",
+  "pipeline_spend": {},
+  "run_timestamp": "2026-10-10T18:57:33-05:00"
+}
