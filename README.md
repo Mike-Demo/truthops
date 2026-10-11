@@ -6,7 +6,7 @@ TruthOps is an autonomous trust operations agent for neatHack 2026 (Oct 10–12)
 
 ## Status
 
-✅ **Step 1 complete — 5 calibration claims run through the live pipeline** (Oct 10, 2026)
+✅ **Step 1 complete — 8 calibration claims run through the pipeline** (Oct 10, 2026). Claims 1–5 use AP/FactCheck.org-derived fixtures; claims 6–8 (supplement set) use PolitiFact-derived fixtures. All fixtures are synthetic and labeled as such — see `docs/smoke-test-claims.md` for the methodology and known limitations.
 
 | Claim | Agent verdict | Score | Expected band | Result |
 |---|---|---|---|---|
@@ -21,7 +21,7 @@ TruthOps is an autonomous trust operations agent for neatHack 2026 (Oct 10–12)
 
 **Total API spend across all 5 runs: $0.00** (all adapters on free tiers).
 
-Every run produced: Markdown report, signed PDF/A, public Gist, and a Neatlogs trace ID in the JSON. All artifacts committed under `artifacts/claim{1-5}-final/`.
+Every run produced: Markdown report, signed PDF/A, public Gist, and a Neatlogs trace ID in the JSON. All artifacts committed under `artifacts/claim{1-8}-final/`.
 
 ## Methodology
 
