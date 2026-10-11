@@ -263,16 +263,179 @@ class EvidenceAgent:
                 self.state.log_event("live_enrichment_failed",
                                      f"Alexandria: {e}", claim_id=claim_id)
 
-        # Photo verification: if claim mentions photos/images, attempt C2PA->Sightengine
-        # Note: requires image bytes — currently only runs if image_url in fixture
-        # provides a fetchable URL. Full image acquisition is a separate step.
+        # Photo verification: if claim mentions photos/images, acquire the image
+        # and run the C2PA -> Sightengine chain via LiveAdapter.verify_photo().
         if la.is_live("c2pa") and any(w in claim_text.lower()
                                         for w in ["photo", "image", "picture", "photograph"]):
-            print(f"  [live] Photo claim detected — image acquisition required for C2PA/Sightengine chain")
-            print(f"         Use LiveAdapter.verify_photo(image_bytes) with actual image bytes")
-            self.state.log_event("photo_verification_pending",
-                                 "Claim mentions photos but no image bytes provided",
-                                 claim_id=claim_id)
+            try:
+                with tracing.span("evidence.photo_acquire", claim_id=claim_id):
+                    image_url, image_bytes = self._acquire_claim_image(
+                        claim_text, claim_id)
+                if image_bytes:
+                    print(f"  [live] Photo acquired ({len(image_bytes)} bytes) — "
+                          f"running C2PA/Sightengine chain")
+                    with tracing.span("evidence.photo_verify", claim_id=claim_id):
+                        photo_result = la.verify_photo(image_bytes, image_url)
+                    self._add_photo_evidence(claim_id, records,
+                                             photo_result, image_url)
+                else:
+                    print(f"  [live] Photo claim detected — no fetchable image "
+                          f"found for C2PA/Sightengine chain")
+                    self.state.log_event("photo_verification_pending",
+                                         "Claim mentions photos but no image "
+                                         "bytes acquired",
+                                         claim_id=claim_id)
+            except Exception as e:
+                print(f"  [live] Photo verification failed: {e} — continuing")
+                self.state.log_event("photo_verification_failed", str(e),
+                                     claim_id=claim_id)
+
+    def _acquire_claim_image(self, claim_text, claim_id):
+        """Find and download an image related to the claim.
+
+        Returns (image_url, image_bytes) or (None, None) if no image found.
+        Strategy: search for the claim topic + image, take the first
+        fetchable image URL from results.
+        """
+        import urllib.request
+        import urllib.parse
+
+        # Search for images related to the claim
+        query = claim_text[:150] + " photo image"
+        image_url = None
+
+        # Try Firecrawl search for image URLs
+        try:
+            result = firecrawl_adapter.search(query, limit=5)
+            # Handle dict response format: {'data': {'web': [...]}}
+            items = []
+            if isinstance(result, dict):
+                items = result.get("data", {}).get("web", [])
+            elif isinstance(result, list):
+                items = result
+            for r in items:
+                if isinstance(r, str):
+                    url = r
+                else:
+                    url = r.get("url", "")
+                # Look for direct image links
+                if any(url.lower().endswith(ext)
+                       for ext in [".jpg", ".jpeg", ".png", ".webp", ".gif"]):
+                    image_url = url
+                    break
+            # If no direct image URL, try scraping the first result for images
+            if not image_url and items:
+                first = items[0]
+                page_url = first if isinstance(first, str) else first.get("url", "")
+                if page_url:
+                    image_url = self._extract_image_from_page(page_url)
+        except Exception:
+            pass
+
+        if not image_url:
+            return None, None
+
+        # Download the image
+        try:
+            req = urllib.request.Request(
+                image_url,
+                headers={"User-Agent": "TruthOps/1.0 (fact-checking research)"})
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                content_type = resp.headers.get("Content-Type", "")
+                if not content_type.startswith("image/"):
+                    return None, None
+                image_bytes = resp.read()
+                # Sanity check: not too small, not too large (50MB max)
+                if len(image_bytes) < 1024 or len(image_bytes) > 50 * 1024 * 1024:
+                    return None, None
+                return image_url, image_bytes
+        except Exception:
+            return None, None
+
+    def _extract_image_from_page(self, page_url):
+        """Scrape a web page for the first suitable image URL."""
+        import urllib.request
+        import re
+
+        try:
+            req = urllib.request.Request(
+                page_url,
+                headers={"User-Agent": "TruthOps/1.0 (fact-checking research)"})
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                html = resp.read().decode("utf-8", errors="ignore")
+
+            # Look for og:image first (usually the main article image)
+            og_match = re.search(
+                r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']',
+                html, re.IGNORECASE)
+            if og_match:
+                return og_match.group(1)
+
+            # Fall back to first <img> with a reasonable URL
+            for img_match in re.finditer(
+                    r'<img[^>]+src=["\']([^"\']+)["\']', html, re.IGNORECASE):
+                src = img_match.group(1)
+                if src.startswith("http") and any(
+                        ext in src.lower() for ext in
+                        [".jpg", ".jpeg", ".png", ".webp"]):
+                    # Skip tiny icons/logos
+                    if any(skip in src.lower() for skip in
+                           ["logo", "icon", "avatar", "1x1", "pixel"]):
+                        continue
+                    return src
+        except Exception:
+            pass
+        return None
+
+    def _add_photo_evidence(self, claim_id, records, photo_result, image_url):
+        """Convert C2PA/Sightengine results into evidence records."""
+        # Phase 1: C2PA provenance
+        p1 = photo_result.get("phase1")
+        if p1 and not p1.get("skipped"):
+            rec = {
+                "evidence_id": f"ev-{claim_id}-c2pa-1",
+                "claim_id": claim_id,
+                "source": "c2pa",
+                "label": f"C2PA provenance: {image_url[:60]}",
+                "url": image_url,
+                "stance": ("contradicts" if p1.get("fabrication_proof")
+                           else "supports" if p1.get("supports_claims")
+                           else "neutral"),
+                "reliability": p1.get("source_reliability", 0.5),
+                "relevance": 0.8,
+                "score": round(p1.get("source_reliability", 0.5) * 0.8, 3),
+                "is_primary_source": p1.get("is_primary_source", False),
+                "summary": p1.get("summary", "")[:220],
+                "fabrication_proof": p1.get("fabrication_proof", False),
+            }
+            records.append(rec)
+            self.state.data["evidence"][rec["evidence_id"]] = rec
+            print(f"  [live] C2PA evidence: {rec['stance']} "
+                  f"(rel={rec['reliability']})")
+
+        # Phase 2: Sightengine AI detection
+        p2 = photo_result.get("phase2")
+        if p2 and not p2.get("skipped"):
+            rec = {
+                "evidence_id": f"ev-{claim_id}-sightengine-1",
+                "claim_id": claim_id,
+                "source": "sightengine",
+                "label": f"Sightengine AI detection: {image_url[:60]}",
+                "url": image_url,
+                "stance": ("contradicts" if p2.get("fabrication_proof")
+                           else "supports" if p2.get("supports_claims")
+                           else "neutral"),
+                "reliability": p2.get("source_reliability", 0.5),
+                "relevance": 0.9,
+                "score": round(p2.get("source_reliability", 0.5) * 0.9, 3),
+                "is_primary_source": p2.get("is_primary_source", False),
+                "summary": p2.get("summary", "")[:220],
+                "fabrication_proof": p2.get("fabrication_proof", False),
+            }
+            records.append(rec)
+            self.state.data["evidence"][rec["evidence_id"]] = rec
+            print(f"  [live] Sightengine evidence: {rec['stance']} "
+                  f"(rel={rec['reliability']}) — {p2.get('summary', '')[:80]}")
 
     def evaluate(self, claim_id):
         """Score-based verdict on the PolitiFact Truth-O-Meter scale.
