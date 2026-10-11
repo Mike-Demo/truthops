@@ -42,7 +42,7 @@ def init(workflow_name="truthops"):
         return False
     try:
         import neatlogs
-        neatlogs.init(api_key=api_key)
+        neatlogs.init(api_key=api_key, workflow_name=workflow_name)
         ok = _get_tracer() is not None
         print(f"  [tracing] neatlogs live (workflow={workflow_name})" if ok
               else "  [tracing] neatlogs init ok but no tracer")

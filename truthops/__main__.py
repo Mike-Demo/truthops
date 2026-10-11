@@ -124,49 +124,50 @@ def main(argv=None):
     args = parser.parse_args(argv)
 
     tracing.init(workflow_name="truthops")
-    with tracing.span("truthops.run", case=args.case):
-        run_id = f"run-{time.strftime('%Y%m%d-%H%M%S')}"
-        state_path = os.path.join(BASE, "artifacts", f".state-{args.case}.json")
-        state = RunState(state_path)
-        state.data["run_id"] = run_id
-        state.data["case_id"] = args.case
-        state.data["started_at"] = time.strftime("%Y-%m-%dT%H:%M:%S")
-        # Each CLI run is a fresh, deterministic demonstration: reset all
-        # run-scoped state (a previous run's claims/evidence/counters must not
-        # leak into this one, or the 503 -> recovery path won't reproduce).
-        # Within the run, every mutation is still flushed to disk immediately,
-        # so the simulated failure is survived with all prior evidence intact.
-        for key in ("claims", "evidence", "http_attempts", "events",
-                    "contrarian_reviews", "director_decisions"):
-            state.data[key] = [] if key in ("events", "contrarian_reviews", "director_decisions") else {}
-        state.data["approval_gate"] = {"status": "BLOCKED", "approved_by": None, "approved_at": None}
-        state.log_event("run_started", f"TruthOps run {run_id} started for case '{args.case}'")
+    try:
+        with tracing.span("truthops.run", case=args.case):
+            run_id = f"run-{time.strftime('%Y%m%d-%H%M%S')}"
+            state_path = os.path.join(BASE, "artifacts", f".state-{args.case}.json")
+            state = RunState(state_path)
+            state.data["run_id"] = run_id
+            state.data["case_id"] = args.case
+            state.data["started_at"] = time.strftime("%Y-%m-%dT%H:%M:%S")
+            # Each CLI run is a fresh, deterministic demonstration: reset all
+            # run-scoped state (a previous run's claims/evidence/counters must not
+            # leak into this one, or the 503 -> recovery path won't reproduce).
+            # Within the run, every mutation is still flushed to disk immediately,
+            # so the simulated failure is survived with all prior evidence intact.
+            for key in ("claims", "evidence", "http_attempts", "events",
+                        "contrarian_reviews", "director_decisions"):
+                state.data[key] = [] if key in ("events", "contrarian_reviews", "director_decisions") else {}
+            state.data["approval_gate"] = {"status": "BLOCKED", "approved_by": None, "approved_at": None}
+            state.log_event("run_started", f"TruthOps run {run_id} started for case '{args.case}'")
 
-        if args.approve:
-            from .response_planner import ApprovalGate
-            ApprovalGate(state).approve(
-                [a.strip() for a in args.approve.split(",") if a.strip()],
-                approver="human-cli-flag")
+            if args.approve:
+                from .response_planner import ApprovalGate
+                ApprovalGate(state).approve(
+                    [a.strip() for a in args.approve.split(",") if a.strip()],
+                    approver="human-cli-flag")
 
-        allegation = load_allegation(args.case)
-        if args.live:
-            from .evidence.live_adapter import LiveAdapter
-            adapter = LiveAdapter()
-            print("[truthops] LIVE mode — probing adapters...")
-            adapter.print_status()
-        else:
-            adapter = FixtureAdapter()
-        http = HttpClient(state, adapter)
-        director = Director(state, http,
-                            live_adapter=adapter if args.live else None)
-        plan = director.run_case(allegation, args.case)
+            allegation = load_allegation(args.case)
+            if args.live:
+                from .evidence.live_adapter import LiveAdapter
+                adapter = LiveAdapter()
+                print("[truthops] LIVE mode — probing adapters...")
+                adapter.print_status()
+            else:
+                adapter = FixtureAdapter()
+            http = HttpClient(state, adapter)
+            director = Director(state, http,
+                                live_adapter=adapter if args.live else None)
+            plan = director.run_case(allegation, args.case)
 
-        jpath, mpath = write_reports(state, plan, args.case,
-                                     live_adapter=adapter if args.live else None)
-        print(f"\n[truthops] reports written:\n  {jpath}\n  {mpath}")
+            jpath, mpath = write_reports(state, plan, args.case,
+                                         live_adapter=adapter if args.live else None)
+            print(f"\n[truthops] reports written:\n  {jpath}\n  {mpath}")
         tracing.flush()
-
-    tracing.shutdown()
+    finally:
+        tracing.shutdown()
     return 0
 
 
