@@ -1,93 +1,232 @@
 {
-  "claim": "Photographs circulating online show New York City Mayor Zohran Mamdani posing alongside Jeffrey Epstein.",
-  "verdict": "pants_on_fire",
-  "score": 3,
-  "confidence": 0.97,
-  "neatlogs_trace_id": "aa3d1547e87988e35baf6403c534e18f",
-  "pipeline_spend": {},
-  "photo_evidence": {
-    "img1": {
-      "phase1": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but m",
-      "phase2": "Sightengine: likely authentic (AI probability 0.18). Sightengine genai=18.00% (5 ops used)"
-    },
-    "img2": {
-      "phase1": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but m",
-      "phase2": "Sightengine: AI-generated with probability 0.99. Sightengine genai=99.00% (5 ops used)"
-    },
-    "img3": {
-      "phase1": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but m",
-      "phase2": "Sightengine: AI-generated with probability 0.99. Sightengine genai=99.00% (5 ops used)"
-    },
-    "img4": {
-      "phase1": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but m",
-      "phase2": "Sightengine: AI-generated with probability 0.99. Sightengine genai=99.00% (5 ops used)"
+  "label": "SYNTHETIC demo run \u2014 neatHack 2026",
+  "run_id": "run-20261010-203434",
+  "case_id": "smoke1",
+  "generated_at": "2026-10-10T20:34:37",
+  "live_mode": false,
+  "neatlogs_trace_id": "de675954b885a556e94d15217822f477",
+  "adapter_status": {
+    "fixture": {
+      "mode": "fixture",
+      "detail": "FixtureAdapter only \u2014 no live adapters probed"
     }
   },
-  "photo_spend": [
+  "api_spend": {},
+  "claims": {
+    "claim": {
+      "claim_id": "claim",
+      "statement": "Photographs circulating online show New York City Mayor Zohran Mamdani posing alongside Jeffrey Epstein.",
+      "status": "concluded",
+      "verdict": "pants_on_fire",
+      "confidence_initial": 0.97,
+      "confidence_revised": 0.97,
+      "notes": "Smoke test 1: AI-generated photo fabrication.",
+      "gather_attempts": 1,
+      "score_0_100": 3,
+      "scoring": {
+        "support_weight": 0,
+        "contradict_weight": 0.95,
+        "support_threshold": 0.6,
+        "contradict_threshold": 0.6,
+        "mixed_threshold": 0.4,
+        "fabrication_proof": true,
+        "numerical_discrepancy": null,
+        "truth_o_meter_band": [
+          0,
+          5
+        ],
+        "factors": [
+          "source reliability x relevance per item",
+          "primary sources weighted via reliability score",
+          "PolitiFact Truth-O-Meter verdict scale (0-100 bands)",
+          "fabrication proof -> PANTS ON FIRE floor",
+          "numerical discrepancy -> precision penalty",
+          "no evidence -> unresolved (never assumed)"
+        ]
+      }
+    }
+  },
+  "evidence": {
+    "ev-claim-1": {
+      "evidence_id": "ev-claim-1",
+      "claim_id": "claim",
+      "source": "fixture",
+      "label": "SYNTHETIC fixture",
+      "url": "fixture://smoke1/ap-factcheck",
+      "stance": "contradicts",
+      "reliability": 0.95,
+      "relevance": 1.0,
+      "score": 0.95,
+      "is_primary_source": true,
+      "fabrication_proof": true,
+      "numerical_discrepancy": null,
+      "summary": "AP Fact Check examined the circulating images and determined they are AI-generated. The fact check walks through generative-AI artifacts and provenance analysis proving fabrication."
+    }
+  },
+  "contrarian_reviews": [
     {
-      "adapter": "c2pa",
-      "operation": "check_provenance",
-      "calls": 1,
-      "credits": 0.0,
-      "usd": 0.0,
-      "note": "no_provenance"
-    },
-    {
-      "adapter": "sightengine",
-      "operation": "scan_image",
-      "calls": 1,
-      "credits": 0.0,
-      "usd": 0.0,
-      "note": "verdict=likely_real"
-    },
-    {
-      "adapter": "c2pa",
-      "operation": "check_provenance",
-      "calls": 1,
-      "credits": 0.0,
-      "usd": 0.0,
-      "note": "no_provenance"
-    },
-    {
-      "adapter": "sightengine",
-      "operation": "scan_image",
-      "calls": 1,
-      "credits": 0.0,
-      "usd": 0.0,
-      "note": "verdict=ai_generated"
-    },
-    {
-      "adapter": "c2pa",
-      "operation": "check_provenance",
-      "calls": 1,
-      "credits": 0.0,
-      "usd": 0.0,
-      "note": "no_provenance"
-    },
-    {
-      "adapter": "sightengine",
-      "operation": "scan_image",
-      "calls": 1,
-      "credits": 0.0,
-      "usd": 0.0,
-      "note": "verdict=ai_generated"
-    },
-    {
-      "adapter": "c2pa",
-      "operation": "check_provenance",
-      "calls": 1,
-      "credits": 0.0,
-      "usd": 0.0,
-      "note": "no_provenance"
-    },
-    {
-      "adapter": "sightengine",
-      "operation": "scan_image",
-      "calls": 1,
-      "credits": 0.0,
-      "usd": 0.0,
-      "note": "verdict=ai_generated"
+      "claim_id": "claim",
+      "initial_verdict": "pants_on_fire",
+      "initial_confidence": 0.97,
+      "disagreement": null,
+      "agreed": true,
+      "revised_confidence": 0.97,
+      "revised_verdict": "pants_on_fire"
     }
   ],
-  "run_timestamp": "2026-10-10T18:53:22-05:00"
+  "director_decisions": [
+    {
+      "claim_id": "claim",
+      "action": "gather",
+      "rationale": "no evidence yet \u2014 gather before any judgment"
+    },
+    {
+      "claim_id": "claim",
+      "action": "evaluate",
+      "rationale": "evidence phase complete \u2014 evaluate the claim"
+    },
+    {
+      "claim_id": "claim",
+      "action": "escalate",
+      "rationale": "initial verdict reached \u2014 escalate to contrarian for adversarial review"
+    }
+  ],
+  "http_attempts": {
+    "fixture://smoke1/ap-factcheck": 1
+  },
+  "response_plan": {
+    "characterization": "FALSE",
+    "recommended_posture": "Deny with evidence",
+    "key_messages": [
+      "Claim 'Photographs circulating online show New York City Mayor Zohran Mamdani posing al...': PANTS ON FIRE (3/100).",
+      "  Notes: Smoke test 1: AI-generated photo fabrication."
+    ],
+    "cited_evidence": [
+      {
+        "evidence_id": "ev-claim-1",
+        "url": "fixture://smoke1/ap-factcheck",
+        "label": "SYNTHETIC fixture"
+      }
+    ],
+    "external_actions": [
+      {
+        "action": "publish",
+        "target": "company blog / press statement",
+        "status": "BLOCKED"
+      },
+      {
+        "action": "post",
+        "target": "official social channels",
+        "status": "BLOCKED"
+      },
+      {
+        "action": "notify",
+        "target": "enterprise customers",
+        "status": "BLOCKED"
+      }
+    ],
+    "approval_required": true
+  },
+  "approval_gate": {
+    "status": "BLOCKED",
+    "approved_by": null,
+    "approved_at": null
+  },
+  "events": [
+    {
+      "t": "2026-10-10T20:34:34",
+      "kind": "run_started",
+      "message": "TruthOps run run-20261010-203434 started for case 'smoke1'"
+    },
+    {
+      "t": "2026-10-10T20:34:35",
+      "kind": "sniff_test",
+      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted"
+    },
+    {
+      "t": "2026-10-10T20:34:35",
+      "kind": "claims_decomposed",
+      "message": "Decomposed into 1 atomic claims: ['claim']"
+    },
+    {
+      "t": "2026-10-10T20:34:35",
+      "kind": "director_decision",
+      "message": "[director] claim: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
+      "claim_id": "claim",
+      "action": "gather"
+    },
+    {
+      "t": "2026-10-10T20:34:35",
+      "kind": "http_attempt",
+      "message": "GET fixture://smoke1/ap-factcheck (attempt 1)",
+      "url": "fixture://smoke1/ap-factcheck",
+      "attempt": 1
+    },
+    {
+      "t": "2026-10-10T20:34:35",
+      "kind": "http_success",
+      "message": "GET fixture://smoke1/ap-factcheck -> 200 OK (attempt 1)",
+      "url": "fixture://smoke1/ap-factcheck",
+      "attempt": 1,
+      "status": 200
+    },
+    {
+      "t": "2026-10-10T20:34:35",
+      "kind": "evidence_scored",
+      "message": "ev-claim-1: contradicts (reliability=0.95, relevance=1.0, score=0.95)",
+      "claim_id": "claim",
+      "evidence_id": "ev-claim-1"
+    },
+    {
+      "t": "2026-10-10T20:34:37",
+      "kind": "director_decision",
+      "message": "[director] claim: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
+      "claim_id": "claim",
+      "action": "evaluate"
+    },
+    {
+      "t": "2026-10-10T20:34:37",
+      "kind": "claim_evaluated",
+      "message": "claim: pants_on_fire (confidence 0.97, score 3) [support=0 vs contradict=0.95]",
+      "claim_id": "claim",
+      "verdict": "pants_on_fire",
+      "confidence": 0.97
+    },
+    {
+      "t": "2026-10-10T20:34:37",
+      "kind": "director_decision",
+      "message": "[director] claim: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
+      "claim_id": "claim",
+      "action": "escalate"
+    },
+    {
+      "t": "2026-10-10T20:34:37",
+      "kind": "contrarian_review",
+      "message": "claim: agreed=True conf 0.97 -> 0.97",
+      "claim_id": "claim"
+    },
+    {
+      "t": "2026-10-10T20:34:37",
+      "kind": "response_planned",
+      "message": "Response plan built: FALSE. All external actions BLOCKED pending approval."
+    },
+    {
+      "t": "2026-10-10T20:34:37",
+      "kind": "approval_blocked",
+      "message": "External action 'publish' BLOCKED \u2014 awaiting human approval.",
+      "action": "publish"
+    },
+    {
+      "t": "2026-10-10T20:34:37",
+      "kind": "approval_blocked",
+      "message": "External action 'post' BLOCKED \u2014 awaiting human approval.",
+      "action": "post"
+    },
+    {
+      "t": "2026-10-10T20:34:37",
+      "kind": "approval_blocked",
+      "message": "External action 'notify' BLOCKED \u2014 awaiting human approval.",
+      "action": "notify"
+    }
+  ]
 }

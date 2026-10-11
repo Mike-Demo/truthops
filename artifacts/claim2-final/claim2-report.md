@@ -1,6 +1,6 @@
 # TruthOps report — case `smoke2`
 
-> LIVE run — neatHack 2026. Evidence is fixture-backed for benchmark comparability; live adapters enriched where available (see JSON report for per-adapter status and spend).
+> SYNTHETIC demo run — neatHack 2026. All fixture data is synthetic; live integrations (Crustdata, Firecrawl) were SIMULATED in this run.
 
 **Overall characterization: FALSE**
 **Recommended posture:** Deny with evidence
@@ -27,4 +27,3 @@ External actions: **BLOCKED** — publish / post / notify all blocked pending ex
 ## Contrarian challenges
 
 - **claim**: agreed=True; confidence 0.95 → 0.95
-**Neatlogs trace:** `4909980b00edb09d4f599e0b8e75fa8d`

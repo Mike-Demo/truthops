@@ -1,6 +1,6 @@
 # TruthOps report — case `smoke1`
 
-> LIVE run — neatHack 2026. Evidence is fixture-backed for benchmark comparability; live adapters enriched where available (see JSON report for per-adapter status and spend).
+> SYNTHETIC demo run — neatHack 2026. All fixture data is synthetic; live integrations (Crustdata, Firecrawl) were SIMULATED in this run.
 
 **Overall characterization: FALSE**
 **Recommended posture:** Deny with evidence
@@ -27,20 +27,3 @@ External actions: **BLOCKED** — publish / post / notify all blocked pending ex
 ## Contrarian challenges
 
 - **claim**: agreed=True; confidence 0.97 → 0.97
-
-## Photo verification (live)
-
-Two-phase chain: C2PA provenance → Sightengine AI detection.
-
-| Image | C2PA | Sightengine AI probability | Assessment |
-|---|---|---|---|
-| img1.jpg | No provenance | 18% | Likely authentic or edited (not fully AI-generated) |
-| img2.jpg | No provenance | 99% | AI-generated |
-| img3.jpg | No provenance | 99% | AI-generated |
-| img4.jpg | No provenance | 99% | AI-generated |
-
-**Interpretation:** 3 of 4 circulating images are AI-generated with 99% confidence. img1 scores low on full-generation detection (18%) — consistent with a real photo that was edited/composited, or a different generator. Combined with the absence of C2PA provenance on all four, the photographic evidence supports the PANTS_ON_FIRE verdict.
-
-**API spend (photo verification):** 4 C2PA checks ($0.00) + 4 Sightengine scans ($0.00, free tier: 20 ops used of 2,000/mo)
-
-**Neatlogs trace:** `aa3d1547e87988e35baf6403c534e18f`

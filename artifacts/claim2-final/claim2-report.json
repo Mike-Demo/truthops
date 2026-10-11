@@ -1,9 +1,232 @@
 {
-  "claim": "President Trump initiated an internal audit of the Social Security Administration.",
-  "verdict": "false",
-  "score": 10,
-  "confidence": 0.95,
-  "neatlogs_trace_id": "4909980b00edb09d4f599e0b8e75fa8d",
-  "pipeline_spend": {},
-  "run_timestamp": "2026-10-10T18:57:33-05:00"
+  "label": "SYNTHETIC demo run \u2014 neatHack 2026",
+  "run_id": "run-20261010-203443",
+  "case_id": "smoke2",
+  "generated_at": "2026-10-10T20:34:45",
+  "live_mode": false,
+  "neatlogs_trace_id": "86fc1dd4bbf0466c4a84d187ee44942f",
+  "adapter_status": {
+    "fixture": {
+      "mode": "fixture",
+      "detail": "FixtureAdapter only \u2014 no live adapters probed"
+    }
+  },
+  "api_spend": {},
+  "claims": {
+    "claim": {
+      "claim_id": "claim",
+      "statement": "President Trump initiated an internal audit of the Social Security Administration.",
+      "status": "concluded",
+      "verdict": "false",
+      "confidence_initial": 0.95,
+      "confidence_revised": 0.95,
+      "notes": "Smoke test 2: single-source fabrication.",
+      "gather_attempts": 1,
+      "score_0_100": 10,
+      "scoring": {
+        "support_weight": 0,
+        "contradict_weight": 0.9,
+        "support_threshold": 0.6,
+        "contradict_threshold": 0.6,
+        "mixed_threshold": 0.4,
+        "fabrication_proof": false,
+        "numerical_discrepancy": null,
+        "truth_o_meter_band": [
+          5,
+          15
+        ],
+        "factors": [
+          "source reliability x relevance per item",
+          "primary sources weighted via reliability score",
+          "PolitiFact Truth-O-Meter verdict scale (0-100 bands)",
+          "fabrication proof -> PANTS ON FIRE floor",
+          "numerical discrepancy -> precision penalty",
+          "no evidence -> unresolved (never assumed)"
+        ]
+      }
+    }
+  },
+  "evidence": {
+    "ev-claim-1": {
+      "evidence_id": "ev-claim-1",
+      "claim_id": "claim",
+      "source": "fixture",
+      "label": "SYNTHETIC fixture",
+      "url": "fixture://smoke2/ap-notrealnews",
+      "stance": "contradicts",
+      "reliability": 0.9,
+      "relevance": 1.0,
+      "score": 0.9,
+      "is_primary_source": true,
+      "fabrication_proof": false,
+      "numerical_discrepancy": null,
+      "summary": "AP's Not Real News desk found that a story posted by borntobebright.com falsely claims that Trump initiated an internal audit of the Social Security Administration. Single junk-site fabrication with no corroboration."
+    }
+  },
+  "contrarian_reviews": [
+    {
+      "claim_id": "claim",
+      "initial_verdict": "false",
+      "initial_confidence": 0.95,
+      "disagreement": null,
+      "agreed": true,
+      "revised_confidence": 0.95,
+      "revised_verdict": "false"
+    }
+  ],
+  "director_decisions": [
+    {
+      "claim_id": "claim",
+      "action": "gather",
+      "rationale": "no evidence yet \u2014 gather before any judgment"
+    },
+    {
+      "claim_id": "claim",
+      "action": "evaluate",
+      "rationale": "evidence phase complete \u2014 evaluate the claim"
+    },
+    {
+      "claim_id": "claim",
+      "action": "escalate",
+      "rationale": "initial verdict reached \u2014 escalate to contrarian for adversarial review"
+    }
+  ],
+  "http_attempts": {
+    "fixture://smoke2/ap-notrealnews": 1
+  },
+  "response_plan": {
+    "characterization": "FALSE",
+    "recommended_posture": "Deny with evidence",
+    "key_messages": [
+      "Claim 'President Trump initiated an internal audit of the Social Security Administratio...': FALSE (10/100).",
+      "  Notes: Smoke test 2: single-source fabrication."
+    ],
+    "cited_evidence": [
+      {
+        "evidence_id": "ev-claim-1",
+        "url": "fixture://smoke2/ap-notrealnews",
+        "label": "SYNTHETIC fixture"
+      }
+    ],
+    "external_actions": [
+      {
+        "action": "publish",
+        "target": "company blog / press statement",
+        "status": "BLOCKED"
+      },
+      {
+        "action": "post",
+        "target": "official social channels",
+        "status": "BLOCKED"
+      },
+      {
+        "action": "notify",
+        "target": "enterprise customers",
+        "status": "BLOCKED"
+      }
+    ],
+    "approval_required": true
+  },
+  "approval_gate": {
+    "status": "BLOCKED",
+    "approved_by": null,
+    "approved_at": null
+  },
+  "events": [
+    {
+      "t": "2026-10-10T20:34:43",
+      "kind": "run_started",
+      "message": "TruthOps run run-20261010-203443 started for case 'smoke2'"
+    },
+    {
+      "t": "2026-10-10T20:34:43",
+      "kind": "sniff_test",
+      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted"
+    },
+    {
+      "t": "2026-10-10T20:34:43",
+      "kind": "claims_decomposed",
+      "message": "Decomposed into 1 atomic claims: ['claim']"
+    },
+    {
+      "t": "2026-10-10T20:34:43",
+      "kind": "director_decision",
+      "message": "[director] claim: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
+      "claim_id": "claim",
+      "action": "gather"
+    },
+    {
+      "t": "2026-10-10T20:34:43",
+      "kind": "http_attempt",
+      "message": "GET fixture://smoke2/ap-notrealnews (attempt 1)",
+      "url": "fixture://smoke2/ap-notrealnews",
+      "attempt": 1
+    },
+    {
+      "t": "2026-10-10T20:34:43",
+      "kind": "http_success",
+      "message": "GET fixture://smoke2/ap-notrealnews -> 200 OK (attempt 1)",
+      "url": "fixture://smoke2/ap-notrealnews",
+      "attempt": 1,
+      "status": 200
+    },
+    {
+      "t": "2026-10-10T20:34:43",
+      "kind": "evidence_scored",
+      "message": "ev-claim-1: contradicts (reliability=0.9, relevance=1.0, score=0.9)",
+      "claim_id": "claim",
+      "evidence_id": "ev-claim-1"
+    },
+    {
+      "t": "2026-10-10T20:34:45",
+      "kind": "director_decision",
+      "message": "[director] claim: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
+      "claim_id": "claim",
+      "action": "evaluate"
+    },
+    {
+      "t": "2026-10-10T20:34:45",
+      "kind": "claim_evaluated",
+      "message": "claim: false (confidence 0.95, score 10) [support=0 vs contradict=0.9]",
+      "claim_id": "claim",
+      "verdict": "false",
+      "confidence": 0.95
+    },
+    {
+      "t": "2026-10-10T20:34:45",
+      "kind": "director_decision",
+      "message": "[director] claim: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
+      "claim_id": "claim",
+      "action": "escalate"
+    },
+    {
+      "t": "2026-10-10T20:34:45",
+      "kind": "contrarian_review",
+      "message": "claim: agreed=True conf 0.95 -> 0.95",
+      "claim_id": "claim"
+    },
+    {
+      "t": "2026-10-10T20:34:45",
+      "kind": "response_planned",
+      "message": "Response plan built: FALSE. All external actions BLOCKED pending approval."
+    },
+    {
+      "t": "2026-10-10T20:34:45",
+      "kind": "approval_blocked",
+      "message": "External action 'publish' BLOCKED \u2014 awaiting human approval.",
+      "action": "publish"
+    },
+    {
+      "t": "2026-10-10T20:34:45",
+      "kind": "approval_blocked",
+      "message": "External action 'post' BLOCKED \u2014 awaiting human approval.",
+      "action": "post"
+    },
+    {
+      "t": "2026-10-10T20:34:45",
+      "kind": "approval_blocked",
+      "message": "External action 'notify' BLOCKED \u2014 awaiting human approval.",
+      "action": "notify"
+    }
+  ]
 }
