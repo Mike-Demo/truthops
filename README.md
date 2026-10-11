@@ -11,7 +11,7 @@ TruthOps is a transparent scoring and governance pipeline over curated evidence,
 No dependencies beyond Python 3.10+. No API keys needed for the fixture runs.
 
 ```bash
-git clone https://github.com/Mike-Demo/truthops
+git clone --depth 1 https://github.com/Mike-Demo/truthops   # shallow: ~22MB (full history is ~197MB)
 cd truthops
 python -m truthops run --case smoke1   # PANTS_ON_FIRE expected
 python -m truthops run --case smoke5   # TRUE expected
@@ -46,7 +46,7 @@ All 8 claims re-ran with `--live` (GPTZero, Sightengine, C2PA, Alexandria, Cloud
 
 ## Methodology
 
-**Calibration-first.** Before trusting the agent on unknown claims, we verify it hits known answers. Eight real-world claims with established PolitiFact/FactCheck.org rulings span the full truth spectrum — from PANTS_ON_FIRE to TRUE. 7 of 8 landed in their expected bands; Claim 6 scored 78/100 against an 80–90 expected band (inside the pipeline's 75–90 MOSTLY_TRUE band).
+**Calibration-first.** Before trusting the pipeline on unknown claims, we verify it hits known answers. Eight real-world claims with established PolitiFact/FactCheck.org rulings span the full truth spectrum — from PANTS_ON_FIRE to TRUE. 7 of 8 landed in their expected bands; Claim 6 scored 78/100 against an 80–90 expected band (inside the pipeline's 75–90 MOSTLY_TRUE band).
 
 Each claim runs **independently** through the live pipeline with no shared state:
 
@@ -59,11 +59,11 @@ Allegation → [Sniff Test] → (proceed?) → Evidence Pipeline → Claims → 
 
 1. **Sniff test** (`truthops/sniff_test.py`): cheap orchestration gate before the full pipeline. Obvious fakes without traction stop early; viral misinformation still gets full investigation.
 2. **Evidence agents** gather and score sources — text, images, and enrichment.
-3. **Contrarian agent** tries to break the verdict (adversarial review).
+3. **Contrarian check** tries to break the verdict (scripted review).
 4. **Director** synthesizes the final verdict, confidence, and response plan.
 5. **Human approval gates** block publish/post/notify — no external action without explicit approval.
 
-**Honest calibration:** 7 of 8 claims in their expected bands — and the two that needed work earned it. Claim 6 scored 78/100 vs an 80–90 expected band: inside the pipeline's own 75–90 MOSTLY_TRUE band, but 2 points under the requested range — flagged, not hidden. The 2-point gap is substantive, not noise: the claim slightly overstates an NGO-estimated second-term deportation figure, and the pipeline's weighting penalized the overstatement as designed. Claim 4 earned its band the hard way. The original fixture encoded a verdict reconstructed from a search snippet ("substantially accurate, ~$2.36") that turned out to be wrong: reading the full FactCheck.org article showed Trump "continued to exaggerate" (no state below $2.30, national $2.94; the $2.36 was the article's own corrected misquote). We fixed the fixture, the evidence-plan stance, and the band (80–90 → 10–30), reran, and the pipeline scored FALSE 10/100 — as the corrected evidence dictated. The calibration process caught a bad test, not a bad pipeline, and we document the whole correction rather than hiding it.
+**Calibration notes:** 7 of 8 claims in their expected bands — and the two that needed work earned it. Claim 6 scored 78/100 vs an 80–90 expected band: inside the pipeline's own 75–90 MOSTLY_TRUE band, but 2 points under the requested range — flagged, not hidden. The 2-point gap is substantive, not noise: the claim slightly overstates an NGO-estimated second-term deportation figure, and the pipeline's weighting penalized the overstatement as designed. Claim 4 earned its band the hard way. The original fixture encoded a verdict reconstructed from a search snippet ("substantially accurate, ~$2.36") that turned out to be wrong: reading the full FactCheck.org article showed Trump "continued to exaggerate" (no state below $2.30, national $2.94; the $2.36 was the article's own corrected misquote). We fixed the fixture, the evidence-plan stance, and the band (80–90 → 10–30), reran, and the pipeline scored FALSE 10/100 — as the corrected evidence dictated. The calibration process caught a bad test, not a bad pipeline, and we document the whole correction rather than hiding it.
 
 ## Architecture
 

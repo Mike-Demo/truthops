@@ -44,7 +44,7 @@ pipeline."
 
 **[1:30–2:00] THE GATE**
 "The response plan is drafted — but publish, post, and notify are all
-blocked behind a human approval gate. The agent investigates; the human
+blocked behind a human approval gate. The pipeline investigates; the human
 decides. That's the line."
 
 **[2:00–2:40] SPONSOR PROOF**

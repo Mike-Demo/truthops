@@ -117,13 +117,13 @@ claims.forEach((c, idx) => {
     '<div class="pipe-step"><div class="pipe-dot"></div><div><div class="step-name">Sniff Test</div><div class="step-desc">Cloudflare Clef-flash gate</div></div></div>' +
     '<div class="pipe-step"><div class="pipe-dot"></div><div><div class="step-name">Evidence</div><div class="step-desc">' + c.evidence_count + ' sources gathered and scored</div></div></div>' +
     '<div class="pipe-step"><div class="pipe-dot"></div><div><div class="step-name">Photo Forensics</div><div class="step-desc">C2PA provenance and Sightengine AI detection</div></div></div>' +
-    '<div class="pipe-step"><div class="pipe-dot"></div><div><div class="step-name">Contrarian Review</div><div class="step-desc">Adversarial challenge -- agreed</div></div></div>' +
+    '<div class="pipe-step"><div class="pipe-dot"></div><div><div class="step-name">Contrarian Review</div><div class="step-desc">Scripted challenge -- agreed</div></div></div>' +
     '<div class="pipe-step"><div class="pipe-dot"></div><div><div class="step-name">Director Verdict</div><div class="step-desc">' + label + ' at ' + c.score + '/100</div></div></div>' +
     '<div class="pipe-step"><div class="pipe-dot" style="background:#f59e0b"></div><div><div class="step-name">Human Gate</div><div class="step-desc">BLOCKED -- publish/post/notify need approval</div></div></div>' +
     '</div><div class="links">' +
     '<a href="' + c.report_url + '" target="_blank">Report</a>' +
     '<a href="' + c.pdf_url + '" target="_blank">PDF</a>' +
-    '<a href="' + c.video_url + '" target="_blank">Video</a>' +
+    '<a href="' + c.video_url + '" target="_blank" title="' + (c.n === 7 ? 'Pre-fix footage: shows tracing disabled' : 'Terminal recording') + '">Video' + (c.n === 7 ? '*' : '') + '</a>' +
     '</div></div>';
   card.addEventListener('click', (e) => {
     if (e.target.tagName === 'A') return;

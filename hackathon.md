@@ -1,7 +1,7 @@
 # TruthOps — neatHack 2026 build log
 
 ## Project
-**TruthOps** — a transparent scoring and governance pipeline over curated evidence that investigates high-risk claims against primary sources, stress-tests its own findings through contrarian adversarial review, and produces evidence-backed response plans behind a human approval gate. Nothing auto-publishes.
+**TruthOps** — a transparent scoring and governance pipeline over curated evidence that investigates high-risk claims against primary sources, runs them through scripted contrarian review, and produces evidence-backed response plans behind a human approval gate. Nothing auto-publishes.
 
 Problem addressed: viral misinformation (especially AI-generated imagery) spreads faster than human fact-checkers can respond. TruthOps gives a newsroom, campaign, or brand a repeatable, auditable pipeline: sniff test → evidence gathering → photo forensics → weighted evaluation → contrarian review → director verdict → human gate → signed report.
 
@@ -25,7 +25,7 @@ Problem addressed: viral misinformation (especially AI-generated imagery) spread
 - Missing SDK degrades gracefully (warning only, pipeline continues).
 
 ## Entire — checkpoints
-Three checkpoints, all materialized to GitHub ref namespace `refs/entire/checkpoints/QS/`:
+13 checkpoints, all materialized to GitHub ref namespace `refs/entire/checkpoints/QS/`:
 1. `01M4KHFZSP4K7Z61RJTTK1SFQS` (Oct 10) — initial build session
 2. `01M4MKACK4KDW0HTYAF58ARS9K` → `eeb1591bb397` (Oct 10) — full live suite + README
 3. `01M4P6SRGGCG2GSHYEPAZQYR71` → `439723d` (Oct 11) — live-run recordings, PDF/A regen, README honesty pass
@@ -52,7 +52,7 @@ Three checkpoints, all materialized to GitHub ref namespace `refs/entire/checkpo
 
 ### 2026-10-11
 - README honesty pass: 8 claims (not 5), 7/8 in expected bands (claim 6: 78/100 vs 80–90 requested band, inside pipeline MOSTLY_TRUE 75–90), live-run limitations documented, judge quickstart added and verified in bare Python 3.12 venv (no pip install, no keys, no sign-in).
-- All 8 claim PDFs regenerated as PDF/A-1 with sRGB OutputIntent + PAdES signatures, each OpenSSL-verified. (veraPDF conformance not independently run; profile was PIL-generated minimal sRGB — WeasyPrint's standard `sRGB2014.icc` available for a future pass.)
+- All 8 claim PDFs regenerated as PDF/A-3b with sRGB OutputIntent + PAdES signatures, each OpenSSL-verified. (veraPDF conformance not independently run.)
 - Claims page shipped with per-claim "How the agent got here" demos (sniff → evidence → contrarian → director).
 - All 8 smoke tests re-run end to end with live keys (keys passed via transient env vars for the run; terminal recordings captured full command lines including keys — see Security note): 8/8 verdicts matched, $0.00 spend. Terminal sessions rendered to video: 8 landscape + 8 vertical 9:16 + 8 vertical 4K (`thread-assets/live-runs/`).
 - Pexo 60s pipeline explainer produced (16:9, 9:16, 1:1, 4K).
@@ -89,7 +89,7 @@ Three checkpoints, all materialized to GitHub ref namespace `refs/entire/checkpo
 ## Submission
 - Window: Monday Oct 12, 2026, 8:30 AM–1:25 PM CDT.
 - Repo: https://github.com/Mike-Demo/truthops
-- Entire checkpoint: `01M4PHSFBERDKGY9W4KWSZQPT5` (latest; 11 checkpoints total)
+- Entire checkpoint: `01M4PMT42B952YZSY57BVG6Z43` (latest; 13 checkpoints total)
 - 28 claim reports + PDFs + videos: see claims page
 - Social: building in public — all posts below tagged #neatHack (Bluesky intentionally skipped)
 - Outstanding: 2–3 min narrated demo video (Pexo 60s sizzle exists), final submission writeup, video-scripts 7/8 correction
