@@ -1,27 +1,15 @@
-"""Neatlogs tracing shim — proper OTel spans via Neatlogs' internal tracer.
+"""Neatlogs tracing shim.
 
-v2 (2026-10-10): The v1 shim misused neatlogs.trace() — an API designed for
-prompt-template tracking and session management — for generic pipeline spans.
-This version creates standard OpenTelemetry spans directly through Neatlogs'
-own tracer provider, bypassing the trace() prompt machinery entirely.
-
-v2.1: Added explicit flush()/shutdown() using get_neatlogs_provider() (which
-resolves the active client provider, not just the module-level fallback).
-The OTel BatchSpanProcessor buffers spans and exports on a timer; without a
-flush before exit, short-lived scripts terminate with zero spans transmitted
-— the trace ID registers but no span data arrives, producing Neatlogs'
-"couldn't finish preparing this trace" backend error.
+v3 (2026-10-10): Combines what worked from v1 and v2.
+- Span creation via neatlogs.trace() (v1): properly marked as Neatlogs-
+  originated, so the _ForeignParentGuardTracer nests children correctly.
+  (v2's raw OTel spans were treated as foreign — each span became its
+  own root trace, producing scattered 0-span traces.)
+- Flush via get_neatlogs_provider().force_flush() (v2): the v1 flush was
+  a silent no-op (checked hasattr(_nl, "flush") which doesn't exist).
+- try/finally in __main__.py guarantees shutdown() even on crash.
+- workflow_name passed through to neatlogs.init().
 """
-
-def _get_tracer():
-    """Resolve Neatlogs' internal tracer lazily (after init() has run)."""
-    try:
-        from neatlogs._wrap_utils import get_internal_tracer
-        t = get_internal_tracer(__name__)
-        return t
-    except Exception:
-        return None
-
 
 def _get_provider():
     """Resolve the active Neatlogs tracer provider (client-aware)."""
@@ -43,10 +31,8 @@ def init(workflow_name="truthops"):
     try:
         import neatlogs
         neatlogs.init(api_key=api_key, workflow_name=workflow_name)
-        ok = _get_tracer() is not None
-        print(f"  [tracing] neatlogs live (workflow={workflow_name})" if ok
-              else "  [tracing] neatlogs init ok but no tracer")
-        return ok
+        print(f"  [tracing] neatlogs live (workflow={workflow_name})")
+        return True
     except Exception as e:
         print(f"  [tracing] neatlogs init failed: {e}")
         return False
@@ -60,38 +46,44 @@ def get_trace_id():
 
 
 class span:
-    """Context manager yielding a proper OTel span via Neatlogs' provider."""
+    """Context manager for one pipeline step.
+
+    Uses neatlogs.trace() (not raw OTel) so spans are properly marked as
+    Neatlogs-originated and nest correctly under the active trace.
+    """
 
     def __init__(self, name, **attrs):
         self.name = name
-        # OTel attributes must be primitives; coerce defensively.
-        self.attrs = {k: v for k, v in attrs.items()
-                      if isinstance(v, (str, int, float, bool))}
+        self.attrs = attrs
         self._cm = None
 
     def __enter__(self):
         global _last_trace_id
-        tracer = _get_tracer()
-        if tracer is not None:
-            try:
-                self._cm = tracer.start_as_current_span(
-                    self.name, attributes=self.attrs)
-                otel_span = self._cm.__enter__()
+        try:
+            import neatlogs
+            # neatlogs.trace() is a context manager; enter it here so the
+            # OTel context propagates to nested spans.
+            self._cm = neatlogs.trace(self.name, **self.attrs)
+            entered = self._cm.__enter__()
+            # Capture trace ID from the entered span.
+            if _last_trace_id is None and entered is not None:
                 try:
-                    ctx = otel_span.get_span_context()
-                    if ctx and ctx.trace_id:
-                        _last_trace_id = format(ctx.trace_id, "032x")
+                    ctx = entered.get_span_context()
+                    tid = ctx.trace_id if ctx is not None else None
                 except Exception:
-                    pass
-            except Exception as e:
-                print(f"  [tracing] span start failed: {e}")
-                self._cm = None
-        return self
+                    tid = getattr(entered, "trace_id", None)
+                if tid:
+                    _last_trace_id = format(tid, "032x") if isinstance(tid, int) else str(tid)
+            return entered if entered is not None else self
+        except Exception as e:
+            print(f"  [tracing] span start failed: {e}")
+            self._cm = None
+            return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         if self._cm is not None:
             try:
-                self._cm.__exit__(exc_type, exc_val, exc_tb)
+                return self._cm.__exit__(exc_type, exc_val, exc_tb)
             except Exception:
                 pass
             self._cm = None
