@@ -8,7 +8,8 @@ beats below. Every beat below corresponds to real, visible output from
 
 **[0:00–0:15] HOOK**
 "Don't just detect misinformation. Resolve it. I'm Demo, solo builder of
-TruthOps — a transparent scoring and governance pipeline over curated evidence. Existing tools flag a
+TruthOps — a transparent scoring and governance pipeline over curated evidence.
+To be clear: it's rule-based — no LLM in the reasoning path. Existing tools flag a
 viral claim as 'possible misinformation' and stop, leaving comms teams to
 do the actual investigation by hand. TruthOps closes the loop."
 

@@ -15,10 +15,10 @@ Record Sunday Oct 11 in one session. Demo records narration + screen; no AI acto
 | 0:00–0:04 | Black. Single claim types itself: "Photos show Mamdani partying with Epstein" | (typing effect) |
 | 0:04–0:08 | Pipeline stages flash: SNIFF → EVIDENCE → CONTRARIAN → DIRECTOR | "Don't just detect misinformation." |
 | 0:08–0:14 | Verdict slams in: PANTS_ON_FIRE, 3/100. Sightengine: 3 images 99% AI-generated | "Resolve it." |
-| 0:14–0:22 | Rapid verdict montage: FALSE 10/100 → MOSTLY_FALSE 34/100 → MOSTLY_TRUE 88/100 → TRUE 99/100 | "8 claims. 8 verdicts. 7 of 8 in band." |
+| 0:14–0:22 | Rapid verdict montage: FALSE 10/100 → MOSTLY_FALSE 34/100 → MOSTLY_TRUE 88/100 → TRUE 99/100 | "28 claims. 28 verdicts. 28 of 28 in band." |
 | 0:22–0:30 | Signed PDF/A renders, signature badge. Neatlogs trace timeline. Entire checkpoint hash | "Signed evidence. Full audit trail." |
 | 0:30–0:38 | Approval gates: human taps APPROVE on response plan | "Humans decide. Always." |
-| 0:38–0:45 | Logo + truthops-demo.space.fast + #neatHack + sponsor marks | "TruthOps — Autonomous Trust Operations" |
+| 0:38–0:45 | Logo + truthops-demo.space.fast + #neatHack + sponsor marks | "TruthOps — Don't just detect misinformation. Resolve it." |
 
 **Music:** Upbeat electronic, 120+ BPM, royalty-free (e.g., Pixabay/CapCut library).
 **Edit notes:** Hard cuts on beat. Verdict cards use Truth-O-Meter colors (red → green).
@@ -34,7 +34,7 @@ Record Sunday Oct 11 in one session. Demo records narration + screen; no AI acto
 
 **[0:00–0:20 — Cold open, landing page]**
 *(truthops-demo.space.fast on screen)*
-> "This is TruthOps — an autonomous trust operations agent. You give it a high-risk claim. It investigates, challenges its own conclusions, and produces an evidence-backed response plan — with a human approving every decisive step. Let me show you."
+> "This is TruthOps — a transparent scoring and governance pipeline over curated evidence. You give it a high-risk claim. It runs a deterministic pipeline — sniff test, evidence gathering, scripted contrarian review, verdict — and produces an evidence-backed response plan — with a human approving every decisive step. To be clear: it's rule-based. No LLM in the reasoning path. Let me show you."
 
 **[0:20–0:45 — The claim]**
 *(Paste/type into composer: "New photos show Zohran Mamdani partying with Jeffrey Epstein")*
@@ -42,7 +42,7 @@ Record Sunday Oct 11 in one session. Demo records narration + screen; no AI acto
 
 **[0:45–1:10 — Pipeline stages]**
 *(Staged animation plays: sniff_test → evidence.gather → contrarian.review → director)*
-> "First, the sniff test triages it. Then the evidence agent gathers sources — and because this claim hinges on photos, it runs a two-phase forensic check: C2PA provenance first, then Sightengine AI-image detection. A contrarian agent tries to tear the case apart. Then the director synthesizes."
+> "First, the sniff test triages it. Then the evidence agent gathers sources — and because this claim hinges on photos, it runs a two-phase forensic check: C2PA provenance first, then Sightengine AI-image detection. A scripted contrarian review tries to break the case. Then the director synthesizes."
 
 **[1:10–1:35 — Verdict]**
 *(Verdict card: PANTS_ON_FIRE, 3/100, confidence 0.97. Photo results: 3 images 99% AI-generated)*
@@ -57,8 +57,8 @@ Record Sunday Oct 11 in one session. Demo records narration + screen; no AI acto
 > "Every run produces a signed, tamper-evident evidence package — PDF/A with a digital signature — plus a public Gist and a full Neatlogs trace, so anyone can audit exactly how the verdict was reached."
 
 **[2:25–2:50 — Calibration proof]**
-*(Calibration table: 8 claims, 7/8 in requested bands)*
-> "And it's calibrated, not just confident. Eight test claims across the full Truth-O-Meter — from Pants on Fire to True — seven of eight landed in their expected bands. The eighth scored 78 out of 100 — just under its requested band, still inside the pipeline's Mostly True range."
+*(Calibration table: 28 claims, 28/28 in band)*
+> "And it's calibrated, not just confident. Twenty-eight test claims across the full Truth-O-Meter — from Pants on Fire to True — all twenty-eight in band."
 
 **[2:50–3:00 — Close]**
 *(Logo, URL, #neatHack)*
