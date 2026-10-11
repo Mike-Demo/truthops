@@ -1,8 +1,7 @@
-"""Alexandria adapter — generic Firecrawl Alexandria integration for TruthOps.
+"""Alexandria adapter — primary-source search for TruthOps.
 
-Provides access to all 27 Alexandria categories (companies, finance, news,
-jobs, knowledge, etc.) via the Firecrawl CLI. Used for evidence enrichment:
-company records, financial statements, news coverage, and more.
+Uses the Firecrawl CLI to search the web for primary sources (news articles,
+official statements, press releases) that support or disprove a claim.
 
 This is a VALIDATION/ENRICHMENT signal: Alexandria results annotate evidence
 but never directly change verdicts. Graceful no-op when CLI is missing or
@@ -10,15 +9,13 @@ calls fail.
 
 Usage:
     from truthops.evidence import alexandria_adapter
-    # Discover tools for a need
-    tools = alexandria_adapter.discover("company funding rounds")
-    # Execute a specific provider/capability
-    result = alexandria_adapter.execute("fireround/rounds/search", {"query": "..."})
+    sources = alexandria_adapter.search_primary_sources("Trump grocery prices claim")
+    # -> [{"title": ..., "url": ..., "snippet": ..., "published": ...}]
 """
 
 from __future__ import annotations
 
-import json
+import re
 import subprocess
 
 CLI = ["npx", "-y", "firecrawl-cli@latest"]
@@ -36,84 +33,75 @@ def available() -> bool:
         return False
 
 
-def discover(need: str, max_results: int = 5) -> list[dict]:
-    """Discover Alexandria tools for a given need.
+def search_primary_sources(query: str, max_results: int = 5) -> list[dict]:
+    """Search the web for primary sources relevant to a claim.
 
-    Returns list of {provider, capability, description}.
-    Never raises; returns [] on failure.
+    Returns list of {title, url, snippet}. Never raises; returns [] on failure.
     """
     try:
-        # Note: --sources alexandria returns no results (broken in firecrawl-cli);
-        # use regular search which works
         p = subprocess.run(
-            CLI + ["search", need],
+            CLI + ["search", query, "--limit", str(max_results)],
             capture_output=True, text=True, timeout=TIMEOUT_S,
         )
     except Exception:
         return []
     if p.returncode != 0:
         return []
-    # Parse the text output for provider/capability pairs
-    tools = []
-    lines = p.stdout.split("\n")
-    i = 0
-    while i < len(lines) and len(tools) < max_results:
-        line = lines[i].strip()
-        # Tool ref lines look like "  fireround/rounds/search" (no leading ===, no colon)
-        if line and "/" in line and not line.startswith(("=", "Inspect", "Use", "Finding", "No results")):
-            # Must be a bare ref (no spaces before the slash part, or starts with spaces then ref)
-            parts = line.split(None, 1)
-            ref = parts[0]
-            if "/" in ref and not ref.startswith("http"):
-                segs = ref.split("/")
-                if len(segs) >= 2:
-                    # Description is on the next non-empty line
-                    desc = ""
-                    j = i + 1
-                    while j < len(lines) and not lines[j].strip():
-                        j += 1
-                    if j < len(lines):
-                        desc = lines[j].strip()[:200]
-                    tools.append({
-                        "ref": "/".join(segs),
-                        "provider": segs[0],
-                        "capability": "/".join(segs[1:]),
-                        "description": desc,
-                    })
-        i += 1
-    return tools
+    return _parse_search_output(p.stdout, max_results)
 
 
-def execute(ref: str, options: dict) -> dict | None:
-    """Execute an Alexandria provider/capability.
+def _parse_search_output(output: str, max_results: int) -> list[dict]:
+    """Parse firecrawl-cli search text output into source dicts."""
+    sources = []
+    # Results are separated by blank lines; each starts with a title line
+    # followed by "  URL: <url>" and then content.
+    blocks = re.split(r"\n\s*\n", output)
+    for block in blocks:
+        if len(sources) >= max_results:
+            break
+        lines = [l.strip() for l in block.strip().split("\n") if l.strip()]
+        if not lines:
+            continue
+        # Skip header blocks
+        if lines[0].startswith("===") or lines[0] == "No results found.":
+            continue
+        url = ""
+        title = lines[0]
+        snippet_lines = []
+        for line in lines[1:]:
+            m = re.match(r"URL:\s*(\S+)", line)
+            if m:
+                url = m.group(1)
+            elif not line.startswith("[") and len(line) > 20:
+                snippet_lines.append(line)
+        if not url:
+            continue
+        # Clean title: strip markdown artifacts
+        title = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", title)[:200]
+        sources.append({
+            "title": title,
+            "url": url,
+            "snippet": " ".join(snippet_lines)[:500],
+        })
+    return sources
 
-    Args:
-        ref: "provider/capability" (e.g. "fireround/rounds/search")
-        options: Input JSON for the tool
 
-    Returns parsed result dict or None on failure. Never raises.
-    """
+def scrape_source(url: str) -> dict | None:
+    """Scrape a single URL for full content. Returns {url, content} or None."""
     try:
         p = subprocess.run(
-            CLI + ["scrape", "--alexandria", ref,
-                   "--options", json.dumps(options)],
+            CLI + ["scrape", url, "--formats", "markdown"],
             capture_output=True, text=True, timeout=TIMEOUT_S,
         )
     except Exception:
         return None
     if p.returncode != 0:
         return None
-    try:
-        # Output contains JSON mixed with log lines; find the JSON
-        out = p.stdout
-        start = out.find('{"success"')
-        if start < 0:
-            return None
-        # Find matching brace (simplified: take to end, try parse)
-        data = json.loads(out[start:])
-        return data
-    except Exception:
+    # Content follows the URL line; take everything after first blank line
+    text = p.stdout.strip()
+    if len(text) < 100:
         return None
+    return {"url": url, "content": text[:5000]}
 
 
 # Category hints for TruthOps evidence gathering

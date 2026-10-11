@@ -89,7 +89,7 @@ class LiveAdapter:
         if alexandria_adapter.available():
             status["alexandria"] = {
                 "mode": "live",
-                "detail": "firecrawl-cli available — enrichment callable (paid per use)",
+                "detail": "firecrawl-cli available — primary-source search callable (paid per use)",
             }
         else:
             status["alexandria"] = {

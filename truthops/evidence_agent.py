@@ -159,8 +159,9 @@ class EvidenceAgent:
                     "summary": self._summarize(doc),
                 }
                 # GPTZero validation layer: screen secondary-source texts for
-                # AI-generation signals. Annotation only — never changes the
-                # verdict math. Skipped gracefully when unavailable or the
+                # AI-generation signals. High P(ai) reduces the source's
+                # reliability weight — AI-generated text is less trustworthy
+                # as evidence. Skipped gracefully when unavailable or the
                 # text is too short.
                 if not rec["is_primary_source"]:
                     with tracing.span("evidence.gptzero_screen", claim_id=claim_id,
@@ -169,18 +170,27 @@ class EvidenceAgent:
                         screening = gptzero_adapter.screen_text(screenable)
                     rec["ai_screening"] = screening
                     if screening:
+                        p_ai = screening.get("p_ai", 0) or 0
+                        # Weight reliability down by P(ai): a fully AI-generated
+                        # source (P=1.0) loses 70% of its reliability weight.
+                        # Human-written (P~0) is unaffected.
+                        ai_discount = 1.0 - (p_ai * 0.7)
+                        old_rel = rec["reliability"]
+                        rec["reliability"] = round(old_rel * ai_discount, 3)
+                        rec["score"] = round(rec["reliability"] * relevance, 3)
                         self.state.log_event(
                             "evidence_validated",
                             f"{rec['evidence_id']}: GPTZero screen -> "
                             f"{screening['predicted_class']} "
                             f"(P(ai)={screening['p_ai']}, "
-                            f"confidence={screening['confidence']})",
+                            f"confidence={screening['confidence']}) — "
+                            f"reliability {old_rel} -> {rec['reliability']}",
                             claim_id=claim_id, evidence_id=rec["evidence_id"],
                         )
                         print(f"  [validate] {rec['evidence_id']}: GPTZero flags "
                               f"source as {screening['predicted_class'].upper()} "
-                              f"(P(ai)={screening['p_ai']}) — secondary-source "
-                              f"reliability note, not a verdict input")
+                              f"(P(ai)={screening['p_ai']}) — reliability "
+                              f"{old_rel} -> {rec['reliability']}")
                 records.append(rec)
                 self.state.data["evidence"][rec["evidence_id"]] = rec
                 self.state.log_event(
@@ -190,7 +200,7 @@ class EvidenceAgent:
                     claim_id=claim_id, evidence_id=rec["evidence_id"],
                 )
                 print(f"  [evidence] {rec['evidence_id']} {stance} "
-                      f"| rel={reliability} x relv={relevance} -> score={score} "
+                      f"| rel={rec['reliability']} x relv={relevance} -> score={rec['score']} "
                       f"| primary={rec['is_primary_source']}")
             # Live adapters: actually execute when in live mode, not just report status.
             # Fixture evidence stays as the benchmark baseline; live calls enrich.
@@ -204,7 +214,7 @@ class EvidenceAgent:
                 if alexandria_adapter.available():
                     print("  [evidence] Alexandria (27 categories) available — SIMULATED in demo, skipped for benchmark purity")
                     print("    Categories: company, finance, news, jobs, knowledge, digital-intelligence, ...")
-                    print("    Use alexandria_adapter.discover(need) + .execute(ref, options) for live investigations")
+                    print("    Use alexandria_adapter.search_primary_sources(query) for live investigations")
             self.state.save()
             return records
 
@@ -213,41 +223,41 @@ class EvidenceAgent:
         la = self.live_adapter
         claim_text = self.state.data.get("claims", {}).get(claim_id, {}).get("statement", "")
 
-        # Alexandria: discover + execute for real evidence enrichment
+        # Alexandria: search for primary sources that support/disprove the claim
         if la.is_live("alexandria"):
             try:
-                with tracing.span("evidence.alexandria_discover", claim_id=claim_id):
-                    tools = alexandria_adapter.discover(
-                        f"evidence about: {claim_text[:200]}", max_results=3)
-                print(f"  [live] Alexandria discovered {len(tools)} tools")
-                for tool in tools[:2]:  # limit to 2 executions for cost control
-                    ref = tool.get("ref") or tool.get("id", "")
-                    if not ref:
+                with tracing.span("evidence.alexandria_search", claim_id=claim_id):
+                    sources = alexandria_adapter.search_primary_sources(
+                        claim_text[:200], max_results=3)
+                print(f"  [live] Alexandria found {len(sources)} primary sources")
+                for src in sources[:2]:  # limit to 2 for cost control
+                    url = src.get("url", "")
+                    if not url:
                         continue
-                    with tracing.span("evidence.alexandria_execute",
-                                      claim_id=claim_id, ref=ref):
-                        result = alexandria_adapter.execute(ref, {"query": claim_text[:200]})
-                    if result:
-                        cost = result.get("creditsCost", 0) if isinstance(result, dict) else 0
-                        la.log_spend("alexandria", f"execute:{ref}",
-                                     credits=cost, note=f"tool={ref}")
-                        print(f"  [live] Alexandria {ref} -> {cost} credits")
-                        # Convert to evidence record
-                        rec = {
-                            "evidence_id": f"ev-{claim_id}-alex-{len(records)+1}",
-                            "claim_id": claim_id,
-                            "source": "alexandria",
-                            "label": f"Alexandria live: {ref}",
-                            "url": ref,
-                            "stance": "supports",  # enrichment, stance TBD by analyst
-                            "reliability": 0.7,
-                            "relevance": 0.6,
-                            "score": round(0.7 * 0.6, 3),
-                            "is_primary_source": False,
-                            "summary": str(result)[:220] if isinstance(result, dict) else str(result)[:220],
-                        }
-                        records.append(rec)
-                        self.state.data["evidence"][rec["evidence_id"]] = rec
+                    with tracing.span("evidence.alexandria_scrape",
+                                      claim_id=claim_id, url=url):
+                        scraped = alexandria_adapter.scrape_source(url)
+                    content = (scraped.get("content", "") if scraped
+                               else src.get("snippet", ""))
+                    la.log_spend("alexandria", "search+scrape",
+                                 note=f"url={url[:60]}")
+                    print(f"  [live] Alexandria source: {src.get('title', '')[:60]}")
+                    # Convert to evidence record
+                    rec = {
+                        "evidence_id": f"ev-{claim_id}-alex-{len(records)+1}",
+                        "claim_id": claim_id,
+                        "source": "alexandria",
+                        "label": f"Alexandria: {src.get('title', url)[:80]}",
+                        "url": url,
+                        "stance": "neutral",  # stance TBD by analyst
+                        "reliability": 0.7,
+                        "relevance": 0.6,
+                        "score": round(0.7 * 0.6, 3),
+                        "is_primary_source": True,
+                        "summary": content[:220] if content else src.get("snippet", "")[:220],
+                    }
+                    records.append(rec)
+                    self.state.data["evidence"][rec["evidence_id"]] = rec
             except Exception as e:
                 print(f"  [live] Alexandria enrichment failed: {e} — continuing with fixtures")
                 self.state.log_event("live_enrichment_failed",

@@ -92,10 +92,19 @@ def write_reports(state, plan, case_id, live_adapter=None):
               "publish / post / notify all blocked pending explicit human approval.",
               "", "## Evidence (scored)", ""]
     for eid, r in data["evidence"].items():
-        lines.append(
+        line = (
             f"- `{eid}` [{r['source']}] {r['stance']} `{r['claim_id']}` — "
             f"score {r['score']} (reliability {r['reliability']} × relevance {r['relevance']}) "
             f"| primary={r['is_primary_source']} | {r['label']}")
+        # GPTZero screening note: show why reliability was discounted
+        screening = r.get("ai_screening")
+        if screening:
+            line += (f" | GPTZero: {screening.get('predicted_class', '?')} "
+                     f"(P(ai)={screening.get('p_ai', '?')})")
+        # Source URL when available
+        if r.get("url") and not str(r["url"]).startswith("fixture://"):
+            line += f" | {r['url']}"
+        lines.append(line)
     lines += ["", "## Contrarian challenges", ""]
     for rev in data["contrarian_reviews"]:
         lines.append(
@@ -104,6 +113,27 @@ def write_reports(state, plan, case_id, live_adapter=None):
         if rev.get("disagreement"):
             lines.append(f"  - challenge: {rev['disagreement']}")
             lines.append(f"  - re-verification: {rev['reverification']}")
+    # Condensed audit trail: key events in chronological order
+    lines += ["", "## Audit trail", ""]
+    for e in data.get("events", []):
+        msg = e.get("message", "")
+        # Skip verbose HTTP attempt logs; keep decisions, validations, failures
+        if any(k in msg for k in ("[sniff]", "Decomposed", "next action",
+                                   "evidence_validated", "evidence_scored",
+                                   "503", "Retrying", "contrarian",
+                                   "verdict", "approval")):
+            lines.append(f"- {msg[:160]}")
+    # Adapter status and spend
+    lines += ["", "## Adapter status", ""]
+    for name, st in data.get("adapter_status", {}).items():
+        lines.append(f"- {name}: {st.get('mode', '?')} — {st.get('detail', '')}")
+    spend = data.get("api_spend", {})
+    if spend:
+        lines.append("")
+        lines.append(f"**API spend:** {spend}")
+    else:
+        lines.append("")
+        lines.append("**API spend:** $0.00 — no paid calls this run")
     mpath = os.path.join(BASE, "artifacts", f"truthops-report-{case_id}.md")
     with open(mpath, "w") as f:
         f.write("\n".join(lines) + "\n")
