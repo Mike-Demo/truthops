@@ -4,7 +4,7 @@
 
 **Overall characterization: FALSE**
 **Recommended posture:** Deny with evidence
-**Neatlogs trace ID:** `unavailable`
+**Neatlogs trace ID:** `c1646a091019e097788b769790b755b0`
 
 ## Claim verdicts
 
@@ -27,6 +27,7 @@ External actions: **BLOCKED** — publish / post / notify all blocked pending ex
 - `ev-claim-alex-2` [alexandria] neutral `claim` — score 0.42 (reliability 0.7 × relevance 0.6) | primary=True | Alexandria: Images of NYC Mayor Zohran Mamdani with Jeffrey Epstein are AI ... | https://abc7ny.com/post/images-nyc-mayor-zohran-mamdani-jeffrey-epstein-are-ai-generated-heres-how-know/18541733/
 - `ev-claim-alex-3` [alexandria] neutral `claim` — score 0.42 (reliability 0.7 × relevance 0.6) | primary=True | Alexandria: Images of NYC Mayor Mamdani with Jeffrey Epstein are AI-generated ... | https://www.cbsnews.com/newyork/news/zohran-mamdani-jeffrey-epstein-ai-images-nyc/
 - `ev-claim-c2pa-1` [c2pa] neutral `claim` — score 0.4 (reliability 0.5 × relevance 0.8) | primary=False | C2PA provenance: https://cdn.abcotvs.com/dip/images/18541748_020426-wabc-mamd | https://cdn.abcotvs.com/dip/images/18541748_020426-wabc-mamdani-imgimgimg.jpg?w=1600
+- `ev-claim-sightengine-1` [sightengine] neutral `claim` — score 0.0 (reliability 0.0 × relevance 0.9) | primary=False | Sightengine AI detection: https://cdn.abcotvs.com/dip/images/18541748_020426-wabc-mamd | https://cdn.abcotvs.com/dip/images/18541748_020426-wabc-mamdani-imgimgimg.jpg?w=1600
 
 ## Contrarian challenges
 
@@ -34,7 +35,7 @@ External actions: **BLOCKED** — publish / post / notify all blocked pending ex
 
 ## Audit trail
 
-- [sniff] proceed=True — passed sniff test — coherent allegation, full pipeline warranted (backend=heuristic)
+- [sniff] proceed=True — passed sniff test — coherent allegation, full pipeline warranted (backend=clef-flash)
 - Decomposed into 1 atomic claims: ['claim']
 - [director] claim: next action = gather — no evidence yet — gather before any judgment
 - [director] claim: next action = evaluate — evidence phase complete — evaluate the claim

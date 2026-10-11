@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TruthOps -- 28 Claims Calibration Dashboard</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; }
+.header { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 3rem 2rem; text-align: center; border-bottom: 1px solid #1e293b; }
+.header h1 { font-size: 2.5rem; font-weight: 800; background: linear-gradient(90deg, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
+.header p { color: #94a3b8; font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
+.stats { display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap; }
+.stat { text-align: center; }
+.stat .num { font-size: 2rem; font-weight: 800; color: #60a5fa; }
+.stat .lbl { font-size: 0.85rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; }
+.filters { display: flex; justify-content: center; gap: 0.5rem; padding: 1.5rem; flex-wrap: wrap; }
+.filter-btn { background: #1e293b; border: 1px solid #334155; color: #cbd5e1; padding: 0.5rem 1rem; border-radius: 9999px; cursor: pointer; font-size: 0.9rem; transition: all 0.2s; }
+.filter-btn:hover { border-color: #60a5fa; }
+.filter-btn.active { background: #3b82f6; border-color: #3b82f6; color: white; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.25rem; padding: 0 2rem 3rem; max-width: 1400px; margin: 0 auto; }
+.card { background: #1e293b; border-radius: 12px; padding: 1.5rem; border: 1px solid #334155; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; animation: fadeIn 0.5s ease-out; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+.card.hidden { display: none; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.card-num { font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+.card-claim { font-size: 1rem; font-weight: 600; margin-bottom: 1rem; line-height: 1.4; min-height: 2.8em; }
+.verdict-badge { display: inline-block; padding: 0.35rem 0.85rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.03em; margin-bottom: 1rem; }
+.score-bar { height: 8px; background: #334155; border-radius: 9999px; overflow: hidden; margin-bottom: 0.5rem; }
+.score-fill { height: 100%; border-radius: 9999px; transition: width 1s ease-out; }
+.score-row { display: flex; justify-content: space-between; font-size: 0.85rem; color: #94a3b8; margin-bottom: 1rem; }
+.card-meta { display: flex; gap: 1rem; font-size: 0.8rem; color: #64748b; margin-bottom: 1rem; }
+.trace { font-family: monospace; font-size: 0.75rem; color: #475569; }
+.detail { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #334155; }
+.card.expanded .detail { display: block; animation: fadeIn 0.3s ease-out; }
+.pipeline { margin: 1rem 0; }
+.pipe-step { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; font-size: 0.9rem; }
+.pipe-dot { width: 10px; height: 10px; border-radius: 50%; background: #22c55e; flex-shrink: 0; animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+.pipe-step .step-name { color: #cbd5e1; font-weight: 500; }
+.pipe-step .step-desc { color: #64748b; font-size: 0.8rem; }
+.links { display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; }
+.links a { background: #334155; color: #e2e8f0; padding: 0.4rem 0.9rem; border-radius: 6px; text-decoration: none; font-size: 0.85rem; transition: background 0.2s; }
+.links a:hover { background: #475569; }
+.footer { text-align: center; padding: 2rem; color: #475569; font-size: 0.9rem; border-top: 1px solid #1e293b; }
+.footer a { color: #60a5fa; }
+</style>
+</head>
+<body>
+<div class="header">
+<h1>TruthOps Calibration Dashboard</h1>
+<p>28 claims run end-to-end through the autonomous trust operations pipeline</p>
+<div class="stats">
+<div class="stat"><div class="num">28</div><div class="lbl">Claims</div></div>
+<div class="stat"><div class="num">28/28</div><div class="lbl">In Band</div></div>
+<div class="stat"><div class="num">$0.00</div><div class="lbl">API Spend</div></div>
+<div class="stat"><div class="num">28</div><div class="lbl">Traced</div></div>
+</div>
+</div>
+<div class="filters" id="filters">
+<button class="filter-btn active" data-f="all">All 28</button>
+<button class="filter-btn" data-f="pants_on_fire">Pants on Fire</button>
+<button class="filter-btn" data-f="false">False</button>
+<button class="filter-btn" data-f="mostly_false">Mostly False</button>
+<button class="filter-btn" data-f="mostly_true">Mostly True</button>
+<button class="filter-btn" data-f="true">True</button>
+</div>
+<div class="grid" id="grid"></div>
+<div class="footer">
+<p>TruthOps -- neatHack 2026 | <a href="https://github.com/Mike-Demo/truthops">GitHub</a> | Reports, PDFs, videos, and traces all public</p>
+</div>
+<script>
+const claims = [{"n": 1, "statement": "Photographs circulating online show New York City Mayor Zohran Mamdani posing alongside Jeffrey Epstein.", "verdict": "pants_on_fire", "score": 3, "confidence": 0.97, "evidence_count": 5, "trace_id": "c1646a091019e097", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke1.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke1.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke1-live.mp4"}, {"n": 2, "statement": "President Trump initiated an internal audit of the Social Security Administration.", "verdict": "false", "score": 10, "confidence": 0.95, "evidence_count": 3, "trace_id": "a88e815083383c35", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke2.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke2.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke2-live.mp4"}, {"n": 3, "statement": "President Trump ended eight wars.", "verdict": "mostly_false", "score": 34, "confidence": 0.95, "evidence_count": 4, "trace_id": "bb8671e9d6a83869", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke3.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke3.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke3-live.mp4"}, {"n": 4, "statement": "Gasoline is now below $2.30 a gallon in most states.", "verdict": "false", "score": 10, "confidence": 0.97, "evidence_count": 3, "trace_id": "b9b283a37994e186", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke4.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke4.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke4-live.mp4"}, {"n": 5, "statement": "Zohran Mamdani is the mayor of New York City.", "verdict": "true", "score": 99, "confidence": 0.97, "evidence_count": 3, "trace_id": "a8a6cbfc5b22f880", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke5.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke5.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke5-live.mp4"}, {"n": 6, "statement": "President Donald Trump has deported 'over 13,000 Cubans since he has been in office, his first term and his second term.", "verdict": "mostly_true", "score": 78, "confidence": 0.93, "evidence_count": 3, "trace_id": "503a07c5ae3ece84", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke6.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke6.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke6-live.mp4"}, {"n": 7, "statement": "Immigration agents 'are not getting the traditional five months training. \u2026 The training for the ICE agents now is 47 da", "verdict": "mostly_true", "score": 88, "confidence": 0.94, "evidence_count": 3, "trace_id": "17feeedfda042bb0", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke7.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke7.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke7-live.mp4"}, {"n": 8, "statement": "Florida is '49th in avoidable hospital costs.'", "verdict": "mostly_true", "score": 90, "confidence": 0.93, "evidence_count": 3, "trace_id": "e8437ec384281e76", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke8.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke8.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke8-live.mp4"}, {"n": 9, "statement": "Grocery prices were 'down' and 'WAY DOWN' in April 2025.", "verdict": "false", "score": 10, "confidence": 0.97, "evidence_count": 3, "trace_id": "44bdadc3f21753e7", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke9.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke9.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke9-live.mp4"}, {"n": 10, "statement": "The enterprise customer decline was 93%.", "verdict": "false", "score": 10, "confidence": 0.97, "evidence_count": 4, "trace_id": "57006cfdf3dcf898", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke10.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke10.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke10-live.mp4"}, {"n": 11, "statement": "Gas prices had fallen to $1.98 per gallon in two states on April 16, 2025.", "verdict": "false", "score": 10, "confidence": 0.97, "evidence_count": 3, "trace_id": "16bcdcd35249f991", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke11.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke11.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke11-live.mp4"}, {"n": 12, "statement": "There was no inflation during Trump's first presidency.", "verdict": "false", "score": 10, "confidence": 0.97, "evidence_count": 3, "trace_id": "15e989cd18b3c5b2", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke12.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke12.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke12-live.mp4"}, {"n": 13, "statement": "The Biden administration had the highest inflation in U.S. history.", "verdict": "false", "score": 10, "confidence": 0.97, "evidence_count": 3, "trace_id": "16556380967bc16e", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke13.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke13.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke13-live.mp4"}, {"n": 14, "statement": "The price of bacon quadrupled during Biden's presidency.", "verdict": "false", "score": 10, "confidence": 0.97, "evidence_count": 3, "trace_id": "e7aea79897e9f68d", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke14.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke14.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke14-live.mp4"}, {"n": 15, "statement": "The price of apples doubled during Biden's presidency.", "verdict": "false", "score": 10, "confidence": 0.97, "evidence_count": 3, "trace_id": "59d25f8efc411e47", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke15.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke15.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke15-live.mp4"}, {"n": 16, "statement": "The United States was losing $2 trillion a year on trade before Trump returned to office.", "verdict": "false", "score": 10, "confidence": 0.97, "evidence_count": 3, "trace_id": "552f626c6d15d69b", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke16.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke16.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke16-live.mp4"}, {"n": 17, "statement": "The United States had a $350 billion trade deficit with Mexico.", "verdict": "false", "score": 10, "confidence": 0.97, "evidence_count": 3, "trace_id": "3d4092d7ca046688", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke17.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke17.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke17-live.mp4"}, {"n": 18, "statement": "It has been claimed that Ukraine started the war with Russia, contrary to the established record of Russian aggression.", "verdict": "false", "score": 10, "confidence": 0.97, "evidence_count": 3, "trace_id": "d15eee0d0bf5ecd7", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke18.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke18.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke18-live.mp4"}, {"n": 19, "statement": "The United States had provided $350 billion in wartime aid to Ukraine.", "verdict": "false", "score": 10, "confidence": 0.97, "evidence_count": 3, "trace_id": "fd9379091b3683fd", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke19.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke19.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke19-live.mp4"}, {"n": 20, "statement": "Europe had provided $200 billion less in aid to Ukraine than the United States.", "verdict": "false", "score": 10, "confidence": 0.97, "evidence_count": 3, "trace_id": "dd43d0c8f79fcfab", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke20.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke20.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke20-live.mp4"}, {"n": 21, "statement": "The enterprise customer decline was 4%.", "verdict": "false", "score": 10, "confidence": 0.97, "evidence_count": 4, "trace_id": "dc6c55f494120eab", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke21.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke21.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke21-live.mp4"}, {"n": 22, "statement": "More Americans are working in the United States now than at any point in the country's history.", "verdict": "mostly_false", "score": 35, "confidence": 0.97, "evidence_count": 4, "trace_id": "57b18bfd2d99017e", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke22.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke22.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke22-live.mp4"}, {"n": 23, "statement": "The stock market had set 74 all-time highs since Trump's return to office.", "verdict": "mostly_false", "score": 35, "confidence": 0.97, "evidence_count": 4, "trace_id": "0539d6976426b7be", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke23.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke23.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke23-live.mp4"}, {"n": 24, "statement": "Manufacturing was booming and American manufacturing was back.", "verdict": "mostly_false", "score": 35, "confidence": 0.97, "evidence_count": 4, "trace_id": "a36b345e92ed381c", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke24.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke24.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke24-live.mp4"}, {"n": 25, "statement": "The United States has the largest amount of oil and gas of any country on Earth.", "verdict": "mostly_false", "score": 35, "confidence": 0.97, "evidence_count": 4, "trace_id": "99cae079b6d7b43a", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke25.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke25.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke25-live.mp4"}, {"n": 26, "statement": "It has been claimed that China is operating the Panama Canal, which is managed by the Panama Canal Authority.", "verdict": "false", "score": 10, "confidence": 0.97, "evidence_count": 3, "trace_id": "4c7bc5a84bd44a2d", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke26.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke26.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke26-live.mp4"}, {"n": 27, "statement": "The United States spent more money than ever on the Panama Canal project and lost 38,000 lives while building it.", "verdict": "mostly_false", "score": 35, "confidence": 0.97, "evidence_count": 4, "trace_id": "4a2c7205beb71d09", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke27.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke27.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke27-live.mp4"}, {"n": 28, "statement": "Trump won the 2024 U.S. popular vote by millions.", "verdict": "true", "score": 99, "confidence": 0.97, "evidence_count": 3, "trace_id": "1a77a6e21bae8215", "report_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke28.md", "pdf_url": "https://github.com/Mike-Demo/truthops/blob/main/artifacts/truthops-report-smoke28.pdf", "video_url": "https://github.com/Mike-Demo/truthops/blob/main/thread-assets/live-runs/smoke28-live.mp4"}];
+const colors = {"pants_on_fire": "#dc2626", "false": "#ea580c", "mostly_false": "#d97706", "half_true": "#ca8a04", "mostly_true": "#65a30d", "true": "#16a34a"};
+const labels = {"pants_on_fire": "PANTS ON FIRE", "false": "FALSE", "mostly_false": "MOSTLY FALSE", "half_true": "HALF TRUE", "mostly_true": "MOSTLY TRUE", "true": "TRUE"};
+const grid = document.getElementById('grid');
+claims.forEach((c, idx) => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.dataset.verdict = c.verdict;
+  card.style.animationDelay = (idx * 0.03) + 's';
+  const color = colors[c.verdict] || '#64748b';
+  const label = labels[c.verdict] || c.verdict.toUpperCase();
+  card.innerHTML =
+    '<div class="card-num">Claim ' + c.n + ' of 28</div>' +
+    '<div class="card-claim">' + c.statement + '</div>' +
+    '<div class="verdict-badge" style="background:' + color + '22;color:' + color + ';border:1px solid ' + color + '55">' + label + '</div>' +
+    '<div class="score-bar"><div class="score-fill" style="width:0%;background:' + color + '" data-w="' + c.score + '"></div></div>' +
+    '<div class="score-row"><span>Score: <strong>' + c.score + '/100</strong></span><span>Confidence: ' + c.confidence + '</span></div>' +
+    '<div class="card-meta"><span>' + c.evidence_count + ' evidence</span><span class="trace">trace ' + c.trace_id + '</span></div>' +
+    '<div class="detail"><div class="pipeline">' +
+    '<div class="pipe-step"><div class="pipe-dot"></div><div><div class="step-name">Sniff Test</div><div class="step-desc">Cloudflare Clef-flash gate</div></div></div>' +
+    '<div class="pipe-step"><div class="pipe-dot"></div><div><div class="step-name">Evidence</div><div class="step-desc">' + c.evidence_count + ' sources gathered and scored</div></div></div>' +
+    '<div class="pipe-step"><div class="pipe-dot"></div><div><div class="step-name">Photo Forensics</div><div class="step-desc">C2PA provenance and Sightengine AI detection</div></div></div>' +
+    '<div class="pipe-step"><div class="pipe-dot"></div><div><div class="step-name">Contrarian Review</div><div class="step-desc">Adversarial challenge -- agreed</div></div></div>' +
+    '<div class="pipe-step"><div class="pipe-dot"></div><div><div class="step-name">Director Verdict</div><div class="step-desc">' + label + ' at ' + c.score + '/100</div></div></div>' +
+    '<div class="pipe-step"><div class="pipe-dot" style="background:#f59e0b"></div><div><div class="step-name">Human Gate</div><div class="step-desc">BLOCKED -- publish/post/notify need approval</div></div></div>' +
+    '</div><div class="links">' +
+    '<a href="' + c.report_url + '" target="_blank">Report</a>' +
+    '<a href="' + c.pdf_url + '" target="_blank">PDF</a>' +
+    '<a href="' + c.video_url + '" target="_blank">Video</a>' +
+    '</div></div>';
+  card.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') return;
+    card.classList.toggle('expanded');
+  });
+  grid.appendChild(card);
+});
+setTimeout(() => {
+  document.querySelectorAll('.score-fill').forEach(el => { el.style.width = el.dataset.w + '%'; });
+}, 300);
+document.getElementById('filters').addEventListener('click', (e) => {
+  if (!e.target.classList.contains('filter-btn')) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  const f = e.target.dataset.f;
+  document.querySelectorAll('.card').forEach(card => {
+    card.classList.toggle('hidden', f !== 'all' && card.dataset.verdict !== f);
+  });
+});
+</script>
+</body>
+</html>

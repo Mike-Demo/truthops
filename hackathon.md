@@ -96,3 +96,19 @@ Three checkpoints, all materialized to GitHub ref namespace `refs/entire/checkpo
 
 ## 2026-10-11 afternoon — community claims (smoke9–28)
 - 20 claims from CNN, AP, Reuters fact checks via Discord show-and-tell. Fixtures + pipeline code extended. All 20 ran with live keys: 18/20 in expected bands (13× FALSE 10/100, 5× MOSTLY_FALSE 35/100, 1× TRUE 99/100). smoke22/23 scored 35 vs higher bands — pipeline penalizes "true but misleading." 40 videos (landscape + vertical). Claims page now shows 28 claims.
+
+## 2026-10-11 evening — adapter debugging + fixes
+
+**The $0.00 mystery.** Live runs showed $0.00 spend across all adapters despite keys being loaded and status probes saying LIVE. Investigation of each adapter:
+
+1. **Cloudflare Clef (sniff test)** — was silently falling back to heuristic on every run. Root cause: the response parser expected the probability in a field called `probability`; Clef returns it in `noul`. One-line fix in `truthops/sniff_test.py`. Now all 28 sniff tests hit the real `clef-flash` model.
+
+2. **Alexandria (evidence enrichment)** — the original design was wrong. It was built as a tool marketplace (discover → execute), but Firecrawl Alexandria is a data-provider marketplace requiring team-level access. Rewrote `truthops/evidence/alexandria_adapter.py` as web search → scrape for primary sources. Now finds 3 real sources per claim.
+
+3. **GPTZero (source validation)** — was annotation-only ("flagged as AI but didn't change the math"). Implemented P(ai) reliability discount: `reliability × (1 - P(ai) × 0.7)` in `truthops/evidence_agent.py`. A fully AI-generated source loses 70% of its weight. Verified on smoke10: AI-flagged source dropped 0.4 → 0.12. (Bibliography/citation API confirmed 403 on our plan — dashboard-only feature.)
+
+4. **Sightengine (photo forensics)** — the pipeline detected photo claims but stopped at "image acquisition required." Wired end-to-end Oct 11 evening: `_acquire_claim_image()` searches via Firecrawl, downloads the image (og:image preferred, size/safety checks), then runs the C2PA → Sightengine chain via `LiveAdapter.verify_photo()`. Verified live on smoke1: 413KB photo acquired from ABC7 article, C2PA checked (no provenance, as expected), added as evidence record. Verdict unchanged at PANTS_ON_FIRE 3/100 — no regression.
+
+**Proof run (Oct 11 ~3:50 PM):** All 28 claims re-ran with live keys after adapter fixes. 28/28 in expected bands, zero regressions. **Traced rerun (Oct 11 ~4:00 PM):** All 28 re-ran with NEATLOGS_API_KEY set — 28/28 trace IDs captured. Reports, PDFs regenerated.
+
+**Entire checkpoints (Oct 11):** `01M4PAFW1VD6GMP8A5W2GAW9V2` → `7afa104` → `b51ba79` (traced rerun) → `aef3807` (Sightengine wiring) → `01M4PD1Z3D2Q28FHYMFPDARF1J` → `9e95694` (smoke1 C2PA evidence).

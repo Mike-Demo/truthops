@@ -1,10 +1,10 @@
 {
   "label": "LIVE run \u2014 neatHack 2026",
-  "run_id": "run-20261011-210020",
+  "run_id": "run-20261011-212714",
   "case_id": "smoke28",
-  "generated_at": "2026-10-11T21:00:30",
+  "generated_at": "2026-10-11T21:27:24",
   "live_mode": true,
-  "neatlogs_trace_id": "1a77a6e21bae82152d2c81ff9e122868",
+  "neatlogs_trace_id": "45020f72b2d5877da7dfe2e18f166149",
   "adapter_status": {
     "gptzero": {
       "mode": "live",
@@ -191,36 +191,36 @@
   },
   "events": [
     {
-      "t": "2026-10-11T21:00:20",
+      "t": "2026-10-11T21:27:14",
       "kind": "run_started",
-      "message": "TruthOps run run-20261011-210020 started for case 'smoke28'"
+      "message": "TruthOps run run-20261011-212714 started for case 'smoke28'"
     },
     {
-      "t": "2026-10-11T21:00:23",
+      "t": "2026-10-11T21:27:16",
       "kind": "sniff_test",
       "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted (backend=clef-flash)"
     },
     {
-      "t": "2026-10-11T21:00:23",
+      "t": "2026-10-11T21:27:16",
       "kind": "claims_decomposed",
       "message": "Decomposed into 1 atomic claims: ['claim']"
     },
     {
-      "t": "2026-10-11T21:00:23",
+      "t": "2026-10-11T21:27:16",
       "kind": "director_decision",
       "message": "[director] claim: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
       "claim_id": "claim",
       "action": "gather"
     },
     {
-      "t": "2026-10-11T21:00:23",
+      "t": "2026-10-11T21:27:16",
       "kind": "http_attempt",
       "message": "GET fixture://smoke28/reporting (attempt 1)",
       "url": "fixture://smoke28/reporting",
       "attempt": 1
     },
     {
-      "t": "2026-10-11T21:00:23",
+      "t": "2026-10-11T21:27:16",
       "kind": "http_success",
       "message": "GET fixture://smoke28/reporting -> 200 OK (attempt 1)",
       "url": "fixture://smoke28/reporting",
@@ -228,21 +228,21 @@
       "status": 200
     },
     {
-      "t": "2026-10-11T21:00:23",
+      "t": "2026-10-11T21:27:16",
       "kind": "evidence_scored",
       "message": "ev-claim-1: supports (reliability=0.95, relevance=1.0, score=0.95)",
       "claim_id": "claim",
       "evidence_id": "ev-claim-1"
     },
     {
-      "t": "2026-10-11T21:00:30",
+      "t": "2026-10-11T21:27:24",
       "kind": "director_decision",
       "message": "[director] claim: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
       "claim_id": "claim",
       "action": "evaluate"
     },
     {
-      "t": "2026-10-11T21:00:30",
+      "t": "2026-10-11T21:27:24",
       "kind": "claim_evaluated",
       "message": "claim: true (confidence 0.97, score 99) [support=0.95 vs contradict=0]",
       "claim_id": "claim",
@@ -250,37 +250,37 @@
       "confidence": 0.97
     },
     {
-      "t": "2026-10-11T21:00:30",
+      "t": "2026-10-11T21:27:24",
       "kind": "director_decision",
       "message": "[director] claim: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
       "claim_id": "claim",
       "action": "escalate"
     },
     {
-      "t": "2026-10-11T21:00:30",
+      "t": "2026-10-11T21:27:24",
       "kind": "contrarian_review",
       "message": "claim: agreed=True conf 0.97 -> 0.97",
       "claim_id": "claim"
     },
     {
-      "t": "2026-10-11T21:00:30",
+      "t": "2026-10-11T21:27:24",
       "kind": "response_planned",
       "message": "Response plan built: TRUE. All external actions BLOCKED pending approval."
     },
     {
-      "t": "2026-10-11T21:00:30",
+      "t": "2026-10-11T21:27:24",
       "kind": "approval_blocked",
       "message": "External action 'publish' BLOCKED \u2014 awaiting human approval.",
       "action": "publish"
     },
     {
-      "t": "2026-10-11T21:00:30",
+      "t": "2026-10-11T21:27:24",
       "kind": "approval_blocked",
       "message": "External action 'post' BLOCKED \u2014 awaiting human approval.",
       "action": "post"
     },
     {
-      "t": "2026-10-11T21:00:30",
+      "t": "2026-10-11T21:27:24",
       "kind": "approval_blocked",
       "message": "External action 'notify' BLOCKED \u2014 awaiting human approval.",
       "action": "notify"

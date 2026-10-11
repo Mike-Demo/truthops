@@ -1,18 +1,18 @@
 {
   "label": "LIVE run \u2014 neatHack 2026",
-  "run_id": "run-20261011-161155",
+  "run_id": "run-20261011-211833",
   "case_id": "smoke1",
-  "generated_at": "2026-10-11T16:12:11",
+  "generated_at": "2026-10-11T21:18:50",
   "live_mode": true,
-  "neatlogs_trace_id": "unavailable",
+  "neatlogs_trace_id": "c1646a091019e097788b769790b755b0",
   "adapter_status": {
     "gptzero": {
       "mode": "live",
       "detail": "gptzero-scan CLI present; auth via stored connector"
     },
     "sightengine": {
-      "mode": "fixture",
-      "detail": "Sightengine credentials not set \u2014 photo scans skipped"
+      "mode": "live",
+      "detail": "Sightengine credentials set \u2014 photo AI detection available"
     },
     "c2pa": {
       "mode": "live",
@@ -38,6 +38,14 @@
       "usd": 0.0,
       "operations": [
         "check_provenance"
+      ]
+    },
+    "sightengine": {
+      "calls": 1,
+      "credits": 0.0,
+      "usd": 0.0,
+      "operations": [
+        "scan_image"
       ]
     }
   },
@@ -130,6 +138,20 @@
       "is_primary_source": false,
       "summary": "No C2PA Content Credentials found in image. Absence of provenance is not proof of fabrication, but most AI generators do not embed C2PA data.",
       "fabrication_proof": false
+    },
+    "ev-claim-sightengine-1": {
+      "evidence_id": "ev-claim-sightengine-1",
+      "claim_id": "claim",
+      "source": "sightengine",
+      "label": "Sightengine AI detection: https://cdn.abcotvs.com/dip/images/18541748_020426-wabc-mamd",
+      "url": "https://cdn.abcotvs.com/dip/images/18541748_020426-wabc-mamdani-imgimgimg.jpg?w=1600",
+      "stance": "neutral",
+      "reliability": 0.0,
+      "relevance": 0.9,
+      "score": 0.0,
+      "is_primary_source": false,
+      "summary": "Sightengine scan unavailable: Sightengine request failed: HTTP Error 401: Incorrect API user or API secret",
+      "fabrication_proof": false
     }
   },
   "contrarian_reviews": [
@@ -213,36 +235,36 @@
   },
   "events": [
     {
-      "t": "2026-10-11T16:11:55",
+      "t": "2026-10-11T21:18:33",
       "kind": "run_started",
-      "message": "TruthOps run run-20261011-161155 started for case 'smoke1'"
+      "message": "TruthOps run run-20261011-211833 started for case 'smoke1'"
     },
     {
-      "t": "2026-10-11T16:11:56",
+      "t": "2026-10-11T21:18:37",
       "kind": "sniff_test",
-      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted (backend=heuristic)"
+      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted (backend=clef-flash)"
     },
     {
-      "t": "2026-10-11T16:11:56",
+      "t": "2026-10-11T21:18:37",
       "kind": "claims_decomposed",
       "message": "Decomposed into 1 atomic claims: ['claim']"
     },
     {
-      "t": "2026-10-11T16:11:56",
+      "t": "2026-10-11T21:18:37",
       "kind": "director_decision",
       "message": "[director] claim: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
       "claim_id": "claim",
       "action": "gather"
     },
     {
-      "t": "2026-10-11T16:11:56",
+      "t": "2026-10-11T21:18:37",
       "kind": "http_attempt",
       "message": "GET fixture://smoke1/ap-factcheck (attempt 1)",
       "url": "fixture://smoke1/ap-factcheck",
       "attempt": 1
     },
     {
-      "t": "2026-10-11T16:11:56",
+      "t": "2026-10-11T21:18:37",
       "kind": "http_success",
       "message": "GET fixture://smoke1/ap-factcheck -> 200 OK (attempt 1)",
       "url": "fixture://smoke1/ap-factcheck",
@@ -250,21 +272,21 @@
       "status": 200
     },
     {
-      "t": "2026-10-11T16:11:56",
+      "t": "2026-10-11T21:18:37",
       "kind": "evidence_scored",
       "message": "ev-claim-1: contradicts (reliability=0.95, relevance=1.0, score=0.95)",
       "claim_id": "claim",
       "evidence_id": "ev-claim-1"
     },
     {
-      "t": "2026-10-11T16:12:11",
+      "t": "2026-10-11T21:18:50",
       "kind": "director_decision",
       "message": "[director] claim: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
       "claim_id": "claim",
       "action": "evaluate"
     },
     {
-      "t": "2026-10-11T16:12:11",
+      "t": "2026-10-11T21:18:50",
       "kind": "claim_evaluated",
       "message": "claim: pants_on_fire (confidence 0.97, score 3) [support=0 vs contradict=0.95]",
       "claim_id": "claim",
@@ -272,37 +294,37 @@
       "confidence": 0.97
     },
     {
-      "t": "2026-10-11T16:12:11",
+      "t": "2026-10-11T21:18:50",
       "kind": "director_decision",
       "message": "[director] claim: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
       "claim_id": "claim",
       "action": "escalate"
     },
     {
-      "t": "2026-10-11T16:12:11",
+      "t": "2026-10-11T21:18:50",
       "kind": "contrarian_review",
       "message": "claim: agreed=True conf 0.97 -> 0.97",
       "claim_id": "claim"
     },
     {
-      "t": "2026-10-11T16:12:11",
+      "t": "2026-10-11T21:18:50",
       "kind": "response_planned",
       "message": "Response plan built: FALSE. All external actions BLOCKED pending approval."
     },
     {
-      "t": "2026-10-11T16:12:11",
+      "t": "2026-10-11T21:18:50",
       "kind": "approval_blocked",
       "message": "External action 'publish' BLOCKED \u2014 awaiting human approval.",
       "action": "publish"
     },
     {
-      "t": "2026-10-11T16:12:11",
+      "t": "2026-10-11T21:18:50",
       "kind": "approval_blocked",
       "message": "External action 'post' BLOCKED \u2014 awaiting human approval.",
       "action": "post"
     },
     {
-      "t": "2026-10-11T16:12:11",
+      "t": "2026-10-11T21:18:50",
       "kind": "approval_blocked",
       "message": "External action 'notify' BLOCKED \u2014 awaiting human approval.",
       "action": "notify"

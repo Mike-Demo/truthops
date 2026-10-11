@@ -1,0 +1,234 @@
+=== SMOKE 1 21:18:32 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+[director] investigating allegation: Photographs circulating online show New York City Mayor Zohran Mamdani posing alongside Jeffrey Epstein.
+[director] claim registered: claim — Photographs circulating online show New York City Mayor Zohran Mamdani posing alongside Jeffrey Epstein.
+  [evidence] ev-claim-1 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [live] Photo acquired (413319 bytes) — running C2PA/Sightengine chain
+  [live] C2PA evidence: neutral (rel=0.5)
+  [live] Sightengine evidence: neutral (rel=0.0) — Sightengine scan unavailable: Sightengine request failed: HTTP Error 401: Incorr
+=== SMOKE 2 21:18:51 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 contradicts | rel=0.9 x relv=1.0 -> score=0.9 | primary=True
+  [evaluate] claim -> FALSE (confidence 0.95, score 10/100) [support=0 | contradict=0.9]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'President Trump initiated an internal audit of the Social Security Administratio...': FALSE (10/100).
+=== SMOKE 3 21:19:04 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 supports | rel=0.8 x relv=0.8 -> score=0.64 | primary=True
+  [evidence] ev-claim-2 contradicts | rel=0.9 x relv=1.0 -> score=0.9 | primary=True
+  [evaluate] claim -> MOSTLY_FALSE (confidence 0.95, score 34/100) [support=0.64 | contradict=0.9]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'President Trump ended eight wars.': MOSTLY FALSE (34/100).
+=== SMOKE 4 21:19:20 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evaluate] claim -> FALSE (confidence 0.97, score 10/100) [support=0 | contradict=0.95]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'Gasoline is now below $2.30 a gallon in most states.': FALSE (10/100).
+=== SMOKE 5 21:19:36 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 supports | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evaluate] claim -> TRUE (confidence 0.97, score 99/100) [support=0.95 | contradict=0]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: TRUE
+  • Claim 'Zohran Mamdani is the mayor of New York City.': TRUE (99/100).
+=== SMOKE 6 21:19:50 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 supports | rel=0.85 x relv=1.0 -> score=0.85 | primary=True
+  [evaluate] claim -> MOSTLY_TRUE (confidence 0.93, score 78/100) [support=0.85 | contradict=0]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: TRUE
+  • Claim 'President Donald Trump has deported 'over 13,000 Cubans since he has been in off...': MOSTLY TRUE (78/100).
+=== SMOKE 7 21:20:03 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 supports | rel=0.88 x relv=1.0 -> score=0.88 | primary=True
+  [evaluate] claim -> MOSTLY_TRUE (confidence 0.94, score 88/100) [support=0.88 | contradict=0]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: TRUE
+  • Claim 'Immigration agents 'are not getting the traditional five months training. … The ...': MOSTLY TRUE (88/100).
+=== SMOKE 8 21:20:38 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 supports | rel=0.86 x relv=1.0 -> score=0.86 | primary=True
+  [evaluate] claim -> MOSTLY_TRUE (confidence 0.93, score 90/100) [support=0.86 | contradict=0]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: TRUE
+  • Claim 'Florida is '49th in avoidable hospital costs.'': MOSTLY TRUE (90/100).
+=== SMOKE 9 21:21:04 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evaluate] claim -> FALSE (confidence 0.97, score 10/100) [support=0 | contradict=0.95]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'Grocery prices were 'down' and 'WAY DOWN' in April 2025.': FALSE (10/100).
+=== SMOKE 10 21:21:29 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-decline_was_40pct-1 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evidence] ev-decline_was_40pct-2 supports | rel=0.12 x relv=0.5 -> score=0.06 | primary=False
+  [evaluate] decline_was_40pct -> FALSE (confidence 0.97, score 10/100) [support=0.06 | contradict=0.95]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'The enterprise customer decline was 93%.': FALSE (10/100).
+=== SMOKE 11 21:21:53 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evaluate] claim -> FALSE (confidence 0.97, score 10/100) [support=0 | contradict=0.95]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'Gas prices had fallen to $1.98 per gallon in two states on April 16, 2025.': FALSE (10/100).
+=== SMOKE 12 21:22:12 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evaluate] claim -> FALSE (confidence 0.97, score 10/100) [support=0 | contradict=0.95]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'There was no inflation during Trump's first presidency.': FALSE (10/100).
+=== SMOKE 13 21:22:31 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evaluate] claim -> FALSE (confidence 0.97, score 10/100) [support=0 | contradict=0.95]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'The Biden administration had the highest inflation in U.S. history.': FALSE (10/100).
+=== SMOKE 14 21:22:51 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evaluate] claim -> FALSE (confidence 0.97, score 10/100) [support=0 | contradict=0.95]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'The price of bacon quadrupled during Biden's presidency.': FALSE (10/100).
+=== SMOKE 15 21:23:08 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evaluate] claim -> FALSE (confidence 0.97, score 10/100) [support=0 | contradict=0.95]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'The price of apples doubled during Biden's presidency.': FALSE (10/100).
+=== SMOKE 16 21:23:25 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evaluate] claim -> FALSE (confidence 0.97, score 10/100) [support=0 | contradict=0.95]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'The United States was losing $2 trillion a year on trade before Trump returned t...': FALSE (10/100).
+=== SMOKE 17 21:23:45 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evaluate] claim -> FALSE (confidence 0.97, score 10/100) [support=0 | contradict=0.95]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'The United States had a $350 billion trade deficit with Mexico.': FALSE (10/100).
+=== SMOKE 18 21:24:03 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evaluate] claim -> FALSE (confidence 0.97, score 10/100) [support=0 | contradict=0.95]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'It has been claimed that Ukraine started the war with Russia, contrary to the es...': FALSE (10/100).
+=== SMOKE 19 21:24:24 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evaluate] claim -> FALSE (confidence 0.97, score 10/100) [support=0 | contradict=0.95]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'The United States had provided $350 billion in wartime aid to Ukraine.': FALSE (10/100).
+=== SMOKE 20 21:24:43 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evaluate] claim -> FALSE (confidence 0.97, score 10/100) [support=0 | contradict=0.95]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'Europe had provided $200 billion less in aid to Ukraine than the United States.': FALSE (10/100).
+=== SMOKE 21 21:25:07 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-decline_was_40pct-1 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evidence] ev-decline_was_40pct-2 supports | rel=0.12 x relv=0.5 -> score=0.06 | primary=False
+  [evaluate] decline_was_40pct -> FALSE (confidence 0.97, score 10/100) [support=0.06 | contradict=0.95]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'The enterprise customer decline was 4%.': FALSE (10/100).
+=== SMOKE 22 21:25:30 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 supports | rel=0.95 x relv=0.8 -> score=0.76 | primary=True
+  [evidence] ev-claim-2 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evaluate] claim -> MOSTLY_FALSE (confidence 0.97, score 35/100) [support=0.76 | contradict=0.95]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'More Americans are working in the United States now than at any point in the cou...': MOSTLY FALSE (35/100).
+=== SMOKE 23 21:25:52 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 supports | rel=0.95 x relv=0.8 -> score=0.76 | primary=True
+  [evidence] ev-claim-2 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evaluate] claim -> MOSTLY_FALSE (confidence 0.97, score 35/100) [support=0.76 | contradict=0.95]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'The stock market had set 74 all-time highs since Trump's return to office.': MOSTLY FALSE (35/100).
+=== SMOKE 24 21:26:11 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 supports | rel=0.95 x relv=0.8 -> score=0.76 | primary=True
+  [evidence] ev-claim-2 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evaluate] claim -> MOSTLY_FALSE (confidence 0.97, score 35/100) [support=0.76 | contradict=0.95]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'Manufacturing was booming and American manufacturing was back.': MOSTLY FALSE (35/100).
+=== SMOKE 25 21:26:31 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 supports | rel=0.95 x relv=0.8 -> score=0.76 | primary=True
+  [evidence] ev-claim-2 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evaluate] claim -> MOSTLY_FALSE (confidence 0.97, score 35/100) [support=0.76 | contradict=0.95]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'The United States has the largest amount of oil and gas of any country on Earth.': MOSTLY FALSE (35/100).
+=== SMOKE 26 21:26:51 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evaluate] claim -> FALSE (confidence 0.97, score 10/100) [support=0 | contradict=0.95]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'It has been claimed that China is operating the Panama Canal, which is managed b...': FALSE (10/100).
+=== SMOKE 27 21:27:03 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 supports | rel=0.95 x relv=0.8 -> score=0.76 | primary=True
+  [evidence] ev-claim-2 contradicts | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evaluate] claim -> MOSTLY_FALSE (confidence 0.97, score 35/100) [support=0.76 | contradict=0.95]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: FALSE
+  • Claim 'The United States spent more money than ever on the Panama Canal project and los...': MOSTLY FALSE (35/100).
+=== SMOKE 28 21:27:13 ===
+  [tracing] neatlogs live (workflow=truthops)
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+  [evidence] ev-claim-1 supports | rel=0.95 x relv=1.0 -> score=0.95 | primary=True
+  [evaluate] claim -> TRUE (confidence 0.97, score 99/100) [support=0.95 | contradict=0]
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+[director] overall characterization: TRUE
+  • Claim 'Trump won the 2024 U.S. popular vote by millions.': TRUE (99/100).
+RUN COMPLETE Sun Oct 11 21:27:24 UTC 2026

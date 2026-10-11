@@ -1,10 +1,10 @@
 {
   "label": "LIVE run \u2014 neatHack 2026",
-  "run_id": "run-20261011-205618",
+  "run_id": "run-20261011-212130",
   "case_id": "smoke10",
-  "generated_at": "2026-10-11T20:56:36",
+  "generated_at": "2026-10-11T21:21:52",
   "live_mode": true,
-  "neatlogs_trace_id": "57006cfdf3dcf8985e09609f38773cf0",
+  "neatlogs_trace_id": "129915322ed33dc2d2907de5e3f8197a",
   "adapter_status": {
     "gptzero": {
       "mode": "live",
@@ -231,36 +231,36 @@
   },
   "events": [
     {
-      "t": "2026-10-11T20:56:18",
+      "t": "2026-10-11T21:21:30",
       "kind": "run_started",
-      "message": "TruthOps run run-20261011-205618 started for case 'smoke10'"
+      "message": "TruthOps run run-20261011-212130 started for case 'smoke10'"
     },
     {
-      "t": "2026-10-11T20:56:26",
+      "t": "2026-10-11T21:21:34",
       "kind": "sniff_test",
       "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted (backend=clef-flash)"
     },
     {
-      "t": "2026-10-11T20:56:26",
+      "t": "2026-10-11T21:21:34",
       "kind": "claims_decomposed",
       "message": "Decomposed into 1 atomic claims: ['decline_was_40pct']"
     },
     {
-      "t": "2026-10-11T20:56:26",
+      "t": "2026-10-11T21:21:34",
       "kind": "director_decision",
       "message": "[director] decline_was_40pct: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
       "claim_id": "decline_was_40pct",
       "action": "gather"
     },
     {
-      "t": "2026-10-11T20:56:26",
+      "t": "2026-10-11T21:21:34",
       "kind": "http_attempt",
       "message": "GET fixture://northstar/filing-q3-2026 (attempt 1)",
       "url": "fixture://northstar/filing-q3-2026",
       "attempt": 1
     },
     {
-      "t": "2026-10-11T20:56:26",
+      "t": "2026-10-11T21:21:34",
       "kind": "http_failure",
       "message": "GET fixture://northstar/filing-q3-2026 -> 503 Service Unavailable (SIMULATED). State preserved; will retry.",
       "url": "fixture://northstar/filing-q3-2026",
@@ -268,21 +268,21 @@
       "status": 503
     },
     {
-      "t": "2026-10-11T20:56:26",
+      "t": "2026-10-11T21:21:34",
       "kind": "evidence_retry",
       "message": "Retrying fixture://northstar/filing-q3-2026 after failure: HTTP 503 for fixture://northstar/filing-q3-2026: Service Unavailable (SIMULATED deterministic failure)",
       "claim_id": "decline_was_40pct",
       "url": "fixture://northstar/filing-q3-2026"
     },
     {
-      "t": "2026-10-11T20:56:26",
+      "t": "2026-10-11T21:21:34",
       "kind": "http_attempt",
       "message": "GET fixture://northstar/filing-q3-2026 (attempt 2)",
       "url": "fixture://northstar/filing-q3-2026",
       "attempt": 2
     },
     {
-      "t": "2026-10-11T20:56:26",
+      "t": "2026-10-11T21:21:34",
       "kind": "http_success",
       "message": "GET fixture://northstar/filing-q3-2026 -> 200 OK (attempt 2)",
       "url": "fixture://northstar/filing-q3-2026",
@@ -290,21 +290,21 @@
       "status": 200
     },
     {
-      "t": "2026-10-11T20:56:26",
+      "t": "2026-10-11T21:21:34",
       "kind": "evidence_scored",
       "message": "ev-decline_was_40pct-1: contradicts (reliability=0.95, relevance=1.0, score=0.95)",
       "claim_id": "decline_was_40pct",
       "evidence_id": "ev-decline_was_40pct-1"
     },
     {
-      "t": "2026-10-11T20:56:26",
+      "t": "2026-10-11T21:21:34",
       "kind": "http_attempt",
       "message": "GET fixture://northstar/news-snippets (attempt 1)",
       "url": "fixture://northstar/news-snippets",
       "attempt": 1
     },
     {
-      "t": "2026-10-11T20:56:26",
+      "t": "2026-10-11T21:21:34",
       "kind": "http_success",
       "message": "GET fixture://northstar/news-snippets -> 200 OK (attempt 1)",
       "url": "fixture://northstar/news-snippets",
@@ -312,28 +312,28 @@
       "status": 200
     },
     {
-      "t": "2026-10-11T20:56:28",
+      "t": "2026-10-11T21:21:36",
       "kind": "evidence_validated",
       "message": "ev-decline_was_40pct-2: GPTZero screen -> ai (P(ai)=1.0, confidence=high) \u2014 reliability 0.4 -> 0.12",
       "claim_id": "decline_was_40pct",
       "evidence_id": "ev-decline_was_40pct-2"
     },
     {
-      "t": "2026-10-11T20:56:28",
+      "t": "2026-10-11T21:21:36",
       "kind": "evidence_scored",
       "message": "ev-decline_was_40pct-2: supports (reliability=0.4, relevance=0.5, score=0.2)",
       "claim_id": "decline_was_40pct",
       "evidence_id": "ev-decline_was_40pct-2"
     },
     {
-      "t": "2026-10-11T20:56:36",
+      "t": "2026-10-11T21:21:52",
       "kind": "director_decision",
       "message": "[director] decline_was_40pct: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
       "claim_id": "decline_was_40pct",
       "action": "evaluate"
     },
     {
-      "t": "2026-10-11T20:56:36",
+      "t": "2026-10-11T21:21:52",
       "kind": "claim_evaluated",
       "message": "decline_was_40pct: false (confidence 0.97, score 10) [support=0.06 vs contradict=0.95]",
       "claim_id": "decline_was_40pct",
@@ -341,37 +341,37 @@
       "confidence": 0.97
     },
     {
-      "t": "2026-10-11T20:56:36",
+      "t": "2026-10-11T21:21:52",
       "kind": "director_decision",
       "message": "[director] decline_was_40pct: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
       "claim_id": "decline_was_40pct",
       "action": "escalate"
     },
     {
-      "t": "2026-10-11T20:56:36",
+      "t": "2026-10-11T21:21:52",
       "kind": "contrarian_review",
       "message": "decline_was_40pct: agreed=True conf 0.97 -> 0.97",
       "claim_id": "decline_was_40pct"
     },
     {
-      "t": "2026-10-11T20:56:36",
+      "t": "2026-10-11T21:21:52",
       "kind": "response_planned",
       "message": "Response plan built: FALSE. All external actions BLOCKED pending approval."
     },
     {
-      "t": "2026-10-11T20:56:36",
+      "t": "2026-10-11T21:21:52",
       "kind": "approval_blocked",
       "message": "External action 'publish' BLOCKED \u2014 awaiting human approval.",
       "action": "publish"
     },
     {
-      "t": "2026-10-11T20:56:36",
+      "t": "2026-10-11T21:21:52",
       "kind": "approval_blocked",
       "message": "External action 'post' BLOCKED \u2014 awaiting human approval.",
       "action": "post"
     },
     {
-      "t": "2026-10-11T20:56:36",
+      "t": "2026-10-11T21:21:52",
       "kind": "approval_blocked",
       "message": "External action 'notify' BLOCKED \u2014 awaiting human approval.",
       "action": "notify"

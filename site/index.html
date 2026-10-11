@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TruthOps — Autonomous Trust Operations</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; }
+.hero { background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 60%); padding: 4rem 2rem; text-align: center; }
+.hero h1 { font-size: 3rem; font-weight: 800; background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
+.hero .tagline { font-size: 1.3rem; color: #cbd5e1; margin-bottom: 0.5rem; }
+.hero .sub { color: #64748b; max-width: 600px; margin: 0 auto 2rem; }
+.cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.cta { padding: 0.9rem 2rem; border-radius: 10px; font-size: 1.05rem; font-weight: 600; text-decoration: none; transition: transform 0.2s; display: inline-block; }
+.cta:hover { transform: translateY(-2px); }
+.cta-primary { background: linear-gradient(90deg, #3b82f6, #8b5cf6); color: white; }
+.cta-secondary { background: #1e293b; color: #e2e8f0; border: 1px solid #334155; }
+.pipeline { max-width: 900px; margin: 3rem auto; padding: 0 2rem; }
+.pipeline h2 { text-align: center; margin-bottom: 2rem; font-size: 1.8rem; }
+.steps { display: flex; flex-direction: column; gap: 0; }
+.step { display: flex; gap: 1.5rem; padding: 1.25rem; background: #1e293b; border: 1px solid #334155; border-radius: 12px; margin-bottom: 0.75rem; animation: slideIn 0.5s ease-out; }
+@keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+.step-num { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #8b5cf6); display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+.step h3 { margin-bottom: 0.25rem; }
+.step p { color: #94a3b8; font-size: 0.95rem; }
+.sponsors { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; max-width: 900px; margin: 3rem auto; padding: 0 2rem; }
+.sponsor { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 1.5rem; text-align: center; }
+.sponsor h3 { margin-bottom: 0.5rem; font-size: 1.2rem; }
+.sponsor p { color: #94a3b8; font-size: 0.9rem; }
+.footer { text-align: center; padding: 3rem 2rem; color: #475569; border-top: 1px solid #1e293b; }
+.footer a { color: #60a5fa; }
+code { background: #1e293b; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.9em; }
+</style>
+</head>
+<body>
+<div class="hero">
+<h1>TruthOps</h1>
+<div class="tagline">Don't just detect misinformation. Resolve it.</div>
+<div class="sub">An autonomous trust operations agent that investigates high-risk claims, challenges its own conclusions through adversarial review, and produces evidence-backed response plans — with human approval gates at every decisive step.</div>
+<div class="cta-row">
+<a href="claims.html" class="cta cta-primary">View 28 Claims Dashboard</a>
+<a href="https://github.com/Mike-Demo/truthops" class="cta cta-secondary">GitHub Repo</a>
+</div>
+</div>
+
+<div class="pipeline">
+<h2>How it works</h2>
+<div class="steps">
+<div class="step" style="animation-delay:0.1s"><div class="step-num">1</div><div><h3>Sniff Test</h3><p>Cheap $0.02 gate via Cloudflare Clef-flash. Is this claim coherent and investigable?</p></div></div>
+<div class="step" style="animation-delay:0.2s"><div class="step-num">2</div><div><h3>Evidence Gathering</h3><p>Fixtures + live adapters: GPTZero screens for AI text, Alexandria finds primary sources, Sightengine checks images.</p></div></div>
+<div class="step" style="animation-delay:0.3s"><div class="step-num">3</div><div><h3>Photo Forensics</h3><p>C2PA provenance check → Sightengine AI-generation detection. Fabrication proof becomes evidence.</p></div></div>
+<div class="step" style="animation-delay:0.4s"><div class="step-num">4</div><div><h3>Contrarian Review</h3><p>An adversarial agent tries to break the verdict before it's finalized.</p></div></div>
+<div class="step" style="animation-delay:0.5s"><div class="step-num">5</div><div><h3>Director Verdict</h3><p>Weighted evidence → verdict on the Truth-O-Meter scale with confidence score.</p></div></div>
+<div class="step" style="animation-delay:0.6s"><div class="step-num">6</div><div><h3>Human Gate ⛔</h3><p>Publish, post, and notify are BLOCKED until a human explicitly approves via <code>--approve</code>.</p></div></div>
+</div>
+</div>
+
+<div class="sponsors">
+<div class="sponsor"><h3>🔍 neatlogs</h3><p>Distributed tracing for every pipeline run. 28/28 traces captured.</p></div>
+<div class="sponsor"><h3>📦 Entire</h3><p>Git-synced checkpoints with full session provenance.</p></div>
+<div class="sponsor"><h3>💰 cfo.ai</h3><p>Unit economics: $0.994/investigation, $0.02 sniff gate.</p></div>
+</div>
+
+<div class="footer">
+<p>TruthOps — neatHack 2026 · Built by <a href="https://mikedemo.dev">Mike "Demo" Demopoulos</a></p>
+<p style="margin-top:0.5rem"><code>git clone https://github.com/Mike-Demo/truthops && cd truthops && python -m truthops run --case smoke1 --live</code></p>
+</div>
+</body>
+</html>
