@@ -23,6 +23,10 @@ TruthOps is an autonomous trust operations agent for neatHack 2026 (Oct 10–12)
 
 Every run produced: Markdown report, signed PDF/A, public Gist, and a Neatlogs trace ID in the JSON. All artifacts committed under `artifacts/claim{1-8}-final/`.
 
+### Live-stack verification (Oct 10, 2026, ~23:15 CDT)
+
+All 8 claims re-ran with `--live` (GPTZero, Sightengine, C2PA, Alexandria, Cloudflare Clef sniff). Every verdict matched its fixture run exactly — 8/8 identical. Total live spend: **$0.00** (Alexandria discovered 0 enrichment tools; photo chain flagged but didn't fire paid calls). Neatlogs tracing fully operational after the v4 `neatlogs_span()` fix — all 8 traces captured with nested spans (e.g. smoke1 live trace `07767814d689...`).
+
 ## Methodology
 
 **Calibration-first.** Before trusting the agent on unknown claims, we verify it hits known answers. Five real-world claims with established PolitiFact/FactCheck.org rulings span the full truth spectrum — from PANTS_ON_FIRE to TRUE.
