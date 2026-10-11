@@ -13,7 +13,7 @@ TruthOps is an autonomous trust operations agent for neatHack 2026 (Oct 10–12)
 | Mamdani/Epstein photos | PANTS_ON_FIRE | 3/100 | 0–5 | ✅ Hit |
 | Trump SSA audit | FALSE | 10/100 | 10–20 | ✅ Hit |
 | Trump ended eight wars | MOSTLY_FALSE | 34/100 | 30–45 | ✅ Hit |
-| Gas below $2.30/gal | MOSTLY_TRUE | 85/100 | 80–90 | ⚠️ Band hit, but FactCheck.org rates the claim FALSE — flagged |
+| Gas below $2.30/gal | MOSTLY_TRUE | 85/100 | 10–30 (corrected) | ❌ Miss — agent over-credited directional truth; FactCheck.org: no state below $2.30, national $2.94 |
 | Mamdani is NYC mayor | TRUE | 99/100 | 90–100 | ✅ Hit |
 
 **Total API spend across all 5 runs: $0.00** (all adapters on free tiers).
@@ -39,7 +39,7 @@ Allegation → [Sniff Test] → (proceed?) → Evidence Pipeline → Claims → 
 4. **Director** synthesizes the final verdict, confidence, and response plan.
 5. **Human approval gates** block publish/post/notify — no external action without explicit approval.
 
-**Honest calibration:** Claim 4 hit its expected band but contradicts FactCheck.org's FALSE rating. We flagged the discrepancy publicly rather than hiding it. If the agent can't be honest about a miss, it can't be trusted on a hit.
+**Honest calibration:** 4 of 5 claims landed in band. Claim 4 is a genuine miss — the agent scored 85/100 (mostly true) on a claim FactCheck.org calls an exaggeration (no state below $2.30, national average $2.94). The original 80–90 fixture band was built from a search-snippet misquote and has been corrected to 10–30 after reading the full article. We document the miss rather than hiding it: if the agent can't be honest about a miss, it can't be trusted on a hit.
 
 ## Architecture
 
