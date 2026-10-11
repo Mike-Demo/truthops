@@ -1,6 +1,6 @@
 """Sniff test — cheap pre-screen before the expensive investigation pipeline.
 
-A full TruthOps investigation costs ~$1.08 (LLM + Firecrawl + GPTZero).
+A full TruthOps investigation costs ~$1.08 (detectors + Firecrawl + GPTZero).
 The sniff test costs ~$0.02 and answers: is this allegation worth the full spend?
 
 Decision backend (pluggable):

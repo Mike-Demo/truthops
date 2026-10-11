@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Automated smoke test for TruthOps pipeline.
+Automated regression test for TruthOps pipeline.
 
 Runs in fixture mode (no API keys required) and verifies:
 1. All 28 cases run without crashing
@@ -8,14 +8,24 @@ Runs in fixture mode (no API keys required) and verifies:
 3. Every case has expected verdict/score in calibration band
 4. Sniff rejection path doesn't crash (the recommended_posture bug)
 
+NOTE: This is a REGRESSION test, not a calibration test. It verifies the
+pipeline executes as written against the hard-coded evidence tables
+(EVIDENCE_PLAN/SMOKE_EVIDENCE_PLAN). It does not prove the pipeline
+independently discovers truth on unseen claims. See README Limitations.
+
+The test writes to a temp directory and restores committed artifacts
+afterward — it never overwrites the live reports in artifacts/.
+
 Usage: python3 tests/smoke_test.py
 Exit code 0 = all pass, 1 = failures.
 """
 
 import json
 import os
+import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 BASE = Path(__file__).parent.parent
@@ -145,44 +155,73 @@ def test_sniff_rejection():
 
 def main():
     print("=" * 70)
-    print("TruthOps Smoke Test — fixture mode (no API keys)")
+    print("TruthOps Regression Test — fixture mode (no API keys)")
     print("=" * 70)
+    print("NOTE: Regression test — verifies pipeline executes as written,")
+    print("      not that it independently discovers truth. See README.")
+    print("=" * 70)
+
+    # Backup committed artifacts — the test must not overwrite them (M10)
+    backup_dir = tempfile.mkdtemp(prefix="truthops-test-backup-")
+    backed_up = []
+    for f in ARTIFACTS.glob("truthops-report-*.json"):
+        shutil.copy2(f, backup_dir)
+        backed_up.append(f.name)
+    for f in ARTIFACTS.glob("truthops-report-*.md"):
+        shutil.copy2(f, backup_dir)
+        backed_up.append(f.name)
+    print(f"\nBacked up {len(backed_up)} committed artifacts to temp dir")
 
     failures = []
     passed = 0
 
-    # Test 1: sniff rejection path
-    print("\n[1/3] Sniff rejection path...")
-    ok, err = test_sniff_rejection()
-    if ok:
-        print("  ✅ PASS")
-        passed += 1
-    else:
-        print(f"  ❌ FAIL: {err}")
-        failures.append(("sniff_rejection", err))
-
-    # Test 2: run all 28 cases (fixture mode)
-    print(f"\n[2/3] Running 28 cases in fixture mode...")
-    for i, case_id in enumerate(sorted(EXPECTED.keys()), 1):
-        ok, err = run_case(case_id)
+    try:
+        # Test 1: sniff rejection path
+        print("\n[1/3] Sniff rejection path...")
+        ok, err = test_sniff_rejection()
         if ok:
-            ok, err = check_reports(case_id)
-        if ok:
-            print(f"  ✅ {case_id} ({i}/28)")
+            print("  ✅ PASS")
             passed += 1
         else:
-            print(f"  ❌ {case_id}: {err}")
-            failures.append((case_id, err))
+            print(f"  ❌ FAIL: {err}")
+            failures.append(("sniff_rejection", err))
 
-    # Test 3: calibration bands
-    print(f"\n[3/3] Checking calibration bands...")
-    for case_id in sorted(EXPECTED.keys()):
-        ok, err = check_calibration(case_id)
-        if ok:
-            passed += 1
-        else:
-            print(f"  ❌ {case_id}: {err}")
-            failures.append((f"{case_id}_calibration", err))
+        # Test 2: run all 28 cases (fixture mode)
+        print(f"\n[2/3] Running 28 cases in fixture mode...")
+        for i, case_id in enumerate(sorted(EXPECTED.keys()), 1):
+            ok, err = run_case(case_id)
+            if ok:
+                ok, err = check_reports(case_id)
+            if ok:
+                print(f"  ✅ {case_id} ({i}/28)")
+                passed += 1
+            else:
+                print(f"  ❌ {case_id}: {err}")
+                failures.append((case_id, err))
+
+        # Test 3: calibration bands
+        # NOTE: Bands below are the pipeline's TRUTH_O_METER bands, not the
+        # README's "expected bands" (which has smoke6 at 80-90, not 75-90).
+        # The test verifies the pipeline runs as written (regression),
+        # not that it matches the README's calibration narrative.
+        print(f"\n[3/3] Checking pipeline bands (regression)...")
+        for case_id in sorted(EXPECTED.keys()):
+            ok, err = check_calibration(case_id)
+            if ok:
+                passed += 1
+            else:
+                print(f"  ❌ {case_id}: {err}")
+                failures.append((f"{case_id}_calibration", err))
+
+    finally:
+        # Restore committed artifacts — never leave test output in place (M10)
+        for name in backed_up:
+            src = Path(backup_dir) / name
+            dst = ARTIFACTS / name
+            if src.exists():
+                shutil.copy2(src, dst)
+        shutil.rmtree(backup_dir, ignore_errors=True)
+        print(f"\nRestored {len(backed_up)} committed artifacts from backup")
 
     print("\n" + "=" * 70)
     total = 1 + 28 + 28  # sniff + runs + calibrations
@@ -192,7 +231,7 @@ def main():
         for name, err in failures:
             print(f"  - {name}: {err}")
         return 1
-    print("\n✅ All smoke tests passed")
+    print("\n✅ All regression tests passed")
     return 0
 
 

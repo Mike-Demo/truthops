@@ -11,3 +11,5 @@ artifacts/.state-*.json
 .spacefast/.space-link-*.tmp
 # Videos: all mp4s hosted on SpaceFast, not in git
 *.mp4
+# Terminal recordings may contain keys - never commit
+*.typescript

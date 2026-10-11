@@ -1,1 +1,1 @@
-"""TruthOps — autonomous trust operations agent (neatHack 2026)."""
+"""TruthOps — transparent scoring and governance pipeline over curated evidence (neatHack 2026)."""

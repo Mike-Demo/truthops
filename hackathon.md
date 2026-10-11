@@ -1,7 +1,7 @@
 # TruthOps — neatHack 2026 build log
 
 ## Project
-**TruthOps** — an autonomous trust-operations agent that investigates high-risk claims against primary sources, stress-tests its own findings through contrarian adversarial review, and produces evidence-backed response plans behind a human approval gate. Nothing auto-publishes.
+**TruthOps** — a transparent scoring and governance pipeline over curated evidence that investigates high-risk claims against primary sources, stress-tests its own findings through contrarian adversarial review, and produces evidence-backed response plans behind a human approval gate. Nothing auto-publishes.
 
 Problem addressed: viral misinformation (especially AI-generated imagery) spreads faster than human fact-checkers can respond. TruthOps gives a newsroom, campaign, or brand a repeatable, auditable pipeline: sniff test → evidence gathering → photo forensics → weighted evaluation → contrarian review → director verdict → human gate → signed report.
 
@@ -54,7 +54,7 @@ Three checkpoints, all materialized to GitHub ref namespace `refs/entire/checkpo
 - README honesty pass: 8 claims (not 5), 7/8 in expected bands (claim 6: 78/100 vs 80–90 requested band, inside pipeline MOSTLY_TRUE 75–90), live-run limitations documented, judge quickstart added and verified in bare Python 3.12 venv (no pip install, no keys, no sign-in).
 - All 8 claim PDFs regenerated as PDF/A-1 with sRGB OutputIntent + PAdES signatures, each OpenSSL-verified. (veraPDF conformance not independently run; profile was PIL-generated minimal sRGB — WeasyPrint's standard `sRGB2014.icc` available for a future pass.)
 - Claims page shipped with per-claim "How the agent got here" demos (sniff → evidence → contrarian → director).
-- All 8 smoke tests re-run end to end with live keys (transient env only, never stored): 8/8 verdicts matched, $0.00 spend. Terminal sessions rendered to video: 8 landscape + 8 vertical 9:16 + 8 vertical 4K (`thread-assets/live-runs/`).
+- All 8 smoke tests re-run end to end with live keys (keys passed via transient env vars for the run; terminal recordings captured full command lines including keys — see Security note): 8/8 verdicts matched, $0.00 spend. Terminal sessions rendered to video: 8 landscape + 8 vertical 9:16 + 8 vertical 4K (`thread-assets/live-runs/`).
 - Pexo 60s pipeline explainer produced (16:9, 9:16, 1:1, 4K).
 - Social: 5 PressMaster drafts (X, Threads, LinkedIn, YouTube Shorts, Instagram) with live-run video, publish-ready; Discord show-and-tell post asking for test claims.
 - Pushed to GitHub main: `439723d`. Checkpoint 3 created.
