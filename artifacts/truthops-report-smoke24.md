@@ -24,7 +24,26 @@ External actions: **BLOCKED** — publish / post / notify all blocked pending ex
 
 - `ev-claim-1` [fixture] supports `claim` — score 0.76 (reliability 0.95 × relevance 0.8) | primary=True | SYNTHETIC fixture
 - `ev-claim-2` [fixture] contradicts `claim` — score 0.95 (reliability 0.95 × relevance 1.0) | primary=True | SYNTHETIC fixture
+- `ev-claim-alex-3` [alexandria] neutral `claim` — score 0.42 (reliability 0.7 × relevance 0.6) | primary=True | Alexandria: Made in the USA, Again: Republicans Power America's Manufacturing ... | https://rsc-pfluger.house.gov/media/press-releases/made-usa-again-republicans-power-americas-manufacturing-comeback
+- `ev-claim-alex-4` [alexandria] neutral `claim` — score 0.42 (reliability 0.7 × relevance 0.6) | primary=True | Alexandria: American Manufacturing is BACK. Companies all over the world are ... | https://www.facebook.com/WhiteHouse/posts/american-manufacturing-is-back-companies-all-over-the-world-are-investing-in-the/122234732768723345/
 
 ## Contrarian challenges
 
 - **claim**: agreed=True; confidence 0.97 → 0.97
+
+## Audit trail
+
+- [sniff] proceed=True — passed sniff test — coherent allegation, full pipeline warranted (backend=clef-flash)
+- Decomposed into 1 atomic claims: ['claim']
+- [director] claim: next action = gather — no evidence yet — gather before any judgment
+- [director] claim: next action = evaluate — evidence phase complete — evaluate the claim
+- [director] claim: next action = escalate — initial verdict reached — escalate to contrarian for adversarial review
+- Response plan built: FALSE. All external actions BLOCKED pending approval.
+- External action 'publish' BLOCKED — awaiting human approval.
+- External action 'post' BLOCKED — awaiting human approval.
+- External action 'notify' BLOCKED — awaiting human approval.
+
+## Adapter status
+
+
+**API spend:** $0.00 — no paid calls this run

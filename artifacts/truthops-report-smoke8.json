@@ -1,17 +1,38 @@
 {
-  "label": "SYNTHETIC demo run \u2014 neatHack 2026",
-  "run_id": "run-20261010-204740",
+  "label": "LIVE run \u2014 neatHack 2026",
+  "run_id": "run-20261011-204013",
   "case_id": "smoke8",
-  "generated_at": "2026-10-10T20:47:42",
-  "live_mode": false,
-  "neatlogs_trace_id": null,
+  "generated_at": "2026-10-11T20:40:30",
+  "live_mode": true,
+  "neatlogs_trace_id": "unavailable",
   "adapter_status": {
-    "fixture": {
-      "mode": "fixture",
-      "detail": "FixtureAdapter only \u2014 no live adapters probed"
+    "gptzero": {
+      "mode": "live",
+      "detail": "gptzero-scan CLI present; auth via stored connector"
+    },
+    "sightengine": {
+      "mode": "live",
+      "detail": "Sightengine credentials set \u2014 photo AI detection available"
+    },
+    "c2pa": {
+      "mode": "live",
+      "detail": "c2pa-python installed \u2014 provenance checks available"
+    },
+    "alexandria": {
+      "mode": "live",
+      "detail": "firecrawl-cli available \u2014 primary-source search callable (paid per use)"
     }
   },
-  "api_spend": {},
+  "api_spend": {
+    "alexandria": {
+      "calls": 2,
+      "credits": 0.0,
+      "usd": 0.0,
+      "operations": [
+        "search+scrape"
+      ]
+    }
+  },
   "claims": {
     "claim": {
       "claim_id": "claim",
@@ -71,6 +92,32 @@
         "note": "Correct number (49th of 51); underlying metric is 'avoidable hospital use and cost' \u2014 slightly broader than 'hospital costs' alone. Number exact; framing caveat routes to mostly_true."
       },
       "summary": "PolitiFact rated the claim Mostly True: 'accurate but needs some additional information.' Matches the Commonwealth Fund's June 2025 analysis ranking Florida 49th of 51 (states + DC) in 'avoidable hospital use and cost.' "
+    },
+    "ev-claim-alex-2": {
+      "evidence_id": "ev-claim-alex-2",
+      "claim_id": "claim",
+      "source": "alexandria",
+      "label": "Alexandria: Florida FY 2025\u201326 Budget Summary: Health",
+      "url": "https://www.floridapolicy.org/posts/health",
+      "stance": "neutral",
+      "reliability": 0.7,
+      "relevance": 0.6,
+      "score": 0.42,
+      "is_primary_source": true,
+      "summary": "[Health Care](https://www.floridapolicy.org/tags/health-care)\n\n[2025 Legislation](https://www.floridapolicy.org/tags/2025-legislation)\n\n[State Budget](https://www.floridapolicy.org/tags/state-budget)\n\n[![](https://cdn.pr"
+    },
+    "ev-claim-alex-3": {
+      "evidence_id": "ev-claim-alex-3",
+      "claim_id": "claim",
+      "source": "alexandria",
+      "label": "Alexandria: Florida - Commonwealth Fund",
+      "url": "https://www.commonwealthfund.org/datacenter/florida",
+      "stance": "neutral",
+      "reliability": 0.7,
+      "relevance": 0.6,
+      "score": 0.42,
+      "is_primary_source": true,
+      "summary": "[Skip to main content](https://www.commonwealthfund.org/datacenter/florida#main-content)\n\nArrows iconBurger menu iconCaret down iconThick caret down iconCheck iconClose iconThick close iconCollapse iconExpand iconFaceboo"
     }
   },
   "contrarian_reviews": [
@@ -116,6 +163,16 @@
         "evidence_id": "ev-claim-1",
         "url": "fixture://smoke8/politifact",
         "label": "SYNTHETIC fixture"
+      },
+      {
+        "evidence_id": "ev-claim-alex-2",
+        "url": "https://www.floridapolicy.org/posts/health",
+        "label": "Alexandria: Florida FY 2025\u201326 Budget Summary: Health"
+      },
+      {
+        "evidence_id": "ev-claim-alex-3",
+        "url": "https://www.commonwealthfund.org/datacenter/florida",
+        "label": "Alexandria: Florida - Commonwealth Fund"
       }
     ],
     "external_actions": [
@@ -144,36 +201,36 @@
   },
   "events": [
     {
-      "t": "2026-10-10T20:47:40",
+      "t": "2026-10-11T20:40:13",
       "kind": "run_started",
-      "message": "TruthOps run run-20261010-204740 started for case 'smoke8'"
+      "message": "TruthOps run run-20261011-204013 started for case 'smoke8'"
     },
     {
-      "t": "2026-10-10T20:47:40",
+      "t": "2026-10-11T20:40:17",
       "kind": "sniff_test",
-      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted"
+      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted (backend=clef-flash)"
     },
     {
-      "t": "2026-10-10T20:47:40",
+      "t": "2026-10-11T20:40:17",
       "kind": "claims_decomposed",
       "message": "Decomposed into 1 atomic claims: ['claim']"
     },
     {
-      "t": "2026-10-10T20:47:40",
+      "t": "2026-10-11T20:40:17",
       "kind": "director_decision",
       "message": "[director] claim: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
       "claim_id": "claim",
       "action": "gather"
     },
     {
-      "t": "2026-10-10T20:47:40",
+      "t": "2026-10-11T20:40:17",
       "kind": "http_attempt",
       "message": "GET fixture://smoke8/politifact (attempt 1)",
       "url": "fixture://smoke8/politifact",
       "attempt": 1
     },
     {
-      "t": "2026-10-10T20:47:40",
+      "t": "2026-10-11T20:40:17",
       "kind": "http_success",
       "message": "GET fixture://smoke8/politifact -> 200 OK (attempt 1)",
       "url": "fixture://smoke8/politifact",
@@ -181,21 +238,21 @@
       "status": 200
     },
     {
-      "t": "2026-10-10T20:47:40",
+      "t": "2026-10-11T20:40:17",
       "kind": "evidence_scored",
       "message": "ev-claim-1: supports (reliability=0.86, relevance=1.0, score=0.86)",
       "claim_id": "claim",
       "evidence_id": "ev-claim-1"
     },
     {
-      "t": "2026-10-10T20:47:42",
+      "t": "2026-10-11T20:40:30",
       "kind": "director_decision",
       "message": "[director] claim: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
       "claim_id": "claim",
       "action": "evaluate"
     },
     {
-      "t": "2026-10-10T20:47:42",
+      "t": "2026-10-11T20:40:30",
       "kind": "claim_evaluated",
       "message": "claim: mostly_true (confidence 0.93, score 90) [support=0.86 vs contradict=0]",
       "claim_id": "claim",
@@ -203,37 +260,37 @@
       "confidence": 0.93
     },
     {
-      "t": "2026-10-10T20:47:42",
+      "t": "2026-10-11T20:40:30",
       "kind": "director_decision",
       "message": "[director] claim: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
       "claim_id": "claim",
       "action": "escalate"
     },
     {
-      "t": "2026-10-10T20:47:42",
+      "t": "2026-10-11T20:40:30",
       "kind": "contrarian_review",
       "message": "claim: agreed=True conf 0.93 -> 0.93",
       "claim_id": "claim"
     },
     {
-      "t": "2026-10-10T20:47:42",
+      "t": "2026-10-11T20:40:30",
       "kind": "response_planned",
       "message": "Response plan built: TRUE. All external actions BLOCKED pending approval."
     },
     {
-      "t": "2026-10-10T20:47:42",
+      "t": "2026-10-11T20:40:30",
       "kind": "approval_blocked",
       "message": "External action 'publish' BLOCKED \u2014 awaiting human approval.",
       "action": "publish"
     },
     {
-      "t": "2026-10-10T20:47:42",
+      "t": "2026-10-11T20:40:30",
       "kind": "approval_blocked",
       "message": "External action 'post' BLOCKED \u2014 awaiting human approval.",
       "action": "post"
     },
     {
-      "t": "2026-10-10T20:47:42",
+      "t": "2026-10-11T20:40:30",
       "kind": "approval_blocked",
       "message": "External action 'notify' BLOCKED \u2014 awaiting human approval.",
       "action": "notify"

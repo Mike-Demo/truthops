@@ -1,17 +1,38 @@
 {
-  "label": "SYNTHETIC demo run \u2014 neatHack 2026",
-  "run_id": "run-20261010-204738",
+  "label": "LIVE run \u2014 neatHack 2026",
+  "run_id": "run-20261011-203956",
   "case_id": "smoke7",
-  "generated_at": "2026-10-10T20:47:39",
-  "live_mode": false,
-  "neatlogs_trace_id": null,
+  "generated_at": "2026-10-11T20:40:11",
+  "live_mode": true,
+  "neatlogs_trace_id": "unavailable",
   "adapter_status": {
-    "fixture": {
-      "mode": "fixture",
-      "detail": "FixtureAdapter only \u2014 no live adapters probed"
+    "gptzero": {
+      "mode": "live",
+      "detail": "gptzero-scan CLI present; auth via stored connector"
+    },
+    "sightengine": {
+      "mode": "live",
+      "detail": "Sightengine credentials set \u2014 photo AI detection available"
+    },
+    "c2pa": {
+      "mode": "live",
+      "detail": "c2pa-python installed \u2014 provenance checks available"
+    },
+    "alexandria": {
+      "mode": "live",
+      "detail": "firecrawl-cli available \u2014 primary-source search callable (paid per use)"
     }
   },
-  "api_spend": {},
+  "api_spend": {
+    "alexandria": {
+      "calls": 2,
+      "credits": 0.0,
+      "usd": 0.0,
+      "operations": [
+        "search+scrape"
+      ]
+    }
+  },
   "claims": {
     "claim": {
       "claim_id": "claim",
@@ -71,6 +92,32 @@
         "note": "Warner said 47 days; ICE acting director confirmed 48 days of training over a 56-day period. Off-by-one on a substantively correct claim."
       },
       "summary": "PolitiFact rated the claim Mostly True: 'accurate but needs clarification.' ICE acting director Todd Lyons confirmed training was shortened to six days a week for eight weeks = 48 days of training over a 56-day period (v"
+    },
+    "ev-claim-alex-2": {
+      "evidence_id": "ev-claim-alex-2",
+      "claim_id": "claim",
+      "source": "alexandria",
+      "label": "Alexandria: DHS Sets the Record Straight About ICE Law Enforcement Training ...",
+      "url": "https://www.dhs.gov/news/2026/02/23/dhs-sets-record-straight-about-ice-law-enforcement-training-debunks-falsehoods",
+      "stance": "neutral",
+      "reliability": 0.7,
+      "relevance": 0.6,
+      "score": 0.42,
+      "is_primary_source": true,
+      "summary": "[Skip to main content](https://www.dhs.gov/news/2026/02/23/dhs-sets-record-straight-about-ice-law-enforcement-training-debunks-falsehoods#main-content)\n\n![U.S. flag](https://www.dhs.gov/profiles/dhsd8_gov/themes/custom/d"
+    },
+    "ev-claim-alex-3": {
+      "evidence_id": "ev-claim-alex-3",
+      "claim_id": "claim",
+      "source": "alexandria",
+      "label": "Alexandria: ICE officer training cut to only 47 days? You can't make this stuff up\u2026",
+      "url": "https://www.facebook.com/MarkWarnerVa/videos/ice-officer-training-cut-to-only-47-days-you-cant-make-this-stuff-up/1688243962582661/",
+      "stance": "neutral",
+      "reliability": 0.7,
+      "relevance": 0.6,
+      "score": 0.42,
+      "is_primary_source": true,
+      "summary": "Training to be an ICE agent typically involves a multi-phase program at the Federal Law Enforcement Training Center (FLETC) in Georgia, ..."
     }
   },
   "contrarian_reviews": [
@@ -116,6 +163,16 @@
         "evidence_id": "ev-claim-1",
         "url": "fixture://smoke7/politifact",
         "label": "SYNTHETIC fixture"
+      },
+      {
+        "evidence_id": "ev-claim-alex-2",
+        "url": "https://www.dhs.gov/news/2026/02/23/dhs-sets-record-straight-about-ice-law-enforcement-training-debunks-falsehoods",
+        "label": "Alexandria: DHS Sets the Record Straight About ICE Law Enforcement Training ..."
+      },
+      {
+        "evidence_id": "ev-claim-alex-3",
+        "url": "https://www.facebook.com/MarkWarnerVa/videos/ice-officer-training-cut-to-only-47-days-you-cant-make-this-stuff-up/1688243962582661/",
+        "label": "Alexandria: ICE officer training cut to only 47 days? You can't make this stuff up\u2026"
       }
     ],
     "external_actions": [
@@ -144,36 +201,36 @@
   },
   "events": [
     {
-      "t": "2026-10-10T20:47:38",
+      "t": "2026-10-11T20:39:56",
       "kind": "run_started",
-      "message": "TruthOps run run-20261010-204738 started for case 'smoke7'"
+      "message": "TruthOps run run-20261011-203956 started for case 'smoke7'"
     },
     {
-      "t": "2026-10-10T20:47:38",
+      "t": "2026-10-11T20:40:01",
       "kind": "sniff_test",
-      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted"
+      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted (backend=clef-flash)"
     },
     {
-      "t": "2026-10-10T20:47:38",
+      "t": "2026-10-11T20:40:01",
       "kind": "claims_decomposed",
       "message": "Decomposed into 1 atomic claims: ['claim']"
     },
     {
-      "t": "2026-10-10T20:47:38",
+      "t": "2026-10-11T20:40:01",
       "kind": "director_decision",
       "message": "[director] claim: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
       "claim_id": "claim",
       "action": "gather"
     },
     {
-      "t": "2026-10-10T20:47:38",
+      "t": "2026-10-11T20:40:01",
       "kind": "http_attempt",
       "message": "GET fixture://smoke7/politifact (attempt 1)",
       "url": "fixture://smoke7/politifact",
       "attempt": 1
     },
     {
-      "t": "2026-10-10T20:47:38",
+      "t": "2026-10-11T20:40:01",
       "kind": "http_success",
       "message": "GET fixture://smoke7/politifact -> 200 OK (attempt 1)",
       "url": "fixture://smoke7/politifact",
@@ -181,21 +238,21 @@
       "status": 200
     },
     {
-      "t": "2026-10-10T20:47:38",
+      "t": "2026-10-11T20:40:01",
       "kind": "evidence_scored",
       "message": "ev-claim-1: supports (reliability=0.88, relevance=1.0, score=0.88)",
       "claim_id": "claim",
       "evidence_id": "ev-claim-1"
     },
     {
-      "t": "2026-10-10T20:47:39",
+      "t": "2026-10-11T20:40:11",
       "kind": "director_decision",
       "message": "[director] claim: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
       "claim_id": "claim",
       "action": "evaluate"
     },
     {
-      "t": "2026-10-10T20:47:39",
+      "t": "2026-10-11T20:40:11",
       "kind": "claim_evaluated",
       "message": "claim: mostly_true (confidence 0.94, score 88) [support=0.88 vs contradict=0]",
       "claim_id": "claim",
@@ -203,37 +260,37 @@
       "confidence": 0.94
     },
     {
-      "t": "2026-10-10T20:47:39",
+      "t": "2026-10-11T20:40:11",
       "kind": "director_decision",
       "message": "[director] claim: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
       "claim_id": "claim",
       "action": "escalate"
     },
     {
-      "t": "2026-10-10T20:47:39",
+      "t": "2026-10-11T20:40:11",
       "kind": "contrarian_review",
       "message": "claim: agreed=True conf 0.94 -> 0.94",
       "claim_id": "claim"
     },
     {
-      "t": "2026-10-10T20:47:39",
+      "t": "2026-10-11T20:40:11",
       "kind": "response_planned",
       "message": "Response plan built: TRUE. All external actions BLOCKED pending approval."
     },
     {
-      "t": "2026-10-10T20:47:39",
+      "t": "2026-10-11T20:40:11",
       "kind": "approval_blocked",
       "message": "External action 'publish' BLOCKED \u2014 awaiting human approval.",
       "action": "publish"
     },
     {
-      "t": "2026-10-10T20:47:39",
+      "t": "2026-10-11T20:40:11",
       "kind": "approval_blocked",
       "message": "External action 'post' BLOCKED \u2014 awaiting human approval.",
       "action": "post"
     },
     {
-      "t": "2026-10-10T20:47:39",
+      "t": "2026-10-11T20:40:11",
       "kind": "approval_blocked",
       "message": "External action 'notify' BLOCKED \u2014 awaiting human approval.",
       "action": "notify"

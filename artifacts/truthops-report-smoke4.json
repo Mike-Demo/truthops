@@ -1,17 +1,38 @@
 {
-  "label": "SYNTHETIC demo run \u2014 neatHack 2026",
-  "run_id": "run-20261010-195607",
+  "label": "LIVE run \u2014 neatHack 2026",
+  "run_id": "run-20261011-203904",
   "case_id": "smoke4",
-  "generated_at": "2026-10-10T19:56:10",
-  "live_mode": false,
-  "neatlogs_trace_id": null,
+  "generated_at": "2026-10-11T20:39:23",
+  "live_mode": true,
+  "neatlogs_trace_id": "unavailable",
   "adapter_status": {
-    "fixture": {
-      "mode": "fixture",
-      "detail": "FixtureAdapter only \u2014 no live adapters probed"
+    "gptzero": {
+      "mode": "live",
+      "detail": "gptzero-scan CLI present; auth via stored connector"
+    },
+    "sightengine": {
+      "mode": "live",
+      "detail": "Sightengine credentials set \u2014 photo AI detection available"
+    },
+    "c2pa": {
+      "mode": "live",
+      "detail": "c2pa-python installed \u2014 provenance checks available"
+    },
+    "alexandria": {
+      "mode": "live",
+      "detail": "firecrawl-cli available \u2014 primary-source search callable (paid per use)"
     }
   },
-  "api_spend": {},
+  "api_spend": {
+    "alexandria": {
+      "calls": 2,
+      "credits": 0.0,
+      "usd": 0.0,
+      "operations": [
+        "search+scrape"
+      ]
+    }
+  },
   "claims": {
     "claim": {
       "claim_id": "claim",
@@ -73,6 +94,32 @@
         "unit": "USD/gallon"
       },
       "summary": "FactCheck.org found Trump 'continued to exaggerate the decline in gasoline prices.' As of Feb. 24, 2026, no U.S. state had an average regular-gasoline price below $2.30 (AAA state data; Oklahoma was closest at $2.37). Th"
+    },
+    "ev-claim-alex-2": {
+      "evidence_id": "ev-claim-alex-2",
+      "claim_id": "claim",
+      "source": "alexandria",
+      "label": "Alexandria: Thanks to President Trump, gas has fallen to below $2.30 in many states!",
+      "url": "https://www.facebook.com/energy/posts/thanks-to-president-trump-gas-has-fallen-to-below-230-in-many-states/1218862667069887/",
+      "stance": "neutral",
+      "reliability": 0.7,
+      "relevance": 0.6,
+      "score": 0.42,
+      "is_primary_source": true,
+      "summary": "Chad Hummel enjoy lying much? As of early March 2026, the average price for regular unleaded gasoline in Illinois is approximately $3.06 per ..."
+    },
+    "ev-claim-alex-3": {
+      "evidence_id": "ev-claim-alex-3",
+      "claim_id": "claim",
+      "source": "alexandria",
+      "label": "Alexandria: Trump mentioned Iowa gas prices in State of the Union. Here are ... - KCCI",
+      "url": "https://www.kcci.com/article/iowa-gas-prices-trump-state-of-the-union/70495993",
+      "stance": "neutral",
+      "reliability": 0.7,
+      "relevance": 0.6,
+      "score": 0.42,
+      "is_primary_source": true,
+      "summary": "[Skip to content](https://www.kcci.com/article/iowa-gas-prices-trump-state-of-the-union/70495993#)\n\n[NOWCASTKCCI News at 7am Sunday Morning\\\\\n\\\\\nWatch on Demand](https://www.kcci.com/nowcast)\n\nMenu [![KCCI-TV](https://ku"
     }
   },
   "contrarian_reviews": [
@@ -118,6 +165,16 @@
         "evidence_id": "ev-claim-1",
         "url": "fixture://smoke4/factcheck-org",
         "label": "SYNTHETIC fixture"
+      },
+      {
+        "evidence_id": "ev-claim-alex-2",
+        "url": "https://www.facebook.com/energy/posts/thanks-to-president-trump-gas-has-fallen-to-below-230-in-many-states/1218862667069887/",
+        "label": "Alexandria: Thanks to President Trump, gas has fallen to below $2.30 in many states!"
+      },
+      {
+        "evidence_id": "ev-claim-alex-3",
+        "url": "https://www.kcci.com/article/iowa-gas-prices-trump-state-of-the-union/70495993",
+        "label": "Alexandria: Trump mentioned Iowa gas prices in State of the Union. Here are ... - KCCI"
       }
     ],
     "external_actions": [
@@ -146,36 +203,36 @@
   },
   "events": [
     {
-      "t": "2026-10-10T19:56:07",
+      "t": "2026-10-11T20:39:04",
       "kind": "run_started",
-      "message": "TruthOps run run-20261010-195607 started for case 'smoke4'"
+      "message": "TruthOps run run-20261011-203904 started for case 'smoke4'"
     },
     {
-      "t": "2026-10-10T19:56:07",
+      "t": "2026-10-11T20:39:11",
       "kind": "sniff_test",
-      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted"
+      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted (backend=clef-flash)"
     },
     {
-      "t": "2026-10-10T19:56:07",
+      "t": "2026-10-11T20:39:11",
       "kind": "claims_decomposed",
       "message": "Decomposed into 1 atomic claims: ['claim']"
     },
     {
-      "t": "2026-10-10T19:56:07",
+      "t": "2026-10-11T20:39:11",
       "kind": "director_decision",
       "message": "[director] claim: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
       "claim_id": "claim",
       "action": "gather"
     },
     {
-      "t": "2026-10-10T19:56:07",
+      "t": "2026-10-11T20:39:11",
       "kind": "http_attempt",
       "message": "GET fixture://smoke4/factcheck-org (attempt 1)",
       "url": "fixture://smoke4/factcheck-org",
       "attempt": 1
     },
     {
-      "t": "2026-10-10T19:56:07",
+      "t": "2026-10-11T20:39:11",
       "kind": "http_success",
       "message": "GET fixture://smoke4/factcheck-org -> 200 OK (attempt 1)",
       "url": "fixture://smoke4/factcheck-org",
@@ -183,21 +240,21 @@
       "status": 200
     },
     {
-      "t": "2026-10-10T19:56:07",
+      "t": "2026-10-11T20:39:11",
       "kind": "evidence_scored",
       "message": "ev-claim-1: contradicts (reliability=0.95, relevance=1.0, score=0.95)",
       "claim_id": "claim",
       "evidence_id": "ev-claim-1"
     },
     {
-      "t": "2026-10-10T19:56:10",
+      "t": "2026-10-11T20:39:23",
       "kind": "director_decision",
       "message": "[director] claim: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
       "claim_id": "claim",
       "action": "evaluate"
     },
     {
-      "t": "2026-10-10T19:56:10",
+      "t": "2026-10-11T20:39:23",
       "kind": "claim_evaluated",
       "message": "claim: false (confidence 0.97, score 10) [support=0 vs contradict=0.95]",
       "claim_id": "claim",
@@ -205,37 +262,37 @@
       "confidence": 0.97
     },
     {
-      "t": "2026-10-10T19:56:10",
+      "t": "2026-10-11T20:39:23",
       "kind": "director_decision",
       "message": "[director] claim: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
       "claim_id": "claim",
       "action": "escalate"
     },
     {
-      "t": "2026-10-10T19:56:10",
+      "t": "2026-10-11T20:39:23",
       "kind": "contrarian_review",
       "message": "claim: agreed=True conf 0.97 -> 0.97",
       "claim_id": "claim"
     },
     {
-      "t": "2026-10-10T19:56:10",
+      "t": "2026-10-11T20:39:23",
       "kind": "response_planned",
       "message": "Response plan built: FALSE. All external actions BLOCKED pending approval."
     },
     {
-      "t": "2026-10-10T19:56:10",
+      "t": "2026-10-11T20:39:23",
       "kind": "approval_blocked",
       "message": "External action 'publish' BLOCKED \u2014 awaiting human approval.",
       "action": "publish"
     },
     {
-      "t": "2026-10-10T19:56:10",
+      "t": "2026-10-11T20:39:23",
       "kind": "approval_blocked",
       "message": "External action 'post' BLOCKED \u2014 awaiting human approval.",
       "action": "post"
     },
     {
-      "t": "2026-10-10T19:56:10",
+      "t": "2026-10-11T20:39:23",
       "kind": "approval_blocked",
       "message": "External action 'notify' BLOCKED \u2014 awaiting human approval.",
       "action": "notify"

@@ -1,8 +1,8 @@
 {
   "label": "LIVE run \u2014 neatHack 2026",
-  "run_id": "run-20261011-144619",
+  "run_id": "run-20261011-204116",
   "case_id": "smoke12",
-  "generated_at": "2026-10-11T14:46:26",
+  "generated_at": "2026-10-11T20:41:43",
   "live_mode": true,
   "neatlogs_trace_id": "unavailable",
   "adapter_status": {
@@ -15,15 +15,24 @@
       "detail": "Sightengine credentials set \u2014 photo AI detection available"
     },
     "c2pa": {
-      "mode": "fixture",
-      "detail": "c2pa-python not installed \u2014 provenance checks skipped"
+      "mode": "live",
+      "detail": "c2pa-python installed \u2014 provenance checks available"
     },
     "alexandria": {
       "mode": "live",
-      "detail": "firecrawl-cli available \u2014 enrichment callable (paid per use)"
+      "detail": "firecrawl-cli available \u2014 primary-source search callable (paid per use)"
     }
   },
-  "api_spend": {},
+  "api_spend": {
+    "alexandria": {
+      "calls": 2,
+      "credits": 0.0,
+      "usd": 0.0,
+      "operations": [
+        "search+scrape"
+      ]
+    }
+  },
   "claims": {
     "claim": {
       "claim_id": "claim",
@@ -73,6 +82,32 @@
       "fabrication_proof": false,
       "numerical_discrepancy": null,
       "summary": "CNN said prices rose about 8% from the beginning to the end of Trump's term, and year-over-year inflation was 1.4% in January 2021."
+    },
+    "ev-claim-alex-2": {
+      "evidence_id": "ev-claim-alex-2",
+      "claim_id": "claim",
+      "source": "alexandria",
+      "label": "Alexandria: Trump's Final Numbers - FactCheck.org",
+      "url": "https://www.factcheck.org/2021/10/trumps-final-numbers/",
+      "stance": "neutral",
+      "reliability": 0.7,
+      "relevance": 0.6,
+      "score": 0.42,
+      "is_primary_source": true,
+      "summary": "FacebookTwitterTumblrClose[Skip to main content](https://www.factcheck.org/2021/10/trumps-final-numbers/#main)\n\n[FactCheck.org\u00ae](https://www.factcheck.org/) A Project of The Annenberg Public Policy Center\n\n[![Become a Fa"
+    },
+    "ev-claim-alex-3": {
+      "evidence_id": "ev-claim-alex-3",
+      "claim_id": "claim",
+      "source": "alexandria",
+      "label": "Alexandria: Trump Claims No Inflation During Administration - YouTube",
+      "url": "https://www.youtube.com/watch?v=-_IId3ZM67g",
+      "stance": "neutral",
+      "reliability": 0.7,
+      "relevance": 0.6,
+      "score": 0.42,
+      "is_primary_source": true,
+      "summary": "![Thumbnail (1920x1080)](https://i.ytimg.com/vi/-_IId3ZM67g/maxresdefault.jpg)\n# [Trump Claims No Inflation During Administration](https://www.youtube.com/watch?v=-_IId3ZM67g)\n\n**Visibility**: Public\n**Uploaded by**: [Bl"
     }
   },
   "contrarian_reviews": [
@@ -118,6 +153,16 @@
         "evidence_id": "ev-claim-1",
         "url": "fixture://smoke12/factcheck",
         "label": "SYNTHETIC fixture"
+      },
+      {
+        "evidence_id": "ev-claim-alex-2",
+        "url": "https://www.factcheck.org/2021/10/trumps-final-numbers/",
+        "label": "Alexandria: Trump's Final Numbers - FactCheck.org"
+      },
+      {
+        "evidence_id": "ev-claim-alex-3",
+        "url": "https://www.youtube.com/watch?v=-_IId3ZM67g",
+        "label": "Alexandria: Trump Claims No Inflation During Administration - YouTube"
       }
     ],
     "external_actions": [
@@ -146,36 +191,36 @@
   },
   "events": [
     {
-      "t": "2026-10-11T14:46:19",
+      "t": "2026-10-11T20:41:16",
       "kind": "run_started",
-      "message": "TruthOps run run-20261011-144619 started for case 'smoke12'"
+      "message": "TruthOps run run-20261011-204116 started for case 'smoke12'"
     },
     {
-      "t": "2026-10-11T14:46:21",
+      "t": "2026-10-11T20:41:26",
       "kind": "sniff_test",
-      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted"
+      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted (backend=clef-flash)"
     },
     {
-      "t": "2026-10-11T14:46:21",
+      "t": "2026-10-11T20:41:26",
       "kind": "claims_decomposed",
       "message": "Decomposed into 1 atomic claims: ['claim']"
     },
     {
-      "t": "2026-10-11T14:46:21",
+      "t": "2026-10-11T20:41:26",
       "kind": "director_decision",
       "message": "[director] claim: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
       "claim_id": "claim",
       "action": "gather"
     },
     {
-      "t": "2026-10-11T14:46:21",
+      "t": "2026-10-11T20:41:26",
       "kind": "http_attempt",
       "message": "GET fixture://smoke12/factcheck (attempt 1)",
       "url": "fixture://smoke12/factcheck",
       "attempt": 1
     },
     {
-      "t": "2026-10-11T14:46:21",
+      "t": "2026-10-11T20:41:26",
       "kind": "http_success",
       "message": "GET fixture://smoke12/factcheck -> 200 OK (attempt 1)",
       "url": "fixture://smoke12/factcheck",
@@ -183,21 +228,21 @@
       "status": 200
     },
     {
-      "t": "2026-10-11T14:46:21",
+      "t": "2026-10-11T20:41:26",
       "kind": "evidence_scored",
       "message": "ev-claim-1: contradicts (reliability=0.95, relevance=1.0, score=0.95)",
       "claim_id": "claim",
       "evidence_id": "ev-claim-1"
     },
     {
-      "t": "2026-10-11T14:46:26",
+      "t": "2026-10-11T20:41:43",
       "kind": "director_decision",
       "message": "[director] claim: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
       "claim_id": "claim",
       "action": "evaluate"
     },
     {
-      "t": "2026-10-11T14:46:26",
+      "t": "2026-10-11T20:41:43",
       "kind": "claim_evaluated",
       "message": "claim: false (confidence 0.97, score 10) [support=0 vs contradict=0.95]",
       "claim_id": "claim",
@@ -205,37 +250,37 @@
       "confidence": 0.97
     },
     {
-      "t": "2026-10-11T14:46:26",
+      "t": "2026-10-11T20:41:43",
       "kind": "director_decision",
       "message": "[director] claim: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
       "claim_id": "claim",
       "action": "escalate"
     },
     {
-      "t": "2026-10-11T14:46:26",
+      "t": "2026-10-11T20:41:43",
       "kind": "contrarian_review",
       "message": "claim: agreed=True conf 0.97 -> 0.97",
       "claim_id": "claim"
     },
     {
-      "t": "2026-10-11T14:46:26",
+      "t": "2026-10-11T20:41:43",
       "kind": "response_planned",
       "message": "Response plan built: FALSE. All external actions BLOCKED pending approval."
     },
     {
-      "t": "2026-10-11T14:46:26",
+      "t": "2026-10-11T20:41:43",
       "kind": "approval_blocked",
       "message": "External action 'publish' BLOCKED \u2014 awaiting human approval.",
       "action": "publish"
     },
     {
-      "t": "2026-10-11T14:46:26",
+      "t": "2026-10-11T20:41:43",
       "kind": "approval_blocked",
       "message": "External action 'post' BLOCKED \u2014 awaiting human approval.",
       "action": "post"
     },
     {
-      "t": "2026-10-11T14:46:26",
+      "t": "2026-10-11T20:41:43",
       "kind": "approval_blocked",
       "message": "External action 'notify' BLOCKED \u2014 awaiting human approval.",
       "action": "notify"

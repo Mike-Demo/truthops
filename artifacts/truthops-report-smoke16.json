@@ -1,8 +1,8 @@
 {
   "label": "LIVE run \u2014 neatHack 2026",
-  "run_id": "run-20261011-144652",
+  "run_id": "run-20261011-204252",
   "case_id": "smoke16",
-  "generated_at": "2026-10-11T14:46:57",
+  "generated_at": "2026-10-11T20:43:08",
   "live_mode": true,
   "neatlogs_trace_id": "unavailable",
   "adapter_status": {
@@ -15,15 +15,24 @@
       "detail": "Sightengine credentials set \u2014 photo AI detection available"
     },
     "c2pa": {
-      "mode": "fixture",
-      "detail": "c2pa-python not installed \u2014 provenance checks skipped"
+      "mode": "live",
+      "detail": "c2pa-python installed \u2014 provenance checks available"
     },
     "alexandria": {
       "mode": "live",
-      "detail": "firecrawl-cli available \u2014 enrichment callable (paid per use)"
+      "detail": "firecrawl-cli available \u2014 primary-source search callable (paid per use)"
     }
   },
-  "api_spend": {},
+  "api_spend": {
+    "alexandria": {
+      "calls": 2,
+      "credits": 0.0,
+      "usd": 0.0,
+      "operations": [
+        "search+scrape"
+      ]
+    }
+  },
   "claims": {
     "claim": {
       "claim_id": "claim",
@@ -73,6 +82,32 @@
       "fabrication_proof": false,
       "numerical_discrepancy": null,
       "summary": "CNN cited the 2024 U.S. goods-and-services trade deficit as about $918 billion; even the goods-only figure was about $1.2 trillion, far below $2 trillion."
+    },
+    "ev-claim-alex-2": {
+      "evidence_id": "ev-claim-alex-2",
+      "claim_id": "claim",
+      "source": "alexandria",
+      "label": "Alexandria: Has US racked up $2 trillion in trade deficits since NAFTA began?",
+      "url": "https://politifact.com/factchecks/2018/oct/01/donald-trump/has-us-racked-2-trillion-trade-deficits-nafta-bega/",
+      "stance": "neutral",
+      "reliability": 0.7,
+      "relevance": 0.6,
+      "score": 0.42,
+      "is_primary_source": true,
+      "summary": "[Skip to content](https://politifact.com/factchecks/2018/oct/01/donald-trump/has-us-racked-2-trillion-trade-deficits-nafta-bega/#primary)\n\n[Menu](https://politifact.com/factchecks/2018/oct/01/donald-trump/has-us-racked-2"
+    },
+    "ev-claim-alex-3": {
+      "evidence_id": "ev-claim-alex-3",
+      "claim_id": "claim",
+      "source": "alexandria",
+      "label": "Alexandria: Trump's Failing Effort To Tackle Trade Deficit Puts Him In Good Company",
+      "url": "https://www.forbes.com/sites/kenroberts/2025/12/20/trumps-failing-effort-to-tackle-trade-deficit-puts-him-in-good-company/",
+      "stance": "neutral",
+      "reliability": 0.7,
+      "relevance": 0.6,
+      "score": 0.42,
+      "is_primary_source": true,
+      "summary": "[Forbes Logo](https://www.forbes.com/)\n\n[Search](https://www.forbes.com/search/?q=)\n\n[Sign Up For Newsletters](https://account.forbes.com/newsletters/) [Games](https://www.forbes.com/games/) [Share a News Tip](https://ww"
     }
   },
   "contrarian_reviews": [
@@ -118,6 +153,16 @@
         "evidence_id": "ev-claim-1",
         "url": "fixture://smoke16/factcheck",
         "label": "SYNTHETIC fixture"
+      },
+      {
+        "evidence_id": "ev-claim-alex-2",
+        "url": "https://politifact.com/factchecks/2018/oct/01/donald-trump/has-us-racked-2-trillion-trade-deficits-nafta-bega/",
+        "label": "Alexandria: Has US racked up $2 trillion in trade deficits since NAFTA began?"
+      },
+      {
+        "evidence_id": "ev-claim-alex-3",
+        "url": "https://www.forbes.com/sites/kenroberts/2025/12/20/trumps-failing-effort-to-tackle-trade-deficit-puts-him-in-good-company/",
+        "label": "Alexandria: Trump's Failing Effort To Tackle Trade Deficit Puts Him In Good Company"
       }
     ],
     "external_actions": [
@@ -146,36 +191,36 @@
   },
   "events": [
     {
-      "t": "2026-10-11T14:46:52",
+      "t": "2026-10-11T20:42:52",
       "kind": "run_started",
-      "message": "TruthOps run run-20261011-144652 started for case 'smoke16'"
+      "message": "TruthOps run run-20261011-204252 started for case 'smoke16'"
     },
     {
-      "t": "2026-10-11T14:46:54",
+      "t": "2026-10-11T20:42:55",
       "kind": "sniff_test",
-      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted"
+      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted (backend=clef-flash)"
     },
     {
-      "t": "2026-10-11T14:46:54",
+      "t": "2026-10-11T20:42:55",
       "kind": "claims_decomposed",
       "message": "Decomposed into 1 atomic claims: ['claim']"
     },
     {
-      "t": "2026-10-11T14:46:54",
+      "t": "2026-10-11T20:42:55",
       "kind": "director_decision",
       "message": "[director] claim: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
       "claim_id": "claim",
       "action": "gather"
     },
     {
-      "t": "2026-10-11T14:46:54",
+      "t": "2026-10-11T20:42:55",
       "kind": "http_attempt",
       "message": "GET fixture://smoke16/factcheck (attempt 1)",
       "url": "fixture://smoke16/factcheck",
       "attempt": 1
     },
     {
-      "t": "2026-10-11T14:46:54",
+      "t": "2026-10-11T20:42:55",
       "kind": "http_success",
       "message": "GET fixture://smoke16/factcheck -> 200 OK (attempt 1)",
       "url": "fixture://smoke16/factcheck",
@@ -183,21 +228,21 @@
       "status": 200
     },
     {
-      "t": "2026-10-11T14:46:54",
+      "t": "2026-10-11T20:42:55",
       "kind": "evidence_scored",
       "message": "ev-claim-1: contradicts (reliability=0.95, relevance=1.0, score=0.95)",
       "claim_id": "claim",
       "evidence_id": "ev-claim-1"
     },
     {
-      "t": "2026-10-11T14:46:57",
+      "t": "2026-10-11T20:43:08",
       "kind": "director_decision",
       "message": "[director] claim: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
       "claim_id": "claim",
       "action": "evaluate"
     },
     {
-      "t": "2026-10-11T14:46:57",
+      "t": "2026-10-11T20:43:08",
       "kind": "claim_evaluated",
       "message": "claim: false (confidence 0.97, score 10) [support=0 vs contradict=0.95]",
       "claim_id": "claim",
@@ -205,37 +250,37 @@
       "confidence": 0.97
     },
     {
-      "t": "2026-10-11T14:46:57",
+      "t": "2026-10-11T20:43:08",
       "kind": "director_decision",
       "message": "[director] claim: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
       "claim_id": "claim",
       "action": "escalate"
     },
     {
-      "t": "2026-10-11T14:46:57",
+      "t": "2026-10-11T20:43:08",
       "kind": "contrarian_review",
       "message": "claim: agreed=True conf 0.97 -> 0.97",
       "claim_id": "claim"
     },
     {
-      "t": "2026-10-11T14:46:57",
+      "t": "2026-10-11T20:43:08",
       "kind": "response_planned",
       "message": "Response plan built: FALSE. All external actions BLOCKED pending approval."
     },
     {
-      "t": "2026-10-11T14:46:57",
+      "t": "2026-10-11T20:43:08",
       "kind": "approval_blocked",
       "message": "External action 'publish' BLOCKED \u2014 awaiting human approval.",
       "action": "publish"
     },
     {
-      "t": "2026-10-11T14:46:57",
+      "t": "2026-10-11T20:43:08",
       "kind": "approval_blocked",
       "message": "External action 'post' BLOCKED \u2014 awaiting human approval.",
       "action": "post"
     },
     {
-      "t": "2026-10-11T14:46:57",
+      "t": "2026-10-11T20:43:08",
       "kind": "approval_blocked",
       "message": "External action 'notify' BLOCKED \u2014 awaiting human approval.",
       "action": "notify"

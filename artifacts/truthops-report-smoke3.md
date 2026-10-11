@@ -1,9 +1,9 @@
 # TruthOps report — case `smoke3`
 
-> SYNTHETIC demo run — neatHack 2026. All fixture data is synthetic; live integrations (Crustdata, Firecrawl) were SIMULATED in this run.
+> LIVE run — neatHack 2026. Evidence is fixture-backed for benchmark comparability; live adapters enriched where available (see JSON report for per-adapter status and spend).
 
-**Overall characterization: UNRESOLVED**
-**Recommended posture:** Acknowledge investigation is ongoing
+**Overall characterization: FALSE**
+**Recommended posture:** Deny with evidence
 
 ## Claim verdicts
 
@@ -13,10 +13,8 @@
 
 ## Key messages
 
-- A security incident did occur on 2026-07-14 and was disclosed on 2026-07-16 (incident report).
-- Enterprise customer decline was 4.2% (2,380 -> 2,280), per the Q3 2026 filing — not 40%.
-- The 40% figure circulating online is contradicted by the primary filing.
-- No direct evidence of deliberate concealment was found; intent is not asserted.
+- Claim 'President Trump ended eight wars.': MOSTLY FALSE (34/100).
+-   Notes: Smoke test 3: kernel of truth, unsupportable number.
 
 ## Approval gate
 
@@ -26,7 +24,26 @@ External actions: **BLOCKED** — publish / post / notify all blocked pending ex
 
 - `ev-claim-1` [fixture] supports `claim` — score 0.64 (reliability 0.8 × relevance 0.8) | primary=True | SYNTHETIC fixture
 - `ev-claim-2` [fixture] contradicts `claim` — score 0.9 (reliability 0.9 × relevance 1.0) | primary=True | SYNTHETIC fixture
+- `ev-claim-alex-3` [alexandria] neutral `claim` — score 0.42 (reliability 0.7 × relevance 0.6) | primary=True | Alexandria: How many wars has President Trump ended? - BBC | https://www.bbc.com/news/articles/c5y3599gx4qo
+- `ev-claim-alex-4` [alexandria] neutral `claim` — score 0.42 (reliability 0.7 × relevance 0.6) | primary=True | Alexandria: FACT FOCUS: Trump says he's ended eight wars. His numbers are off | https://apnews.com/article/trump-wars-fact-focus-a75eca5184bd45acbf9f46ff9822514f
 
 ## Contrarian challenges
 
 - **claim**: agreed=True; confidence 0.95 → 0.95
+
+## Audit trail
+
+- [sniff] proceed=True — passed sniff test — coherent allegation, full pipeline warranted (backend=clef-flash)
+- Decomposed into 1 atomic claims: ['claim']
+- [director] claim: next action = gather — no evidence yet — gather before any judgment
+- [director] claim: next action = evaluate — evidence phase complete — evaluate the claim
+- [director] claim: next action = escalate — initial verdict reached — escalate to contrarian for adversarial review
+- Response plan built: FALSE. All external actions BLOCKED pending approval.
+- External action 'publish' BLOCKED — awaiting human approval.
+- External action 'post' BLOCKED — awaiting human approval.
+- External action 'notify' BLOCKED — awaiting human approval.
+
+## Adapter status
+
+
+**API spend:** $0.00 — no paid calls this run

@@ -1,8 +1,38 @@
 {
-  "label": "SYNTHETIC demo run \u2014 neatHack 2026",
-  "run_id": "run-20261010-200138",
+  "label": "LIVE run \u2014 neatHack 2026",
+  "run_id": "run-20261011-203851",
   "case_id": "smoke3",
-  "generated_at": "2026-10-10T20:01:39",
+  "generated_at": "2026-10-11T20:39:03",
+  "live_mode": true,
+  "neatlogs_trace_id": "unavailable",
+  "adapter_status": {
+    "gptzero": {
+      "mode": "live",
+      "detail": "gptzero-scan CLI present; auth via stored connector"
+    },
+    "sightengine": {
+      "mode": "live",
+      "detail": "Sightengine credentials set \u2014 photo AI detection available"
+    },
+    "c2pa": {
+      "mode": "live",
+      "detail": "c2pa-python installed \u2014 provenance checks available"
+    },
+    "alexandria": {
+      "mode": "live",
+      "detail": "firecrawl-cli available \u2014 primary-source search callable (paid per use)"
+    }
+  },
+  "api_spend": {
+    "alexandria": {
+      "calls": 2,
+      "credits": 0.0,
+      "usd": 0.0,
+      "operations": [
+        "search+scrape"
+      ]
+    }
+  },
   "claims": {
     "claim": {
       "claim_id": "claim",
@@ -67,6 +97,32 @@
       "fabrication_proof": false,
       "numerical_discrepancy": null,
       "summary": "AP's Fact Focus listed the 'ended eight wars' claim among false and misleading claims. The specific quantification of eight wars ended does not survive scrutiny, even though diplomatic involvement in ceasefire efforts wa"
+    },
+    "ev-claim-alex-3": {
+      "evidence_id": "ev-claim-alex-3",
+      "claim_id": "claim",
+      "source": "alexandria",
+      "label": "Alexandria: How many wars has President Trump ended? - BBC",
+      "url": "https://www.bbc.com/news/articles/c5y3599gx4qo",
+      "stance": "neutral",
+      "reliability": 0.7,
+      "relevance": 0.6,
+      "score": 0.42,
+      "is_primary_source": true,
+      "summary": "edigitalsurvey.com\n\n# edigitalsurvey.com is blocked\n\nThis page has been blocked by an extension\n\n- Try disabling your extensions.\n\nERR\\_BLOCKED\\_BY\\_CLIENT\n\nReload\n\n\nThis page has been blocked by an extension\n\n![](<Base6"
+    },
+    "ev-claim-alex-4": {
+      "evidence_id": "ev-claim-alex-4",
+      "claim_id": "claim",
+      "source": "alexandria",
+      "label": "Alexandria: FACT FOCUS: Trump says he's ended eight wars. His numbers are off",
+      "url": "https://apnews.com/article/trump-wars-fact-focus-a75eca5184bd45acbf9f46ff9822514f",
+      "stance": "neutral",
+      "reliability": 0.7,
+      "relevance": 0.6,
+      "score": 0.42,
+      "is_primary_source": true,
+      "summary": "[Enable accessibility](https://apnews.com/article/trump-wars-fact-focus-a75eca5184bd45acbf9f46ff9822514f#)\n\n[![AP Logo](https://assets.apnews.com/19/66/bc546486408c8595f01753a9fbeb/ap-logo-176-by-208.svg)](https://apnews"
     }
   },
   "contrarian_reviews": [
@@ -102,13 +158,11 @@
     "fixture://smoke3/ap-factcheck": 1
   },
   "response_plan": {
-    "characterization": "UNRESOLVED",
-    "recommended_posture": "Acknowledge investigation is ongoing",
+    "characterization": "FALSE",
+    "recommended_posture": "Deny with evidence",
     "key_messages": [
-      "A security incident did occur on 2026-07-14 and was disclosed on 2026-07-16 (incident report).",
-      "Enterprise customer decline was 4.2% (2,380 -> 2,280), per the Q3 2026 filing \u2014 not 40%.",
-      "The 40% figure circulating online is contradicted by the primary filing.",
-      "No direct evidence of deliberate concealment was found; intent is not asserted."
+      "Claim 'President Trump ended eight wars.': MOSTLY FALSE (34/100).",
+      "  Notes: Smoke test 3: kernel of truth, unsupportable number."
     ],
     "cited_evidence": [
       {
@@ -120,6 +174,16 @@
         "evidence_id": "ev-claim-2",
         "url": "fixture://smoke3/ap-factcheck",
         "label": "SYNTHETIC fixture"
+      },
+      {
+        "evidence_id": "ev-claim-alex-3",
+        "url": "https://www.bbc.com/news/articles/c5y3599gx4qo",
+        "label": "Alexandria: How many wars has President Trump ended? - BBC"
+      },
+      {
+        "evidence_id": "ev-claim-alex-4",
+        "url": "https://apnews.com/article/trump-wars-fact-focus-a75eca5184bd45acbf9f46ff9822514f",
+        "label": "Alexandria: FACT FOCUS: Trump says he's ended eight wars. His numbers are off"
       }
     ],
     "external_actions": [
@@ -148,36 +212,36 @@
   },
   "events": [
     {
-      "t": "2026-10-10T20:01:38",
+      "t": "2026-10-11T20:38:51",
       "kind": "run_started",
-      "message": "TruthOps run run-20261010-200138 started for case 'smoke3'"
+      "message": "TruthOps run run-20261011-203851 started for case 'smoke3'"
     },
     {
-      "t": "2026-10-10T20:01:38",
+      "t": "2026-10-11T20:38:54",
       "kind": "sniff_test",
-      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted"
+      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted (backend=clef-flash)"
     },
     {
-      "t": "2026-10-10T20:01:38",
+      "t": "2026-10-11T20:38:54",
       "kind": "claims_decomposed",
       "message": "Decomposed into 1 atomic claims: ['claim']"
     },
     {
-      "t": "2026-10-10T20:01:38",
+      "t": "2026-10-11T20:38:54",
       "kind": "director_decision",
       "message": "[director] claim: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
       "claim_id": "claim",
       "action": "gather"
     },
     {
-      "t": "2026-10-10T20:01:38",
+      "t": "2026-10-11T20:38:54",
       "kind": "http_attempt",
       "message": "GET fixture://smoke3/ap-diplomacy (attempt 1)",
       "url": "fixture://smoke3/ap-diplomacy",
       "attempt": 1
     },
     {
-      "t": "2026-10-10T20:01:38",
+      "t": "2026-10-11T20:38:54",
       "kind": "http_success",
       "message": "GET fixture://smoke3/ap-diplomacy -> 200 OK (attempt 1)",
       "url": "fixture://smoke3/ap-diplomacy",
@@ -185,21 +249,21 @@
       "status": 200
     },
     {
-      "t": "2026-10-10T20:01:38",
+      "t": "2026-10-11T20:38:54",
       "kind": "evidence_scored",
       "message": "ev-claim-1: supports (reliability=0.8, relevance=0.8, score=0.64)",
       "claim_id": "claim",
       "evidence_id": "ev-claim-1"
     },
     {
-      "t": "2026-10-10T20:01:38",
+      "t": "2026-10-11T20:38:54",
       "kind": "http_attempt",
       "message": "GET fixture://smoke3/ap-factcheck (attempt 1)",
       "url": "fixture://smoke3/ap-factcheck",
       "attempt": 1
     },
     {
-      "t": "2026-10-10T20:01:38",
+      "t": "2026-10-11T20:38:54",
       "kind": "http_success",
       "message": "GET fixture://smoke3/ap-factcheck -> 200 OK (attempt 1)",
       "url": "fixture://smoke3/ap-factcheck",
@@ -207,21 +271,21 @@
       "status": 200
     },
     {
-      "t": "2026-10-10T20:01:38",
+      "t": "2026-10-11T20:38:54",
       "kind": "evidence_scored",
       "message": "ev-claim-2: contradicts (reliability=0.9, relevance=1.0, score=0.9)",
       "claim_id": "claim",
       "evidence_id": "ev-claim-2"
     },
     {
-      "t": "2026-10-10T20:01:39",
+      "t": "2026-10-11T20:39:03",
       "kind": "director_decision",
       "message": "[director] claim: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
       "claim_id": "claim",
       "action": "evaluate"
     },
     {
-      "t": "2026-10-10T20:01:39",
+      "t": "2026-10-11T20:39:03",
       "kind": "claim_evaluated",
       "message": "claim: mostly_false (confidence 0.95, score 34) [support=0.64 vs contradict=0.9]",
       "claim_id": "claim",
@@ -229,37 +293,37 @@
       "confidence": 0.95
     },
     {
-      "t": "2026-10-10T20:01:39",
+      "t": "2026-10-11T20:39:03",
       "kind": "director_decision",
       "message": "[director] claim: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
       "claim_id": "claim",
       "action": "escalate"
     },
     {
-      "t": "2026-10-10T20:01:39",
+      "t": "2026-10-11T20:39:03",
       "kind": "contrarian_review",
       "message": "claim: agreed=True conf 0.95 -> 0.95",
       "claim_id": "claim"
     },
     {
-      "t": "2026-10-10T20:01:39",
+      "t": "2026-10-11T20:39:03",
       "kind": "response_planned",
-      "message": "Response plan built: UNRESOLVED. All external actions BLOCKED pending approval."
+      "message": "Response plan built: FALSE. All external actions BLOCKED pending approval."
     },
     {
-      "t": "2026-10-10T20:01:39",
+      "t": "2026-10-11T20:39:03",
       "kind": "approval_blocked",
       "message": "External action 'publish' BLOCKED \u2014 awaiting human approval.",
       "action": "publish"
     },
     {
-      "t": "2026-10-10T20:01:39",
+      "t": "2026-10-11T20:39:03",
       "kind": "approval_blocked",
       "message": "External action 'post' BLOCKED \u2014 awaiting human approval.",
       "action": "post"
     },
     {
-      "t": "2026-10-10T20:01:39",
+      "t": "2026-10-11T20:39:03",
       "kind": "approval_blocked",
       "message": "External action 'notify' BLOCKED \u2014 awaiting human approval.",
       "action": "notify"
