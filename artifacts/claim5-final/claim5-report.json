@@ -1,0 +1,9 @@
+{
+  "claim": "Zohran Mamdani is the mayor of New York City.",
+  "verdict": "true",
+  "score": 99,
+  "confidence": 0.97,
+  "neatlogs_trace_id": "a81df9daf4f253b31576032800a30997",
+  "pipeline_spend": {},
+  "run_timestamp": "2026-10-10T19:00:29-05:00"
+}
