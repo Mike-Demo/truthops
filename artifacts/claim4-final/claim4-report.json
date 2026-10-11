@@ -1,0 +1,10 @@
+{
+  "claim": "Gasoline is now below $2.30 a gallon in most states.",
+  "verdict": "mostly_true",
+  "score": 85,
+  "confidence": 0.93,
+  "neatlogs_trace_id": "cc4cc40ac44510d1ae6d3a82659e5d25",
+  "pipeline_spend": {},
+  "calibration_discrepancy": "Pipeline mostly_true (85) matches expected band but contradicts FactCheck.org FALSE rating",
+  "run_timestamp": "2026-10-10T18:59:21-05:00"
+}

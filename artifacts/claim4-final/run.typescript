@@ -1,0 +1,53 @@
+Script started on 2026-10-10 18:59:14-05:00 [COMMAND="NEATLOGS_API_KEY="t_tGcK5ngLAZJPgPu93wf67o1JzX_fiH" SIGHTENGINE_API_USER="1082922249" SIGHTENGINE_API_SECRET="kLZt3Cxs5dVuaNiEmNqmCZ8zZVehYCcS" PYTHONPATH=~/workspace/.pip-packages python3 -m truthops run --case smoke4 --live" <not executed on terminal>]
+[tracing] neatlogs tracing ENABLED
+[truthops] LIVE mode — probing adapters...
+  [live] adapter status:
+    gptzero      LIVE     — gptzero-scan CLI present; auth via stored connector
+    sightengine  LIVE     — Sightengine credentials set — photo AI detection available
+    c2pa         LIVE     — c2pa-python installed — provenance checks available
+    alexandria   LIVE     — firecrawl-cli available — enrichment callable (paid per use)
+
+[director] investigating allegation: Gasoline is now below $2.30 a gallon in most states.
+
+[sniff] proceed=True — passed sniff test — coherent allegation, full pipeline warranted
+[director] claim registered: claim — Gasoline is now below $2.30 a gallon in most states.
+
+======================================================================
+[director] working claim: claim
+======================================================================
+[director] claim: next action = gather
+           rationale: no evidence yet — gather before any judgment
+  [evidence] ev-claim-1 supports | rel=0.85 x relv=1.0 -> score=0.85 | primary=True
+  [live] Alexandria discovered 0 tools
+[director] claim: next action = evaluate
+           rationale: evidence phase complete — evaluate the claim
+  [evaluate] claim -> MOSTLY_TRUE (confidence 0.93, score 85/100) [support=0.85 | contradict=0]
+[director] claim: next action = escalate
+           rationale: initial verdict reached — escalate to contrarian for adversarial review
+  [contrarian] agrees on claim (mostly_true, conf 0.93) — no challenge.
+
+======================================================================
+[director] all claims concluded — building response plan
+======================================================================
+[director] overall characterization: TRUE
+[director] recommended posture: Affirm with evidence
+  • Claim 'Gasoline is now below $2.30 a gallon in most states.': MOSTLY TRUE (85/100).
+  •   Notes: Smoke test 4: mostly true, minor imprecision.
+
+[director] attempting external actions (expect the gate to block):
+⛔ APPROVAL GATE: external action 'publish' is BLOCKED.
+   A human must explicitly approve before TruthOps publishes, posts, or notifies.
+   Run with --approve '<action>' (human-initiated) to release a single action.
+⛔ APPROVAL GATE: external action 'post' is BLOCKED.
+   A human must explicitly approve before TruthOps publishes, posts, or notifies.
+   Run with --approve '<action>' (human-initiated) to release a single action.
+⛔ APPROVAL GATE: external action 'notify' is BLOCKED.
+   A human must explicitly approve before TruthOps publishes, posts, or notifies.
+   Run with --approve '<action>' (human-initiated) to release a single action.
+
+[truthops] reports written:
+  /home/hatch/workspace/truthops/artifacts/truthops-report-smoke4.json
+  /home/hatch/workspace/truthops/artifacts/truthops-report-smoke4.md
+2026-10-10 18:59:21 - neatlogs - INFO - Neatlogs SDK shutdown complete
+
+Script done on 2026-10-10 18:59:21-05:00 [COMMAND_EXIT_CODE="0"]
