@@ -298,10 +298,36 @@ class EvidenceAgent:
         news articles (those are coverage OF the image, not the image itself,
         and scanning them produces misleading evidence).
 
+        Fixture images (fixtures/<claim_id>/images/) take priority — these
+        are the actual claimed images provided for verification.
+
         Returns (image_url, image_bytes) or (None, None) if the actual
         claimed image cannot be located.
         """
         import urllib.request
+        import os
+
+        # FIRST: check fixture directory for claimed images
+        # (e.g. fixtures/smoke1/images/img1.jpg) — these are the actual
+        # images referenced by the claim, provided for verification
+        # Use case_id (e.g. "smoke1") not claim_id (e.g. "claim")
+        case_id = self.state.data.get("case_id", claim_id)
+        fixture_dir = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+            "fixtures", case_id, "images")
+        if os.path.isdir(fixture_dir):
+            for fname in sorted(os.listdir(fixture_dir)):
+                if fname.lower().endswith((".jpg", ".jpeg", ".png", ".webp")):
+                    fpath = os.path.join(fixture_dir, fname)
+                    try:
+                        with open(fpath, "rb") as f:
+                            img_bytes = f.read()
+                        if len(img_bytes) >= 1024:
+                            print(f"  [live] Photo: using fixture image "
+                                  f"{fpath} ({len(img_bytes)} bytes)")
+                            return f"fixture://{case_id}/images/{fname}", img_bytes
+                    except Exception:
+                        continue
 
         # Dedicated image query: strip news-y terms, focus on the image itself
         # Remove words that bias toward articles ABOUT the image
