@@ -291,48 +291,62 @@ class EvidenceAgent:
                                      claim_id=claim_id)
 
     def _acquire_claim_image(self, claim_text, claim_id):
-        """Find and download an image related to the claim.
+        """Find and download the actual image referenced by a photo claim.
 
-        Returns (image_url, image_bytes) or (None, None) if no image found.
-        Strategy: search for the claim topic + image, take the first
-        fetchable image URL from results.
+        DEDICATED IMAGE SEARCH PATH — separate from text claim evidence.
+        Only accepts direct image file URLs. Never scrapes og:image from
+        news articles (those are coverage OF the image, not the image itself,
+        and scanning them produces misleading evidence).
+
+        Returns (image_url, image_bytes) or (None, None) if the actual
+        claimed image cannot be located.
         """
         import urllib.request
-        import urllib.parse
 
-        # Search for images related to the claim
-        query = claim_text[:150] + " photo image"
+        # Dedicated image query: strip news-y terms, focus on the image itself
+        # Remove words that bias toward articles ABOUT the image
+        stop_words = {"photographs", "photograph", "photo", "photos",
+                      "picture", "pictures", "image", "images",
+                      "circulating", "online", "show", "shows", "claimed"}
+        words = [w for w in claim_text[:200].lower().split()
+                 if w.strip(".,") not in stop_words]
+        query = " ".join(words[:15])
         image_url = None
 
-        # Try Firecrawl search for image URLs
+        # News/debunk domains to EXCLUDE — we want the original image,
+        # not articles about it
+        excluded_domains = [
+            "abc7", "cbsnews", "cnn.com", "apnews", "reuters", "nbcnews",
+            "nytimes", "washingtonpost", "factcheck.org", "politifact",
+            "snopes", "youtube.com", "facebook.com", "twitter.com", "x.com",
+        ]
+
         try:
-            result = firecrawl_adapter.search(query, limit=5)
-            # Handle dict response format: {'data': {'web': [...]}}
+            result = firecrawl_adapter.search(query, limit=10)
             items = []
             if isinstance(result, dict):
                 items = result.get("data", {}).get("web", [])
             elif isinstance(result, list):
                 items = result
             for r in items:
-                if isinstance(r, str):
-                    url = r
-                else:
-                    url = r.get("url", "")
-                # Look for direct image links
-                if any(url.lower().endswith(ext)
-                       for ext in [".jpg", ".jpeg", ".png", ".webp", ".gif"]):
+                url = r if isinstance(r, str) else r.get("url", "")
+                url_lower = url.lower()
+                # Skip news/debunk/article domains entirely
+                if any(d in url_lower for d in excluded_domains):
+                    continue
+                # ONLY accept direct image file URLs
+                if any(url_lower.endswith(ext) for ext in
+                       [".jpg", ".jpeg", ".png", ".webp", ".gif"]):
                     image_url = url
+                    print(f"  [live] Photo search found direct image: "
+                          f"{url[:80]}")
                     break
-            # If no direct image URL, try scraping the first result for images
-            if not image_url and items:
-                first = items[0]
-                page_url = first if isinstance(first, str) else first.get("url", "")
-                if page_url:
-                    image_url = self._extract_image_from_page(page_url)
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"  [live] Photo search failed: {e}")
 
         if not image_url:
+            print(f"  [live] Photo search: no direct image URL found — "
+                  f"skipping photo forensics (won't scan article images)")
             return None, None
 
         # Download the image
