@@ -76,6 +76,10 @@ def write_reports(state, plan, case_id, live_adapter=None):
         "",
         f"**Overall characterization: {plan['characterization']}**",
         f"**Recommended posture:** {plan['recommended_posture']}",
+    ]
+    if trace_id:
+        lines.append(f"**Neatlogs trace ID:** `{trace_id}`")
+    lines += [
         "",
         "## Claim verdicts",
         "",
