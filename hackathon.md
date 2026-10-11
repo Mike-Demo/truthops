@@ -33,7 +33,7 @@ Three checkpoints, all materialized to GitHub ref namespace `refs/entire/checkpo
 
 ## cfo.ai — unit economics
 - TruthOps Business Plan workspace (Trilby Media account) models tier pricing, costs, revenue, runway.
-- Pipeline cost per investigation: **$0.994** full pipeline; **$0.02** Cloudflare pre-screen sniff.
+- Pipeline cost per investigation: **$1.08** full pipeline (cfo.ai modeled unit economics); **$0.02** Cloudflare pre-screen sniff. Observed API spend on demo runs: $0.00.
 - Sightengine: 2,000 free ops/month; modeled shared cost $0/$0/$29/mo at 25/100/400-customer scale.
 - Tier pricing $499/$1,499/$3,999 (25/150/400 investigations); $12 overage; modeled gross margins 88–90%.
 - Runway outputs: base minimum cash $1,861 (Feb 2027); Mar-2028 ending cash $91,534 / $22,892 / $228,819 (base/conservative/upside).
