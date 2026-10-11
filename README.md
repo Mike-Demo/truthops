@@ -4,6 +4,19 @@
 
 TruthOps is an autonomous trust operations agent for neatHack 2026 (Oct 10–12). It investigates high-risk claims, challenges its own conclusions through adversarial review, and produces evidence-backed response plans — with human approval gates at every decisive step.
 
+## Quickstart (judges)
+
+No dependencies beyond Python 3.10+. No API keys needed for the fixture runs.
+
+```bash
+git clone https://github.com/Mike-Demo/truthops
+cd truthops
+python -m truthops run --case smoke1   # PANTS_ON_FIRE expected
+python -m truthops run --case smoke5   # TRUE expected
+```
+
+Cases `smoke1`–`smoke8` map to the 8 calibration claims below. Add `--live` to wire the live evidence adapters (GPTZero, Sightengine, C2PA, Alexandria) — each degrades gracefully to fixture mode when its key is missing. Reports land in `artifacts/` as JSON + Markdown.
+
 ## Status
 
 ✅ **Step 1 complete — 8 calibration claims run through the pipeline** (Oct 10, 2026). Claims 1–5 use AP/FactCheck.org-derived fixtures; claims 6–8 (supplement set) use PolitiFact-derived fixtures. All fixtures are synthetic and labeled as such — see `docs/smoke-test-claims.md` for the methodology and known limitations.
@@ -19,17 +32,19 @@ TruthOps is an autonomous trust operations agent for neatHack 2026 (Oct 10–12)
 | ICE training days | MOSTLY_TRUE | 88/100 | 80–90 | ✅ Hit |
 | Florida hospital rank | MOSTLY_TRUE | 90/100 | 80–90 | ✅ Hit (top of band) |
 
-**Total API spend across all 5 runs: $0.00** (all adapters on free tiers).
+**Total API spend across all 8 runs: $0.00.**
 
-Every run produced: Markdown report, signed PDF/A, public Gist, and a Neatlogs trace ID in the JSON. All artifacts committed under `artifacts/claim{1-8}-final/`.
+Every run produced: Markdown report, signed PDF/A-3b, public Gist, and a Neatlogs trace ID in the JSON. All artifacts committed under `artifacts/claim{1-8}-final/`. (PDFs carry valid PKCS#7 PAdES signatures and full PDF/A-3b markers including catalog OutputIntent with sRGB profile — verified 2026-10-11.)
 
 ### Live-stack verification (Oct 10, 2026, ~23:15 CDT)
 
-All 8 claims re-ran with `--live` (GPTZero, Sightengine, C2PA, Alexandria, Cloudflare Clef sniff). Every verdict matched its fixture run exactly — 8/8 identical. Total live spend: **$0.00** (Alexandria discovered 0 enrichment tools; photo chain flagged but didn't fire paid calls). Neatlogs tracing fully operational after the v4 `neatlogs_span()` fix — all 8 traces captured with nested spans (e.g. smoke1 live trace `07767814d689...`).
+All 8 claims re-ran with `--live` (GPTZero, Sightengine, C2PA, Alexandria, Cloudflare Clef sniff). Every verdict matched its fixture run exactly — 8/8 identical. Total live spend: **$0.00**. Neatlogs tracing fully operational after the v4 `neatlogs_span()` fix — all 8 traces captured with nested spans (e.g. smoke1 live trace `07767814d689...`).
+
+**Honesty note on the live runs:** these were eight runs in `--live` mode with the adapters configured and available — not complete end-to-end validation of every external integration. `api_spend` was empty on every run: Alexandria discovered zero relevant tools for these claims (so no enrichment calls fired), the photo chain stopped at "image acquisition required" without executing a paid Sightengine operation, and the output doesn't prove whether Cloudflare Clef answered or the heuristic fallback did. What's validated: the adapters are wired up, the pipeline reaches identical verdicts with them enabled, and nothing bills unexpectedly. What's not yet proven: a paid call flowing through each adapter end to end.
 
 ## Methodology
 
-**Calibration-first.** Before trusting the agent on unknown claims, we verify it hits known answers. Five real-world claims with established PolitiFact/FactCheck.org rulings span the full truth spectrum — from PANTS_ON_FIRE to TRUE.
+**Calibration-first.** Before trusting the agent on unknown claims, we verify it hits known answers. Eight real-world claims with established PolitiFact/FactCheck.org rulings span the full truth spectrum — from PANTS_ON_FIRE to TRUE. 7 of 8 landed in their expected bands; Claim 6 scored 78/100 against an 80–90 expected band (inside the pipeline's 75–90 MOSTLY_TRUE band).
 
 Each claim runs **independently** through the live pipeline with no shared state:
 
@@ -46,7 +61,7 @@ Allegation → [Sniff Test] → (proceed?) → Evidence Pipeline → Claims → 
 4. **Director** synthesizes the final verdict, confidence, and response plan.
 5. **Human approval gates** block publish/post/notify — no external action without explicit approval.
 
-**Honest calibration:** 5 of 5 claims in band — but Claim 4 earned it the hard way. The original fixture encoded a verdict reconstructed from a search snippet ("substantially accurate, ~$2.36") that turned out to be wrong: reading the full FactCheck.org article showed Trump "continued to exaggerate" (no state below $2.30, national $2.94; the $2.36 was the article's own corrected misquote). We fixed the fixture, the evidence-plan stance, and the band (80–90 → 10–30), reran, and the pipeline scored FALSE 10/100 — correctly. The calibration process caught a bad test, not a bad pipeline, and we document the whole correction rather than hiding it.
+**Honest calibration:** 7 of 8 claims in their expected bands — and the two that needed work earned it. Claim 6 scored 78/100 vs an 80–90 expected band: inside the pipeline's own 75–90 MOSTLY_TRUE band, but 2 points under the requested range — flagged, not hidden. Claim 4 earned its band the hard way. The original fixture encoded a verdict reconstructed from a search snippet ("substantially accurate, ~$2.36") that turned out to be wrong: reading the full FactCheck.org article showed Trump "continued to exaggerate" (no state below $2.30, national $2.94; the $2.36 was the article's own corrected misquote). We fixed the fixture, the evidence-plan stance, and the band (80–90 → 10–30), reran, and the pipeline scored FALSE 10/100 — correctly. The calibration process caught a bad test, not a bad pipeline, and we document the whole correction rather than hiding it.
 
 ## Architecture
 
@@ -62,7 +77,7 @@ Allegation → [Sniff Test] → (proceed?) → Evidence Pipeline → Claims → 
 
 ## Sponsor evidence
 
-- **neatlogs traces**: instrumented via `truthops/tracing.py` — all 5 calibration runs traced, trace IDs in report JSON ([neatlogs.com](https://neatlogs.com/))
+- **neatlogs traces**: instrumented via `truthops/tracing.py` — all 8 calibration runs traced, trace IDs in report JSON ([neatlogs.com](https://neatlogs.com/))
 - **Entire checkpoints**: CLI installed, `~/.local/bin` on PATH, checkpoint `01M4KHFZSP4K7Z61RJTTK1SFQS` visible locally and pushed to origin ([entire.io](https://entire.io/))
 - **cfo.ai plan**: [TruthOps Business Plan](https://app.cfo.ai/trilby-media-5c5e1736/chat/9fc4571f-9158-4cc9-bdc1-868d10f2c6d3) — financial model with $1.08/investigation unit economics (GPTZero $45/mo verified) ([cfo.ai](https://cfo.ai/))
 - **GPTZero MCP**: live at `https://gptzero-mcp.space.fast/mcp` — `detect_ai`, `detect_paraphrased`, `flagged_sentences` tools for cfo.ai integration
@@ -77,3 +92,6 @@ Allegation → [Sniff Test] → (proceed?) → Evidence Pipeline → Claims → 
   - Claim 3: https://gist.github.com/Mike-Demo/e8a002b9e89f22213845b1cadc42b0bc
   - Claim 4: https://gist.github.com/Mike-Demo/1330e1d6a7d291c4ee0e438f305a042f
   - Claim 5: https://gist.github.com/Mike-Demo/9522f850f85b765ffe743bb5bb164f88
+  - Claim 6: https://gist.github.com/Mike-Demo/8adad5b96c31a1bdf21b29f21769d1ca
+  - Claim 7: https://gist.github.com/Mike-Demo/c1716b3e88cbbf599a99b645a0a6e0ff
+  - Claim 8: https://gist.github.com/Mike-Demo/8f6261a9c63d48e176f5fa6f633fedee
