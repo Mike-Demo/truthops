@@ -81,7 +81,7 @@ Allegation → [Sniff Test] → (proceed?) → Evidence Pipeline → Claims → 
 
 - **neatlogs traces**: instrumented via `truthops/tracing.py` — all 28 claims traced on live runs, trace IDs in report JSON ([neatlogs.com](https://neatlogs.com/))
 - **Entire checkpoints**: CLI installed, `~/.local/bin` on PATH, latest checkpoint `01M4PD1Z3D2Q28FHYMFPDARF1J` (Oct 11) with full session provenance, pushed to origin ([entire.io](https://entire.io/))
-- **cfo.ai plan**: [TruthOps Business Plan](https://app.cfo.ai/trilby-media-5c5e1736/chat/9fc4571f-9158-4cc9-bdc1-868d10f2c6d3) — financial model with $1.08/investigation unit economics (GPTZero $45/mo verified) ([cfo.ai](https://cfo.ai/))
+- **cfo.ai plan**: [cfo.ai](https://cfo.ai/) — financial model with $1.08/investigation unit economics. Exported copies: [business-plan.md](docs/business-plan.md) · [business-plan.pdf](docs/business-plan.pdf)
 
 ## Limitations
 

@@ -32,7 +32,7 @@ Three checkpoints, all materialized to GitHub ref namespace `refs/entire/checkpo
 - Created via custom `entire-agent-cane` plugin + `entire session attach` (Entire has no direct checkpoint-create for non-integrated agents).
 
 ## cfo.ai — unit economics
-- TruthOps Business Plan workspace (Trilby Media account) models tier pricing, costs, revenue, runway.
+- TruthOps Business Plan workspace (Trilby Media account, requires sign-in) models tier pricing, costs, revenue, runway. Exported copies: [docs/business-plan.md](docs/business-plan.md) · [docs/business-plan.pdf](docs/business-plan.pdf)
 - Pipeline cost per investigation: **$1.08** full pipeline (cfo.ai modeled unit economics); **$0.02** Cloudflare pre-screen sniff. Observed API spend on demo runs: $0.00.
 - Sightengine: 2,000 free ops/month; modeled shared cost $0/$0/$29/mo at 25/100/400-customer scale.
 - Tier pricing $499/$1,499/$3,999 (25/150/400 investigations); $12 overage; modeled gross margins 88–90%.
