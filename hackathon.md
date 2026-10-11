@@ -112,3 +112,57 @@ Three checkpoints, all materialized to GitHub ref namespace `refs/entire/checkpo
 **Proof run (Oct 11 ~3:50 PM):** All 28 claims re-ran with live keys after adapter fixes. 28/28 in expected bands, zero regressions. **Traced rerun (Oct 11 ~4:00 PM):** All 28 re-ran with NEATLOGS_API_KEY set — 28/28 trace IDs captured. Reports, PDFs regenerated.
 
 **Entire checkpoints (Oct 11):** `01M4PAFW1VD6GMP8A5W2GAW9V2` → `7afa104` → `b51ba79` (traced rerun) → `aef3807` (Sightengine wiring) → `01M4PD1Z3D2Q28FHYMFPDARF1J` → `9e95694` (smoke1 C2PA evidence).
+
+## 2026-10-11 evening — photo forensics completion + honesty pass
+
+### Photo forensics: two bugs, one fix
+The Sightengine wiring had a critical bug: `_acquire_claim_image()` grabbed the `og:image` from the ABC7 *debunk article* (not the actual claimed photo). Sightengine correctly said "likely authentic" (it was the news photo), and the evidence pulled smoke1 from PANTS_ON_FIRE 3/100 to MOSTLY_FALSE 35/100 — a regression caused by scanning the wrong image.
+
+**Fix (per Demo's direction: "Have photo search be its own search path"):** Dedicated image search path in `_acquire_claim_image()` — strips news-bias words (photographs/circulating/online/show/claimed), excludes news/debunk domains, accepts ONLY direct image file URLs (.jpg/.png/.webp), never scrapes article og:images, skips cleanly when the actual claimed image can't be found.
+
+**Fixture images:** Demo uploaded the 4 actual Mamdani/Epstein fake photos. Scanned directly: **91%, 99%, 99%, 99% AI probability** (Sightengine). Copied to `fixtures/smoke1/images/img1-4.jpg`. Pipeline checks fixture dir FIRST. Verified: smoke1 loads img1, Sightengine flags **93% AI, fabrication_proof=True, stance=contradicts** — verdict strengthened to **PANTS_ON_FIRE 1/100 (confidence 0.99)**.
+
+**Vault limitation discovered:** Secure Vault surrogate exchange only injects single header/query-param values; Sightengine needs two separate form fields (`api_user` + `api_secret`) — cannot be bridged. Pipeline still needs keys as env vars for runs. Connector `custom.sightengine` created; stored credential cannot be used by the pipeline.
+
+### Full sweep with photo forensics (GitHub `4e8e40f`)
+28/28 claims re-ran. All verdicts/scores match baseline except smoke1 (3→1, photo forensics). Zero regressions. Terminal log at `thread-assets/final-run-2026-10-11.log` (sanitized).
+
+### Audit review (TruthOps-final-audit.pdf)
+External audit prepared Oct 11 4:35 PM. Findings: **1 Critical, 5 High, 9 Medium, 3 Low. Provisional score ~53/100, potentially 75+ with fixes.**
+- **C1 (Critical):** Live neatlogs + Sightengine credentials in 5 public terminal recordings (`artifacts/claim*-final/run.typescript`) and 5 Entire checkpoint refs. **Keys were exposed on purpose for the hack** (confirmed). Remediation: rotate post-event + incident note (documented in README security note).
+- **H1:** Calibration is circular — `SMOKE_EVIDENCE_PLAN` hard-codes stances/weights. "28/28 in band" proves execution, not truth-discovery. Fair.
+- **H2:** Agent is rule-based — no LLM in reasoning path. "Autonomous agent" overclaims. Fair — README reframed.
+- **H3:** Live footage showed tracing OFF — **outdated** (fixed by traced rerun).
+- **H4:** Demo video doesn't meet requirement — **biggest remaining gap** (no narrated 2-3 min video yet).
+- **H5:** Dashboard had no honesty labelling — **fixed** (fixture-driven banner on claims page).
+- **M1:** Cost figures conflicted ($1.08 / $0.994 / $0.56 / $0.00) — **fixed** ($1.08 = cfo.ai modeled source of truth; $0.00 = observed spend).
+
+### Honesty pass (GitHub `98f7053`, Entire `01M4PG6TV2ZDFJN4XSMZRPCVZM`)
+- README.md: "autonomous trust operations agent" → "transparent scoring and governance pipeline over curated evidence"; explicit rule-based disclosure; new Limitations section; Security note documenting credential exposure (intentional for hack, rotation post-event).
+- site/claims.html: amber banner — "⚠️ Fixture-driven demo: scores follow recorded evidence calibrated against known fact-checks; analysis is rule-based." "$0.00 API Spend" → "Observed API Spend".
+- hackathon.md + site/index.html: $0.994 → $1.08 cost fix.
+- Demo site redeployed with banner live.
+
+### Site data refresh (GitHub `933f553`)
+claims.html embedded data was stale (pre-photo-forensics scores). Regenerated from latest JSON reports — smoke1 now shows 1/100 with new trace ID. Site redeployed and verified (200s on both pages).
+
+### README claims table (GitHub `c991fd1`)
+All 28 claims table added to README — each with verdict, score, and links to markdown report, PDF, and terminal video on GitHub.
+
+## Entire checkpoints (complete list)
+All materialized to GitHub ref namespace `refs/entire/checkpoints/QS/`:
+1. `01M4KHFZSP4K7Z61RJTTK1SFQS` (Oct 10) — initial build session
+2. `01M4MKACK4KDW0HTYAF58ARS9K` → `eeb1591bb397` (Oct 10) — full live suite + README
+3. `01M4P6SRGGCG2GSHYEPAZQYR71` → `439723d` (Oct 11) — live-run recordings, PDF/A regen
+4. `01M4PAFW1VD6GMP8A5W2GAW9V2` → `7afa104` (Oct 11) — traced rerun
+5. `01M4PD1Z3D2Q28FHYMFPDARF1J` → `9e95694` (Oct 11) — Sightengine chain + smoke1 C2PA
+6. `01M4PG6TV2ZDFJN4XSMZRPCVZM` → `98f7053` (Oct 11) — honesty pass
+
+## Remaining work (priority order)
+1. **Narrated 2–3 min demo video** — doesn't exist; 20% judging category; must cover agent + neatlogs (live trace) + Entire (checkpoint resolving to commit) + cfo.ai (pricing/costs/revenue/runway); end on human gate + PDF report; state on camera that pipeline is rule-based.
+2. **Final submission writeup** — `thread-assets/submission-writeup.md` still DRAFT. Submission = public X quote-post of official neatlogs post with team, name, project, repo, demo link. Window: Oct 12, 8:30 AM–1:25 PM CDT; plan to submit by ~12:30 PM CDT.
+3. **Rotate exposed keys after the event** (neatlogs + Sightengine at minimum).
+4. **PressMaster**: trim 4 over-length X posts during review; drafts in Review/Approval pending.
+5. **Bluesky URL** — still missing.
+6. Optional (audit mediums): automated smoke test, move mp4s out of git, CSP headers, remove AgentMail address from SESSION-2026-10-10-PM.md, fix sniff-rejection `recommended_posture` crash, document GPTZero local-CLI dependency.
+7. After hackathon: rotate ALL pasted API keys (Sightengine, Cloudflare, Crustdata, Firecrawl, GPTZero, neatlogs, Firecrawl).
