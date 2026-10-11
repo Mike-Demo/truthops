@@ -15,7 +15,7 @@ Record Sunday Oct 11 in one session. Demo records narration + screen; no AI acto
 | 0:00–0:04 | Black. Single claim types itself: "Photos show Mamdani partying with Epstein" | (typing effect) |
 | 0:04–0:08 | Pipeline stages flash: SNIFF → EVIDENCE → CONTRARIAN → DIRECTOR | "Don't just detect misinformation." |
 | 0:08–0:14 | Verdict slams in: PANTS_ON_FIRE, 3/100. Sightengine: 3 images 99% AI-generated | "Resolve it." |
-| 0:14–0:22 | Rapid verdict montage: FALSE 10/100 → MOSTLY_FALSE 34/100 → MOSTLY_TRUE 88/100 → TRUE 99/100 | "8 claims. 8 verdicts. All in band." |
+| 0:14–0:22 | Rapid verdict montage: FALSE 10/100 → MOSTLY_FALSE 34/100 → MOSTLY_TRUE 88/100 → TRUE 99/100 | "8 claims. 8 verdicts. 7 of 8 in band." |
 | 0:22–0:30 | Signed PDF/A renders, signature badge. Neatlogs trace timeline. Entire checkpoint hash | "Signed evidence. Full audit trail." |
 | 0:30–0:38 | Approval gates: human taps APPROVE on response plan | "Humans decide. Always." |
 | 0:38–0:45 | Logo + truthops-demo.space.fast + #neatHack + sponsor marks | "TruthOps — Autonomous Trust Operations" |
@@ -57,8 +57,8 @@ Record Sunday Oct 11 in one session. Demo records narration + screen; no AI acto
 > "Every run produces a signed, tamper-evident evidence package — PDF/A with a digital signature — plus a public Gist and a full Neatlogs trace, so anyone can audit exactly how the verdict was reached."
 
 **[2:25–2:50 — Calibration proof]**
-*(Calibration table: 8 claims, all in band)*
-> "And it's calibrated, not just confident. Eight test claims across the full Truth-O-Meter — from Pants on Fire to True — every verdict landed in its expected band."
+*(Calibration table: 8 claims, 7/8 in requested bands)*
+> "And it's calibrated, not just confident. Eight test claims across the full Truth-O-Meter — from Pants on Fire to True — seven of eight landed in their expected bands. The eighth scored 78 out of 100 — just under its requested band, still inside the pipeline's Mostly True range."
 
 **[2:50–3:00 — Close]**
 *(Logo, URL, #neatHack)*
