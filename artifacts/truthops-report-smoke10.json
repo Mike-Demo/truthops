@@ -1,0 +1,335 @@
+{
+  "label": "LIVE run \u2014 neatHack 2026",
+  "run_id": "run-20261011-144559",
+  "case_id": "smoke10",
+  "generated_at": "2026-10-11T14:46:05",
+  "live_mode": true,
+  "neatlogs_trace_id": "unavailable",
+  "adapter_status": {
+    "gptzero": {
+      "mode": "live",
+      "detail": "gptzero-scan CLI present; auth via stored connector"
+    },
+    "sightengine": {
+      "mode": "live",
+      "detail": "Sightengine credentials set \u2014 photo AI detection available"
+    },
+    "c2pa": {
+      "mode": "fixture",
+      "detail": "c2pa-python not installed \u2014 provenance checks skipped"
+    },
+    "alexandria": {
+      "mode": "live",
+      "detail": "firecrawl-cli available \u2014 enrichment callable (paid per use)"
+    }
+  },
+  "api_spend": {},
+  "claims": {
+    "decline_was_40pct": {
+      "claim_id": "decline_was_40pct",
+      "statement": "The enterprise customer decline was 93%.",
+      "status": "concluded",
+      "verdict": "false",
+      "confidence_initial": 0.97,
+      "confidence_revised": 0.97,
+      "notes": "Atomic fact: is the specific magnitude correct?",
+      "gather_attempts": 1,
+      "score_0_100": 10,
+      "scoring": {
+        "support_weight": 0.2,
+        "contradict_weight": 0.95,
+        "support_threshold": 0.6,
+        "contradict_threshold": 0.6,
+        "mixed_threshold": 0.4,
+        "fabrication_proof": false,
+        "numerical_discrepancy": null,
+        "truth_o_meter_band": [
+          5,
+          15
+        ],
+        "factors": [
+          "source reliability x relevance per item",
+          "primary sources weighted via reliability score",
+          "PolitiFact Truth-O-Meter verdict scale (0-100 bands)",
+          "fabrication proof -> PANTS ON FIRE floor",
+          "numerical discrepancy -> precision penalty",
+          "no evidence -> unresolved (never assumed)"
+        ]
+      }
+    }
+  },
+  "evidence": {
+    "ev-decline_was_40pct-1": {
+      "evidence_id": "ev-decline_was_40pct-1",
+      "claim_id": "decline_was_40pct",
+      "source": "fixture",
+      "label": "SYNTHETIC fixture",
+      "url": "fixture://northstar/filing-q3-2026",
+      "stance": "contradicts",
+      "reliability": 0.95,
+      "relevance": 1.0,
+      "score": 0.95,
+      "is_primary_source": true,
+      "fabrication_proof": false,
+      "numerical_discrepancy": null,
+      "summary": "Enterprise customer count declined 4.2% quarter over quarter, which management attributes in part to elevated churn following the July security incident."
+    },
+    "ev-decline_was_40pct-2": {
+      "evidence_id": "ev-decline_was_40pct-2",
+      "claim_id": "decline_was_40pct",
+      "source": "fixture",
+      "label": "SYNTHETIC fixture",
+      "url": "fixture://northstar/news-snippets",
+      "stance": "supports",
+      "reliability": 0.4,
+      "relevance": 0.5,
+      "score": 0.2,
+      "is_primary_source": false,
+      "fabrication_proof": false,
+      "numerical_discrepancy": null,
+      "summary": "Two secondary snippets repeat the 40% figure without a primary source.",
+      "ai_screening": {
+        "p_ai": 1.0,
+        "predicted_class": "ai",
+        "confidence": "high",
+        "ai_paraphrased_prob": 0.0,
+        "ai_paraphrased_class": "pure_ai",
+        "flagged_sentences": [
+          {
+            "sentence": "Sources claim Northstar Cloud has lost as much as 40% of its enterprise customers since last month's breach, though the ",
+            "p_ai": 1.0
+          },
+          {
+            "sentence": "Unverified reports put Northstar Cloud's enterprise customer losses near 40% following the July security incident.",
+            "p_ai": 1.0
+          },
+          {
+            "sentence": "Analysts urge caution: no filing supports this number.",
+            "p_ai": 1.0
+          }
+        ],
+        "flagged_count": 3,
+        "plagiarism": null,
+        "scanned_chars": 327
+      }
+    }
+  },
+  "contrarian_reviews": [
+    {
+      "claim_id": "decline_was_40pct",
+      "initial_verdict": "false",
+      "initial_confidence": 0.97,
+      "disagreement": null,
+      "agreed": true,
+      "revised_confidence": 0.97,
+      "revised_verdict": "false"
+    }
+  ],
+  "director_decisions": [
+    {
+      "claim_id": "decline_was_40pct",
+      "action": "gather",
+      "rationale": "no evidence yet \u2014 gather before any judgment"
+    },
+    {
+      "claim_id": "decline_was_40pct",
+      "action": "evaluate",
+      "rationale": "evidence phase complete \u2014 evaluate the claim"
+    },
+    {
+      "claim_id": "decline_was_40pct",
+      "action": "escalate",
+      "rationale": "initial verdict reached \u2014 escalate to contrarian for adversarial review"
+    }
+  ],
+  "http_attempts": {
+    "fixture://northstar/filing-q3-2026": 2,
+    "fixture://northstar/news-snippets": 1
+  },
+  "response_plan": {
+    "characterization": "FALSE",
+    "recommended_posture": "Deny with evidence",
+    "key_messages": [
+      "Claim 'The enterprise customer decline was 93%.': FALSE (10/100).",
+      "  Notes: Atomic fact: is the specific magnitude correct?"
+    ],
+    "cited_evidence": [
+      {
+        "evidence_id": "ev-decline_was_40pct-1",
+        "url": "fixture://northstar/filing-q3-2026",
+        "label": "SYNTHETIC fixture"
+      }
+    ],
+    "external_actions": [
+      {
+        "action": "publish",
+        "target": "company blog / press statement",
+        "status": "BLOCKED"
+      },
+      {
+        "action": "post",
+        "target": "official social channels",
+        "status": "BLOCKED"
+      },
+      {
+        "action": "notify",
+        "target": "enterprise customers",
+        "status": "BLOCKED"
+      }
+    ],
+    "approval_required": true
+  },
+  "approval_gate": {
+    "status": "BLOCKED",
+    "approved_by": null,
+    "approved_at": null
+  },
+  "events": [
+    {
+      "t": "2026-10-11T14:45:59",
+      "kind": "run_started",
+      "message": "TruthOps run run-20261011-144559 started for case 'smoke10'"
+    },
+    {
+      "t": "2026-10-11T14:46:01",
+      "kind": "sniff_test",
+      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted"
+    },
+    {
+      "t": "2026-10-11T14:46:01",
+      "kind": "claims_decomposed",
+      "message": "Decomposed into 1 atomic claims: ['decline_was_40pct']"
+    },
+    {
+      "t": "2026-10-11T14:46:01",
+      "kind": "director_decision",
+      "message": "[director] decline_was_40pct: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
+      "claim_id": "decline_was_40pct",
+      "action": "gather"
+    },
+    {
+      "t": "2026-10-11T14:46:01",
+      "kind": "http_attempt",
+      "message": "GET fixture://northstar/filing-q3-2026 (attempt 1)",
+      "url": "fixture://northstar/filing-q3-2026",
+      "attempt": 1
+    },
+    {
+      "t": "2026-10-11T14:46:01",
+      "kind": "http_failure",
+      "message": "GET fixture://northstar/filing-q3-2026 -> 503 Service Unavailable (SIMULATED). State preserved; will retry.",
+      "url": "fixture://northstar/filing-q3-2026",
+      "attempt": 1,
+      "status": 503
+    },
+    {
+      "t": "2026-10-11T14:46:01",
+      "kind": "evidence_retry",
+      "message": "Retrying fixture://northstar/filing-q3-2026 after failure: HTTP 503 for fixture://northstar/filing-q3-2026: Service Unavailable (SIMULATED deterministic failure)",
+      "claim_id": "decline_was_40pct",
+      "url": "fixture://northstar/filing-q3-2026"
+    },
+    {
+      "t": "2026-10-11T14:46:01",
+      "kind": "http_attempt",
+      "message": "GET fixture://northstar/filing-q3-2026 (attempt 2)",
+      "url": "fixture://northstar/filing-q3-2026",
+      "attempt": 2
+    },
+    {
+      "t": "2026-10-11T14:46:01",
+      "kind": "http_success",
+      "message": "GET fixture://northstar/filing-q3-2026 -> 200 OK (attempt 2)",
+      "url": "fixture://northstar/filing-q3-2026",
+      "attempt": 2,
+      "status": 200
+    },
+    {
+      "t": "2026-10-11T14:46:01",
+      "kind": "evidence_scored",
+      "message": "ev-decline_was_40pct-1: contradicts (reliability=0.95, relevance=1.0, score=0.95)",
+      "claim_id": "decline_was_40pct",
+      "evidence_id": "ev-decline_was_40pct-1"
+    },
+    {
+      "t": "2026-10-11T14:46:01",
+      "kind": "http_attempt",
+      "message": "GET fixture://northstar/news-snippets (attempt 1)",
+      "url": "fixture://northstar/news-snippets",
+      "attempt": 1
+    },
+    {
+      "t": "2026-10-11T14:46:01",
+      "kind": "http_success",
+      "message": "GET fixture://northstar/news-snippets -> 200 OK (attempt 1)",
+      "url": "fixture://northstar/news-snippets",
+      "attempt": 1,
+      "status": 200
+    },
+    {
+      "t": "2026-10-11T14:46:02",
+      "kind": "evidence_validated",
+      "message": "ev-decline_was_40pct-2: GPTZero screen -> ai (P(ai)=1.0, confidence=high)",
+      "claim_id": "decline_was_40pct",
+      "evidence_id": "ev-decline_was_40pct-2"
+    },
+    {
+      "t": "2026-10-11T14:46:02",
+      "kind": "evidence_scored",
+      "message": "ev-decline_was_40pct-2: supports (reliability=0.4, relevance=0.5, score=0.2)",
+      "claim_id": "decline_was_40pct",
+      "evidence_id": "ev-decline_was_40pct-2"
+    },
+    {
+      "t": "2026-10-11T14:46:05",
+      "kind": "director_decision",
+      "message": "[director] decline_was_40pct: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
+      "claim_id": "decline_was_40pct",
+      "action": "evaluate"
+    },
+    {
+      "t": "2026-10-11T14:46:05",
+      "kind": "claim_evaluated",
+      "message": "decline_was_40pct: false (confidence 0.97, score 10) [support=0.2 vs contradict=0.95]",
+      "claim_id": "decline_was_40pct",
+      "verdict": "false",
+      "confidence": 0.97
+    },
+    {
+      "t": "2026-10-11T14:46:05",
+      "kind": "director_decision",
+      "message": "[director] decline_was_40pct: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
+      "claim_id": "decline_was_40pct",
+      "action": "escalate"
+    },
+    {
+      "t": "2026-10-11T14:46:05",
+      "kind": "contrarian_review",
+      "message": "decline_was_40pct: agreed=True conf 0.97 -> 0.97",
+      "claim_id": "decline_was_40pct"
+    },
+    {
+      "t": "2026-10-11T14:46:05",
+      "kind": "response_planned",
+      "message": "Response plan built: FALSE. All external actions BLOCKED pending approval."
+    },
+    {
+      "t": "2026-10-11T14:46:05",
+      "kind": "approval_blocked",
+      "message": "External action 'publish' BLOCKED \u2014 awaiting human approval.",
+      "action": "publish"
+    },
+    {
+      "t": "2026-10-11T14:46:05",
+      "kind": "approval_blocked",
+      "message": "External action 'post' BLOCKED \u2014 awaiting human approval.",
+      "action": "post"
+    },
+    {
+      "t": "2026-10-11T14:46:05",
+      "kind": "approval_blocked",
+      "message": "External action 'notify' BLOCKED \u2014 awaiting human approval.",
+      "action": "notify"
+    }
+  ]
+}

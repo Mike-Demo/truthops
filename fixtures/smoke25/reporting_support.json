@@ -1,0 +1,15 @@
+{
+  "supports_claims": [
+    "claim"
+  ],
+  "document_type": "news_reporting",
+  "is_primary_source": true,
+  "label": "SMOKE fixture \u2014 Reuters reporting (accurate element)",
+  "outlet": "Reuters",
+  "source_reliability": 0.95,
+  "summary": "Reuters reported that the U.S. leads in crude-oil production and in total oil and natural-gas supply, but Venezuela, Saudi Arabia and Iran have the largest proven crude reserves, while Russia, Iran and Qatar have the largest proven natural-gas reserves.",
+  "title": "Fact Check: Donald Trump's inaugural speech examined",
+  "url": "fixture://smoke25/reporting-support",
+  "verdict": "lacks_context",
+  "nuance": "Accurate element of the claim as reported."
+}

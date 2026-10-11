@@ -1,0 +1,15 @@
+{
+  "supports_claims": [
+    "claim"
+  ],
+  "document_type": "news_reporting",
+  "is_primary_source": true,
+  "label": "SMOKE fixture \u2014 Associated Press reporting (accurate element)",
+  "outlet": "Associated Press",
+  "source_reliability": 0.95,
+  "summary": "AP said it was unclear which market measure Trump meant. The S&P 500 had reached a new record 64 times since the start of his second term, but 74 times since the 2024 election.",
+  "title": "FACT FOCUS: Trump boasts about the economy but there's more to the story",
+  "url": "fixture://smoke23/reporting-support",
+  "verdict": "partly_true_or_ambiguous",
+  "nuance": "Accurate element of the claim as reported."
+}

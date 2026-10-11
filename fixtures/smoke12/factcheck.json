@@ -1,0 +1,14 @@
+{
+  "contradicts_claims": [
+    "claim"
+  ],
+  "document_type": "fact_check",
+  "is_primary_source": true,
+  "label": "SMOKE fixture \u2014 CNN fact check",
+  "outlet": "CNN",
+  "source_reliability": 0.95,
+  "summary": "CNN said prices rose about 8% from the beginning to the end of Trump's term, and year-over-year inflation was 1.4% in January 2021.",
+  "title": "Fact check: Debunking 100 Trump false claims from his first 100 days",
+  "url": "fixture://smoke12/factcheck",
+  "verdict": "False"
+}

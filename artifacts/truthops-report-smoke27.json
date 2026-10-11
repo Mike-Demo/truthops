@@ -1,0 +1,287 @@
+{
+  "label": "LIVE run \u2014 neatHack 2026",
+  "run_id": "run-20261011-144818",
+  "case_id": "smoke27",
+  "generated_at": "2026-10-11T14:48:25",
+  "live_mode": true,
+  "neatlogs_trace_id": "unavailable",
+  "adapter_status": {
+    "gptzero": {
+      "mode": "live",
+      "detail": "gptzero-scan CLI present; auth via stored connector"
+    },
+    "sightengine": {
+      "mode": "live",
+      "detail": "Sightengine credentials set \u2014 photo AI detection available"
+    },
+    "c2pa": {
+      "mode": "fixture",
+      "detail": "c2pa-python not installed \u2014 provenance checks skipped"
+    },
+    "alexandria": {
+      "mode": "live",
+      "detail": "firecrawl-cli available \u2014 enrichment callable (paid per use)"
+    }
+  },
+  "api_spend": {},
+  "claims": {
+    "claim": {
+      "claim_id": "claim",
+      "statement": "The United States spent more money than ever on the Panama Canal project and lost 38,000 lives while building it.",
+      "status": "concluded",
+      "verdict": "mostly_false",
+      "confidence_initial": 0.97,
+      "confidence_revised": 0.97,
+      "notes": "Smoke test 27: community-submitted claim.",
+      "gather_attempts": 1,
+      "score_0_100": 35,
+      "scoring": {
+        "support_weight": 0.76,
+        "contradict_weight": 0.95,
+        "support_threshold": 0.6,
+        "contradict_threshold": 0.6,
+        "mixed_threshold": 0.4,
+        "fabrication_proof": false,
+        "numerical_discrepancy": null,
+        "truth_o_meter_band": [
+          15,
+          40
+        ],
+        "factors": [
+          "source reliability x relevance per item",
+          "primary sources weighted via reliability score",
+          "PolitiFact Truth-O-Meter verdict scale (0-100 bands)",
+          "fabrication proof -> PANTS ON FIRE floor",
+          "numerical discrepancy -> precision penalty",
+          "no evidence -> unresolved (never assumed)"
+        ]
+      }
+    }
+  },
+  "evidence": {
+    "ev-claim-1": {
+      "evidence_id": "ev-claim-1",
+      "claim_id": "claim",
+      "source": "fixture",
+      "label": "SYNTHETIC fixture",
+      "url": "fixture://smoke27/reporting-support",
+      "stance": "supports",
+      "reliability": 0.95,
+      "relevance": 0.8,
+      "score": 0.76,
+      "is_primary_source": true,
+      "fabrication_proof": false,
+      "numerical_discrepancy": null,
+      "summary": "Reuters reported that the U.S. construction period began in 1904 and about 5,600 people died during it. The earlier French effort had an estimated 20,000 deaths; the U.S. spent $326 million, which was the most expensive "
+    },
+    "ev-claim-2": {
+      "evidence_id": "ev-claim-2",
+      "claim_id": "claim",
+      "source": "fixture",
+      "label": "SYNTHETIC fixture",
+      "url": "fixture://smoke27/factcheck-contra",
+      "stance": "contradicts",
+      "reliability": 0.95,
+      "relevance": 1.0,
+      "score": 0.95,
+      "is_primary_source": true,
+      "fabrication_proof": false,
+      "numerical_discrepancy": null,
+      "summary": "Reuters reported that the U.S. construction period began in 1904 and about 5,600 people died during it. The earlier French effort had an estimated 20,000 deaths; the U.S. spent $326 million, which was the most expensive "
+    }
+  },
+  "contrarian_reviews": [
+    {
+      "claim_id": "claim",
+      "initial_verdict": "mostly_false",
+      "initial_confidence": 0.97,
+      "disagreement": null,
+      "agreed": true,
+      "revised_confidence": 0.97,
+      "revised_verdict": "mostly_false"
+    }
+  ],
+  "director_decisions": [
+    {
+      "claim_id": "claim",
+      "action": "gather",
+      "rationale": "no evidence yet \u2014 gather before any judgment"
+    },
+    {
+      "claim_id": "claim",
+      "action": "evaluate",
+      "rationale": "evidence phase complete \u2014 evaluate the claim"
+    },
+    {
+      "claim_id": "claim",
+      "action": "escalate",
+      "rationale": "initial verdict reached \u2014 escalate to contrarian for adversarial review"
+    }
+  ],
+  "http_attempts": {
+    "fixture://smoke27/reporting-support": 1,
+    "fixture://smoke27/factcheck-contra": 1
+  },
+  "response_plan": {
+    "characterization": "FALSE",
+    "recommended_posture": "Deny with evidence",
+    "key_messages": [
+      "Claim 'The United States spent more money than ever on the Panama Canal project and los...': MOSTLY FALSE (35/100).",
+      "  Notes: Smoke test 27: community-submitted claim."
+    ],
+    "cited_evidence": [
+      {
+        "evidence_id": "ev-claim-1",
+        "url": "fixture://smoke27/reporting-support",
+        "label": "SYNTHETIC fixture"
+      },
+      {
+        "evidence_id": "ev-claim-2",
+        "url": "fixture://smoke27/factcheck-contra",
+        "label": "SYNTHETIC fixture"
+      }
+    ],
+    "external_actions": [
+      {
+        "action": "publish",
+        "target": "company blog / press statement",
+        "status": "BLOCKED"
+      },
+      {
+        "action": "post",
+        "target": "official social channels",
+        "status": "BLOCKED"
+      },
+      {
+        "action": "notify",
+        "target": "enterprise customers",
+        "status": "BLOCKED"
+      }
+    ],
+    "approval_required": true
+  },
+  "approval_gate": {
+    "status": "BLOCKED",
+    "approved_by": null,
+    "approved_at": null
+  },
+  "events": [
+    {
+      "t": "2026-10-11T14:48:18",
+      "kind": "run_started",
+      "message": "TruthOps run run-20261011-144818 started for case 'smoke27'"
+    },
+    {
+      "t": "2026-10-11T14:48:21",
+      "kind": "sniff_test",
+      "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted"
+    },
+    {
+      "t": "2026-10-11T14:48:21",
+      "kind": "claims_decomposed",
+      "message": "Decomposed into 1 atomic claims: ['claim']"
+    },
+    {
+      "t": "2026-10-11T14:48:21",
+      "kind": "director_decision",
+      "message": "[director] claim: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
+      "claim_id": "claim",
+      "action": "gather"
+    },
+    {
+      "t": "2026-10-11T14:48:21",
+      "kind": "http_attempt",
+      "message": "GET fixture://smoke27/reporting-support (attempt 1)",
+      "url": "fixture://smoke27/reporting-support",
+      "attempt": 1
+    },
+    {
+      "t": "2026-10-11T14:48:21",
+      "kind": "http_success",
+      "message": "GET fixture://smoke27/reporting-support -> 200 OK (attempt 1)",
+      "url": "fixture://smoke27/reporting-support",
+      "attempt": 1,
+      "status": 200
+    },
+    {
+      "t": "2026-10-11T14:48:21",
+      "kind": "evidence_scored",
+      "message": "ev-claim-1: supports (reliability=0.95, relevance=0.8, score=0.76)",
+      "claim_id": "claim",
+      "evidence_id": "ev-claim-1"
+    },
+    {
+      "t": "2026-10-11T14:48:21",
+      "kind": "http_attempt",
+      "message": "GET fixture://smoke27/factcheck-contra (attempt 1)",
+      "url": "fixture://smoke27/factcheck-contra",
+      "attempt": 1
+    },
+    {
+      "t": "2026-10-11T14:48:21",
+      "kind": "http_success",
+      "message": "GET fixture://smoke27/factcheck-contra -> 200 OK (attempt 1)",
+      "url": "fixture://smoke27/factcheck-contra",
+      "attempt": 1,
+      "status": 200
+    },
+    {
+      "t": "2026-10-11T14:48:21",
+      "kind": "evidence_scored",
+      "message": "ev-claim-2: contradicts (reliability=0.95, relevance=1.0, score=0.95)",
+      "claim_id": "claim",
+      "evidence_id": "ev-claim-2"
+    },
+    {
+      "t": "2026-10-11T14:48:25",
+      "kind": "director_decision",
+      "message": "[director] claim: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
+      "claim_id": "claim",
+      "action": "evaluate"
+    },
+    {
+      "t": "2026-10-11T14:48:25",
+      "kind": "claim_evaluated",
+      "message": "claim: mostly_false (confidence 0.97, score 35) [support=0.76 vs contradict=0.95]",
+      "claim_id": "claim",
+      "verdict": "mostly_false",
+      "confidence": 0.97
+    },
+    {
+      "t": "2026-10-11T14:48:25",
+      "kind": "director_decision",
+      "message": "[director] claim: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
+      "claim_id": "claim",
+      "action": "escalate"
+    },
+    {
+      "t": "2026-10-11T14:48:25",
+      "kind": "contrarian_review",
+      "message": "claim: agreed=True conf 0.97 -> 0.97",
+      "claim_id": "claim"
+    },
+    {
+      "t": "2026-10-11T14:48:25",
+      "kind": "response_planned",
+      "message": "Response plan built: FALSE. All external actions BLOCKED pending approval."
+    },
+    {
+      "t": "2026-10-11T14:48:25",
+      "kind": "approval_blocked",
+      "message": "External action 'publish' BLOCKED \u2014 awaiting human approval.",
+      "action": "publish"
+    },
+    {
+      "t": "2026-10-11T14:48:25",
+      "kind": "approval_blocked",
+      "message": "External action 'post' BLOCKED \u2014 awaiting human approval.",
+      "action": "post"
+    },
+    {
+      "t": "2026-10-11T14:48:25",
+      "kind": "approval_blocked",
+      "message": "External action 'notify' BLOCKED \u2014 awaiting human approval.",
+      "action": "notify"
+    }
+  ]
+}

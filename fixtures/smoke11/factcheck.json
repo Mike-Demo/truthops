@@ -1,0 +1,14 @@
+{
+  "contradicts_claims": [
+    "claim"
+  ],
+  "document_type": "fact_check",
+  "is_primary_source": true,
+  "label": "SMOKE fixture \u2014 CNN fact check",
+  "outlet": "CNN",
+  "source_reliability": 0.95,
+  "summary": "CNN reported that no state's average price was below $2.70 that day, and GasBuddy found no tracked station selling below $2.19.",
+  "title": "Fact check: Debunking 100 Trump false claims from his first 100 days",
+  "url": "fixture://smoke11/factcheck",
+  "verdict": "False"
+}

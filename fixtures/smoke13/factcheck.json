@@ -1,0 +1,14 @@
+{
+  "contradicts_claims": [
+    "claim"
+  ],
+  "document_type": "fact_check",
+  "is_primary_source": true,
+  "label": "SMOKE fixture \u2014 CNN fact check",
+  "outlet": "CNN",
+  "source_reliability": 0.95,
+  "summary": "CNN noted that the 9.1% year-over-year rate in June 2022 was a 40-year high, not the all-time record; the all-time record cited was 23.7% in 1920. Cumulative inflation during Biden's presidency was about 21%, versus about 49% during Jimmy Carter's term.",
+  "title": "Fact check: Debunking 100 Trump false claims from his first 100 days",
+  "url": "fixture://smoke13/factcheck",
+  "verdict": "False"
+}

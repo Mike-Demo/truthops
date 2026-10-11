@@ -1,0 +1,14 @@
+{
+  "contradicts_claims": [
+    "claim"
+  ],
+  "document_type": "fact_check",
+  "is_primary_source": true,
+  "label": "SMOKE fixture \u2014 CNN fact check",
+  "outlet": "CNN",
+  "source_reliability": 0.95,
+  "summary": "CNN stated that Russia started the war by annexing Crimea in 2014 and launching a full-scale invasion in 2022.",
+  "title": "Fact check: Debunking 100 Trump false claims from his first 100 days",
+  "url": "fixture://smoke18/factcheck",
+  "verdict": "False"
+}

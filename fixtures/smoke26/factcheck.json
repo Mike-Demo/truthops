@@ -1,0 +1,14 @@
+{
+  "contradicts_claims": [
+    "claim"
+  ],
+  "document_type": "fact_check",
+  "is_primary_source": true,
+  "label": "SMOKE fixture \u2014 Reuters fact check",
+  "outlet": "Reuters",
+  "source_reliability": 0.95,
+  "summary": "Reuters reported that the canal is managed by the Panama Canal Authority, a Panamanian government agency. A Hong Kong-based company operates ports at either end, but Reuters said the company is not financially tied to the Chinese government.",
+  "title": "Fact Check: Donald Trump's inaugural speech examined",
+  "url": "fixture://smoke26/factcheck",
+  "verdict": "False"
+}

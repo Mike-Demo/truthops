@@ -1,0 +1,15 @@
+{
+  "supports_claims": [
+    "claim"
+  ],
+  "document_type": "news_reporting",
+  "is_primary_source": true,
+  "label": "SMOKE fixture \u2014 Associated Press reporting (accurate element)",
+  "outlet": "Associated Press",
+  "source_reliability": 0.95,
+  "summary": "AP reported that factory activity had expanded for seven months and reached its highest level since May 2022, but the improvement had not produced a hiring boom; the U.S. had 95,000 fewer factory jobs in June than before Trump's return to office.",
+  "title": "FACT FOCUS: Trump boasts about the economy but there's more to the story",
+  "url": "fixture://smoke24/reporting-support",
+  "verdict": "partly_true_or_misleading",
+  "nuance": "Accurate element of the claim as reported."
+}

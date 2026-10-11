@@ -88,8 +88,11 @@ Three checkpoints, all materialized to GitHub ref namespace `refs/entire/checkpo
 
 ## Submission
 - Window: Monday Oct 12, 2026, 8:30 AM–1:25 PM CDT.
-- Repo: https://github.com/Mike-Demo/truthops @ `439723d`
+- Repo: https://github.com/Mike-Demo/truthops
 - Entire checkpoint: `01M4P6SRGGCG2GSHYEPAZQYR71`
 - 8 public Gists (claim reports): see claims page
 - Social: earlier batch published (X, Threads, LinkedIn, tweet.app, Instagram); Bluesky URL pending
 - Outstanding: 2–3 min narrated demo video (Pexo 60s sizzle exists), final submission writeup, video-scripts 7/8 correction, Bluesky URL
+
+## 2026-10-11 afternoon — community claims (smoke9–28)
+- 20 claims from CNN, AP, Reuters fact checks via Discord show-and-tell. Fixtures + pipeline code extended. All 20 ran with live keys: 18/20 in expected bands (13× FALSE 10/100, 5× MOSTLY_FALSE 35/100, 1× TRUE 99/100). smoke22/23 scored 35 vs higher bands — pipeline penalizes "true but misleading." 40 videos (landscape + vertical). Claims page now shows 28 claims.

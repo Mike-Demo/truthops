@@ -1,0 +1,14 @@
+{
+  "supports_claims": [
+    "claim"
+  ],
+  "document_type": "news_reporting",
+  "is_primary_source": true,
+  "label": "SMOKE fixture \u2014 Reuters reporting",
+  "outlet": "Reuters",
+  "source_reliability": 0.95,
+  "summary": "Reuters reported that Trump won 2.4 million more popular votes than Kamala Harris, while also noting that the election outcome is determined by Electoral College votes.",
+  "title": "Fact Check: Donald Trump's inaugural speech examined",
+  "url": "fixture://smoke28/reporting",
+  "verdict": "True"
+}

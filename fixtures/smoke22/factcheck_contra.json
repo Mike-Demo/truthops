@@ -1,0 +1,15 @@
+{
+  "contradicts_claims": [
+    "claim"
+  ],
+  "document_type": "fact_check",
+  "is_primary_source": true,
+  "label": "SMOKE fixture \u2014 Associated Press fact check (misleading element)",
+  "outlet": "Associated Press",
+  "source_reliability": 0.95,
+  "summary": "AP said the claim was true: the U.S. had nearly 159 million jobs in June, a record. AP added that job growth had slowed considerably and that the absolute number rises as the population grows.",
+  "title": "FACT FOCUS: Trump boasts about the economy but there's more to the story",
+  "url": "fixture://smoke22/factcheck-contra",
+  "verdict": "true_with_context",
+  "nuance": "Misleading or context-lacking element of the claim."
+}

@@ -1,0 +1,14 @@
+{
+  "contradicts_claims": [
+    "claim"
+  ],
+  "document_type": "fact_check",
+  "is_primary_source": true,
+  "label": "SMOKE fixture \u2014 CNN fact check",
+  "outlet": "CNN",
+  "source_reliability": 0.95,
+  "summary": "CNN said the consumer price of eggs hit a record high in March; even the cited wholesale decline was roughly 52%, not 93% or 94%.",
+  "title": "Fact check: Debunking 100 Trump false claims from his first 100 days",
+  "url": "fixture://smoke10/factcheck",
+  "verdict": "False"
+}

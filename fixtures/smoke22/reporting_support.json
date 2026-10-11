@@ -1,0 +1,15 @@
+{
+  "supports_claims": [
+    "claim"
+  ],
+  "document_type": "news_reporting",
+  "is_primary_source": true,
+  "label": "SMOKE fixture \u2014 Associated Press reporting (accurate element)",
+  "outlet": "Associated Press",
+  "source_reliability": 0.95,
+  "summary": "AP said the claim was true: the U.S. had nearly 159 million jobs in June, a record. AP added that job growth had slowed considerably and that the absolute number rises as the population grows.",
+  "title": "FACT FOCUS: Trump boasts about the economy but there's more to the story",
+  "url": "fixture://smoke22/reporting-support",
+  "verdict": "true_with_context",
+  "nuance": "Accurate element of the claim as reported."
+}

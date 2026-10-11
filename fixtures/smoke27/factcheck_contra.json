@@ -1,0 +1,15 @@
+{
+  "contradicts_claims": [
+    "claim"
+  ],
+  "document_type": "fact_check",
+  "is_primary_source": true,
+  "label": "SMOKE fixture \u2014 Reuters fact check (misleading element)",
+  "outlet": "Reuters",
+  "source_reliability": 0.95,
+  "summary": "Reuters reported that the U.S. construction period began in 1904 and about 5,600 people died during it. The earlier French effort had an estimated 20,000 deaths; the U.S. spent $326 million, which was the most expensive U.S. public-works project at that time, but the combined figures do not support the claim that 38,000 died during U.S. construction.",
+  "title": "Fact Check: Donald Trump's inaugural speech examined",
+  "url": "fixture://smoke27/factcheck-contra",
+  "verdict": "misleading",
+  "nuance": "Misleading or context-lacking element of the claim."
+}

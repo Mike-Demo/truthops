@@ -75,6 +75,41 @@ SMOKE_EVIDENCE_PLAN = {
     "smoke6": [("fixture://smoke6/politifact", "supports", 1.0)],
     "smoke7": [("fixture://smoke7/politifact", "supports", 1.0)],
     "smoke8": [("fixture://smoke8/politifact", "supports", 1.0)],
+    "smoke9": [("fixture://smoke9/factcheck", "contradicts", 1.0)],
+    "smoke10": [("fixture://smoke10/factcheck", "contradicts", 1.0)],
+    "smoke11": [("fixture://smoke11/factcheck", "contradicts", 1.0)],
+    "smoke12": [("fixture://smoke12/factcheck", "contradicts", 1.0)],
+    "smoke13": [("fixture://smoke13/factcheck", "contradicts", 1.0)],
+    "smoke14": [("fixture://smoke14/factcheck", "contradicts", 1.0)],
+    "smoke15": [("fixture://smoke15/factcheck", "contradicts", 1.0)],
+    "smoke16": [("fixture://smoke16/factcheck", "contradicts", 1.0)],
+    "smoke17": [("fixture://smoke17/factcheck", "contradicts", 1.0)],
+    "smoke18": [("fixture://smoke18/factcheck", "contradicts", 1.0)],
+    "smoke19": [("fixture://smoke19/factcheck", "contradicts", 1.0)],
+    "smoke20": [("fixture://smoke20/factcheck", "contradicts", 1.0)],
+    "smoke21": [("fixture://smoke21/factcheck", "contradicts", 1.0)],
+    "smoke22": [
+        ("fixture://smoke22/reporting-support", "supports", 0.8),
+        ("fixture://smoke22/factcheck-contra", "contradicts", 1.0),
+    ],
+    "smoke23": [
+        ("fixture://smoke23/reporting-support", "supports", 0.8),
+        ("fixture://smoke23/factcheck-contra", "contradicts", 1.0),
+    ],
+    "smoke24": [
+        ("fixture://smoke24/reporting-support", "supports", 0.8),
+        ("fixture://smoke24/factcheck-contra", "contradicts", 1.0),
+    ],
+    "smoke25": [
+        ("fixture://smoke25/reporting-support", "supports", 0.8),
+        ("fixture://smoke25/factcheck-contra", "contradicts", 1.0),
+    ],
+    "smoke26": [("fixture://smoke26/factcheck", "contradicts", 1.0)],
+    "smoke27": [
+        ("fixture://smoke27/reporting-support", "supports", 0.8),
+        ("fixture://smoke27/factcheck-contra", "contradicts", 1.0),
+    ],
+    "smoke28": [("fixture://smoke28/reporting", "supports", 1.0)],
 }
 
 
