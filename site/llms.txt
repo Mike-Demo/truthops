@@ -1,0 +1,46 @@
+# TruthOps
+
+> A transparent scoring and governance pipeline over curated evidence that investigates high-risk claims and produces evidence-backed response plans — with human approval gates at every decisive step.
+
+TruthOps is a **rule-based** misinformation investigation pipeline built during neatHack 2026 (Oct 10–11, 2026) by Mike "Demo" Demopoulos. It is NOT an LLM agent and does NOT autonomously verify claims. It scores claims against curated evidence using deterministic rules, then requires explicit human approval before any publish, post, or notify action.
+
+## How it works
+
+Six-stage pipeline per claim:
+
+1. **Sniff Test** — Cheap $0.02 gate via Cloudflare Clef-flash classifier. Checks the claim is coherent and investigable.
+2. **Evidence Gathering** — Curated fixtures plus live adapters: GPTZero screens secondary sources for AI-generated text (reliability discounted by P(ai) × 0.7), Firecrawl/Alexandria finds primary sources, Sightengine checks images.
+3. **Photo Forensics** — C2PA provenance check → Sightengine AI-generation detection. Fabrication proof becomes evidence.
+4. **Contrarian Review** — Scripted adversarial challenge: pre-written re-verification summaries for named claims, confidence trimmed by 0.1 otherwise.
+5. **Director Verdict** — Weighted evidence → verdict on the Truth-O-Meter scale (0–100) with confidence score.
+6. **Human Gate** — Publish, post, and notify are BLOCKED by default. Only released via explicit `--approve` CLI flag, logged with approver and timestamp.
+
+## Calibration: 28 fixture-driven claims
+
+- 28 claims scored against hard-coded evidence tables (SMOKE_EVIDENCE_PLAN in truthops/evidence_agent.py).
+- 7/8 original claims in expected bands; 18/20 community claims in band.
+- The smoke test (tests/smoke_test.py, 57 checks) is a REGRESSION test — it verifies the pipeline executes as written against the hard-coded tables. It does not prove independent truth-discovery.
+
+## Honest limitations
+
+- Rule-based: no LLM in the reasoning path. Claim decomposition, orchestration, and contrarian rebuttals are scripted.
+- Calibration is circular: verdicts follow hard-coded evidence tables.
+- Live adapters (GPTZero CLI, Sightengine, Firecrawl) require the author's API keys; fixture mode is the reproducible path.
+- Observed API spend on demo runs: $0.00. Modeled cost: $1.08/investigation (cfo.ai business plan).
+
+## Links
+
+- Live demo: https://truthops-demo.space.fast/
+- Claims dashboard: https://truthops-demo.space.fast/claims.html
+- Repo: https://github.com/Mike-Demo/truthops
+- Build log: https://github.com/Mike-Demo/truthops/blob/main/hackathon.md
+- Business plan: https://github.com/Mike-Demo/truthops/blob/main/docs/business-plan.md
+- Limitations: https://github.com/Mike-Demo/truthops#limitations
+
+## Evidence
+
+- 28 claim reports (Markdown + signed PDF/A-3b): https://github.com/Mike-Demo/truthops/tree/main/artifacts
+- 28 terminal recordings: https://truthops-demo.space.fast/videos/
+- 28 neatlogs trace IDs: embedded in each claim report
+- Entire checkpoints: 10+ refs under refs/entire/checkpoints/ on GitHub
+- cfo.ai business plan: pricing $499/$1,499/$3,999, margins 88–90%, $1.08/investigation
