@@ -1,14 +1,20 @@
 """Neatlogs tracing shim.
 
-v3 (2026-10-10): Combines what worked from v1 and v2.
-- Span creation via neatlogs.trace() (v1): properly marked as Neatlogs-
-  originated, so the _ForeignParentGuardTracer nests children correctly.
-  (v2's raw OTel spans were treated as foreign — each span became its
-  own root trace, producing scattered 0-span traces.)
-- Flush via get_neatlogs_provider().force_flush() (v2): the v1 flush was
-  a silent no-op (checked hasattr(_nl, "flush") which doesn't exist).
-- try/finally in __main__.py guarantees shutdown() even on crash.
-- workflow_name passed through to neatlogs.init().
+v4 (2026-10-10): Use the SDK's internal neatlogs_span() context manager —
+the same primitive the @span decorator uses. This is the isolation-safe
+replacement for tracer.start_as_current_span: it creates properly-marked
+Neatlogs spans that nest correctly via _ForeignParentGuardTracer, without
+the prompt/session machinery of neatlogs.trace() (which is not designed
+for basic span creation and was silently dropping spans).
+
+History:
+- v1: neatlogs.trace() + manual __enter__ — nested OK in the morning,
+  but flush() was a silent no-op (hasattr check for nonexistent method).
+- v2: raw OTel spans via get_internal_tracer — flush worked, but spans
+  were treated as foreign; each became its own root trace (0-span scatter).
+- v3: back to neatlogs.trace() — single trace again, but trace() buffers
+  on its own thread; spans never completed/transmitted.
+- v4: neatlogs_span() — proper spans, proper nesting, flushable.
 """
 
 def _get_provider():
@@ -48,24 +54,27 @@ def get_trace_id():
 class span:
     """Context manager for one pipeline step.
 
-    Uses neatlogs.trace() (not raw OTel) so spans are properly marked as
-    Neatlogs-originated and nest correctly under the active trace.
+    Uses the SDK-internal neatlogs_span() — the same primitive the @span
+    decorator uses — so spans are properly marked, nest correctly, and
+    flush through the standard pipeline.
     """
 
     def __init__(self, name, **attrs):
         self.name = name
-        self.attrs = attrs
+        # OTel attributes must be primitives; coerce defensively.
+        self.attrs = {k: v for k, v in attrs.items()
+                      if isinstance(v, (str, int, float, bool))}
         self._cm = None
 
     def __enter__(self):
         global _last_trace_id
         try:
-            import neatlogs
-            # neatlogs.trace() is a context manager; enter it here so the
-            # OTel context propagates to nested spans.
-            self._cm = neatlogs.trace(self.name, **self.attrs)
+            from neatlogs._wrap_utils import neatlogs_span
+            # neatlogs_span is a context manager; enter it so the OTel
+            # context propagates to nested spans.
+            self._cm = neatlogs_span(__name__, self.name,
+                                     attributes=self.attrs)
             entered = self._cm.__enter__()
-            # Capture trace ID from the entered span.
             if _last_trace_id is None and entered is not None:
                 try:
                     ctx = entered.get_span_context()
@@ -94,8 +103,7 @@ class span:
 
 
 def flush(timeout_ms=15000):
-    """Flush via the SDK-level flush (handles neatlogs.trace() buffering)
-    and the OTel provider flush (belt and suspenders)."""
+    """Flush via the SDK-level flush and the OTel provider flush."""
     ok = False
     try:
         import neatlogs

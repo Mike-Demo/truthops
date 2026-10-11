@@ -1,8 +1,17 @@
 {
   "label": "SYNTHETIC demo run \u2014 neatHack 2026",
-  "run_id": "run-20261010-200134",
+  "run_id": "run-20261010-221838",
   "case_id": "smoke2",
-  "generated_at": "2026-10-10T20:01:37",
+  "generated_at": "2026-10-10T22:18:40",
+  "live_mode": false,
+  "neatlogs_trace_id": "091c6523dd8e87b75e32d2024ae5bf33",
+  "adapter_status": {
+    "fixture": {
+      "mode": "fixture",
+      "detail": "FixtureAdapter only \u2014 no live adapters probed"
+    }
+  },
+  "api_spend": {},
   "claims": {
     "claim": {
       "claim_id": "claim",
@@ -86,13 +95,11 @@
     "fixture://smoke2/ap-notrealnews": 1
   },
   "response_plan": {
-    "characterization": "UNRESOLVED",
-    "recommended_posture": "Acknowledge investigation is ongoing",
+    "characterization": "FALSE",
+    "recommended_posture": "Deny with evidence",
     "key_messages": [
-      "A security incident did occur on 2026-07-14 and was disclosed on 2026-07-16 (incident report).",
-      "Enterprise customer decline was 4.2% (2,380 -> 2,280), per the Q3 2026 filing \u2014 not 40%.",
-      "The 40% figure circulating online is contradicted by the primary filing.",
-      "No direct evidence of deliberate concealment was found; intent is not asserted."
+      "Claim 'President Trump initiated an internal audit of the Social Security Administratio...': FALSE (10/100).",
+      "  Notes: Smoke test 2: single-source fabrication."
     ],
     "cited_evidence": [
       {
@@ -127,36 +134,36 @@
   },
   "events": [
     {
-      "t": "2026-10-10T20:01:34",
+      "t": "2026-10-10T22:18:38",
       "kind": "run_started",
-      "message": "TruthOps run run-20261010-200134 started for case 'smoke2'"
+      "message": "TruthOps run run-20261010-221838 started for case 'smoke2'"
     },
     {
-      "t": "2026-10-10T20:01:34",
+      "t": "2026-10-10T22:18:38",
       "kind": "sniff_test",
       "message": "[sniff] proceed=True \u2014 passed sniff test \u2014 coherent allegation, full pipeline warranted"
     },
     {
-      "t": "2026-10-10T20:01:34",
+      "t": "2026-10-10T22:18:38",
       "kind": "claims_decomposed",
       "message": "Decomposed into 1 atomic claims: ['claim']"
     },
     {
-      "t": "2026-10-10T20:01:34",
+      "t": "2026-10-10T22:18:38",
       "kind": "director_decision",
       "message": "[director] claim: next action = gather \u2014 no evidence yet \u2014 gather before any judgment",
       "claim_id": "claim",
       "action": "gather"
     },
     {
-      "t": "2026-10-10T20:01:34",
+      "t": "2026-10-10T22:18:38",
       "kind": "http_attempt",
       "message": "GET fixture://smoke2/ap-notrealnews (attempt 1)",
       "url": "fixture://smoke2/ap-notrealnews",
       "attempt": 1
     },
     {
-      "t": "2026-10-10T20:01:34",
+      "t": "2026-10-10T22:18:38",
       "kind": "http_success",
       "message": "GET fixture://smoke2/ap-notrealnews -> 200 OK (attempt 1)",
       "url": "fixture://smoke2/ap-notrealnews",
@@ -164,21 +171,21 @@
       "status": 200
     },
     {
-      "t": "2026-10-10T20:01:34",
+      "t": "2026-10-10T22:18:38",
       "kind": "evidence_scored",
       "message": "ev-claim-1: contradicts (reliability=0.9, relevance=1.0, score=0.9)",
       "claim_id": "claim",
       "evidence_id": "ev-claim-1"
     },
     {
-      "t": "2026-10-10T20:01:37",
+      "t": "2026-10-10T22:18:40",
       "kind": "director_decision",
       "message": "[director] claim: next action = evaluate \u2014 evidence phase complete \u2014 evaluate the claim",
       "claim_id": "claim",
       "action": "evaluate"
     },
     {
-      "t": "2026-10-10T20:01:37",
+      "t": "2026-10-10T22:18:40",
       "kind": "claim_evaluated",
       "message": "claim: false (confidence 0.95, score 10) [support=0 vs contradict=0.9]",
       "claim_id": "claim",
@@ -186,37 +193,37 @@
       "confidence": 0.95
     },
     {
-      "t": "2026-10-10T20:01:37",
+      "t": "2026-10-10T22:18:40",
       "kind": "director_decision",
       "message": "[director] claim: next action = escalate \u2014 initial verdict reached \u2014 escalate to contrarian for adversarial review",
       "claim_id": "claim",
       "action": "escalate"
     },
     {
-      "t": "2026-10-10T20:01:37",
+      "t": "2026-10-10T22:18:40",
       "kind": "contrarian_review",
       "message": "claim: agreed=True conf 0.95 -> 0.95",
       "claim_id": "claim"
     },
     {
-      "t": "2026-10-10T20:01:37",
+      "t": "2026-10-10T22:18:40",
       "kind": "response_planned",
-      "message": "Response plan built: UNRESOLVED. All external actions BLOCKED pending approval."
+      "message": "Response plan built: FALSE. All external actions BLOCKED pending approval."
     },
     {
-      "t": "2026-10-10T20:01:37",
+      "t": "2026-10-10T22:18:40",
       "kind": "approval_blocked",
       "message": "External action 'publish' BLOCKED \u2014 awaiting human approval.",
       "action": "publish"
     },
     {
-      "t": "2026-10-10T20:01:37",
+      "t": "2026-10-10T22:18:40",
       "kind": "approval_blocked",
       "message": "External action 'post' BLOCKED \u2014 awaiting human approval.",
       "action": "post"
     },
     {
-      "t": "2026-10-10T20:01:37",
+      "t": "2026-10-10T22:18:40",
       "kind": "approval_blocked",
       "message": "External action 'notify' BLOCKED \u2014 awaiting human approval.",
       "action": "notify"
