@@ -62,7 +62,8 @@ class Director:
             # Sniff test FIRST — cheap gate before the $1.08 pipeline.
             decision = sniff(allegation, traction_signals)
             self.state.log_event("sniff_test",
-                                 f"[sniff] proceed={decision['proceed']} — {decision['reason']}")
+                                 f"[sniff] proceed={decision['proceed']} — {decision['reason']} "
+                                 f"(backend={decision.get('backend', 'unknown')})")
             self.state.save()
             if not decision["proceed"]:
                 print(f"[director] sniff test rejected — skipping full pipeline "

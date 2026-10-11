@@ -145,6 +145,7 @@ def sniff(allegation: str, traction_signals: dict | None = None) -> dict:
                 "fake_score": fake_score,
                 "has_traction": False,
                 "estimated_cost": 0.02,
+                "backend": backend,
             }
         elif fake_score >= 0.85 and has_traction:
             decision = {
@@ -154,6 +155,7 @@ def sniff(allegation: str, traction_signals: dict | None = None) -> dict:
                 "fake_score": fake_score,
                 "has_traction": True,
                 "estimated_cost": 1.10,
+                "backend": backend,
             }
         else:
             decision = {
@@ -162,6 +164,7 @@ def sniff(allegation: str, traction_signals: dict | None = None) -> dict:
                 "fake_score": fake_score,
                 "has_traction": has_traction,
                 "estimated_cost": 1.10,
+                "backend": backend,
             }
         print(f"[sniff] proceed={decision['proceed']} — {decision['reason']}")
         return decision
