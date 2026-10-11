@@ -90,6 +90,7 @@ Allegation → [Sniff Test] → (proceed?) → Evidence Pipeline → Claims → 
 - **Fixture-driven demo.** The dashboard verdicts and scores come from curated fixtures plus live-adapter enrichment. Treat them as a pipeline demonstration, not independent fact-checks.
 - **Cost figures.** cfo.ai models **$1.08/investigation** unit economics (source of truth for the business model). Actual API spend on the demo runs was **$0.00** — no paid detection ops fired (Clef calls via Workers AI don't register in `api_spend`). The two numbers measure different things: modeled cost vs. observed spend.
 - **Truth-O-Meter bands** are TruthOps' own 0–100 mapping (pants_on_fire 0–5, false 5–15, mostly_false 15–40, half_true 40–60, mostly_true 75–90, true 90–100; 60–75 is a deliberate gap). PolitiFact's scale has six ratings and no numeric scores.
+- **GPTZero adapter requires a local CLI.** In live mode, the pipeline shells out to `~/workspace/skills/gptzero/bin/gptzero-scan` (not an env var or pip package). Judges cloning the repo get fixture mode for GPTZero screening unless they install that CLI. The hosted MCP server at `https://gptzero-mcp.space.fast/mcp` is a separate service, not used by the pipeline.
 
 ## Security note: credential exposure during the hackathon
 

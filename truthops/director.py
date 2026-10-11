@@ -69,6 +69,13 @@ class Director:
                 print(f"[director] sniff test rejected — skipping full pipeline "
                       f"(est. cost ${decision['estimated_cost']:.2f})")
                 return {"characterization": "SNIFF_REJECTED",
+                        "recommended_posture": "no_action",
+                        "key_messages": [
+                            f"Sniff test rejected allegation: {decision['reason']}"
+                        ],
+                        "cited_evidence": [],
+                        "external_actions": [],
+                        "approval_required": False,
                         "sniff_decision": decision,
                         "sniff_rejected": True}
             claims = decompose(allegation, case_id)

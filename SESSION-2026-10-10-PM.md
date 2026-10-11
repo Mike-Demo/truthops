@@ -9,7 +9,7 @@
 - Client secret: Demo regenerated in AgentID console, pasted in chat, set via `sf env set AGENTID_CLIENT_SECRET --value-from-stdin --secret --space truthops-auth`. Never written to file.
 - AgentID console has NO `none` token-auth option (only `client_secret_basic`/`client_secret_post`) — proxy is required, not optional.
 - Console URLs fixed by Demo: redirect URI → `/auth/callback.html`, Terms/Privacy/Login/API-key URLs → real truthops-demo/mcp URLs.
-- **End-to-end sign-in VERIFIED**: browser PKCE → AgentID authorize → inbox authorization via AgentMail API (`POST /v0/inboxes/mikedemo.jobsearch@agentmail.to/authorize` with one-time token) → callback → proxy exchange → session. Composer unlocks, sign-out re-locks.
+- **End-to-end sign-in VERIFIED**: browser PKCE → AgentID authorize → inbox authorization via AgentMail API (`POST /v0/inboxes/<redacted>/authorize` with one-time token) → callback → proxy exchange → session. Composer unlocks, sign-out re-locks.
 - AgentID sign-in flow note: agent-native — the authorize page shows a curl command for inbox authorization, not a password form. Pre-authorized identities auto-advance.
 
 ## Demo Site Branding — COMPLETE ✅
