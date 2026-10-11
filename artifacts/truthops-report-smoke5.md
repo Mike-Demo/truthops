@@ -4,7 +4,7 @@
 
 **Overall characterization: TRUE**
 **Recommended posture:** Affirm with evidence
-**Neatlogs trace ID:** `ac6a343088e16c939bde173988b0da8b`
+**Neatlogs trace ID:** `a305ac812603a4cce4a905ea02409d43`
 
 ## Claim verdicts
 
@@ -33,6 +33,7 @@ External actions: **BLOCKED** — publish / post / notify all blocked pending ex
 
 ## Audit trail
 
+- TruthOps run run-20261011-215039 started for case 'smoke5'
 - [sniff] proceed=True — passed sniff test — coherent allegation, full pipeline warranted (backend=clef-flash)
 - Decomposed into 1 atomic claims: ['claim']
 - [director] claim: next action = gather — no evidence yet — gather before any judgment

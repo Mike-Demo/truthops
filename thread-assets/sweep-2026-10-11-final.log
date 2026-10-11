@@ -1,0 +1,100 @@
+=== smoke1 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:49:49 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke2 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:50:03 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke3 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:50:26 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke4 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:50:38 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke5 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:50:54 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke6 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:51:07 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke7 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:51:20 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke8 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:51:35 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke9 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:51:48 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke10 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:52:07 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke11 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:52:21 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke12 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:52:33 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke13 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:52:46 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke14 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:53:03 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke15 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:53:17 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke16 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:53:31 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke17 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:53:44 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke18 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:53:56 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke19 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:54:07 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke20 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:54:20 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke21 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:54:32 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke22 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:54:43 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke23 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:54:57 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke24 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:55:08 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down
+=== smoke25 ===
+  [tracing] provider flushed (ok=True)
+2026-10-11 21:55:20 - neatlogs - INFO - Neatlogs SDK shutdown complete
+  [tracing] neatlogs SDK shut down

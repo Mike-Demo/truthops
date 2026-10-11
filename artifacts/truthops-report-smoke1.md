@@ -4,7 +4,7 @@
 
 **Overall characterization: FALSE**
 **Recommended posture:** Deny with evidence
-**Neatlogs trace ID:** `unavailable`
+**Neatlogs trace ID:** `58fd5ddd35424e8716f8dda25a55d1cb`
 
 ## Claim verdicts
 
@@ -35,7 +35,7 @@ External actions: **BLOCKED** — publish / post / notify all blocked pending ex
 
 ## Audit trail
 
-- [sniff] proceed=True — passed sniff test — coherent allegation, full pipeline warranted (backend=heuristic)
+- [sniff] proceed=True — passed sniff test — coherent allegation, full pipeline warranted (backend=clef-flash)
 - Decomposed into 1 atomic claims: ['claim']
 - [director] claim: next action = gather — no evidence yet — gather before any judgment
 - [director] claim: next action = evaluate — evidence phase complete — evaluate the claim
