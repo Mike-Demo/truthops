@@ -1,6 +1,6 @@
 # TruthOps report — case `smoke1`
 
-> LIVE run — neatHack 2026. Evidence is fixture-backed for benchmark comparability; live adapters enriched where available (see JSON report for per-adapter status and spend).
+> SYNTHETIC demo run — neatHack 2026. All fixture data is synthetic; live integrations (Crustdata, Firecrawl) were SIMULATED in this run.
 
 **Overall characterization: FALSE**
 **Recommended posture:** Deny with evidence

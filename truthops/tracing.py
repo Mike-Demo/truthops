@@ -94,27 +94,41 @@ class span:
 
 
 def flush(timeout_ms=15000):
-    """Force-flush all pending spans to Neatlogs before exit."""
+    """Flush via the SDK-level flush (handles neatlogs.trace() buffering)
+    and the OTel provider flush (belt and suspenders)."""
+    ok = False
+    try:
+        import neatlogs
+        if hasattr(neatlogs, "flush"):
+            ok = bool(neatlogs.flush(timeout_millis=timeout_ms))
+            print(f"  [tracing] neatlogs SDK flushed (ok={ok})")
+    except Exception as e:
+        print(f"  [tracing] SDK flush failed: {e}")
     provider = _get_provider()
     if provider is not None and hasattr(provider, "force_flush"):
         try:
-            ok = provider.force_flush(timeout_millis=timeout_ms)
-            print(f"  [tracing] spans flushed (ok={ok})")
-            return bool(ok)
+            pok = bool(provider.force_flush(timeout_millis=timeout_ms))
+            print(f"  [tracing] provider flushed (ok={pok})")
+            ok = ok or pok
         except Exception as e:
-            print(f"  [tracing] flush failed: {e}")
-    else:
-        print("  [tracing] flush: no provider available")
-    return False
+            print(f"  [tracing] provider flush failed: {e}")
+    return ok
 
 
 def shutdown():
-    """Flush remaining spans and shut down the tracer provider."""
+    """Flush remaining spans and shut down the SDK + tracer provider."""
     flush()
+    try:
+        import neatlogs
+        if hasattr(neatlogs, "shutdown"):
+            neatlogs.shutdown()
+            print("  [tracing] neatlogs SDK shut down")
+    except Exception as e:
+        print(f"  [tracing] SDK shutdown failed: {e}")
     provider = _get_provider()
     if provider is not None and hasattr(provider, "shutdown"):
         try:
             provider.shutdown()
             print("  [tracing] provider shut down")
         except Exception as e:
-            print(f"  [tracing] shutdown failed: {e}")
+            print(f"  [tracing] provider shutdown failed: {e}")
