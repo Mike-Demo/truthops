@@ -117,6 +117,7 @@ Problem addressed: viral misinformation (especially AI-generated imagery) spread
 | 2026-10-12 01:23 | LinkedIn | https://lnkd.in/p/eCSsD5fF (Pexo 90s explainer video) |
 | 2026-10-12 01:23 | X (@Mike_demo) | https://x.com/mike_demo/status/2109454367577256071 (Pexo 90s explainer video) |
 | 2026-10-12 01:23 | Instagram | https://www.instagram.com/reel/DeYCqTKiVXV/ (Pexo 90s explainer video) |
+| 2026-10-12 13:15 | Tumblr | https://www.tumblr.com/mike-demo/830277002668982272/truthops-dont-just-detect-misinformation |
 | 2026-10-12 18:22 | X (@Mike_demo) | https://x.com/mike_demo/status/2109709518787797300 (neatHack submission quote-post + honesty reply) |
 | 2026-10-12 19:51 | YouTube Shorts | https://youtube.com/shorts/4lDaz20iKrw (demo video, 9:16) |
 | 2026-10-12 19:52 | LinkedIn | https://lnkd.in/p/etwY3vYg (submission post, demo video attached) |
