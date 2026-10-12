@@ -13,3 +13,6 @@ artifacts/.state-*.json
 *.mp4
 # Terminal recordings may contain keys - never commit
 *.typescript
+
+# Report PDFs: hosted on SpaceFast with the site, not in git (same as videos)
+site/reports/
