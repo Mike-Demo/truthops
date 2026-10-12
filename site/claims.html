@@ -96,15 +96,15 @@ const labels = {"pants_on_fire": "PANTS ON FIRE", "false": "FALSE", "mostly_fals
 const grid = document.getElementById('grid');
 claims.forEach((c, idx) => {
   const card = document.createElement('div');
-  card.className = 'card';
+  card.className = 'card expanded';
   card.dataset.verdict = c.verdict;
   card.setAttribute('tabindex', '0');
   card.setAttribute('role', 'button');
-  card.setAttribute('aria-expanded', 'false');
+  card.setAttribute('aria-expanded', 'true');
   card.style.animationDelay = (idx * 0.03) + 's';
   const color = colors[c.verdict] || '#64748b';
   const label = labels[c.verdict] || c.verdict.toUpperCase();
-  card.setAttribute('aria-label', 'Claim ' + c.n + ': ' + label + ' at ' + c.score + '/100. Press Enter to expand.');
+  card.setAttribute('aria-label', 'Claim ' + c.n + ': ' + label + ' at ' + c.score + '/100.');
   card.innerHTML =
     '<div class="card-num">Claim ' + c.n + ' of 28</div>' +
     '<div class="card-claim">' + c.statement + '</div>' +
