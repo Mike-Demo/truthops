@@ -51,8 +51,8 @@ decides. That's the line."
 - "Every pipeline step is traced in neatlogs — the 503, the retry, the
   contrarian challenge, all as spans."
 - "Entire checkpoints tie each commit to the session behind it."
-- "And the business model is real: cfo.ai puts unit cost at $1.08 per
-  investigation — with 88 to 90 percent modeled gross margins."
+- "And the business model is real: cfo.ai puts unit cost at $0.49 per
+  investigation — with 94.77 to 97.38 percent modeled gross margins."
 
 **[2:40–3:00] CLOSE**
 "TruthOps: don't just detect misinformation. Resolve it. Repo link below —

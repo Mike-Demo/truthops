@@ -26,7 +26,7 @@ Six-stage pipeline per claim:
 - Rule-based: no LLM in the reasoning path. Claim decomposition, orchestration, and contrarian rebuttals are scripted.
 - Calibration is circular: verdicts follow hard-coded evidence tables.
 - Live adapters (GPTZero CLI, Sightengine, Firecrawl) require the author's API keys; fixture mode is the reproducible path.
-- Observed API spend on demo runs: $0.00. Modeled cost: $1.08/investigation (cfo.ai business plan).
+- Observed API spend on demo runs: $0.00. Modeled cost: $0.49/investigation (cfo.ai business plan).
 
 ## Links
 
@@ -43,4 +43,4 @@ Six-stage pipeline per claim:
 - 28 terminal recordings: https://github.com/Mike-Demo/truthops/tree/main/artifacts (per-claim terminal logs in report packages)
 - 28 neatlogs trace IDs: embedded in each claim report
 - Entire checkpoints: 10+ refs under refs/entire/checkpoints/ on GitHub
-- cfo.ai business plan: pricing $499/$1,499/$3,999, margins 88–90%, $1.08/investigation
+- cfo.ai business plan: pricing $499/$1,499/$3,999, margins 94.77–97.38%, $0.49/investigation
