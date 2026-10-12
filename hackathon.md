@@ -126,6 +126,7 @@ Problem addressed: viral misinformation (especially AI-generated imagery) spread
 | 2026-10-12 19:59 | Instagram | https://www.instagram.com/reel/DeaCRfnlSEx/ (submission Reel, 9:16) |
 | 2026-10-12 20:05 | Tweet (@demo) | https://app.tweet.app/post/07617002-7c3f-479a-8324-e77e6f7dea7b (submission post, 30s cut) |
 | 2026-10-12 20:08 | Bluesky | https://bsky.app/profile/mikedemo.bsky.social/post/3mxpd2yjkls2r (submission post) |
+| 2026-10-12 20:19 | X (@Mike_demo) | https://x.com/mike_demo/status/2109740680172159242 (roundup post: all submission social links) |
 
 ## 2026-10-11 afternoon — community claims (smoke9–28)
 - 20 claims from CNN, AP, Reuters fact checks via Discord show-and-tell. Fixtures + pipeline code extended. All 20 ran with live keys: 18/20 in expected bands (13× FALSE 10/100, 5× MOSTLY_FALSE 35/100, 1× TRUE 99/100). smoke22/23 scored 35 vs higher bands — pipeline penalizes "true but misleading." 40 videos (landscape + vertical). Claims page now shows 28 claims.
