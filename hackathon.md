@@ -91,8 +91,8 @@ Problem addressed: viral misinformation (especially AI-generated imagery) spread
 - Repo: https://github.com/Mike-Demo/truthops
 - Entire checkpoint: `01M4PM74JJJSFKM80Y53QP9X0F` (newest of 11 refs on GitHub; one newer checkpoint exists in Entire's system)
 - 28 claim reports + PDFs + videos: see claims page
-- Social: building in public — all posts below tagged #neatHack (Bluesky intentionally skipped)
-- Outstanding: 2–3 min narrated demo video (recording planned Oct 12 AM; Pexo 90s backup in production), video link for submission writeup, video-scripts 7/8 correction
+- Social: building in public — all posts below tagged #neatHack
+- Demo video: submitted (Pexo clean cut, 92s, self-recorded live run + disclosed AI voiceover). Additional cuts delivered Oct 12 PM: 16:9 4K, 9:16 4K (no captions), 30s 4K.
 
 ### Building in public — post links
 | Date (UTC) | Channel | URL |
@@ -117,6 +117,14 @@ Problem addressed: viral misinformation (especially AI-generated imagery) spread
 | 2026-10-12 01:23 | LinkedIn | https://lnkd.in/p/eCSsD5fF (Pexo 90s explainer video) |
 | 2026-10-12 01:23 | X (@Mike_demo) | https://x.com/mike_demo/status/2109454367577256071 (Pexo 90s explainer video) |
 | 2026-10-12 01:23 | Instagram | https://www.instagram.com/reel/DeYCqTKiVXV/ (Pexo 90s explainer video) |
+| 2026-10-12 18:22 | X (@Mike_demo) | https://x.com/mike_demo/status/2109709518787797300 (neatHack submission quote-post + honesty reply) |
+| 2026-10-12 19:51 | YouTube Shorts | https://youtube.com/shorts/4lDaz20iKrw (demo video, 9:16) |
+| 2026-10-12 19:52 | LinkedIn | https://lnkd.in/p/etwY3vYg (submission post, demo video attached) |
+| 2026-10-12 19:55 | Facebook | Submission post published Oct 12 (post URL not captured) |
+| 2026-10-12 19:57 | Threads | https://www.threads.com/share/BCDlNU8SKs/ (submission post) |
+| 2026-10-12 19:59 | Instagram | https://www.instagram.com/reel/DeaCRfnlSEx/ (submission Reel, 9:16) |
+| 2026-10-12 20:05 | Tweet (@demo) | https://app.tweet.app/post/07617002-7c3f-479a-8324-e77e6f7dea7b (submission post, 30s cut) |
+| 2026-10-12 20:08 | Bluesky | https://bsky.app/profile/mikedemo.bsky.social/post/3mxpd2yjkls2r (submission post) |
 
 ## 2026-10-11 afternoon — community claims (smoke9–28)
 - 20 claims from CNN, AP, Reuters fact checks via Discord show-and-tell. Fixtures + pipeline code extended. All 20 ran with live keys: 18/20 in expected bands (13× FALSE 10/100, 5× MOSTLY_FALSE 35/100, 1× TRUE 99/100). smoke22/23 scored 35 vs higher bands — pipeline penalizes "true but misleading." 40 videos (landscape + vertical). Claims page now shows 28 claims.
