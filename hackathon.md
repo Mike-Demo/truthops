@@ -194,6 +194,12 @@ All 11 materialized to GitHub ref namespace `refs/entire/checkpoints/` (verify: 
 - cfo.ai public evidence page: https://cfo.ai/s/s1d2Bhk4W-ttOZJw
 - Submission: quote-tweet of the official @neatlogs post (video attached) + submission form. Window closes 1:25 PM CDT.
 
+### SUBMITTED ✅ — 2026-10-12, 1:22 PM CDT (inside the window)
+- Quote-post: https://x.com/mike_demo/status/2109709518787797300 (video attached, @neatlogs @EntireHQ @arithecfp tagged, honesty reply posted under it)
+- Form confirmation: "SUBMISSION RECEIVED — You built it. You shipped it."
+- **Submission ID: `b3996892-0e0f-4b0c-a8c5-d6c893302a9c`**
+- Final demo video: Pexo clean cut, 92s (1080p submitted; 4K render finished 1:11 PM CDT) — project https://pexo.ai/project/82788483574, file `truthops_demo_cut_v1_4k.mp4`
+
 ## Remaining work (post-event)
 1. **Rotate ALL exposed API keys** (neatlogs, Sightengine, Firecrawl, Cloudflare, Crustdata, GPTZero) — pasted in chat and visible in recordings/screenshots during the event.
 2. Fix or pin the neatlogs SDK install (`_wrap_utils` missing in 1.1.8 on the Cloud PC).
