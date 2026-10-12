@@ -209,8 +209,9 @@ All 11 materialized to GitHub ref namespace `refs/entire/checkpoints/` (verify: 
 - Form confirmation: "SUBMISSION RECEIVED — You built it. You shipped it."
 - **Submission ID: `b3996892-0e0f-4b0c-a8c5-d6c893302a9c`**
 - Final demo video: Pexo clean cut, 92s (1080p submitted; 4K render finished 1:11 PM CDT) — project https://pexo.ai/project/82788483574, file `truthops_demo_cut_v1_4k.mp4`
+- **Submission updated (Oct 12, 5:53 PM CDT):** the original quote-post's cfo.ai tag was misspelled — @arithecfp, a nonexistent account; the correct handle is **@arithecfo** — and the official rules make all three tags mandatory for detection. The submission was updated with a corrected quote-post (demo video attached directly; tags @neatlogs @EntireHQ @arithecfo): https://x.com/mike_demo/status/2109779588545163571 — the original post stays live and is linked above. (An intermediate corrected post, https://x.com/mike_demo/status/2109773971029627320, fixed the tag but carried the video only via the quoted original.)
 
 ## Remaining work (post-event)
-1. **Rotate ALL exposed API keys** (neatlogs, Sightengine, Firecrawl, Cloudflare, Crustdata, GPTZero) — pasted in chat and visible in recordings/screenshots during the event.
+1. **API key rotation (done Oct 12, post-event)** — the keys pasted in chat / visible in recordings during the event were rotated the same day: Sightengine ✅ (old secret revoked), Firecrawl ✅ (exposed key deleted), Crustdata ✅ (old key revoked), GPTZero ✅ (neatHack key removed), neatlogs HTTP ingest key ✅ (fresh key created). Two exceptions: the neatlogs **Project API key** cannot be rotated in their UI — rotation requested from neatlogs support by email on Oct 12; and the Cloudflare token was left active by choice.
 2. Fix or pin the neatlogs SDK install (`_wrap_utils` missing in 1.1.8 on the Cloud PC).
 3. Optional (audit mediums): automated smoke test, CSP headers, remove AgentMail address from SESSION-2026-10-10-PM.md, fix sniff-rejection `recommended_posture` crash, document GPTZero local-CLI dependency.
