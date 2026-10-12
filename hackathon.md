@@ -120,7 +120,7 @@ Problem addressed: viral misinformation (especially AI-generated imagery) spread
 | 2026-10-12 18:22 | X (@Mike_demo) | https://x.com/mike_demo/status/2109709518787797300 (neatHack submission quote-post + honesty reply) |
 | 2026-10-12 19:51 | YouTube Shorts | https://youtube.com/shorts/4lDaz20iKrw (demo video, 9:16) |
 | 2026-10-12 19:52 | LinkedIn | https://lnkd.in/p/etwY3vYg (submission post, demo video attached) |
-| 2026-10-12 19:55 | Facebook | Submission post published Oct 12 (post URL not captured) |
+| 2026-10-12 19:55 | Facebook | https://www.facebook.com/share/v/19rUVWN65w/ (submission post, demo video) |
 | 2026-10-12 19:57 | Threads | https://www.threads.com/share/BCDlNU8SKs/ (submission post) |
 | 2026-10-12 19:59 | Instagram | https://www.instagram.com/reel/DeaCRfnlSEx/ (submission Reel, 9:16) |
 | 2026-10-12 20:05 | Tweet (@demo) | https://app.tweet.app/post/07617002-7c3f-479a-8324-e77e6f7dea7b (submission post, 30s cut) |
