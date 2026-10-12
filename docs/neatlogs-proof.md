@@ -61,6 +61,10 @@ Spans cover the full pipeline:
 - `truthops/__main__.py` — trace ID captured per run, written to report JSON header
 - Trace ID format: 32-char hex (OpenTelemetry `span.get_span_context().trace_id`)
 
+## neatlogs' own Agent Performance Analysis
+
+neatlogs also analyzed the TruthOps workflow from their side (traces Sep 28 – Oct 12): **15 active detections**, including the Slow Chain Execution Monitor (fired on `evidence.alexandria_scrape` spans), the Contrarian Viewpoint Detector, and the TruthOps Execution Monitor, all naming TruthOps' real span names. Full report: [neatlogs-agent-performance-analysis.pdf](neatlogs-agent-performance-analysis.pdf). (The report itself notes its analytics queries failed, so total volume, error rates, and latency quantiles are unverified.)
+
 ## Notes
 
 - The neatlogs API key used during the hackathon was intentionally exposed in terminal recordings (documented in README Security note). It will be rotated after the event.

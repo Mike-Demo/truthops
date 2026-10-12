@@ -17,7 +17,7 @@ Problem addressed: viral misinformation (especially AI-generated imagery) spread
 - **Repo:** https://github.com/Mike-Demo/truthops (public, MIT)
 
 ## neatlogs — tracing
-- Neatlogs v4 SDK integrated for distributed tracing of every pipeline run. Proof export: [docs/neatlogs-proof.md](docs/neatlogs-proof.md) · [docs/neatlogs-proof.pdf](docs/neatlogs-proof.pdf) (28/28 trace IDs)
+- Neatlogs v4 SDK integrated for distributed tracing of every pipeline run. Proof export: [docs/neatlogs-proof.md](docs/neatlogs-proof.md) · [docs/neatlogs-proof.pdf](docs/neatlogs-proof.pdf) (28/28 trace IDs) · neatlogs' own Agent Performance Analysis of the workflow (15 active detections): [docs/neatlogs-agent-performance-analysis.pdf](docs/neatlogs-agent-performance-analysis.pdf)
 - Debugging story: initial runs showed `neatlogs_trace_id: null` — Neatlogs returns an OpenTelemetry span, so the ID must be read from `span.get_span_context().trace_id` and formatted as 32 hex chars. Fixed and verified.
 - Every calibration run emits a trace ID and flushes cleanly. Example traces:
   - smoke1 `2214a1399682b529e2bf82723e0cbe1c`, smoke1 (Oct 10 clean) `aa3d1547e87988e35baf6403c534e18f`
