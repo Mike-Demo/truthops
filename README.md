@@ -80,7 +80,7 @@ Allegation → [Sniff Test] → (proceed?) → Evidence Pipeline → Claims → 
 ## Sponsor evidence
 
 - **neatlogs traces**: instrumented via `truthops/tracing.py` — all 28 claims traced on live runs, trace IDs in report JSON ([neatlogs.com](https://neatlogs.com/)). Proof export: [neatlogs-proof.md](docs/neatlogs-proof.md) · [neatlogs-proof.pdf](docs/neatlogs-proof.pdf)
-- **Entire checkpoints**: CLI installed, `~/.local/bin` on PATH, newest ref `01M4PM74JJJSFKM80Y53QP9X0F` (Oct 11; 11 refs on GitHub) with session provenance, pushed to origin ([entire.io](https://entire.io/))
+- **Entire checkpoints**: CLI installed, `~/.local/bin` on PATH, newest ref `01M4PM74JJJSFKM80Y53QP9X0F` (Oct 11; 11 refs on GitHub) with session provenance, pushed to origin ([entire.io](https://entire.io/)). Refs (verify with `git ls-remote origin 'refs/entire/checkpoints/*'`): `0F/01M4PM74JJJSFKM80Y53QP9X0F` · `1J/01M4PD1Z3D2Q28FHYMFPDARF1J` · `F3/01M4PH0S93BM02D2ZVYGQ5J8F3` · `QS/01M4KHFZSP4K7Z61RJTTK1SFQS` · `QS/01M4MGC92A8ETYPBT8PXWPNH3G` · `QS/01M4MKACK4KDW0HTYAF58ARS9K` · `QS/01M4P6SRGGCG2GSHYEPAZQYR71` · `QS/01M4P93SZA6PFMD4G0MTFKFHG4` · `QS/01M4PAFW1VD6GMP8A5W2GAW9V2` · `T5/01M4PHSFBERDKGY9W4KWSZQPT5` · `ZM/01M4PG6TV2ZDFJN4XSMZRPCVZM`
 - **cfo.ai plan**: [cfo.ai](https://cfo.ai/) — financial model with $0.49/investigation unit economics. Exported copies: [business-plan.md](docs/business-plan.md) · [business-plan.pdf](docs/business-plan.pdf)
 
 ## Limitations

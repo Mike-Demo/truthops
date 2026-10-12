@@ -2,7 +2,7 @@
 
 > Submission window: Mon Oct 12, 8:30 AM–1:25 PM CDT.
 > Submit via: X quote-post of the official neatlogs submission post.
-> Video: narrated demo, 3 min or less — NOT YET RECORDED (script: docs/demo-script.md).
+> Video: demo recorded live on Oct 12 — Pexo clean cut with automated voiceover narration (see the honesty note under Links).
 
 ---
 
@@ -25,8 +25,8 @@ The pipeline got sharper during the build, and the traces prove it:
 ## Sponsor tools
 
 - **neatlogs** — every pipeline run is distributed-traced. The integration had a real debugging story: initial runs returned null trace IDs because Neatlogs hands back an OpenTelemetry span, so the ID has to be read from `span.get_span_context().trace_id` and formatted as 32 hex chars. Fixed, verified, and every calibration run now emits a trace ID. (Sample: smoke1 `aa3d1547e87988e35baf6403c534e18f`.)
-- **Entire** — twelve checkpoints tie commits to the sessions behind them, under `refs/entire/checkpoints/QS/` (e.g. `01M4KHFZSP4K7Z61RJTTK1SFQS` initial build; latest `01M4PK18DFGSXH1MZ2V02X2VC0` covering the rev2 audit fixes).
-- **cfo.ai** — a real business plan, not a slide: ~$1.08 per full investigation; tier pricing $499/$1,499/$3,999 with 88–90% modeled gross margins; runway modeled to Mar-2028. B-roll of the model is in the repo.
+- **Entire** — eleven checkpoints pushed as git refs under `refs/entire/checkpoints/` (verify: `git ls-remote origin 'refs/entire/checkpoints/*'`), tying commits to the sessions behind them — from `QS/01M4KHFZSP4K7Z61RJTTK1SFQS` (initial build) to `0F/01M4PM74JJJSFKM80Y53QP9X0F` (newest on GitHub), pushed via a custom `entire-agent-cane` plugin. One more, `01M4PQ0NFET7JK1AT3ZZJFDZRJ` (Oct 11, cost recompute), is registered in Entire but its git ref push failed; the entire.io dashboard only counts natively-registered checkpoints, so the git refs are the verifiable record.
+- **cfo.ai** — a real business plan, not a slide: ~$0.49 per full investigation; tier pricing $499/$1,499/$3,999 with 94.77–97.38% modeled gross margins; runway modeled to Mar-2028. B-roll of the model is in the repo.
 
 ## Calibration (honest numbers)
 
@@ -38,7 +38,10 @@ The pipeline got sharper during the build, and the traces prove it:
 - Live dashboard: https://truthops-demo.space.fast/
 - Calibration claims (per-claim verdicts, evidence, traces, Gists): https://truthops-demo.space.fast/claims.html
 - Reproduce: `git clone https://github.com/Mike-Demo/truthops && cd truthops && python -m truthops run --case smoke1` (zero-dependency fixture run; no keys needed)
-- Demo video: ≤3 min narrated (recording Sunday) — link goes here
+- Demo video: Pexo clean cut of the live Oct 12 recording, under 2 min (project: https://pexo.ai/project/82788483574 — final link slots in here)
+- **Video honesty note:** the footage was self-recorded after the planned remote recording session failed on the morning of Oct 12 (repeated Cloud PC session drops, and remote keystrokes arriving corrupted, which made an agent-driven recording impossible). The raw clips had no audio track, so the narration is an automated voiceover (Pexo, August v2) over the real recording, with earlier full-run trace recordings woven in. Everything on screen — the runs, verdicts, traces, and approval-gate blocks — is genuine and unstaged.
+- Backup demo video (Pexo, 90s, August v2 VO): https://muse.ai/files/1288309184367420/1647296700772442/7rwivs4nkazkv34lj8u9iyuj/truthops-demo-pexo-16x9-4k-v4-augustv2.mp4 (expires Oct 14)
+- Overview deck: https://www.beautiful.ai/player/-P3hSUBp6A3G-H3HVUIc
 
 ## Built in public
 

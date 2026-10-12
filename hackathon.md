@@ -113,6 +113,10 @@ Problem addressed: viral misinformation (especially AI-generated imagery) spread
 | 2026-10-11 19:56 | Tweet (@demo) | https://app.tweet.app/post/c6e59a5d-9ddc-4dc5-8d8e-337e519d191b |
 | 2026-10-11 21:00 | X (@Mike_demo) | https://x.com/Mike_demo/status/2109388734001021339 |
 | 2026-10-11 21:00 | X (@Mike_demo) | https://x.com/Mike_demo/status/2109388746130936300 |
+| 2026-10-12 01:23 | Threads | https://www.threads.com/share/BAXUBbMkST/ (Pexo 90s explainer video) |
+| 2026-10-12 01:23 | LinkedIn | https://lnkd.in/p/eCSsD5fF (Pexo 90s explainer video) |
+| 2026-10-12 01:23 | X (@Mike_demo) | https://x.com/mike_demo/status/2109454367577256071 (Pexo 90s explainer video) |
+| 2026-10-12 01:23 | Instagram | https://www.instagram.com/reel/DeYCqTKiVXV/ (Pexo 90s explainer video) |
 
 ## 2026-10-11 afternoon — community claims (smoke9–28)
 - 20 claims from CNN, AP, Reuters fact checks via Discord show-and-tell. Fixtures + pipeline code extended. All 20 ran with live keys: 18/20 in expected bands (13× FALSE 10/100, 5× MOSTLY_FALSE 35/100, 1× TRUE 99/100). smoke22/23 scored 35 vs higher bands — pipeline penalizes "true but misleading." 40 videos (landscape + vertical). Claims page now shows 28 claims.
@@ -170,19 +174,27 @@ claims.html embedded data was stale (pre-photo-forensics scores). Regenerated fr
 All 28 claims table added to README — each with verdict, score, and links to markdown report, PDF, and terminal video on GitHub.
 
 ## Entire checkpoints (complete list)
-All materialized to GitHub ref namespace `refs/entire/checkpoints/QS/`:
-1. `01M4KHFZSP4K7Z61RJTTK1SFQS` (Oct 10) — initial build session
-2. `01M4MKACK4KDW0HTYAF58ARS9K` → `eeb1591bb397` (Oct 10) — full live suite + README
-3. `01M4P6SRGGCG2GSHYEPAZQYR71` → `439723d` (Oct 11) — live-run recordings, PDF/A regen
-4. `01M4PAFW1VD6GMP8A5W2GAW9V2` → `7afa104` (Oct 11) — traced rerun
-5. `01M4PD1Z3D2Q28FHYMFPDARF1J` → `9e95694` (Oct 11) — Sightengine chain + smoke1 C2PA
-6. `01M4PG6TV2ZDFJN4XSMZRPCVZM` → `98f7053` (Oct 11) — honesty pass
+All 11 materialized to GitHub ref namespace `refs/entire/checkpoints/` (verify: `git ls-remote origin 'refs/entire/checkpoints/*'`). Note: entire.io dashboard only counts natively-registered checkpoints (shows 1); the git refs are the verifiable record.
+1. `QS/01M4KHFZSP4K7Z61RJTTK1SFQS` (Oct 10) — initial build session
+2. `QS/01M4MGC92A8ETYPBT8PXWPNH3G` (Oct 10)
+3. `QS/01M4MKACK4KDW0HTYAF58ARS9K` → `eeb1591bb397` (Oct 10) — full live suite + README
+4. `QS/01M4P6SRGGCG2GSHYEPAZQYR71` → `439723d` (Oct 11) — live-run recordings, PDF/A regen
+5. `QS/01M4P93SZA6PFMD4G0MTFKFHG4` (Oct 11)
+6. `QS/01M4PAFW1VD6GMP8A5W2GAW9V2` → `7afa104` (Oct 11) — traced rerun
+7. `1J/01M4PD1Z3D2Q28FHYMFPDARF1J` → `9e95694` (Oct 11) — Sightengine chain + smoke1 C2PA
+8. `ZM/01M4PG6TV2ZDFJN4XSMZRPCVZM` → `98f7053` (Oct 11) — honesty pass
+9. `F3/01M4PH0S93BM02D2ZVYGQ5J8F3` (Oct 11)
+10. `T5/01M4PHSFBERDKGY9W4KWSZQPT5` (Oct 11)
+11. `0F/01M4PM74JJJSFKM80Y53QP9X0F` (Oct 11) — newest on GitHub
 
-## Remaining work (priority order)
-1. **Narrated 2–3 min demo video** — doesn't exist; 20% judging category; must cover agent + neatlogs (live trace) + Entire (checkpoint resolving to commit) + cfo.ai (pricing/costs/revenue/runway); end on human gate + PDF report; state on camera that pipeline is rule-based.
-2. **Final submission writeup** — `thread-assets/submission-writeup.md` still DRAFT. Submission = public X quote-post of official neatlogs post with team, name, project, repo, demo link. Window: Oct 12, 8:30 AM–1:25 PM CDT; plan to submit by ~12:30 PM CDT.
-3. **Rotate exposed keys after the event** (neatlogs + Sightengine at minimum).
-4. **PressMaster**: trim 4 over-length X posts during review; drafts in Review/Approval pending.
-5. **Bluesky URL** — still missing.
-6. Optional (audit mediums): automated smoke test, move mp4s out of git, CSP headers, remove AgentMail address from SESSION-2026-10-10-PM.md, fix sniff-rejection `recommended_posture` crash, document GPTZero local-CLI dependency.
-7. After hackathon: rotate ALL pasted API keys (Sightengine, Cloudflare, Crustdata, Firecrawl, GPTZero, neatlogs, Firecrawl).
+## 2026-10-12 — submission day
+- Morning smoke check passed (site 200, claims page 28 claims, smoke5 TRUE 99/100). Code frozen since Oct 11.
+- Demo video: the planned agent-driven Cloud PC recording failed (repeated Windows 365 session drops; remote keystrokes arrived corrupted — literal `^C` text inside commands — so the API keys never landed from the agent side). Demo self-recorded the full flow on the Cloud PC instead: live `--live` smoke1 run (PANTS_ON_FIRE, approval gate BLOCKED on publish/post/notify, reports written), neatlogs traces + Needs Attention incidents, the 11 Entire refs, cfo.ai, and the claims page. The raw clips had no audio track, so the final video is a Pexo clean cut (project 82788483574) with automated voiceover (August v2) over the real footage, with Oct 11 full-run trace recordings woven in — disclosed in the submission writeup and the submission tweet thread. Backup: Pexo v4 explainer (approved Oct 11).
+- One honest gap: the neatlogs SDK installed on the Cloud PC (1.1.8) is missing its `_wrap_utils` module, so the Oct 12 live run emitted no spans. The traced evidence stands on the Oct 11 traced rerun (28/28 runs with trace IDs) plus neatlogs' own detections (15 active).
+- cfo.ai public evidence page: https://cfo.ai/s/s1d2Bhk4W-ttOZJw
+- Submission: quote-tweet of the official @neatlogs post (video attached) + submission form. Window closes 1:25 PM CDT.
+
+## Remaining work (post-event)
+1. **Rotate ALL exposed API keys** (neatlogs, Sightengine, Firecrawl, Cloudflare, Crustdata, GPTZero) — pasted in chat and visible in recordings/screenshots during the event.
+2. Fix or pin the neatlogs SDK install (`_wrap_utils` missing in 1.1.8 on the Cloud PC).
+3. Optional (audit mediums): automated smoke test, CSP headers, remove AgentMail address from SESSION-2026-10-10-PM.md, fix sniff-rejection `recommended_posture` crash, document GPTZero local-CLI dependency.
