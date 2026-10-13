@@ -169,12 +169,12 @@ External audit prepared Oct 11 4:35 PM. Findings: **1 Critical, 5 High, 9 Medium
 - **H3:** Live footage showed tracing OFF — **outdated** (fixed by traced rerun).
 - **H4:** Demo video doesn't meet requirement — **biggest remaining gap** (no narrated 2-3 min video yet).
 - **H5:** Dashboard had no honesty labelling — **fixed** (fixture-driven banner on claims page).
-- **M1:** Cost figures conflicted ($1.08 / $0.994 / $0.56 / $0.00) — **fixed** ($1.08 = cfo.ai modeled source of truth; $0.00 = observed spend).
+- **M1:** Cost figures conflicted ($1.08 / $0.994 / $0.56 / $0.00) — **fixed** ($1.08 = cfo.ai modeled source of truth at the time — superseded by $0.49, Oct 11; $0.00 = observed spend).
 
 ### Honesty pass (GitHub `98f7053`, Entire `01M4PG6TV2ZDFJN4XSMZRPCVZM`)
 - README.md: "autonomous trust operations agent" → "transparent scoring and governance pipeline over curated evidence"; explicit rule-based disclosure; new Limitations section; Security note documenting credential exposure (intentional for hack, rotation post-event).
 - site/claims.html: amber banner — "⚠️ Fixture-driven demo: scores follow recorded evidence calibrated against known fact-checks; analysis is rule-based." "$0.00 API Spend" → "Observed API Spend".
-- hackathon.md + site/index.html: $0.994 → $1.08 cost fix.
+- hackathon.md + site/index.html: $0.994 → $1.08 cost fix (superseded by $0.49, Oct 11).
 - Demo site redeployed with banner live.
 
 ### Site data refresh (GitHub `933f553`)
