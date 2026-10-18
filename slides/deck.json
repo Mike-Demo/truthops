@@ -1,0 +1,224 @@
+{
+  "boltSlidesVersion": 1,
+  "boltSlidesId": "11011050-f9d6-4d43-8a9e-3e43af51bbaf",
+  "deck": {
+    "title": "TruthOps — Transparent Misinformation Verification",
+    "transition": "fade",
+    "font": "space",
+    "accent": "#10b981"
+  },
+  "slides": [
+    {
+      "id": "s1",
+      "position": 0,
+      "layout": "cover",
+      "props": {
+        "kicker": "Open Source · neatHack 2026",
+        "title": "TruthOps — ==verification you can== **audit**.",
+        "subtitle": "Transparent, rule-based misinformation verification with photo forensics — and a human approval gate before anything ships.",
+        "foot": "github.com/Mike-Demo/truthops"
+      },
+      "background": { "type": "color", "color": "var(--bg)" },
+      "animation": "cascade",
+      "transition": null,
+      "nav": null,
+      "notes": "Open with the promise: no black boxes. Every verdict is explainable, every run is auditable, and a human signs off before a response plan goes out.",
+      "status": "none"
+    },
+    {
+      "id": "s2",
+      "position": 1,
+      "layout": "contrast",
+      "props": {
+        "kicker": "The problem",
+        "title": "Fast falsehoods, ==distrustful== verdicts.",
+        "left": {
+          "label": "Speed",
+          "title": "Claims outrun fact-checks",
+          "points": [
+            "Viral claims spread in hours; fact-checks take days",
+            "Manual review can't scale to the volume"
+          ]
+        },
+        "right": {
+          "label": "Trust",
+          "title": "Black-box AI isn't believed",
+          "points": [
+            "\"The model said so\" convinces no one",
+            "No evidence chain means no accountability"
+          ]
+        }
+      },
+      "background": { "type": "color", "color": "var(--bg)" },
+      "animation": "cascade",
+      "transition": null,
+      "nav": null,
+      "notes": "Two failures compounding: fact-checking is too slow for viral spread, and opaque AI verdicts get dismissed even when they're right. TruthOps attacks both.",
+      "status": "none"
+    },
+    {
+      "id": "s3",
+      "position": 2,
+      "layout": "bento",
+      "props": {
+        "kicker": "What it does",
+        "title": "A pipeline, not a ==black box==.",
+        "tiles": [
+          {
+            "k": "01",
+            "title": "Score high-risk claims",
+            "body": "Flags the claims most likely to cause harm before any deep analysis runs."
+          },
+          {
+            "k": "02",
+            "title": "Photo forensics",
+            "body": "Runs image analysis to surface manipulated or miscaptioned photos."
+          },
+          {
+            "k": "03",
+            "title": "Scripted contrarian check",
+            "body": "A deterministic pass that argues the other side — no vibes, just rules."
+          },
+          {
+            "k": "04",
+            "title": "Gather evidence",
+            "body": "Pulls primary sources via Firecrawl and the Alexandria corpus."
+          },
+          {
+            "k": "05",
+            "title": "Evidence-backed response plans",
+            "body": "Outputs a plan a human can approve, amend, or reject — with receipts."
+          }
+        ]
+      },
+      "background": { "type": "color", "color": "var(--bg)" },
+      "animation": "cascade",
+      "transition": null,
+      "nav": null,
+      "notes": "Walk the five capabilities briefly. Emphasize that the contrarian pass is scripted and rule-based — the system argues against its own verdict on purpose.",
+      "status": "none"
+    },
+    {
+      "id": "s4",
+      "position": 3,
+      "layout": "steps",
+      "props": {
+        "kicker": "How it works",
+        "title": "Intake to ==human sign-off==.",
+        "items": [
+          { "title": "Intake", "body": "Claims and media enter the queue" },
+          { "title": "Risk scoring", "body": "Prioritize what could actually harm" },
+          { "title": "Evidence gathering", "body": "Firecrawl + Alexandria sources" },
+          { "title": "AI-authorship detection", "body": "GPTZero screens for synthetic media" },
+          { "title": "Contrarian pass", "body": "Scripted rebuttal stress-tests the verdict" },
+          { "title": "Human approval gate", "body": "Nothing ships without a person" }
+        ]
+      },
+      "background": { "type": "color", "color": "var(--bg)" },
+      "animation": "cascade",
+      "transition": null,
+      "nav": null,
+      "notes": "Trace the flow end to end. Land hard on the last step: the human approval gate is a hard stop, not a suggestion.",
+      "status": "none"
+    },
+    {
+      "id": "s5",
+      "position": 4,
+      "layout": "code",
+      "props": {
+        "kicker": "Radical transparency",
+        "title": "Every verdict ships its ==audit trail==.",
+        "filename": "verdict-audit.json",
+        "code": "{\n  \"claim\": \"Viral post claims X\",\n  \"verdict\": \"unsupported\",\n  \"confidence\": 0.86,\n  \"evidence_chain\": [\n    \"source: firecrawl/snapshot-412\",\n    \"source: alexandria/entry-8829\",\n    \"forensics: photo/exif-mismatch\"\n  ],\n  \"contrarian_pass\": \"passed\",\n  \"human_approval\": \"pending\",\n  \"cost_usd\": 0.0427,\n  \"observability\": \"neatlogs/run-7f3a\"\n}",
+        "highlight": "human_approval"
+      },
+      "background": { "type": "color", "color": "var(--bg)" },
+      "animation": "cascade",
+      "transition": null,
+      "nav": null,
+      "notes": "The point of this slide: nothing is hidden. neatlogs observability records every run, and the economics of each verification are costed to the cent — reproducible and reviewable.",
+      "status": "none"
+    },
+    {
+      "id": "s6",
+      "position": 5,
+      "layout": "pillars",
+      "props": {
+        "title": "Why it's ==different==.",
+        "items": [
+          {
+            "title": "Rules over vibes",
+            "body": "Deterministic, scriptable checks — the same input always yields the same audit."
+          },
+          {
+            "title": "Photo forensics built in",
+            "body": "Manipulated and miscaptioned images get analyzed, not just the text."
+          },
+          {
+            "title": "Human approval gate",
+            "body": "AI drafts, evidence supports, a person decides. No autonomous verdicts."
+          },
+          {
+            "title": "Costed to the cent",
+            "body": "Every run's economics are logged — transparency extends to the bill."
+          }
+        ]
+      },
+      "background": { "type": "color", "color": "var(--bg)" },
+      "animation": "cascade",
+      "transition": null,
+      "nav": null,
+      "notes": "Pick two of the four to dwell on based on the room — the approval gate for policy folks, cent-level costing for engineers.",
+      "status": "none"
+    },
+    {
+      "id": "s7",
+      "position": 6,
+      "layout": "statGrid",
+      "props": {
+        "kicker": "Status",
+        "title": "Built at neatHack 2026. ==Live today==.",
+        "stats": [
+          {
+            "value": "2026",
+            "label": "neatHack edition",
+            "caption": "Built for the hackathon"
+          },
+          {
+            "value": "Oct 12",
+            "label": "Submitted",
+            "caption": "Hackathon submission date"
+          },
+          {
+            "value": "100%",
+            "label": "Open source",
+            "caption": "Public repo, live now"
+          }
+        ]
+      },
+      "background": { "type": "color", "color": "var(--bg)" },
+      "animation": "cascade",
+      "transition": null,
+      "nav": null,
+      "notes": "Status beat: this isn't a mockup. It was built for neatHack 2026, submitted October 12, and the repo is public and running.",
+      "status": "none"
+    },
+    {
+      "id": "s8",
+      "position": 7,
+      "layout": "cover",
+      "props": {
+        "kicker": "Try it · Fork it · Audit it",
+        "title": "Misinformation verification, ==in the open==.",
+        "subtitle": "Read the code, inspect the evidence chains, run the pipeline yourself.",
+        "foot": "github.com/Mike-Demo/truthops"
+      },
+      "background": { "type": "color", "color": "var(--bg)" },
+      "animation": "cascade",
+      "transition": "zoom",
+      "nav": null,
+      "notes": "Close with the invitation: the whole pipeline is public. The best trust signal for a verification tool is that anyone can check its work.",
+      "status": "none"
+    }
+  ]
+}
