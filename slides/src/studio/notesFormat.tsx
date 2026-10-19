@@ -1,3 +1,4 @@
+import DOMPurify from 'dompurify';
 import { richToHtml } from '../copy/rich';
 
 export type Block =
@@ -107,12 +108,48 @@ const codeToHtml = (s: string) =>
     })
     .join('');
 
+/**
+ * Allowlist of exactly what the notes formatter below and richToHtml emit:
+ * block tags div/h3/blockquote/ul/ol/li/br, inline tags span/strong/em/code,
+ * and the span attributes the formatter generates (class note-hl/accent-text,
+ * style from validated hex/size/align values, data-hl, data-color, data-fs,
+ * data-size, data-align). Notes HTML reaches the DOM via innerHTML in the
+ * editor, so sanitize it here, at the single production point, as
+ * defense-in-depth against stored or synced note content.
+ */
+export const sanitizeNotesHtml = (html: string): string =>
+  DOMPurify.sanitize(html, {
+    ALLOWED_TAGS: [
+      'div',
+      'h3',
+      'blockquote',
+      'ul',
+      'ol',
+      'li',
+      'br',
+      'span',
+      'strong',
+      'em',
+      'code',
+    ],
+    ALLOWED_ATTR: [
+      'class',
+      'style',
+      'data-hl',
+      'data-color',
+      'data-fs',
+      'data-size',
+      'data-align',
+    ],
+  });
+
 export function notesToHtml(text: string): string {
   const blocks = parseNotes(text);
 
-  if (!blocks.length) return '<div><br></div>';
+  if (!blocks.length) return sanitizeNotesHtml('<div><br></div>');
 
-  return blocks
+  return sanitizeNotesHtml(
+    blocks
     .map((b) => {
       if (b.kind === 'h') return `<h3>${codeToHtml(b.lines[0])}</h3>`;
 
@@ -133,7 +170,8 @@ export function notesToHtml(text: string): string {
 
       return `<div>${b.lines.map(codeToHtml).join('<br>')}</div>`;
     })
-    .join('');
+    .join('')
+  );
 }
 
 function inlineText(node: Node): string {
